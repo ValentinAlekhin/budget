@@ -29,7 +29,6 @@ export const StyledNavLink = styled(NavLink)`
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
-  background: #fff;
   border-right: 0.5px solid ${rgba('#000', 0.1)};
   border-left: ${({ first }) =>
     first ? `0.5px solid ${rgba('#000', 0.1)}` : ''};

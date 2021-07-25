@@ -7,15 +7,6 @@ const grid = css`
   grid-gap: 10px;
 `
 
-export const Wrapper = styled.div`
-  text-align: center;
-`
-
-export const Title = styled.h1`
-  margin-top: 20px;
-  font-size: 20px;
-  text-transform: uppercase;
-`
 export const ColumnTitles = styled.div`
   ${grid}
 

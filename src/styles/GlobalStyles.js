@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
+import { rgba } from 'polished'
 
 import fonts from './fonts'
+
+const fontColor = rgba('#fff', 0.7)
 
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
@@ -9,6 +12,10 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Roboto', 'Manrope', 'Times New Roman', Times, sans-serif;
+    background-color: #7f5a83;
+    background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+    color: ${fontColor};
+
   }
 
   ul {
@@ -17,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
   
   a {
     text-decoration: none;
-    color: #000;
+    color: ${fontColor};
   }
 
   input {
