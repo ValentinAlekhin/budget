@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "rsync --archive --compress --delete --progress --exclude '.git' --exclude '.env' . root@alekhin.dev:/home/budget"
+    "deploy": "rsync --archive --compress --delete --progress --exclude '.git' --exclude '.env' .. root@alekhin.dev:/home/budget"
   },
   "eslintConfig": {
     "extends": [
