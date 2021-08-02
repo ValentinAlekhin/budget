@@ -6,8 +6,8 @@ import fonts from './fonts'
 const fontColor = rgba('#fff', 0.7)
 
 const GlobalStyle = createGlobalStyle`
-  html, body, #root {
-    min-height: 100%;
+  html, body, #root, .App {
+    height: 100%;
   }
 
   body {

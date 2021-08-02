@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 
 app.use(checkUserId)
-app.use(indexRouter)
+app.use('/api', indexRouter)
 app.use(error)
 
 const start = async () => {
