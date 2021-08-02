@@ -3,26 +3,30 @@ const {Schema, model} = require('mongoose')
 const RecordTypes = require('../enums/RecordTypes')
 
 const schema = new Schema({
-   date: {
-       type: Date,
-       required: true,
-   },
+    user: {
+        type: Schema.Types.ObjectId,
+        required: true,
+    },
+    date: {
+        type: Date,
+        required: true,
+    },
     from: {
-       type: String,
+        type: String,
         enum: Object.values(RecordTypes),
         required: true,
     },
     category: {
-       type: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         required: true,
     },
     amount: {
-       type: Number,
+        type: Number,
         required: true,
     },
     comment: {
-       type: String,
+        type: String,
     }
-})
+    })
 
 module.exports = model('record', schema)

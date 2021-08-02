@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const config = require('../config')
 const indexRouter = require('./routes/index')
 const checkUserId = require('./middlewares/checkUserId')
+const error = require('./middlewares/error')
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(cors())
 
 app.use(checkUserId)
 app.use(indexRouter)
+app.use(error)
 
 const start = async () => {
     try {
