@@ -1,13 +1,13 @@
 import styled, {css} from "styled-components"
-import {rgba} from 'polished'
 
 const sharedStyles = css`
-  background: ${rgba('#fff', 0.8)};
+  background: #393E46;
   padding: 10px 20px;
   border-radius: 10px;
   width: 80%;
   text-align: center;
   font-size: 20px;
+  height: 45px;
 `
 
 export const Wrapper = styled.div`
@@ -25,5 +25,9 @@ export const IdInput = styled.input`
 
 export const SubmitButton = styled.button`
   ${sharedStyles};
+  background: #00ADB5;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `

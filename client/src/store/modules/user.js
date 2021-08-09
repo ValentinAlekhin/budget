@@ -1,27 +1,51 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
+
+import history from '../../utils/history'
+
+export const login = createAsyncThunk('user/login', async id => {
+  axios.defaults.headers = {
+    'Authorization': `Bearer ${id}`
+  }
+  const response = await axios.get('/api')
+  
+  return response.data
+})
+
+export const initUser = createAsyncThunk('user/init', async () => {})
 
 const costs = createSlice({
   name: 'user',
   initialState: {
-    costs: {
-      dynamic: [
-        { title: 'Продукты', id: 1 },
-        { title: 'Развлечения', id: 2 },
-        { title: 'Фастфуд', id: 3 },
-      ],
-      static: [
-        { title: 'Интернет', id: 1 },
-        { title: 'Подписки', id: 2 },
-        { title: 'ЖКХ', id: 3 },
-      ],
-    },
-    income: [{ title: 'Зарплата', id: 1 }],
+    user: null,
+    loading: false,
+    error: null,
   },
   reducers: {
-    setCost: (state, { payload }) => {
-      const { key, value, id } = payload
+    setUser(state, action) {
+      state = action.payload
     },
+    setLoading(state, action) {
+      state.loading = action.payload
+    }
   },
+  extraReducers: {
+    [login.fulfilled](state, { payload }) {
+      localStorage.setItem('_id', payload._id)
+      
+      state.loading = false
+      state.user = payload
+      
+      history.push('/')
+    },
+    [login.pending](state, action) {
+      state.loading = true
+    },
+    [login.rejected](state, action) {
+      state.loading = false
+      state.error = 'Ошибка'
+    },
+  }
 })
 
 export const { setCategories } = costs.actions

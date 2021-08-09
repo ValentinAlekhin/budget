@@ -6,7 +6,7 @@ const RecordService = require('../services/RecordService')
 const router = Router()
 
 router.get('/', async (req, res) => {
-    const {id} = req.user
+    const { id } = req.user
 
     const response = await UserService.GetUserById(id)
 
