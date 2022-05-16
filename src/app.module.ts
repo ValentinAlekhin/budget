@@ -6,9 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { ormconfig } from '@app/ormconfig'
 import { ConfigModule } from '@nestjs/config'
 import { validationOptions, validationSchema } from '@app/config'
-import { AuthModule } from './auth/auth.module';
-import { CategoryModule } from './category/category.module';
-import { RecordService } from './record/record.service';
+import { AuthModule } from './auth/auth.module'
+import { CategoryModule } from './category/category.module'
+import { RecordModule } from './record/record.module'
 
 @Module({
   imports: [
@@ -21,8 +21,9 @@ import { RecordService } from './record/record.service';
     UserModule,
     AuthModule,
     CategoryModule,
+    RecordModule,
   ],
   controllers: [AppController],
-  providers: [AppService, RecordService],
+  providers: [AppService],
 })
 export class AppModule {}

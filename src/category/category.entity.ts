@@ -3,12 +3,14 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
 import { IsEnum, IsString, MaxLength, MinLength } from 'class-validator'
 import { UserEntity } from '@app/user/user.entity'
 import { ApiProperty } from '@nestjs/swagger'
+import { RecordEntity } from '@app/record/record.entity'
 
 export enum CategoryTypeEnum {
   Dist = 'dist',
@@ -36,8 +38,15 @@ export class CategoryEntity {
   @IsEnum(CategoryTypeEnum)
   type: 'dist' | 'cost'
 
+  @Column({ default: '' })
+  @IsString()
+  comment: string
+
   @ManyToOne(() => UserEntity, (user) => user.categories)
   user: UserEntity
+
+  @OneToMany(() => RecordEntity, (record) => record.category)
+  records: RecordEntity[]
 
   @CreateDateColumn()
   createdAt: Date

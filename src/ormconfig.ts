@@ -1,9 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config()
 import { CategoryEntity } from '@app/category/category.entity'
 import { DataSource, DataSourceOptions } from 'typeorm'
 import { UserEntity } from '@app/user/user.entity'
-
-require('dotenv').config()
+import { RecordEntity } from '@app/record/record.entity'
 
 export const ormconfig: DataSourceOptions = {
   type: 'postgres',
@@ -13,7 +13,7 @@ export const ormconfig: DataSourceOptions = {
   password: 'admin',
   database: 'budget',
   synchronize: true,
-  entities: [UserEntity, CategoryEntity],
+  entities: [UserEntity, CategoryEntity, RecordEntity],
   migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
 }
 
