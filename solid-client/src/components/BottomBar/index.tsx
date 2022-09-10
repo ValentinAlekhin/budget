@@ -18,6 +18,9 @@ const links = [
 const BottomBar: Component = () => {
   const location = useLocation()
 
+  const isActiveLink = ({ href }: { href: string }) =>
+    href === location.pathname
+
   return (
     <Footer>
       <For each={links}>
@@ -26,7 +29,10 @@ const BottomBar: Component = () => {
             <Link href={link.href}>
               <link.icon
                 size="25"
-                color={location.pathname === link.href ? '#3f96d0' : '#758b9d'}
+                color={isActiveLink(link) ? '#3f96d0' : '#758b9d'}
+                style={{
+                  transform: `scale(${isActiveLink(link) ? 1.2 : 1})`,
+                }}
               />
             </Link>
           </LinkItem>

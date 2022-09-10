@@ -20,4 +20,8 @@ export const LinkItem = styled('li')`
   list-style: none;
   padding: 0;
   margin: 0;
+
+  a svg {
+    transition: all ease 0.2s;
+  }
 `

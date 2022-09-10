@@ -10,19 +10,23 @@ type service struct {
 }
 
 func (s service) CreateOne(createUserDto *CreateUserDto) (User, error) {
-	user := User{}
+	user := User{
+		Username: createUserDto.Username,
+		Password: createUserDto.Password,
+		Email:    createUserDto.Email,
+	}
 
-	if res := database.Instance.Where("username = ?", createUserDto.Username).Or("email = ?", createUserDto.Email).First(&user); res.RowsAffected >= 1 {
+	if res := database.Instance.Where("username = ?", user.Username).Or("email = ?", createUserDto.Email).First(&user); res.RowsAffected >= 1 {
 		return User{}, errors.New("account taken")
 	}
 
-	hashedPass, err := bcrypt.HashPassword(createUserDto.Password)
+	hashedPass, err := bcrypt.HashPassword(user.Password)
 	if err != nil {
 		return User{}, err
 	}
 
-	createUserDto.Password = hashedPass
-	if res := database.Instance.Create(&createUserDto); res.Error != nil {
+	user.Password = hashedPass
+	if res := database.Instance.Create(&user); res.Error != nil {
 		return User{}, res.Error
 	}
 
