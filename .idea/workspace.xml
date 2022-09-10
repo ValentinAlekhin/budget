@@ -4,81 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b53ed4f3-3c77-4d3a-8778-0c93a2351703" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/.eslintrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/axios/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/Footer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/layouts/default.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/next-env.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/next.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/_app.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/_middleware.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/api/auth/[...nextauth].ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/auth/login/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/auth/login/styled.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/cost.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/db.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/dist.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/stat.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/vercel.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/store/cost/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/styles/globals.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker/dev/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/.air.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/config/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/database/database.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/go.sum" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/auth/controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/auth/dto.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/auth/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/category/controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/category/dto.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/category/entity.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/category/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/record/controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/record/entity.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/record/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/user/controller.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/user/dto.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/user/entity.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/internal/user/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/router/router.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/utils/bcrypt/bcrypt.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-go/utils/convert/convert.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/.prettierignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/api/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/components/BottomBar/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/components/BottomBar/styled.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/components/Button/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/components/Button/styled.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/components/Input/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/components/Input/styled.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/pages/Auth/login/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/pages/Auth/login/styled.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/pages/cost/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/pages/db/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/pages/stat/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/store/category/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/store/user/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solid-client/src/style/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/budget.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/budget.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="b53ed4f3-3c77-4d3a-8778-0c93a2351703" name="Changes" comment="Add toast" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,6 +25,32 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="go-server" />
+                    <option name="lastUsedInstant" value="1662817285" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1662817284" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -136,8 +88,8 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "yarn",
     "prettierjs.PrettierConfiguration.Package": "C:\\Users\\Valentin\\WebstormProjects\\budget\\solid-client\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "ts.external.directory.path": "C:\\Users\\Valentin\\WebstormProjects\\budget\\client\\node_modules\\typescript\\lib",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "ts.external.directory.path": "C:\\Users\\Valentin\\WebstormProjects\\budget\\solid-client\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -160,7 +112,7 @@
       <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\pages\index" />
     </key>
   </component>
-  <component name="RunManager" selected="Shell Script.Dev">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="budget" />
       <working_directory value="$PROJECT_DIR$" />
@@ -209,10 +161,26 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/solid-client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Docker.dev.db: Compose Deployment" />
+      <item itemvalue="npm.dev" />
       <item itemvalue="Shell Script.Dev" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -227,6 +195,14 @@
       <workItem from="1661865732722" duration="8281000" />
       <workItem from="1662053436335" duration="667000" />
     </task>
+    <task id="LOCAL-00001" summary="Add toast">
+      <created>1662822216894</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1662822216894</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,6 +218,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Add toast" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add toast" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

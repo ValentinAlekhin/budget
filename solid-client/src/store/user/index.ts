@@ -1,5 +1,6 @@
 import { createStore } from 'solid-js/store'
 import { axios } from '../../api'
+import { toast } from 'solid-toast'
 
 interface UserStore {
   id: number
@@ -69,6 +70,10 @@ export const login = async ({ email, password }: ILogin) => {
 
     await getMe()
   } catch (e) {
+    // @ts-ignore
+    if (e?.response?.status === 401) return toast.error('Неправильные данные')
+
+    return toast.error('Произошла ошибка не сервере')
     console.log(e)
   }
 }
