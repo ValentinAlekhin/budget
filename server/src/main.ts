@@ -1,10 +1,16 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import * as cookieParser from 'cookie-parser'
 import config from '@app/config'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
+  app.enableCors({ credentials: true,
+    origin: (origin, callback) => {
+      return callback(null, true)
+    } })
+  app.use(cookieParser())
 
   const docConfig = new DocumentBuilder()
     .setTitle('NestJS Course')

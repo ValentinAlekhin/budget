@@ -25,7 +25,10 @@ export class UserService {
     user.password = await hash(createUserDto.password, 10)
 
     try {
-      return await this.userRepository.save(user)
+      const newUser = await this.userRepository.save(user)
+      delete newUser.password
+
+      return newUser
     } catch (e) {
       throw new HttpException(
         'Credentials already taken',

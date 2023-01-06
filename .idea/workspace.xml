@@ -5,11 +5,84 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b53ed4f3-3c77-4d3a-8778-0c93a2351703" name="Changes" comment="Fix POST /user route&#10;Add transition to bottom bar">
-      <change afterPath="$PROJECT_DIR$/solid-client/src/pages/cost/styled.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solid-client/src/pages/cost/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/solid-client/src/pages/cost/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solid-client/src/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/solid-client/src/store/category/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solid-client/src/style/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/solid-client/src/style/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/dev/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/dev/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/.air.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/config/config.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/database/database.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/go.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/controller.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/dto.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/service.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/category/controller.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/category/dto.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/category/entity.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/category/service.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/record/controller.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/record/entity.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/record/service.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/user/controller.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/user/dto.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/user/entity.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/user/service.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/router/router.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/utils/bcrypt/bcrypt.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/utils/convert/convert.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.controller.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/ormconfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/ormconfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/server/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/.eslintrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/.prettierignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/.prettierrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/npm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/pnpm-lock.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/App.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/App.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/api/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/assets/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/components/BottomBar/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/components/BottomBar/styled.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/components/Button/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/components/Button/styled.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/components/Input/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/components/Input/styled.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/pages/Auth/login/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/pages/Auth/login/styled.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/pages/cost/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/pages/cost/styled.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/pages/db/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/pages/distrib/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/pages/stat/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/router/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/store/category/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/store/user/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/src/style/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/vite.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid-client/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +100,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="go-server" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,6 +115,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="nuxt-client" />
+                    <option name="lastUsedInstant" value="1673008391" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
                     <option name="lastUsedInstant" value="1662822404" />
@@ -71,56 +148,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;configurable..is.expanded&quot;: &quot;false&quot;,
-    &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Valentin/WebstormProjects/budget&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;C:\\Users\\Valentin\\WebstormProjects\\budget\\solid-client\\node_modules\\eslint&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\Valentin\\WebstormProjects\\budget\\solid-client\\node_modules\\prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Valentin\\WebstormProjects\\budget\\solid-client\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "code.cleanup.on.save": "true",
+    "configurable..is.expanded": "false",
+    "configurable.GoLibrariesConfigurable.is.expanded": "true",
+    "go.import.settings.migrated": "true",
+    "last_opened_file_path": "C:/Users/Valentin/WebstormProjects/budget/client/components/auth",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "C:\\Users\\Valentin\\WebstormProjects\\budget\\solid-client\\node_modules\\eslint",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\Valentin\\WebstormProjects\\budget\\solid-client\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Users\\Valentin\\WebstormProjects\\budget\\server\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Valentin\WebstormProjects\budget\client\components\auth" />
       <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\components" />
       <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\pages" />
       <recent name="C:\Users\Valentin\WebstormProjects\budget\server-go\internal" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Valentin\WebstormProjects\budget\client\store\auth" />
+      <recent name="C:\Users\Valentin\WebstormProjects\budget" />
       <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\components\Button" />
       <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\pages\Dist" />
       <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\pages\DB" />
-      <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\pages\Home" />
-      <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\pages\index" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="Docker.dev: Compose Deployment">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="budget" />
       <working_directory value="$PROJECT_DIR$" />
@@ -177,6 +254,16 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="dev (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/solid-client/package.json" />
       <command value="run" />
@@ -187,16 +274,30 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="start:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Docker.dev.db: Compose Deployment" />
       <item itemvalue="Docker.dev: Compose Deployment" />
+      <item itemvalue="npm.start:dev" />
+      <item itemvalue="npm.dev (1)" />
       <item itemvalue="npm.dev" />
       <item itemvalue="Shell Script.Dev" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev (1)" />
+        <item itemvalue="npm.start:dev" />
         <item itemvalue="Docker.dev: Compose Deployment" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -213,6 +314,13 @@
       <workItem from="1661865732722" duration="8281000" />
       <workItem from="1662053436335" duration="667000" />
       <workItem from="1662824657968" duration="4494000" />
+      <workItem from="1663089737682" duration="54000" />
+      <workItem from="1673007512351" duration="3000" />
+      <workItem from="1673007530556" duration="49000" />
+      <workItem from="1673007878279" duration="16000" />
+      <workItem from="1673008080983" duration="265000" />
+      <workItem from="1673008361355" duration="3968000" />
+      <workItem from="1673019834738" duration="21951000" />
     </task>
     <task id="LOCAL-00001" summary="Add toast">
       <created>1662822216894</created>

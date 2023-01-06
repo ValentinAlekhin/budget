@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
 import { UserModule } from './user/user.module'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ormconfig } from '@app/ormconfig'
@@ -23,7 +21,5 @@ import { RecordModule } from './record/record.module'
     CategoryModule,
     RecordModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
