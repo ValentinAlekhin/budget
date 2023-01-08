@@ -1,10 +1,12 @@
 import { api } from '~/api'
+import {useAuthStore} from '~/store/auth'
 
 export default defineNuxtRouteMiddleware((to) => {
-  const { value: token } = useCookie('accessToken')
+  const authStore = useAuthStore()
   const toAuth = to.path.includes('auth')
-  console.log(token)
-  if (!token && !toAuth) return navigateTo('/auth')
 
-  api.defaults.headers.common.Authorization =  `Bearer ${token}`
+  console.log(authStore.token)
+  if (!authStore.token && !toAuth) return navigateTo('/auth')
+
+  api.defaults.headers.common.Authorization =  `Bearer ${authStore.token}`
 })

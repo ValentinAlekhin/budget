@@ -17,9 +17,9 @@ import { CategoryEntity } from '@app/category/category.entity'
 import { CreateCategoryDto } from '@app/category/dto/createCategory.dto'
 import { ApiTags } from '@nestjs/swagger'
 
-@Controller('categories')
+@Controller('category')
 @UseGuards(JwtAuthGuard)
-@ApiTags('categories')
+@ApiTags('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 

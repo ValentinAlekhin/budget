@@ -42,7 +42,7 @@ export default {
   },
   async getMe() {
     try {
-      const { data } = await api.post('/auth/me')
+      const { data } = await api.get('/auth/me')
 
       this.user = data
     } catch (e) {

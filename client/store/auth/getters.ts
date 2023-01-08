@@ -1,4 +1,14 @@
+import {useCookie} from '#app'
+
 export default {
-  token: () => localStorage.getItem('token'),
-  isLogin: () => !!localStorage.getItem('token')
+  token: () => {
+    const { value } = useCookie('accessToken')
+
+    return value
+  },
+  isLogin: () =>  {
+    const { value } = useCookie('accessToken')
+
+    return !!value
+  },
 }
