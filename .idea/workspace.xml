@@ -4,24 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Add nuxt3 client">
-      <change afterPath="$PROJECT_DIR$/client/components/Footer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/db.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/dist.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/index/edit.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/index/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/stat.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/store/category/actions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/store/category/getters.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/store/category/state.ts" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы для запуска сервера">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/backup/backup.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/backup/backup.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/backup/backup.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/migrations/1681145222306-Init.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/auth.global.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/auth/getters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/getters.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/migrations/1652475851261-AddUser.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/ormconfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/ormconfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tsconfig.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/tsconfig.build.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,11 +45,15 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/Valentin/WebstormProjects/budget/client/pages",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\Valentin\\WebstormProjects\\budget\\server\\node_modules\\typescript\\lib",
+    "prettierjs.PrettierConfiguration.Package": "/home/valentin/Documents/projects/budget/server/node_modules/prettier",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "ts.external.directory.path": "/home/valentin/Documents/projects/budget/server/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -62,9 +65,11 @@
       <recent name="C:\Users\Valentin\WebstormProjects\budget\client\pages\index" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.start:dev">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="dev: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -73,6 +78,17 @@
           <option name="sourceFilePath" value="docker/dev/docker-compose.yml" />
         </settings>
       </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.15.0/bin/node" />
+      <package-manager value="npm" />
+      <envs />
       <method v="2" />
     </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -91,14 +107,21 @@
       <scripts>
         <script value="start:dev" />
       </scripts>
-      <node-interpreter value="project" />
+      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.15.0/bin/node" />
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Docker.dev: Compose Deployment" />
+      <item itemvalue="npm.build" />
+      <item itemvalue="npm.start:dev" />
+      <item itemvalue="npm.dev" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.start:dev" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.dev" />
         <item itemvalue="Docker.dev: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -128,6 +151,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add nuxt3 client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add nuxt3 client" />
+    <MESSAGE value="Фиксы для запуска сервера" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фиксы для запуска сервера" />
   </component>
 </project>
