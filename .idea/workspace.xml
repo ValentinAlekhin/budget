@@ -4,19 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы для запуска сервера">
-      <change afterPath="$PROJECT_DIR$/server/src/migrations/1681151390784-ChangeEnum.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/migrations/1681151724434-ChangeEnum.ts" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Рефактор сервера и переход на ULID">
+      <change afterPath="$PROJECT_DIR$/server/src/category/exceptions/category-not-found.exception.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/common/abstract-entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/migrations/1681237767674-Init.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/record/dto/recordResponse.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/record/dto/updateRecord.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/record/exceptions/record-not-found.exception.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/backup/backup.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/backup/backup.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/strategies/jwt.strategy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/strategies/jwt.strategy.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/auth/types/AuthUser.type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/types/AuthUser.type.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/backup/backup.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/backup/backup.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/category.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/category/category.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/ormconfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/ormconfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/category.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/migrations/1681145222306-Init.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/migrations/1681151390784-ChangeEnum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/migrations/1681151724434-ChangeEnum.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/dto/createRecord.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/dto/createRecord.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/record/record.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/user/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +40,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -39,7 +57,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Valentin/WebstormProjects/budget/client/pages",
+    "last_opened_file_path": "/home/valentin/Documents/projects/budget/server/src/record/dto",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -55,6 +73,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/src/record/dto" />
+      <recent name="$PROJECT_DIR$/server/src/record" />
       <recent name="C:\Users\Valentin\WebstormProjects\budget\client\pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -131,6 +151,7 @@
       <option name="presentableId" value="Default" />
       <updated>1673177882259</updated>
       <workItem from="1673177883652" duration="6938000" />
+      <workItem from="1681233082819" duration="8444000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -146,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681147146548</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Добавлена раскатка из файла csv">
+      <created>1681199984775</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681199984775</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +183,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add nuxt3 client" />
     <MESSAGE value="Фиксы для запуска сервера" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фиксы для запуска сервера" />
+    <MESSAGE value="Добавлена раскатка из файла csv" />
+    <MESSAGE value="Рефактор сервера и переход на ULID" />
+    <option name="LAST_COMMIT_MESSAGE" value="Рефактор сервера и переход на ULID" />
   </component>
 </project>

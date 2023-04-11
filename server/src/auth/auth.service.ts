@@ -13,13 +13,20 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, password: string): Promise<any> {
+  async validateUser(
+    username: string,
+    password: string,
+  ): Promise<UserEntity | null> {
     const user = await this.usersService.findOneByUsername(username)
 
-    if (!user) return null
+    if (!user) {
+      return null
+    }
 
     const isPasswordValid = await compare(password, user.password)
-    if (isPasswordValid) return user
+    if (isPasswordValid) {
+      return user
+    }
 
     return null
   }
@@ -28,8 +35,16 @@ export class AuthService {
     delete user.password
 
     return {
-      ...user,
-      access_token: this.jwtService.sign(toPlainObject(user)),
+      user,
+      accessToken: this.jwtService.sign(toPlainObject(user)),
+    }
+  }
+
+  async userExists(id: string): Promise<UserEntity | false> {
+    try {
+      return await this.usersService.findById(id)
+    } catch {
+      return false
     }
   }
 }

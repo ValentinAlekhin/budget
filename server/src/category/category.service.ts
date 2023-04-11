@@ -1,9 +1,10 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { CreateCategoryDto } from '@app/category/dto/createCategory.dto'
 import { CategoryEntity } from '@app/category/category.entity'
 import { UserEntity } from '@app/user/user.entity'
+import { CategoryNotFoundException } from '@app/category/exceptions/category-not-found.exception'
 
 @Injectable()
 export class CategoryService {
@@ -28,14 +29,15 @@ export class CategoryService {
     })
   }
 
-  async findOne(user, id: number): Promise<CategoryEntity> {
+  async findOne(user, id: string): Promise<CategoryEntity> {
     const category = await this.categoryRepository.findOne({
       relations: ['user'],
       where: { id, user: { id: user.id } },
     })
 
-    if (!category)
-      throw new HttpException('Category not found', HttpStatus.NOT_FOUND)
+    if (!category) {
+      throw new CategoryNotFoundException(id)
+    }
 
     return category
   }
@@ -50,27 +52,37 @@ export class CategoryService {
     return await this.categoryRepository.save(category)
   }
 
-  async deleteOne(user, id: number): Promise<CategoryEntity> {
+  async deleteOne(user, id: string): Promise<CategoryEntity> {
     const category = await this.findOne(user, id)
+
+    if (!category) {
+      throw new CategoryNotFoundException(id)
+    }
 
     await this.categoryRepository.remove(category)
 
-    return { ...category, id: Number(id) }
+    return category
   }
 
   async updateOne(
     user,
-    id: number,
+    id: string,
     createCategoryDto: CreateCategoryDto,
   ): Promise<CategoryEntity> {
     const category = await this.findOne(user, id)
+
+    if (!category) {
+      throw new CategoryNotFoundException(id)
+    }
 
     Object.assign(category, createCategoryDto)
     return await this.categoryRepository.save(category)
   }
 
   buildCategoryResponse(category: CategoryEntity) {
-    if (category.user) delete category.user
+    if (category.user) {
+      delete category.user
+    }
 
     return category
   }

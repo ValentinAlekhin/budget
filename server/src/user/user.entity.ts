@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, OneToMany } from 'typeorm'
 import {
   IsEmail,
   IsNotEmpty,
@@ -9,12 +9,10 @@ import {
 } from 'class-validator'
 import { CategoryEntity } from '@app/category/category.entity'
 import { RecordEntity } from '@app/record/record.entity'
+import { AbstractEntity } from '@app/common/abstract-entity'
 
 @Entity('users')
-export class UserEntity {
-  @PrimaryGeneratedColumn()
-  id: number
-
+export class UserEntity extends AbstractEntity {
   @Column({ unique: true })
   @IsString()
   @MinLength(4)
@@ -31,7 +29,8 @@ export class UserEntity {
   @MinLength(4)
   @MaxLength(50)
   @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
-    message: 'password too weak',
+    message:
+      'Пароль должен содержать заглвные и строчные буквы, а так же числа',
   })
   password: string
 

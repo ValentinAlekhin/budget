@@ -18,6 +18,6 @@ export class UserController {
   @Post()
   @UsePipes(new ValidationPipe())
   async createUser(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
-    return await this.userService.createUser(createUserDto)
+    return await this.userService.create(createUserDto)
   }
 }

@@ -3,7 +3,7 @@ import { RecordEntity } from '@app/record/record.entity'
 import { IsString } from 'class-validator'
 import { IsULID } from '@yuzu441/is-ulid'
 
-export class CreateRecordDto extends OmitType(RecordEntity, [
+export class UpdateRecordDto extends OmitType(RecordEntity, [
   'id',
   'createdAt',
   'updatedAt',

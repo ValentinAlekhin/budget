@@ -3,18 +3,21 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
-  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
-import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator'
+import {
+  IsDateString,
+  IsEnum,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator'
 import { CategoryEntity, CategoryTypeEnum } from '@app/category/category.entity'
 import { UserEntity } from '@app/user/user.entity'
+import { AbstractEntity } from '@app/common/abstract-entity'
 
 @Entity('records')
-export class RecordEntity {
-  @PrimaryGeneratedColumn()
-  id: number
-
+export class RecordEntity extends AbstractEntity {
   @Column()
   @IsEnum(CategoryTypeEnum)
   type: CategoryTypeEnum
@@ -26,15 +29,20 @@ export class RecordEntity {
   @Column({ nullable: true })
   @IsString()
   @IsOptional()
-  comment: string
+  comment: string | null
 
-  @ManyToOne(() => CategoryEntity, (category) => category.records)
+  @ManyToOne(() => CategoryEntity, (category) => category.records, {
+    onDelete: 'CASCADE',
+  })
   category: CategoryEntity
 
-  @ManyToOne(() => UserEntity, (user) => user.records)
+  @ManyToOne(() => UserEntity, (user) => user.records, {
+    onDelete: 'CASCADE',
+  })
   user: UserEntity
 
   @Column('timestamp')
+  @IsDateString()
   timestamp: Date
 
   @CreateDateColumn()

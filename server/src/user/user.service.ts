@@ -12,6 +12,18 @@ export class UserService {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
 
+  async findById(id: string): Promise<UserEntity> {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      select: ['id', 'username', 'password', 'email'],
+    })
+
+    if (!user) {
+      throw new HttpException('Пользователь не найден', HttpStatus.NOT_FOUND)
+    }
+
+    return user
+  }
   async findOneByUsername(username: string): Promise<UserEntity> {
     return await this.userRepository.findOne({
       where: { username },
@@ -19,7 +31,7 @@ export class UserService {
     })
   }
 
-  async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
+  async create(createUserDto: CreateUserDto): Promise<UserEntity> {
     const user = new UserEntity()
     Object.assign(user, createUserDto)
     user.password = await hash(createUserDto.password, 10)
@@ -31,7 +43,7 @@ export class UserService {
       return newUser
     } catch (e) {
       throw new HttpException(
-        'Credentials already taken',
+        'Пользователь с такими данными уже существует',
         HttpStatus.UNPROCESSABLE_ENTITY,
       )
     }

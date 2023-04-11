@@ -1,10 +1,9 @@
-import { Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common'
+import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common'
 import { LocalAuthGuard } from '@app/auth/guards/local-auth.guard'
 import { AuthService } from '@app/auth/auth.service'
 import { JwtAuthGuard } from '@app/auth/guards/jwt-auth.guard'
 import { ApiBody, ApiTags } from '@nestjs/swagger'
 import { UserType } from '@app/user/types/user.type'
-import { AuthUserType } from '@app/auth/types/AuthUser.type'
 import { LoginUserDto } from '@app/auth/dto/loginUser.dto'
 
 @ApiTags('auth')
@@ -15,7 +14,7 @@ export class AuthController {
   @Post('login')
   @UseGuards(LocalAuthGuard)
   @ApiBody({ type: LoginUserDto })
-  login(@Req() req): AuthUserType {
+  login(@Req() req) {
     return this.authService.login(req.user)
   }
 

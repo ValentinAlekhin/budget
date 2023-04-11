@@ -44,7 +44,7 @@ export class CategoryController {
   @Delete(':id')
   async deleteOne(
     @Req() req,
-    @Param('id') id: number,
+    @Param('id') id: string,
   ): Promise<CategoryEntity> {
     const category = await this.categoryService.deleteOne(req.user, id)
     return this.categoryService.buildCategoryResponse(category)
@@ -54,7 +54,7 @@ export class CategoryController {
   @UsePipes(new ValidationPipe())
   async updateOne(
     @Req() req,
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() createCategoryDto: CreateCategoryDto,
   ): Promise<CategoryEntity> {
     const category = await this.categoryService.updateOne(
