@@ -13,8 +13,9 @@ import { ApiProperty } from '@nestjs/swagger'
 import { RecordEntity } from '@app/record/record.entity'
 
 export enum CategoryTypeEnum {
-  Dist = 'dist',
+  Inc = 'inc',
   Cost = 'cost',
+  Dist = 'dist',
 }
 
 @Entity('categories')
@@ -36,9 +37,9 @@ export class CategoryEntity {
     enum: CategoryTypeEnum,
   })
   @IsEnum(CategoryTypeEnum)
-  type: 'dist' | 'cost'
+  type: CategoryTypeEnum
 
-  @Column({ default: '' })
+  @Column({ nullable: true })
   @IsString()
   comment: string
 

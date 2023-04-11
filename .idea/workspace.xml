@@ -5,22 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы для запуска сервера">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/backup/backup.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/backup/backup.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/backup/backup.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/migrations/1681145222306-Init.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/migrations/1681151390784-ChangeEnum.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/migrations/1681151724434-ChangeEnum.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/migrations/1652475851261-AddUser.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/backup/backup.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/backup/backup.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/backup/backup.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/backup/backup.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/category.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/ormconfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/ormconfig.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/record/record.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/tsconfig.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/tsconfig.build.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.entity.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673178280698</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Фиксы для запуска сервера">
+      <created>1681147146548</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681147146548</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

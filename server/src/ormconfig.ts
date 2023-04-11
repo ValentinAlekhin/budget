@@ -4,6 +4,13 @@ import { DataSource, DataSourceOptions } from 'typeorm'
 
 const { DB_NAME, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_HOST } = process.env
 
+import * as pg from 'pg'
+pg.defaults.parseInputDatesAsUTC = true
+pg.types.setTypeParser(
+  1114,
+  (stringValue: string) => new Date(`${stringValue}Z`),
+)
+
 export const ormconfig: DataSourceOptions = {
   type: 'postgres',
   host: DB_HOST,

@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
-import { IsEnum, IsNumber } from 'class-validator'
+import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator'
 import { CategoryEntity, CategoryTypeEnum } from '@app/category/category.entity'
 import { UserEntity } from '@app/user/user.entity'
 
@@ -23,11 +23,19 @@ export class RecordEntity {
   @IsNumber()
   amount: number
 
+  @Column({ nullable: true })
+  @IsString()
+  @IsOptional()
+  comment: string
+
   @ManyToOne(() => CategoryEntity, (category) => category.records)
   category: CategoryEntity
 
   @ManyToOne(() => UserEntity, (user) => user.records)
   user: UserEntity
+
+  @Column('timestamp')
+  timestamp: Date
 
   @CreateDateColumn()
   createdAt: Date
