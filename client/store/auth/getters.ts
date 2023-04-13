@@ -1,14 +1,9 @@
-import {useCookie} from '#app'
+import { useCookie } from "#app";
 
 export default {
-  token: () => {
-    const { value } = useCookie('accessToken')
+  computedToken: () => {
+    const { value } = useCookie("accessToken");
 
-    return value
+    return value;
   },
-  isLogin: () =>  {
-    const { value } = useCookie('accessToken')
-
-    return !!value
-  },
-}
+};

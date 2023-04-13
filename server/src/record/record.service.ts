@@ -17,7 +17,6 @@ export class RecordService {
     @Inject(CategoryService)
     private readonly categoryService: CategoryService,
   ) {}
-
   async find(user): Promise<RecordResponseDto[]> {
     const records = await this.recordRepository.find({
       relations: ['category'],
@@ -29,9 +28,9 @@ export class RecordService {
   }
 
   async create(user, createRecordDto: CreateRecordDto): Promise<RecordEntity> {
-    const category = await this.categoryService.findOne(
-      user,
+    const category = await this.categoryService.findOneByIdAndUserId(
       createRecordDto.category,
+      user.id,
     )
 
     const record = new RecordEntity()
@@ -40,17 +39,47 @@ export class RecordService {
     return await this.recordRepository.save(record)
   }
 
-  async update(
+  async updateOne(
     user: UserEntity,
     id: string,
     updateRecordDto: UpdateRecordDto,
   ): Promise<RecordEntity> {
+    const record = await this.findOneByIdAndUserId(id, user.id)
+    const category = await this.categoryService.findOneByIdAndUserId(
+      updateRecordDto.category,
+      user.id,
+    )
+
+    Object.assign(record, { ...updateRecordDto, category })
+    return this.recordRepository.save(record)
+  }
+
+  async deleteOne(id: string, user: UserEntity): Promise<RecordEntity> {
+    const record = await this.findOneByIdAndUserId(id, user.id)
+    await this.recordRepository.remove(record)
+
+    return record
+  }
+
+  buildRecordResponse(record): RecordResponseDto {
+    if (record.user) {
+      delete record.user
+    }
+
+    return { ...record, category: record.category.id }
+  }
+
+  async findOneByIdAndUserId(
+    id: string,
+    userId: string,
+  ): Promise<RecordEntity> {
     const record = await this.recordRepository.findOne({
+      relations: ['category'],
       where: {
         id,
         category: {
           user: {
-            id: user.id,
+            id: userId,
           },
         },
       },
@@ -60,15 +89,6 @@ export class RecordService {
       throw new RecordNotFoundException(id)
     }
 
-    Object.assign(record, updateRecordDto)
-    return this.recordRepository.save(record)
-  }
-
-  buildRecordResponse(record): RecordResponseDto {
-    if (record.user) {
-      delete record.user
-    }
-
-    return { ...record, category: record.category.id }
+    return record
   }
 }

@@ -1,49 +1,49 @@
 <template>
-  <ElForm ref='formRef' :model='formValue' :rules='rules' :disabled='loading'>
-    <ElFormItem prop='username'>
-      <ElInput v-model='formValue.username' size='large' placeholder='Логин' :prefix-icon='UserFilled' />
-    </ElFormItem>
+  <a-form :model="formState" @finish="onFinish">
+    <a-form-item
+      name="username"
+      :rules="[{ required: true, message: 'Please input your username!' }]"
+    >
+      <a-input
+        v-model:value="formState.username"
+        placeholder="Имя пользователя"
+        type="email"
+      />
+    </a-form-item>
 
-    <ElFormItem prop='password'>
-      <ElInput v-model='formValue.password' type='password' size='large' placeholder='Пароль' :prefix-icon='Lock' />
-    </ElFormItem>
+    <a-form-item
+      name="password"
+      :rules="[{ required: true, message: 'Please input your pass!' }]"
+    >
+      <a-input
+        v-model:value="formState.password"
+        placeholder="Пароль"
+        type="password"
+      />
+    </a-form-item>
 
-    <ElFormItem>
-      <ElButton type='primary' size='large' @click='submitForm(formRef)'>Войти</ElButton>
-    </ElFormItem>
-  </ElForm>
+    <a-form-item>
+      <a-button type="primary" html-type="submit">Войти</a-button>
+    </a-form-item>
+  </a-form>
 </template>
 
-<script lang='ts' setup>
-import { ElButton, ElForm, FormInstance, FormRules, ElFormItem, ElInput } from 'element-plus'
-import { UserFilled, Lock } from '@element-plus/icons-vue'
-import { useAuthStore } from '~/store/auth'
+<script lang="ts" setup>
+import { useAuthStore } from "~/store/auth";
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 
-const formRef = ref<FormInstance>()
-
-const formValue = reactive({
-  username: '',
-  password: ''
-})
-
-const rules = reactive<FormRules>({
-  username: [{ required: true, message: 'Required' }],
-  password: [{ required: true, message: 'Required' }],
-})
-
-let loading = ref<Boolean>(false)
-const submitForm = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-
-  loading.value = true
-  try {
-    authStore.login(formValue)
-  } catch(e) {
-  } finally {
-    loading.value = false
-  }
+interface FormStateI {
+  username: string;
+  password: string;
 }
-</script>
 
+const formState = reactive<FormStateI>({
+  username: "",
+  password: "",
+});
+
+const onFinish = (values: FormStateI) => {
+  authStore.login(values);
+};
+</script>

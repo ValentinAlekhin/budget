@@ -29,19 +29,6 @@ export class CategoryService {
     })
   }
 
-  async findOne(user, id: string): Promise<CategoryEntity> {
-    const category = await this.categoryRepository.findOne({
-      relations: ['user'],
-      where: { id, user: { id: user.id } },
-    })
-
-    if (!category) {
-      throw new CategoryNotFoundException(id)
-    }
-
-    return category
-  }
-
   async create(
     user,
     createCategoryDto: CreateCategoryDto,
@@ -52,8 +39,8 @@ export class CategoryService {
     return await this.categoryRepository.save(category)
   }
 
-  async deleteOne(user, id: string): Promise<CategoryEntity> {
-    const category = await this.findOne(user, id)
+  async deleteOne(user: UserEntity, id: string): Promise<CategoryEntity> {
+    const category = await this.findOneByIdAndUserId(id, user.id)
 
     if (!category) {
       throw new CategoryNotFoundException(id)
@@ -65,11 +52,11 @@ export class CategoryService {
   }
 
   async updateOne(
-    user,
+    user: UserEntity,
     id: string,
     createCategoryDto: CreateCategoryDto,
   ): Promise<CategoryEntity> {
-    const category = await this.findOne(user, id)
+    const category = await this.findOneByIdAndUserId(id, user.id)
 
     if (!category) {
       throw new CategoryNotFoundException(id)
@@ -82,6 +69,22 @@ export class CategoryService {
   buildCategoryResponse(category: CategoryEntity) {
     if (category.user) {
       delete category.user
+    }
+
+    return category
+  }
+
+  async findOneByIdAndUserId(
+    id: string,
+    userId: string,
+  ): Promise<CategoryEntity> {
+    const category = await this.categoryRepository.findOne({
+      relations: ['user'],
+      where: { id, user: { id: userId } },
+    })
+
+    if (!category) {
+      throw new CategoryNotFoundException(id)
     }
 
     return category

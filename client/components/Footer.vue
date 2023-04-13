@@ -1,39 +1,46 @@
 <template>
-  <div class="footer">
-    <ElFooter>
-      <ElTabs :model-value="active" tab-position='bottom' @tab-click="handleClick">
-        <ElTabPane v-for='tab of links' :key='tab.to' :name='tab.to'>
-          <template #label>
-            <span class="custom-tabs-label">
-              <el-icon class="mr-2 mt-1">
-                <component :is="tab.icon"/>
-              </el-icon>
-              <span>{{ tab.name }}</span>
-            </span>
-          </template>
-        </ElTabPane>
-      </ElTabs>
-    </ElFooter>
-  </div>
+  <a-layout-footer class="footer">
+    <a-tabs v-model:activeKey="activeTab" @change="change">
+      <a-tab-pane v-for="tab of links" :key="tab.to">
+        <template #tab>
+          <span>
+            <component :is="tab.icon" />
+            {{ tab.name }}
+          </span>
+        </template>
+      </a-tab-pane>
+    </a-tabs>
+  </a-layout-footer>
 </template>
 
 <script setup lang="ts">
-import { ElTabs, ElTabPane, ElFooter, ElIcon, TabsPaneContext } from 'element-plus'
-import { Calendar, Money, Guide, Coin } from '@element-plus/icons-vue'
+import {
+  DatabaseOutlined,
+  FundOutlined,
+  BankOutlined,
+  BranchesOutlined,
+} from "@ant-design/icons-vue";
 
-const route = useRoute()
-const router = useRouter()
+const route = useRoute();
+const router = useRouter();
 
 const links = [
-  { name: 'Cost', icon: Money, to: '/' },
-  { name: 'Dist', icon: Guide, to: '/dist' },
-  { name: 'DB', icon: Coin, to: '/db' },
-  { name: 'Stat', icon: Calendar, to: '/stat' },
-]
+  { name: "Cost", icon: BankOutlined, to: "/" },
+  { name: "Dist", icon: BranchesOutlined, to: "/dist" },
+  { name: "DB", icon: DatabaseOutlined, to: "/db" },
+  { name: "Stat", icon: FundOutlined, to: "/stat" },
+];
 
-const active = computed(() => links.find(({ to }) => route.path.includes(to))?.to)
+const { value } = computed(
+  () => links.find(({ to }) => route.path.includes(to))?.to
+);
+console.log(value);
+const activeTab = ref(value);
 
-const handleClick = (tab: TabsPaneContext) => router.push(tab.props.name)
+const change = (value: string) => {
+  router.push(value);
+  console.log(value);
+};
 </script>
 
 <style scoped lang="scss">
@@ -45,5 +52,7 @@ const handleClick = (tab: TabsPaneContext) => router.push(tab.props.name)
   height: 50px;
   display: flex;
   justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 </style>

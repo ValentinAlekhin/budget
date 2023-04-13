@@ -1,40 +1,33 @@
 <template>
-  <ElContainer>
-    <ElHeader>Header</ElHeader>
+  <a-layout>
+    <Header v-if="authStore.user" />
 
-    <ElMain>
-      <NuxtPage/>
-    </ElMain>
+    <a-layout-content :class="{ full: !authStore.user }">
+      <NuxtPage />
+    </a-layout-content>
 
-    <Footer/>
-  </ElContainer>
+    <Footer v-if="authStore.user" />
+  </a-layout>
 </template>
 
-<script setup lang='ts'>
-import 'element-plus/theme-chalk/dark/css-vars.css'
-import { ID_INJECTION_KEY, ElContainer, ElMain, ElHeader } from 'element-plus'
-import {useAuthStore} from '~/store/auth'
-import {useCategoryStore} from '~/store/category'
+<script setup lang="ts">
+import { useAuthStore } from "~/store/auth";
+import { useCategoryStore } from "~/store/category";
+import { useRecordStore } from "~/store/record";
 
-const authStore = useAuthStore()
-const categoryStore = useCategoryStore()
-
-provide(ID_INJECTION_KEY, {
-  prefix: 100,
-  current: 0,
-})
+const authStore = useAuthStore();
+const categoryStore = useCategoryStore();
+const recordStore = useRecordStore();
 
 onMounted(async () => {
-  console.log('work')
-  console.log(authStore.isLogin)
+  if (!authStore.user) return;
 
-  if (!authStore.isLogin) return
-
-
-  await Promise.all([
-      authStore.getMe(),
-      categoryStore.fetchAll(),
-  ])
-})
-
+  await Promise.all([categoryStore.fetchAll(), recordStore.fetchAll()]);
+});
 </script>
+
+<style lang="scss" scoped>
+.full {
+  height: 100vh;
+}
+</style>

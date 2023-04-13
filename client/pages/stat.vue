@@ -1,3 +1,1 @@
-<template>
-  stat
-</template>
+<template>stat</template>

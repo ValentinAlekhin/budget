@@ -1,19 +1,21 @@
 <template>
-  <div class='auth'>
-    <ElTabs v-model='activeName'>
-      <ElTabPane label='Логин' name='login'><auth-login-form/></ElTabPane>
-      <ElTabPane label='Регистрация' name='register'><auth-register-form/></ElTabPane>
-    </ElTabs>
+  <div class="auth">
+    <a-tabs v-model:activeKey="activeKey">
+      <a-tab-pane key="login" tab="Логин"><auth-login-form /></a-tab-pane>
+      <a-tab-pane key="register" tab="Регистрация"
+        ><auth-register-form
+      /></a-tab-pane>
+    </a-tabs>
   </div>
 </template>
 
-<script setup lang='ts'>
-import {ElTabs, ElTabPane} from 'element-plus'
+<script setup lang="ts">
+import { ref } from "vue";
 
-const activeName = ref('login')
+const activeKey = ref("login");
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .auth {
   height: 100%;
   display: flex;

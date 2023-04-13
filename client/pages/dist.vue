@@ -1,3 +1,1 @@
-<template>
-  dist
-</template>
+<template>dist</template>

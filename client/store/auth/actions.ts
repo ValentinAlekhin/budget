@@ -1,52 +1,65 @@
-import { ElNotification } from 'element-plus'
-import { api } from '~/api'
+import { api } from "~/api";
 
 export default {
-  async login(credentials: { username: string, password: string }) {
+  async login(credentials: { username: string; password: string }) {
     try {
-      const { data } = await api.post('/auth/login', credentials, { withCredentials: true })
+      const { data } = await api.post("/auth/login", credentials, {
+        withCredentials: true,
+      });
 
-      console.log(data)
+      const accessToken = useCookie("accessToken");
+      accessToken.value = data.accessToken;
 
-      this.user = data
+      const refreshToken = useCookie("refreshToken");
+      refreshToken.value = data.refreshToken;
 
-      const cookie = useCookie('accessToken')
-      cookie.value = data.access_token
+      // ElNotification({ title: 'Вы вошли', type: 'success' })
 
-      ElNotification({ title: 'Вы вошли', type: 'success' })
+      api.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
 
-      api.defaults.headers.common.Authorization =  `Bearer ${data.access_token}`
+      this.token = data.accessToken;
+      await this.getMe();
 
-      const router = useRouter()
-      router.push({ path: '/' })
+      const router = useRouter();
+      await router.push({ path: "/" });
 
-      console.log('done')
+      console.log("done");
     } catch (e) {
-      console.log(e)
-      ElNotification({ title: 'Ошибка', message: String(e), type: 'error' })
+      console.log(e);
+      // ElNotification({ title: 'Ошибка', message: String(e), type: 'error' })
     }
   },
   logout() {
-    this.$reset()
+    this.$reset();
 
-    const cookie = useCookie('_auth.token')
-    cookie.value = null
+    const accessToken = useCookie("accessToken");
+    accessToken.value = null;
+
+    const refreshToken = useCookie("refreshToken");
+    refreshToken.value = null;
+
+    const router = useRouter();
+    router.push({ path: "/auth" });
   },
-  async register(credentials: { username: string, password: string, email: string }) {
+  async register(credentials: {
+    username: string;
+    password: string;
+    email: string;
+  }) {
     try {
-      await api.post('/user', credentials)
-      await this.login(credentials)
+      await api.post("/user", credentials);
+      await this.login(credentials);
     } catch (e) {
-      ElNotification({ title: 'Ошибка', message: String(e), type: 'error' })
+      // ElNotification({ title: 'Ошибка', message: String(e), type: 'error' })
     }
   },
   async getMe() {
     try {
-      const { data } = await api.get('/auth/me')
+      const { data } = await api.get("/auth/me");
 
-      this.user = data
+      this.user = data;
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
-}
+  },
+};

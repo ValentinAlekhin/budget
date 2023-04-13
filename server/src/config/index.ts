@@ -25,7 +25,7 @@ export const validationOptions = {
 }
 
 export default {
-  port: parseInt(PORT, 10) || 3000,
+  port: parseInt(PORT, 10) || 3001,
   db: {
     host: DB_HOST || 'localhost',
     port: parseInt(DB_PORT, 10) || 5433,
