@@ -8,6 +8,7 @@ import { UserEntity } from '@app/user/user.entity'
 import { RecordNotFoundException } from '@app/record/exceptions/record-not-found.exception'
 import { UpdateRecordDto } from '@app/record/dto/updateRecord.dto'
 import { RecordResponseDto } from '@app/record/dto/recordResponse.dto'
+import { RecordGateway } from '@app/record/record.gateway'
 
 @Injectable()
 export class RecordService {
@@ -16,6 +17,7 @@ export class RecordService {
     private readonly recordRepository: Repository<RecordEntity>,
     @Inject(CategoryService)
     private readonly categoryService: CategoryService,
+    private recordGateway: RecordGateway,
   ) {}
   async find(user): Promise<RecordResponseDto[]> {
     const records = await this.recordRepository.find({
@@ -27,38 +29,56 @@ export class RecordService {
     return records.map((r) => this.buildRecordResponse(r))
   }
 
-  async create(user, createRecordDto: CreateRecordDto): Promise<RecordEntity> {
+  async create(
+    user,
+    createRecordDto: CreateRecordDto,
+  ): Promise<RecordResponseDto> {
     const category = await this.categoryService.findOneByIdAndUserId(
       createRecordDto.category,
       user.id,
     )
 
-    const record = new RecordEntity()
+    let record = new RecordEntity()
     Object.assign(record, { ...createRecordDto, category, user })
 
-    return await this.recordRepository.save(record)
+    record = await this.recordRepository.save(record)
+
+    const response = this.buildRecordResponse(record)
+
+    this.recordGateway.createRecord(response, user.id)
+
+    return response
   }
 
   async updateOne(
     user: UserEntity,
     id: string,
     updateRecordDto: UpdateRecordDto,
-  ): Promise<RecordEntity> {
-    const record = await this.findOneByIdAndUserId(id, user.id)
+  ): Promise<RecordResponseDto> {
+    let record = await this.findOneByIdAndUserId(id, user.id)
     const category = await this.categoryService.findOneByIdAndUserId(
       updateRecordDto.category,
       user.id,
     )
 
     Object.assign(record, { ...updateRecordDto, category })
-    return this.recordRepository.save(record)
+    record = await this.recordRepository.save(record)
+
+    const response = this.buildRecordResponse(record)
+
+    this.recordGateway.updateRecord(response, user.id)
+
+    return response
   }
 
-  async deleteOne(id: string, user: UserEntity): Promise<RecordEntity> {
+  async deleteOne(id: string, user: UserEntity): Promise<RecordResponseDto> {
     const record = await this.findOneByIdAndUserId(id, user.id)
     await this.recordRepository.remove(record)
 
-    return record
+    const response = this.buildRecordResponse({ ...record, id })
+    this.recordGateway.deleteRecord(response, user.id)
+
+    return response
   }
 
   buildRecordResponse(record): RecordResponseDto {

@@ -24,6 +24,8 @@ import {
 const route = useRoute();
 const router = useRouter();
 
+const activeTab = ref("/");
+
 const links = [
   { name: "Cost", icon: BankOutlined, to: "/" },
   { name: "Dist", icon: BranchesOutlined, to: "/dist" },
@@ -31,16 +33,9 @@ const links = [
   { name: "Stat", icon: FundOutlined, to: "/stat" },
 ];
 
-const { value } = computed(
-  () => links.find(({ to }) => route.path.includes(to))?.to
-);
-console.log(value);
-const activeTab = ref(value);
+const change = (value: string) => router.push(value);
 
-const change = (value: string) => {
-  router.push(value);
-  console.log(value);
-};
+onMounted(() => (activeTab.value = route.path));
 </script>
 
 <style scoped lang="scss">

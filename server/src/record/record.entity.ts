@@ -12,8 +12,14 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator'
-import { CategoryEntity, CategoryTypeEnum } from '@app/category/category.entity'
+import { CategoryEntity } from '@app/category/category.entity'
 import { AbstractEntity } from '@app/common/abstract-entity'
+
+export enum CategoryTypeEnum {
+  Inc = 'inc',
+  Cost = 'cost',
+  Dist = 'dist',
+}
 
 @Entity('records')
 export class RecordEntity extends AbstractEntity {

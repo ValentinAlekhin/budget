@@ -15,6 +15,7 @@ import { Repository } from 'typeorm'
 import { TokenEntity } from '@app/auth/token.entity'
 import * as dayjs from 'dayjs'
 import { hash, verifyHash } from '@app/common/utils/hash'
+import * as jwt from 'jsonwebtoken'
 
 @Injectable()
 export class AuthService {
@@ -84,6 +85,15 @@ export class AuthService {
     } catch {
       return false
     }
+  }
+
+  async authenticateToken(token: string) {
+    const payload = jwt.verify(
+      token,
+      this.configService.get<string>('ACCESS_TOKEN_SECRET'),
+    ) as UserEntity
+
+    return this.usersService.findById(payload.id)
   }
 
   private async getTokens(user: UserEntity): Promise<JwtTokensType> {

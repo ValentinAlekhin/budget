@@ -1,18 +1,22 @@
+import { useCookie } from "#app";
 import { api } from "~/api";
 import { useAuthStore } from "~/store/auth";
 
 export default defineNuxtRouteMiddleware(async (to) => {
-  const authStore = useAuthStore();
   const toAuth = to.path.includes("auth");
+  const { value: token } = useCookie<string>("accessToken");
+  const authStore = useAuthStore();
 
-  if (!authStore.computedToken && !toAuth) return navigateTo("/auth");
+  if (!token && !toAuth) return navigateTo("/auth");
 
-  api.defaults.headers.common.Authorization = `Bearer ${authStore.computedToken}`;
+  api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
   try {
     if (authStore.user) return;
-    await authStore.getMe();
-    if (toAuth) return navigateTo("/");
+    if (token) {
+      await authStore.getMe();
+      if (toAuth) return navigateTo("/");
+    }
   } catch {
     authStore.logout();
     return navigateTo("/auth");

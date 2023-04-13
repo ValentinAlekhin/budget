@@ -46,6 +46,10 @@ export default defineNuxtConfig({
             return path.replace(/^\/api/, "");
           },
         },
+        "/socket.io": {
+          target: "ws://localhost:3001",
+          ws: true,
+        },
       },
     },
   },

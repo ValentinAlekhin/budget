@@ -1,3 +1,4 @@
+import { message } from "ant-design-vue";
 import { api } from "~/api";
 
 export default {
@@ -13,8 +14,6 @@ export default {
       const refreshToken = useCookie("refreshToken");
       refreshToken.value = data.refreshToken;
 
-      // ElNotification({ title: 'Вы вошли', type: 'success' })
-
       api.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
 
       this.token = data.accessToken;
@@ -23,10 +22,9 @@ export default {
       const router = useRouter();
       await router.push({ path: "/" });
 
-      console.log("done");
+      message.success("Вы вошли");
     } catch (e) {
-      console.log(e);
-      // ElNotification({ title: 'Ошибка', message: String(e), type: 'error' })
+      message.error("Невалидные данные");
     }
   },
   logout() {

@@ -1,4 +1,5 @@
 import { api } from "~/api";
+import { cudController } from "~/common/cud";
 
 export default {
   async fetchAll() {
@@ -14,17 +15,21 @@ export default {
       this.loading = false;
     }
   },
+  async init() {
+    await this.cudInit();
+    await this.fetchAll();
+  },
   async addRecord(cost: { name: string; comment: string }) {
     const { data } = await api.post("/records", { ...cost, type: "cost" });
     this.data = [...this.data, data];
   },
   async delete(id: string) {
     await api.delete(`/records/${id}`);
-    this.data = this.data.filter((r) => r.id !== id);
   },
 
   async update(body: any) {
     const { data } = await api.put(`/records/${body.id}`, body);
     this.data = this.data.map((r) => (r.id === data.id ? data : r));
   },
+  ...cudController({ action: "records" }),
 };

@@ -14,15 +14,21 @@
 import { useAuthStore } from "~/store/auth";
 import { useCategoryStore } from "~/store/category";
 import { useRecordStore } from "~/store/record";
+import { useSocketStore } from "~/store/socket";
 
 const authStore = useAuthStore();
 const categoryStore = useCategoryStore();
 const recordStore = useRecordStore();
+const socketStore = useSocketStore();
 
 onMounted(async () => {
   if (!authStore.user) return;
 
-  await Promise.all([categoryStore.fetchAll(), recordStore.fetchAll()]);
+  await Promise.all([
+    socketStore.init(),
+    categoryStore.fetchAll(),
+    recordStore.init(),
+  ]);
 });
 </script>
 

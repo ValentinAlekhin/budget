@@ -1,10 +1,10 @@
 <template>
   <div class="db">
     <a-table
-      style="width: 700px"
       :columns="columns"
       :data-source="recordStore.data"
-      :pagination="{ pageSize: 100 }"
+      :pagination="{ pageSize: 30 }"
+      :scroll="{ x: 700, y: 'calc(100vh - 220px)' }"
     >
       <template #bodyCell="{ column, text, record }">
         <span v-if="column.dataIndex === 'amount'">
@@ -14,6 +14,10 @@
         <span v-if="column.dataIndex === 'category'">
           {{ getCategoryName(text) }}
         </span>
+
+        <a-tag v-if="column.dataIndex === 'type'" :color="getTypeColor(text)">
+          {{ text }}
+        </a-tag>
 
         <span v-else-if="column.dataIndex === 'timestamp'">
           {{ dayjs(text).format("DD.MM.YYYY") }}
@@ -88,7 +92,7 @@
 
 <script lang="ts" setup>
 import dayjs, { Dayjs } from "dayjs";
-import { Modal } from "ant-design-vue";
+import { Modal, TableColumnsType } from "ant-design-vue";
 import { createVNode } from "vue";
 import { ExclamationCircleOutlined } from "@ant-design/icons-svg";
 import { useRecordStore } from "~/store/record";
@@ -156,11 +160,25 @@ const showDeleteConfirm = (record) =>
     },
   });
 
-const columns = [
+const getTypeColor = (type: string) => {
+  switch (type) {
+    case "cost":
+      return "volcano";
+
+    case "dist":
+      return "geekblue";
+
+    case "inc":
+      return "green";
+  }
+};
+
+const columns: TableColumnsType = [
   {
     title: "Сумма",
     dataIndex: "amount",
     key: "amount",
+    width: 100,
   },
   {
     title: "Катерогия",
@@ -197,8 +215,20 @@ const typeOptions = ["cost", "dist", "inc"].map((n) => ({
 
 <style lang="scss" scoped>
 .db {
-  overflow: auto;
-  width: 100vw;
-  height: calc(100vh - 110px);
+  //overflow: auto;
+  //width: 100vw;
+  //height: calc(100vh - 110px);
+}
+
+.cost {
+  color: red;
+}
+
+.inc {
+  color: greenyellow;
+}
+
+.inc {
+  color: greenyellow;
 }
 </style>

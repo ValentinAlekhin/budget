@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config'
 import { validationOptions, validationSchema } from '@app/config'
 import { BackupModule } from '@app/backup/backup.module'
 import { CacheModule } from '@nestjs/cache-manager'
+import { SocketsGateway } from '@app/socket/sockets.gateway'
 import { AuthModule } from './auth/auth.module'
 import { CategoryModule } from './category/category.module'
 import { RecordModule } from './record/record.module'
@@ -25,5 +26,6 @@ import { UserModule } from './user/user.module'
     RecordModule,
     BackupModule,
   ],
+  providers: [SocketsGateway],
 })
 export class AppModule {}

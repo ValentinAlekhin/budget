@@ -8,8 +8,6 @@ import {
   Put,
   Req,
   UseGuards,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common'
 import { RecordService } from '@app/record/record.service'
 import { CreateRecordDto } from '@app/record/dto/createRecord.dto'
@@ -30,36 +28,24 @@ export class RecordController {
   }
 
   @Post()
-  @UsePipes(new ValidationPipe())
-  async create(
+  create(
     @Req() req,
     @Body() createRecordDto: CreateRecordDto,
   ): Promise<RecordResponseDto> {
-    const record = await this.recordService.create(req.user, createRecordDto)
-    return this.recordService.buildRecordResponse(record)
+    return this.recordService.create(req.user, createRecordDto)
   }
 
   @Delete(':id')
-  async deleteOne(
-    @Req() req,
-    @Param('id') id: string,
-  ): Promise<RecordResponseDto> {
-    const record = await this.recordService.deleteOne(id, req.user)
-    return this.recordService.buildRecordResponse(record)
+  deleteOne(@Req() req, @Param('id') id: string): Promise<RecordResponseDto> {
+    return this.recordService.deleteOne(id, req.user)
   }
 
   @Put(':id')
-  @UsePipes(new ValidationPipe())
-  async updateOne(
+  updateOne(
     @Req() req,
     @Param('id') id: string,
     @Body() updateRecordDto: UpdateRecordDto,
   ): Promise<RecordResponseDto> {
-    const record = await this.recordService.updateOne(
-      req.user,
-      id,
-      updateRecordDto,
-    )
-    return this.recordService.buildRecordResponse(record)
+    return this.recordService.updateOne(req.user, id, updateRecordDto)
   }
 }
