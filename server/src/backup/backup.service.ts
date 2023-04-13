@@ -52,6 +52,7 @@ export class BackupService {
             type,
             name: category,
             user: { id: user.id },
+            order: acc.length,
           }),
         )
 
@@ -77,7 +78,6 @@ export class BackupService {
           ...item,
           type: item.type,
           timestamp: item.date.toDate(),
-          user: { id: user.id },
           category: { id: categories.find((c) => c.name === item.category).id },
         }),
       )

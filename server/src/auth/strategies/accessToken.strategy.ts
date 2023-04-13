@@ -5,12 +5,12 @@ import { AuthService } from '@app/auth/auth.service'
 import { omit } from 'lodash'
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class AccessTokenStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(private readonly authService: AuthService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: 'secret',
+      secretOrKey: process.env.ACCESS_TOKEN_SECRET,
     })
   }
 

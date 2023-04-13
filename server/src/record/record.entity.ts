@@ -13,7 +13,6 @@ import {
   IsString,
 } from 'class-validator'
 import { CategoryEntity, CategoryTypeEnum } from '@app/category/category.entity'
-import { UserEntity } from '@app/user/user.entity'
 import { AbstractEntity } from '@app/common/abstract-entity'
 
 @Entity('records')
@@ -35,11 +34,6 @@ export class RecordEntity extends AbstractEntity {
     onDelete: 'CASCADE',
   })
   category: CategoryEntity
-
-  @ManyToOne(() => UserEntity, (user) => user.records, {
-    onDelete: 'CASCADE',
-  })
-  user: UserEntity
 
   @Column('timestamp')
   @IsDateString()

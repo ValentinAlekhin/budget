@@ -8,8 +8,8 @@ import {
   MinLength,
 } from 'class-validator'
 import { CategoryEntity } from '@app/category/category.entity'
-import { RecordEntity } from '@app/record/record.entity'
 import { AbstractEntity } from '@app/common/abstract-entity'
+import { TokenEntity } from '@app/auth/token.entity'
 
 @Entity('users')
 export class UserEntity extends AbstractEntity {
@@ -37,6 +37,6 @@ export class UserEntity extends AbstractEntity {
   @OneToMany(() => CategoryEntity, (category) => category.user)
   categories: CategoryEntity[]
 
-  @OneToMany(() => RecordEntity, (record) => record.user)
-  records: RecordEntity[]
+  @OneToMany(() => TokenEntity, (token) => token.user)
+  tokens: TokenEntity[]
 }

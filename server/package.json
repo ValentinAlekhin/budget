@@ -27,6 +27,7 @@
     "db:schema:drop": "npm run typeorm -- schema:drop"
   },
   "dependencies": {
+    "@nestjs/cache-manager": "^1.0.0",
     "@nestjs/common": "^9.3.12",
     "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.3.12",
@@ -36,7 +37,9 @@
     "@nestjs/swagger": "^6.2.1",
     "@nestjs/typeorm": "^9.0.1",
     "@yuzu441/is-ulid": "^1.0.0",
+    "argon2": "^0.30.3",
     "bcrypt": "^5.0.1",
+    "cache-manager": "^5.2.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "cookie-parser": "^1.4.6",
@@ -54,6 +57,7 @@
     "rxjs": "^7.2.0",
     "swagger-ui-express": "^4.4.0",
     "typeorm": "^0.3.6",
+    "typeorm-naming-strategies": "^4.1.0",
     "ulidx": "^0.5.0"
   },
   "devDependencies": {

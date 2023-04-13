@@ -20,8 +20,8 @@ export class RecordService {
 
   async find(user): Promise<RecordResponseDto[]> {
     const records = await this.recordRepository.find({
-      relations: ['user', 'category'],
-      where: { user: { id: user.id } },
+      relations: ['category'],
+      where: { category: { user: { id: user.id } } },
       order: { timestamp: 'desc' },
     })
 
@@ -46,7 +46,14 @@ export class RecordService {
     updateRecordDto: UpdateRecordDto,
   ): Promise<RecordEntity> {
     const record = await this.recordRepository.findOne({
-      where: { id, user: { id: user.id } },
+      where: {
+        id,
+        category: {
+          user: {
+            id: user.id,
+          },
+        },
+      },
     })
 
     if (!record) {
