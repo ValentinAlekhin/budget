@@ -4,7 +4,7 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets'
 import { SocketServerI } from '@app/common/socket/socket.types'
-import { RecordResponseDto } from '@app/record/dto/recordResponse.dto'
+import { CategoryEntity } from '@app/category/category.entity'
 
 interface ActionInfo {
   type: 'update' | 'delete' | 'create'
@@ -12,7 +12,7 @@ interface ActionInfo {
 }
 
 @WebSocketGateway()
-export class RecordGateway implements OnGatewayConnection {
+export class CategoryGateway implements OnGatewayConnection {
   @WebSocketServer()
   public server: SocketServerI
 
@@ -29,29 +29,33 @@ export class RecordGateway implements OnGatewayConnection {
     )
   }
 
-  createRecord(body: RecordResponseDto, userId: string) {
+  createCategory(body: CategoryEntity, userId: string) {
     this.emitByUserId(userId, body, { many: false, type: 'create' })
   }
 
-  createManyRecord(body: RecordResponseDto[], userId: string) {
+  createManyCategory(body: CategoryEntity[], userId: string) {
     this.emitByUserId(userId, body, { many: true, type: 'create' })
   }
 
-  deleteRecord(body: RecordResponseDto, userId: string) {
+  updateManyCategory(body: CategoryEntity[], userId: string) {
+    this.emitByUserId(userId, body, { many: true, type: 'update' })
+  }
+
+  deleteCategory(body: CategoryEntity, userId: string) {
     this.emitByUserId(userId, body, { many: false, type: 'delete' })
   }
 
-  updateRecord(body: RecordResponseDto, userId: string) {
+  updateCategory(body: CategoryEntity, userId: string) {
     this.emitByUserId(userId, body, { many: false, type: 'update' })
   }
 
   private emitByUserId(
     id: string,
-    payload: RecordResponseDto | RecordResponseDto[],
+    payload: CategoryEntity | CategoryEntity[],
     info: ActionInfo,
   ) {
     return this.sockets
       .filter((c) => c.data.user.id === id)
-      .forEach((c) => c.emit('records', { info, payload }))
+      .forEach((c) => c.emit('category', { info, payload }))
   }
 }

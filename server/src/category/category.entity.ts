@@ -22,7 +22,7 @@ export enum CategoryTypeEnum {
 export class CategoryEntity extends AbstractEntity {
   @Column()
   @IsString()
-  @MinLength(4)
+  @MinLength(2)
   @MaxLength(20)
   name: string
 

@@ -1,5 +1,5 @@
 export default () => ({
   data: [],
-  loading: false,
+  loading: true,
   error: null,
 });

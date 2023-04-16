@@ -1,6 +1,7 @@
 import {
   BaseEntity,
   BeforeInsert,
+  Column,
   CreateDateColumn,
   PrimaryColumn,
   UpdateDateColumn,
@@ -22,6 +23,9 @@ export class AbstractEntity extends BaseEntity {
 
   @UpdateDateColumn()
   updatedAt: Date
+
+  @Column({ nullable: true })
+  deletedAt: Date
 
   @BeforeInsert()
   generateId() {

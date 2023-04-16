@@ -8,6 +8,7 @@ export class CreateRecordDto extends OmitType(RecordEntity, [
   'createdAt',
   'updatedAt',
   'category',
+  'deletedAt',
 ] as const) {
   @IsString()
   @IsULID()

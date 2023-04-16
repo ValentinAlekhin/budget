@@ -1,12 +1,67 @@
 import { acceptHMRUpdate, defineStore } from "pinia";
-import state from "~/store/record/state";
-import actions from "~/store/record/actions";
-import getters from "~/store/record/getters";
+import { message } from "ant-design-vue";
+import { RecordEntity } from "../../../server/src/record/record.entity";
+import { api } from "~/api";
+import { cudController } from "~/common/cud";
 
-export const useRecordStore = defineStore("record", {
-  state,
-  actions,
-  getters,
+interface State {
+  data: RecordEntity[];
+  loading: boolean;
+  error: Error | null | unknown;
+}
+
+export const useRecordStore = defineStore<string, State>("record", {
+  state: () => ({
+    data: [],
+    loading: true,
+    error: null,
+  }),
+  actions: {
+    async fetchAll() {
+      this.loading = true;
+      this.error = null;
+
+      try {
+        const { data } = await api.get("/records");
+        this.data = data;
+      } catch (e) {
+        message.error("Ошибка при загрузке записей");
+        this.error = e;
+      } finally {
+        this.loading = false;
+      }
+    },
+    async init() {
+      await this.cudInit();
+      await this.fetchAll();
+    },
+    async addRecord(cost: { name: string; comment: string }) {
+      await api.post("/records", { ...cost, type: "cost" });
+    },
+    async addRecords(
+      data: Array<{
+        amount: number;
+        comment: string;
+        category: string;
+        type: string;
+        timestamp: string;
+      }>
+    ) {
+      await api.post("/records/many", { data });
+    },
+    async delete(id: string) {
+      await api.delete(`/records/${id}`);
+    },
+
+    async update(body: any) {
+      await api.put(`/records/${body.id}`, body);
+    },
+    ...cudController({ action: "records" }),
+  },
+  getters: {
+    costs: (state: State) => state.data.filter((r) => r.type === "cost"),
+    dist: (state: State) => state.data.filter((r) => r.type === "dist"),
+  },
 });
 
 if (import.meta.hot) {

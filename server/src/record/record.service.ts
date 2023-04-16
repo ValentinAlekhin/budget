@@ -1,6 +1,6 @@
-import { Inject, Injectable } from '@nestjs/common'
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { IsNull, Repository } from 'typeorm'
 import { RecordEntity } from '@app/record/record.entity'
 import { CategoryService } from '@app/category/category.service'
 import { CreateRecordDto } from '@app/record/dto/createRecord.dto'
@@ -9,6 +9,8 @@ import { RecordNotFoundException } from '@app/record/exceptions/record-not-found
 import { UpdateRecordDto } from '@app/record/dto/updateRecord.dto'
 import { RecordResponseDto } from '@app/record/dto/recordResponse.dto'
 import { RecordGateway } from '@app/record/record.gateway'
+import { CreateManyRecordsDto } from '@app/record/dto/createManyRecords.dto'
+import { keyBy } from 'lodash'
 
 @Injectable()
 export class RecordService {
@@ -22,7 +24,7 @@ export class RecordService {
   async find(user): Promise<RecordResponseDto[]> {
     const records = await this.recordRepository.find({
       relations: ['category'],
-      where: { category: { user: { id: user.id } } },
+      where: { category: { user: { id: user.id }, deletedAt: IsNull() } },
       order: { timestamp: 'desc' },
     })
 
@@ -46,6 +48,41 @@ export class RecordService {
     const response = this.buildRecordResponse(record)
 
     this.recordGateway.createRecord(response, user.id)
+
+    return response
+  }
+
+  async createMany(
+    user,
+    createManyRecordsDto: CreateManyRecordsDto,
+  ): Promise<RecordResponseDto[]> {
+    const categoryIds = createManyRecordsDto.data.map((r) => r.category)
+    const categories = await this.categoryService.findManyByIdsAndUserId(
+      categoryIds,
+      user.id,
+    )
+
+    if (categoryIds.length !== categories.length) {
+      throw new HttpException('Нет таких категорий', HttpStatus.BAD_REQUEST)
+    }
+
+    const categoriesObj = keyBy(categories, 'id')
+
+    let records = createManyRecordsDto.data.map((r) =>
+      this.recordRepository.create({
+        amount: r.amount,
+        timestamp: r.timestamp,
+        type: r.type,
+        category: categoriesObj[r.category],
+        comment: r.comment,
+      }),
+    )
+
+    records = await this.recordRepository.save(records)
+
+    const response = records.map((r) => this.buildRecordResponse(r))
+
+    this.recordGateway.createManyRecord(response, user.id)
 
     return response
   }

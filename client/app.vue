@@ -1,39 +1,72 @@
 <template>
-  <a-layout>
-    <Header v-if="authStore.user" />
+  <a-layout class="layout" :class="{ loading, error, auth: !user }">
+    <a-spin v-if="loading" size="large" />
 
-    <a-layout-content :class="{ full: !authStore.user }">
-      <NuxtPage />
-    </a-layout-content>
+    <div v-else-if="error" class="error">
+      <a-typography-text class="mb-4" type="danger">
+        Ошибка загрузки данных с сервера
+      </a-typography-text>
 
-    <Footer v-if="authStore.user" />
+      <a-button type="primary" @click="fetchAll">Перезагрузить</a-button>
+    </div>
+
+    <template v-else>
+      <Header v-if="user" />
+
+      <a-layout-content class="content">
+        <NuxtPage />
+      </a-layout-content>
+
+      <Footer v-if="user" />
+    </template>
   </a-layout>
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import { useAuthStore } from "~/store/auth";
-import { useCategoryStore } from "~/store/category";
-import { useRecordStore } from "~/store/record";
-import { useSocketStore } from "~/store/socket";
+import { useGlobalLoading } from "~/hooks/useGlobalLoading";
 
 const authStore = useAuthStore();
-const categoryStore = useCategoryStore();
-const recordStore = useRecordStore();
-const socketStore = useSocketStore();
+const { user } = storeToRefs(authStore);
 
-onMounted(async () => {
-  if (!authStore.user) return;
+const { fetchAll, loading, error, initSocket } = useGlobalLoading();
 
-  await Promise.all([
-    socketStore.init(),
-    categoryStore.fetchAll(),
-    recordStore.init(),
-  ]);
-});
+onMounted(() => initSocket());
 </script>
-
+yarn add -D @unocss/nuxt
 <style lang="scss" scoped>
-.full {
+.layout {
   height: 100vh;
+
+  display: grid;
+  grid-template-rows: 64px 1fr 50px;
+
+  &.loading,
+  &.error,
+  &.auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0;
+  }
+
+  .content {
+    overflow: scroll;
+  }
+
+  .error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+</style>
+
+<style lang="scss">
+body,
+#__nuxt,
+.ant-layout {
+  height: 100%;
 }
 </style>

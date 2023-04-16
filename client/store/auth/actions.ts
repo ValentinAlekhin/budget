@@ -1,5 +1,6 @@
 import { message } from "ant-design-vue";
 import { api } from "~/api";
+import { useGlobalLoading } from "~/hooks/useGlobalLoading";
 
 export default {
   async login(credentials: { username: string; password: string }) {
@@ -23,6 +24,9 @@ export default {
       await router.push({ path: "/" });
 
       message.success("Вы вошли");
+
+      const { fetchAll } = useGlobalLoading();
+      await fetchAll();
     } catch (e) {
       message.error("Невалидные данные");
     }

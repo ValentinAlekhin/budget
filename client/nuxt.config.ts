@@ -1,8 +1,10 @@
 import { defineNuxtConfig } from "nuxt/config";
+import { optimizeLodashImports } from "@optimize-lodash/rollup-plugin";
 
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
+
   app: {
     // head
     head: {
@@ -22,6 +24,12 @@ export default defineNuxtConfig({
     },
   },
 
+  hooks: {
+    "vite:extendConfig": (config) => {
+      config.plugins?.push(optimizeLodashImports());
+    },
+  },
+
   imports: {
     dirs: ["store"],
   },
@@ -34,7 +42,7 @@ export default defineNuxtConfig({
     shim: false,
   },
 
-  plugins: ["@/plugins/antd"],
+  plugins: ["@/plugins/antd", "@/plugins/draggable"],
 
   vite: {
     server: {
@@ -54,8 +62,22 @@ export default defineNuxtConfig({
     },
   },
 
+  nitro: {
+    compressPublicAssets: { gzip: true, brotli: true },
+    routeRules: {
+      "/api/**": { proxy: "http:/localhost:3001/**" },
+      "/socket.io/**": { proxy: "http:/localhost:3001/socket.io/**" },
+    },
+  },
+
   // build modules
-  modules: ["@vueuse/nuxt", "@unocss/nuxt", "@pinia/nuxt"],
+  modules: [
+    "@vueuse/nuxt",
+    "@unocss/nuxt",
+    "@pinia/nuxt",
+    "nuxt-typed-router",
+    "@nuxtjs/color-mode",
+  ],
 
   // auto import components
   components: true,
@@ -72,4 +94,6 @@ export default defineNuxtConfig({
       scale: 1.2,
     },
   },
+
+  devtools: false,
 });

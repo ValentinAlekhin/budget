@@ -4,32 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлено обновление и удаление записи отрефакторен фронт">
-      <change afterPath="$PROJECT_DIR$/client/common/cud.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/common/socket/socket.types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/record/record.gateway.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/socket/authenticated-socket.adapter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/socket/sockets.gateway.ts" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлена страница cost">
+      <change afterPath="$PROJECT_DIR$/client/hooks/useCategoriesWithBalance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/hooks/useGlobalLoading.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/plugins/draggable.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/category/category.gateway.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/category/dto/updateManyCategories.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/migrations/1681576921036-AddDeletedAt.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/record/dto/createManyRecords.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/common/cud.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/common/cud.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Footer.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/auth.global.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/db.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/db.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/dist.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/dist.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/index/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/index/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/store/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/auth/getters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/getters.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/record/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/getters.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/getters.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/state.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/record/actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/record/getters.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/record/state.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/utils/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/category.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/category.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/category.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/category.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/dto/createCategory.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/dto/createCategory.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/common/abstract-entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/common/abstract-entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/dto/createRecord.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/dto/createRecord.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/dto/updateRecord.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/dto/updateRecord.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/record/record.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.gateway.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/record/record.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +69,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/valentin/Documents/projects/budget/client/store",
+    "last_opened_file_path": "/home/valentin/Documents/projects/budget/server/src/category/dto",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
@@ -72,18 +85,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/src/category/dto" />
+      <recent name="$PROJECT_DIR$/server/src/category" />
       <recent name="$PROJECT_DIR$/client/store" />
       <recent name="$PROJECT_DIR$/server/src/auth/strategies" />
       <recent name="$PROJECT_DIR$/server/src/record/dto" />
-      <recent name="$PROJECT_DIR$/server/src/record" />
-      <recent name="C:\Users\Valentin\WebstormProjects\budget\client\pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client/plugins" />
       <recent name="C:\Users\Valentin\WebstormProjects\budget\client\pages\index" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.start:dev">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -110,16 +123,6 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="lint:js" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="lint:js" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <configuration name="lint:prettier" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
@@ -140,9 +143,19 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="start:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="npm.start:dev" />
       <item itemvalue="npm.lint" />
-      <item itemvalue="npm.lint:js" />
       <item itemvalue="npm.lint:prettier" />
       <item itemvalue="npm.lintfix" />
       <item itemvalue="npm.dev" />
@@ -150,10 +163,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.start:dev" />
         <item itemvalue="npm.lintfix" />
         <item itemvalue="npm.lint" />
         <item itemvalue="npm.lint:prettier" />
-        <item itemvalue="npm.lint:js" />
       </list>
     </recent_temporary>
   </component>
@@ -168,7 +181,8 @@
       <workItem from="1673177883652" duration="6938000" />
       <workItem from="1681233082819" duration="8459000" />
       <workItem from="1681280205779" duration="6000" />
-      <workItem from="1681303434356" duration="43058000" />
+      <workItem from="1681303434356" duration="43885000" />
+      <workItem from="1681482197331" duration="43785000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -212,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681397102576</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Добавлен socket.io добавлена стрница с БД">
+      <created>1681416155965</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1681416155965</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,6 +246,8 @@
     <MESSAGE value="Рефактор сервера и переход на ULID" />
     <MESSAGE value="Рефактор сервера и добавление нормальной сессии" />
     <MESSAGE value="Добавлено обновление и удаление записи отрефакторен фронт" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлено обновление и удаление записи отрефакторен фронт" />
+    <MESSAGE value="Добавлен socket.io добавлена стрница с БД" />
+    <MESSAGE value="Добавлена страница cost" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена страница cost" />
   </component>
 </project>

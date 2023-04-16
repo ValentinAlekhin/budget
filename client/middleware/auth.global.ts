@@ -1,6 +1,7 @@
 import { useCookie } from "#app";
 import { api } from "~/api";
 import { useAuthStore } from "~/store/auth";
+import { useGlobalLoading } from "~/hooks/useGlobalLoading";
 
 export default defineNuxtRouteMiddleware(async (to) => {
   const toAuth = to.path.includes("auth");
@@ -11,10 +12,13 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
+  const { fetchAll } = useGlobalLoading();
+
   try {
     if (authStore.user) return;
     if (token) {
       await authStore.getMe();
+      await fetchAll();
       if (toAuth) return navigateTo("/");
     }
   } catch {

@@ -40,10 +40,6 @@ onMounted(() => (activeTab.value = route.path));
 
 <style scoped lang="scss">
 .footer {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
   height: 50px;
   display: flex;
   justify-content: center;

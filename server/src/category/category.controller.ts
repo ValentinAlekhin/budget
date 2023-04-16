@@ -16,6 +16,7 @@ import { CategoryService } from '@app/category/category.service'
 import { CategoryEntity } from '@app/category/category.entity'
 import { CreateCategoryDto } from '@app/category/dto/createCategory.dto'
 import { ApiTags } from '@nestjs/swagger'
+import { UpdateManyCategoriesDto } from '@app/category/dto/updateManyCategories.dto'
 
 @Controller('category')
 @UseGuards(JwtAuthGuard)
@@ -39,6 +40,19 @@ export class CategoryController {
       createCategoryDto,
     )
     return this.categoryService.buildCategoryResponse(category)
+  }
+
+  @Put('many')
+  @UsePipes(new ValidationPipe())
+  async updateMany(
+    @Req() req,
+    @Body() updateManyCategoriesDto: UpdateManyCategoriesDto,
+  ): Promise<CategoryEntity[]> {
+    const categories = await this.categoryService.updateMany(
+      req.user,
+      updateManyCategoriesDto,
+    )
+    return categories.map((c) => this.categoryService.buildCategoryResponse(c))
   }
 
   @Delete(':id')

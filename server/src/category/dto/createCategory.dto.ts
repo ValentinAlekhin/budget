@@ -6,4 +6,5 @@ export class CreateCategoryDto extends OmitType(CategoryEntity, [
   'user',
   'createdAt',
   'updatedAt',
+  'deletedAt',
 ] as const) {}
