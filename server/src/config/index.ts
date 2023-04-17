@@ -1,4 +1,7 @@
 import * as Joi from 'joi'
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 const { PORT, DB_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST } =
   process.env
@@ -25,7 +28,7 @@ export const validationOptions = {
 }
 
 export default {
-  port: parseInt(PORT, 10) || 3000,
+  port: parseInt(PORT, 10) || 3001,
   db: {
     host: DB_HOST || 'localhost',
     port: parseInt(DB_PORT, 10) || 5433,

@@ -1,19 +1,27 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config()
-import { CategoryEntity } from '@app/category/category.entity'
 import { DataSource, DataSourceOptions } from 'typeorm'
-import { UserEntity } from '@app/user/user.entity'
-import { RecordEntity } from '@app/record/record.entity'
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
+
+const { DB_NAME, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_HOST } = process.env
+
+import * as pg from 'pg'
+pg.defaults.parseInputDatesAsUTC = true
+pg.types.setTypeParser(
+  1114,
+  (stringValue: string) => new Date(`${stringValue}Z`),
+)
 
 export const ormconfig: DataSourceOptions = {
+  namingStrategy: new SnakeNamingStrategy(),
   type: 'postgres',
-  host: 'localhost',
-  port: 5433,
-  username: 'admin',
-  password: 'admin',
-  database: 'budget',
-  synchronize: true,
-  entities: [UserEntity, CategoryEntity, RecordEntity],
+  host: DB_HOST,
+  port: +DB_PORT,
+  username: DB_USERNAME,
+  password: DB_PASSWORD,
+  database: DB_NAME,
+  synchronize: false,
+  entities: [__dirname + '/**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
 }
 

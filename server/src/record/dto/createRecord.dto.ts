@@ -1,15 +1,16 @@
 import { OmitType } from '@nestjs/swagger'
 import { RecordEntity } from '@app/record/record.entity'
-import { IsNumber, Min } from 'class-validator'
+import { IsString } from 'class-validator'
+import { IsULID } from '@yuzu441/is-ulid'
 
 export class CreateRecordDto extends OmitType(RecordEntity, [
   'id',
   'createdAt',
   'updatedAt',
   'category',
-  'user',
+  'deletedAt',
 ] as const) {
-  @IsNumber()
-  @Min(0)
-  category: number
+  @IsString()
+  @IsULID()
+  category: string
 }

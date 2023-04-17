@@ -1,30 +1,28 @@
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm'
 import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm'
-import { IsEnum, IsString, MaxLength, MinLength } from 'class-validator'
+  IsEnum,
+  IsNumber,
+  IsOptional,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator'
 import { UserEntity } from '@app/user/user.entity'
 import { ApiProperty } from '@nestjs/swagger'
 import { RecordEntity } from '@app/record/record.entity'
+import { AbstractEntity } from '@app/common/abstract-entity'
 
 export enum CategoryTypeEnum {
-  Dist = 'dist',
+  Inc = 'inc',
   Cost = 'cost',
+  Dist = 'dist',
 }
 
 @Entity('categories')
-export class CategoryEntity {
-  @PrimaryGeneratedColumn()
-  id: number
-
+export class CategoryEntity extends AbstractEntity {
   @Column()
   @IsString()
-  @MinLength(4)
+  @MinLength(2)
   @MaxLength(20)
   name: string
 
@@ -36,21 +34,22 @@ export class CategoryEntity {
     enum: CategoryTypeEnum,
   })
   @IsEnum(CategoryTypeEnum)
-  type: 'dist' | 'cost'
+  type: CategoryTypeEnum
 
-  @Column({ default: '' })
+  @Column()
+  @IsNumber()
+  order: number
+
+  @Column({ nullable: true })
   @IsString()
-  comment: string
+  @IsOptional()
+  comment: string | null
 
-  @ManyToOne(() => UserEntity, (user) => user.categories)
+  @ManyToOne(() => UserEntity, (user) => user.categories, {
+    onDelete: 'CASCADE',
+  })
   user: UserEntity
 
   @OneToMany(() => RecordEntity, (record) => record.category)
   records: RecordEntity[]
-
-  @CreateDateColumn()
-  createdAt: Date
-
-  @UpdateDateColumn()
-  updatedAt: Date
 }

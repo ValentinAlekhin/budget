@@ -16,10 +16,11 @@ import { CategoryService } from '@app/category/category.service'
 import { CategoryEntity } from '@app/category/category.entity'
 import { CreateCategoryDto } from '@app/category/dto/createCategory.dto'
 import { ApiTags } from '@nestjs/swagger'
+import { UpdateManyCategoriesDto } from '@app/category/dto/updateManyCategories.dto'
 
-@Controller('categories')
+@Controller('category')
 @UseGuards(JwtAuthGuard)
-@ApiTags('categories')
+@ApiTags('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
@@ -41,10 +42,23 @@ export class CategoryController {
     return this.categoryService.buildCategoryResponse(category)
   }
 
+  @Put('many')
+  @UsePipes(new ValidationPipe())
+  async updateMany(
+    @Req() req,
+    @Body() updateManyCategoriesDto: UpdateManyCategoriesDto,
+  ): Promise<CategoryEntity[]> {
+    const categories = await this.categoryService.updateMany(
+      req.user,
+      updateManyCategoriesDto,
+    )
+    return categories.map((c) => this.categoryService.buildCategoryResponse(c))
+  }
+
   @Delete(':id')
   async deleteOne(
     @Req() req,
-    @Param('id') id: number,
+    @Param('id') id: string,
   ): Promise<CategoryEntity> {
     const category = await this.categoryService.deleteOne(req.user, id)
     return this.categoryService.buildCategoryResponse(category)
@@ -54,7 +68,7 @@ export class CategoryController {
   @UsePipes(new ValidationPipe())
   async updateOne(
     @Req() req,
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() createCategoryDto: CreateCategoryDto,
   ): Promise<CategoryEntity> {
     const category = await this.categoryService.updateOne(

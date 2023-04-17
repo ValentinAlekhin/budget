@@ -1,184 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="ALL" />
+    <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b53ed4f3-3c77-4d3a-8778-0c93a2351703" name="Changes" comment="Fix POST /user route&#10;Add transition to bottom bar">
-      <change afterPath="$PROJECT_DIR$/solid-client/src/pages/cost/styled.ts" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы и добавлены докерфайлы">
+      <change afterPath="$PROJECT_DIR$/client/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/hooks/useRenderEnv.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solid-client/src/pages/cost/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/solid-client/src/pages/cost/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solid-client/src/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/solid-client/src/store/category/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solid-client/src/style/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/solid-client/src/style/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/api/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/auth/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/auth/LoginForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/auth/RegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/auth/RegisterForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/auth.global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/index/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/state.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/config/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/config/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Go File" />
-      </list>
-    </option>
-  </component>
-  <component name="GOROOT" url="file://$USER_HOME$/sdk/go1.19.1" />
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="go-server" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
-    <option name="recentBranches">
-      <RecentBranches>
-        <option name="branchesForRepo">
-          <list>
-            <RecentBranchesForRepo>
-              <option name="branches">
-                <list>
-                  <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1662822404" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="go-server" />
-                    <option name="lastUsedInstant" value="1662817285" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1662817284" />
-                  </RecentBranch>
-                </list>
-              </option>
-              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
-            </RecentBranchesForRepo>
-          </list>
-        </option>
-      </RecentBranches>
-    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2DZYFcXJRnBl8vnBsEKT7aIzxlX" />
+  <component name="ProjectId" id="2K2g279g4R2M8dOfsjzN3WQQpsZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;configurable..is.expanded&quot;: &quot;false&quot;,
-    &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Valentin/WebstormProjects/budget&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;C:\\Users\\Valentin\\WebstormProjects\\budget\\solid-client\\node_modules\\eslint&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\Valentin\\WebstormProjects\\budget\\solid-client\\node_modules\\prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Valentin\\WebstormProjects\\budget\\solid-client\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
-    ]
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/valentin/Documents/projects/budget/server",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/home/valentin/Documents/projects/budget/server/node_modules/prettier",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "ts.external.directory.path": "/home/valentin/Documents/projects/budget/client/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\components" />
-      <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\pages" />
-      <recent name="C:\Users\Valentin\WebstormProjects\budget\server-go\internal" />
+      <recent name="$PROJECT_DIR$/server" />
+      <recent name="$PROJECT_DIR$/server/src/category/dto" />
+      <recent name="$PROJECT_DIR$/server/src/category" />
+      <recent name="$PROJECT_DIR$/client/store" />
+      <recent name="$PROJECT_DIR$/server/src/auth/strategies" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\components\Button" />
-      <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\pages\Dist" />
-      <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\pages\DB" />
-      <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\pages\Home" />
-      <recent name="C:\Users\Valentin\WebstormProjects\budget\solid-client\src\pages\index" />
+      <recent name="$PROJECT_DIR$/client/plugins" />
+      <recent name="C:\Users\Valentin\WebstormProjects\budget\client\pages\index" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
-    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
-      <module name="budget" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="budget" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
+  <component name="RunManager" selected="Docker.docker-compose.yml.client: Compose Deployment">
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
-      <module name="budget" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="DIRECTORY" />
-      <package value="budget" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Dev" type="ShConfigurationType">
-      <option name="SCRIPT_TEXT" value="$USER_HOME$/go/bin/air.exe" />
-      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-      <option name="SCRIPT_PATH" value="" />
-      <option name="SCRIPT_OPTIONS" value="" />
-      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/server-go" />
-      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
-      <option name="INTERPRETER_PATH" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="EXECUTE_IN_TERMINAL" value="true" />
-      <option name="EXECUTE_SCRIPT_FILE" value="false" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="dev: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="sourceFilePath" value="docker/dev/docker-compose.yml" />
+          <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="dev.db: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+    <configuration name="docker-compose.yml.client: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="envFilePath" value="" />
           <option name="services">
             <list>
-              <option value="db" />
+              <option value="client" />
             </list>
           </option>
-          <option name="sourceFilePath" value="docker/dev/docker-compose.yml" />
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="server" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
       <method v="2" />
     </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/solid-client/package.json" />
+      <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
       <scripts>
         <script value="dev" />
@@ -187,71 +130,118 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="start:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Docker.dev.db: Compose Deployment" />
-      <item itemvalue="Docker.dev: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.client: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.server: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="npm.start:dev" />
       <item itemvalue="npm.dev" />
-      <item itemvalue="Shell Script.Dev" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml.client: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="npm.dev" />
-        <item itemvalue="Docker.dev: Compose Deployment" />
+        <item itemvalue="npm.start:dev" />
+        <item itemvalue="Docker.docker-compose.yml.server: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b53ed4f3-3c77-4d3a-8778-0c93a2351703" name="Changes" comment="" />
-      <created>1661591542917</created>
+      <changelist id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="" />
+      <created>1673177882259</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1661591542917</updated>
-      <workItem from="1661591546650" duration="218000" />
-      <workItem from="1661794033268" duration="7662000" />
-      <workItem from="1661865732722" duration="8281000" />
-      <workItem from="1662053436335" duration="667000" />
-      <workItem from="1662824657968" duration="4494000" />
+      <updated>1673177882259</updated>
+      <workItem from="1673177883652" duration="6938000" />
+      <workItem from="1681233082819" duration="8459000" />
+      <workItem from="1681280205779" duration="6000" />
+      <workItem from="1681303434356" duration="43885000" />
+      <workItem from="1681482197331" duration="53211000" />
     </task>
-    <task id="LOCAL-00001" summary="Add toast">
-      <created>1662822216894</created>
+    <task id="LOCAL-00001" summary="Add nuxt3 client">
+      <created>1673178280698</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1662822216894</updated>
+      <updated>1673178280698</updated>
     </task>
-    <task id="LOCAL-00002" summary="Fix POST /user route&#10;Add transition to bottom bar">
-      <created>1662828093766</created>
+    <task id="LOCAL-00002" summary="Фиксы для запуска сервера">
+      <created>1681147146548</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1662828093766</updated>
+      <updated>1681147146548</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Добавлена раскатка из файла csv">
+      <created>1681199984775</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681199984775</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Рефактор сервера и переход на ULID">
+      <created>1681246008525</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681246008525</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Рефактор сервера и добавление нормальной сессии">
+      <created>1681375644045</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1681375644045</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Добавлено обновление и удаление записи отрефакторен фронт">
+      <created>1681397102576</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1681397102576</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Добавлен socket.io добавлена стрница с БД">
+      <created>1681416155965</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1681416155965</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Добавлена страница cost">
+      <created>1681656192943</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1681656192943</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Add toast" />
-    <MESSAGE value="Fix POST /user route&#10;Add transition to bottom bar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix POST /user route&#10;Add transition to bottom bar" />
-  </component>
-  <component name="VgoProject">
-    <settings-migrated>true</settings-migrated>
+    <MESSAGE value="Add nuxt3 client" />
+    <MESSAGE value="Фиксы для запуска сервера" />
+    <MESSAGE value="Добавлена раскатка из файла csv" />
+    <MESSAGE value="Рефактор сервера и переход на ULID" />
+    <MESSAGE value="Рефактор сервера и добавление нормальной сессии" />
+    <MESSAGE value="Добавлено обновление и удаление записи отрефакторен фронт" />
+    <MESSAGE value="Добавлен socket.io добавлена стрница с БД" />
+    <MESSAGE value="Добавлена страница cost" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена страница cost" />
   </component>
 </project>
