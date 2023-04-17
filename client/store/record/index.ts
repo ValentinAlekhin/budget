@@ -1,7 +1,7 @@
-import { acceptHMRUpdate, defineStore } from "pinia";
+import { acceptHMRUpdate, defineStore, StateTree } from "pinia";
 import { message } from "ant-design-vue";
 import { RecordEntity } from "../../../server/src/record/record.entity";
-import { api } from "~/api";
+import { useApi } from "~/api";
 import { cudController } from "~/common/cud";
 
 interface State {
@@ -10,14 +10,21 @@ interface State {
   error: Error | null | unknown;
 }
 
-export const useRecordStore = defineStore<string, State>("record", {
-  state: () => ({
+interface Getters {
+  costs(state: StateTree): RecordEntity[];
+  dist(state: StateTree): RecordEntity[];
+}
+
+export const useRecordStore = defineStore("record", {
+  state: (): State => ({
     data: [],
-    loading: true,
+    loading: false,
     error: null,
   }),
   actions: {
     async fetchAll() {
+      const { api } = useApi();
+
       this.loading = true;
       this.error = null;
 
@@ -36,6 +43,7 @@ export const useRecordStore = defineStore<string, State>("record", {
       await this.fetchAll();
     },
     async addRecord(cost: { name: string; comment: string }) {
+      const { api } = useApi();
       await api.post("/records", { ...cost, type: "cost" });
     },
     async addRecords(
@@ -47,13 +55,16 @@ export const useRecordStore = defineStore<string, State>("record", {
         timestamp: string;
       }>
     ) {
+      const { api } = useApi();
       await api.post("/records/many", { data });
     },
     async delete(id: string) {
+      const { api } = useApi();
       await api.delete(`/records/${id}`);
     },
 
     async update(body: any) {
+      const { api } = useApi();
       await api.put(`/records/${body.id}`, body);
     },
     ...cudController({ action: "records" }),

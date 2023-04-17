@@ -1,9 +1,16 @@
 import { defineNuxtConfig } from "nuxt/config";
 import { optimizeLodashImports } from "@optimize-lodash/rollup-plugin";
 
-// https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
+const { BASE_URL } = process.env;
+
 export default defineNuxtConfig({
   ssr: true,
+
+  runtimeConfig: {
+    public: {
+      baseUrl: `http://${BASE_URL}`,
+    },
+  },
 
   app: {
     // head
@@ -48,14 +55,14 @@ export default defineNuxtConfig({
     server: {
       proxy: {
         "/api": {
-          target: "http:/localhost:3001",
+          target: `http://${BASE_URL}`,
           changeOrigin: true,
           rewrite: (path) => {
             return path.replace(/^\/api/, "");
           },
         },
         "/socket.io": {
-          target: "ws://localhost:3001",
+          target: `ws://${BASE_URL}`,
           ws: true,
         },
       },
@@ -65,8 +72,8 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: { gzip: true, brotli: true },
     routeRules: {
-      "/api/**": { proxy: "http:/localhost:3001/**" },
-      "/socket.io/**": { proxy: "http:/localhost:3001/socket.io/**" },
+      "/api/**": { proxy: `http://${BASE_URL}/**` },
+      "/socket.io/**": { proxy: `http://${BASE_URL}/socket.io/**` },
     },
   },
 

@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  client:
+    build:
+      context: ./client
+    image: valentinalekhin/budget-client
+    ports:
+      - "3000:3000"
+    environment:
+      - TZ=Europe/Moscow
+      - BASE_URL=11.5.0.6:3000
+    networks:
+      - net
+
+  server:
+    build:
+      context: ./server
+    image: valentinalekhin/budget-server
+    environment:
+      - TZ=Europe/Moscow
+      - DB_NAME=budget
+      - DB_PORT=5432
+      - DB_USERNAME=cnp
+      - DB_PASSWORD=cnp
+      - DB_HOST=11.5.0.2
+      - PORT=3000
+      - ACCESS_TOKEN_SECRET=secret
+      - ACCESS_TOKEN_EXPIRATION=2d
+      - REFRESH_TOKEN_SECRET=secret
+      - REFRESH_TOKEN_EXPIRATION=30d
+    networks:
+      net:
+        ipv4_address: 11.5.0.6
+    ports:
+      - "3001:3000"
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 11.5.0.0/16
+          gateway: 11.5.0.1

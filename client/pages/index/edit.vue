@@ -122,7 +122,7 @@ const drag = ref<boolean>(false);
 
 const newFormState = reactive<{ name: string }>({ name: "" });
 const addModal = ref<boolean>(false);
-const validNew = computed(() => newFormState.name?.length >= 4);
+const validNew = computed(() => newFormState.name?.length >= 2);
 
 watch(
   costs,
@@ -178,7 +178,7 @@ const saveNew = async () => {
   const payload = {
     name: newFormState.name,
     type: "cost",
-    order: last(categoryStore.costs).order + 1,
+    order: (last(categoryStore.costs)?.order || 0) + 1,
   };
 
   await categoryStore.addCategory(payload);

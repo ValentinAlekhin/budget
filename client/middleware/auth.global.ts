@@ -1,9 +1,10 @@
 import { useCookie } from "#app";
-import { api } from "~/api";
+import { useApi } from "~/api";
 import { useAuthStore } from "~/store/auth";
 import { useGlobalLoading } from "~/hooks/useGlobalLoading";
 
 export default defineNuxtRouteMiddleware(async (to) => {
+  const { api } = useApi();
   const toAuth = to.path.includes("auth");
   const { value: token } = useCookie<string>("accessToken");
   const authStore = useAuthStore();

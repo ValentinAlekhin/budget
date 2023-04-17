@@ -1,4 +1,7 @@
 import * as Joi from 'joi'
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 const { PORT, DB_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST } =
   process.env

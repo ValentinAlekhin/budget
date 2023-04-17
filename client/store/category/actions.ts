@@ -1,5 +1,5 @@
 import { message } from "ant-design-vue";
-import { api } from "~/api";
+import { useApi } from "~/api";
 import { cudController } from "~/common/cud";
 
 export default {
@@ -8,6 +8,7 @@ export default {
     this.error = null;
 
     try {
+      const { api } = useApi();
       const { data } = await api.get("/category");
       this.data = data;
     } catch (e) {
@@ -22,6 +23,7 @@ export default {
     await this.fetchAll();
   },
   async addCategory(category: { name: string; type: string; order: number }) {
+    const { api } = useApi();
     try {
       await api.post("/category", category);
     } catch (e) {
@@ -31,6 +33,7 @@ export default {
   async updateMany(
     data: Array<{ name: string; type: string; order: number; id: number }>
   ) {
+    const { api } = useApi();
     try {
       await api.put("/category/many", { data });
       message.success("Категории обновлены");
@@ -39,6 +42,7 @@ export default {
     }
   },
   async delete(id: string) {
+    const { api } = useApi();
     try {
       await api.delete(`/category/${id}`);
     } catch (e) {

@@ -7,7 +7,6 @@
       <a-input
         v-model:value="formState.username"
         placeholder="Имя пользователя"
-        type="email"
       />
     </a-form-item>
 

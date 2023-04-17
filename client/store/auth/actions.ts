@@ -1,10 +1,12 @@
 import { message } from "ant-design-vue";
-import { api } from "~/api";
+import { useApi } from "~/api";
 import { useGlobalLoading } from "~/hooks/useGlobalLoading";
 
 export default {
   async login(credentials: { username: string; password: string }) {
     try {
+      const { api } = useApi();
+
       const { data } = await api.post("/auth/login", credentials, {
         withCredentials: true,
       });
@@ -48,14 +50,16 @@ export default {
     password: string;
     email: string;
   }) {
+    const { api } = useApi();
     try {
       await api.post("/user", credentials);
       await this.login(credentials);
     } catch (e) {
-      // ElNotification({ title: 'Ошибка', message: String(e), type: 'error' })
+      message.error("Ошибка при регистарции");
     }
   },
   async getMe() {
+    const { api } = useApi();
     try {
       const { data } = await api.get("/auth/me");
 
