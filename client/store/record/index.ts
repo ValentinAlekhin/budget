@@ -10,11 +10,6 @@ interface State {
   error: Error | null | unknown;
 }
 
-interface Getters {
-  costs(state: StateTree): RecordEntity[];
-  dist(state: StateTree): RecordEntity[];
-}
-
 export const useRecordStore = defineStore("record", {
   state: (): State => ({
     data: [],
@@ -49,7 +44,7 @@ export const useRecordStore = defineStore("record", {
     async addRecords(
       data: Array<{
         amount: number;
-        comment: string;
+        comment?: string;
         category: string;
         type: string;
         timestamp: string;
@@ -72,6 +67,7 @@ export const useRecordStore = defineStore("record", {
   getters: {
     costs: (state: State) => state.data.filter((r) => r.type === "cost"),
     dist: (state: State) => state.data.filter((r) => r.type === "dist"),
+    inc: (state: State) => state.data.filter((r) => r.type === "inc"),
   },
 });
 

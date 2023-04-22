@@ -10,5 +10,6 @@ import { RecordService } from './record.service'
   providers: [RecordGateway, RecordService],
   controllers: [RecordController],
   imports: [TypeOrmModule.forFeature([RecordEntity]), CategoryModule],
+  exports: [RecordGateway],
 })
 export class RecordModule {}

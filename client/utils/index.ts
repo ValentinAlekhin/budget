@@ -42,3 +42,6 @@ export function setCaretPosition(elem, positions: number) {
     elem.focus();
   }
 }
+
+export const clearObject = (obj: Record<string, any>): void =>
+  Object.keys(obj).forEach((key) => delete obj[key]);

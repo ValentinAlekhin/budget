@@ -45,6 +45,10 @@ export class RecordGateway implements OnGatewayConnection {
     this.emitByUserId(userId, body, { many: false, type: 'update' })
   }
 
+  deleteManyRecords(body: RecordResponseDto, userId: string) {
+    this.emitByUserId(userId, body, { many: true, type: 'delete' })
+  }
+
   private emitByUserId(
     id: string,
     payload: RecordResponseDto | RecordResponseDto[],
