@@ -14,7 +14,7 @@ export class AuthenticatedSocketAdapter extends IoAdapter {
     const server: SocketServerI = super.createIOServer(port, options)
 
     server.use(async (socket: any, next) => {
-      const token: string = socket.handshake?.headers?.access_token
+      const token: string = socket.handshake?.auth?.token
 
       if (!token) {
         return next(new Error('Token not provided'))

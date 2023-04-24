@@ -22,13 +22,6 @@ export class CategoryGateway implements OnGatewayConnection {
     this.setClients()
   }
 
-  private setClients() {
-    this.sockets = Array.from(
-      this.server.sockets.sockets,
-      ([_, value]) => value,
-    )
-  }
-
   createCategory(body: CategoryEntity, userId: string) {
     this.emitByUserId(userId, body, { many: false, type: 'create' })
   }
@@ -57,5 +50,16 @@ export class CategoryGateway implements OnGatewayConnection {
     return this.sockets
       .filter((c) => c.data.user.id === id)
       .forEach((c) => c.emit('category', { info, payload }))
+  }
+
+  private setClients() {
+    this.sockets = Array.from(
+      this.server.sockets.sockets,
+      ([_, value]) => value,
+    )
+
+    if (!Array.isArray(this.sockets)) {
+      this.sockets = []
+    }
   }
 }

@@ -1,27 +1,33 @@
 <template>
   <div class="stat">
-    <ClientOnly fallback-tag="span" fallback="Loading">
+    <ClientOnly fallback-tag="span">
       <template v-if="isLargeScreen">
         <a-select
           v-model:value="year"
           :options="yearsOptions"
           style="width: 100px"
         />
-        <Chart :options="costOptions" />
-        <Chart :options="testOpt" />
+        <highchart :options="costOptions" />
+        <highchart :options="testOpt" />
       </template>
 
-      <div v-else>Стата доступна только на компе пока что</div>
+      <span v-else class="center">
+        Статистика доступна только с экрана компьютера
+      </span>
+
+      <template #fallback>
+        <a-spin class="center" size="large" />
+      </template>
     </ClientOnly>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Chart } from "highcharts-vue";
 import { Options } from "highcharts";
 import { storeToRefs } from "pinia";
 import dayjs from "dayjs";
 import { sumBy } from "lodash";
+import { useRouteQuery } from "@vueuse/router";
 import { useCategoryStore } from "~/store/category";
 import { useStat } from "~/hooks/useStat";
 
@@ -36,7 +42,9 @@ const yearsOptions = computed(() =>
   years.value.map((year) => ({ label: year, value: year }))
 );
 
-const year = ref<number>(dayjs().year());
+const year = useRouteQuery("year", dayjs().year().toString(), {
+  transform: Number,
+});
 
 const recordsCostByYear = computed(() =>
   cost.value.filter((r) => r.year === year.value)
@@ -70,9 +78,9 @@ const series = computed(() =>
 
 const testSeries = computed(() => {
   const stat = [
-    { name: "Доходы", data: recordsIncByYear },
-    { name: "Расходы", data: recordsCostByYear },
-  ].map(({ name, data }) => {
+    { name: "Доходы", data: recordsIncByYear, color: "#389e0d" },
+    { name: "Расходы", data: recordsCostByYear, color: "#d4380d" },
+  ].map(({ name, data, color }) => {
     const newData = availableMonth.map(
       (month) =>
         sumBy(
@@ -80,7 +88,7 @@ const testSeries = computed(() => {
           "amount"
         ) || null
     );
-    return { name, data: newData };
+    return { color, name, data: newData };
   });
 
   const [incStat, costStat] = stat;
@@ -89,6 +97,7 @@ const testSeries = computed(() => {
     ...stat,
     {
       name: "Дельта",
+      color: "#1d39c4",
       data: availableMonth.map(
         (month) =>
           (incStat.data[month] || 0) - (costStat.data[month] || 0) || null
@@ -98,6 +107,9 @@ const testSeries = computed(() => {
 });
 
 const testOpt = computed(() => ({
+  chart: {
+    type: "spline",
+  },
   title: {
     text: "Соотношение доходов к расходам",
   },
@@ -204,4 +216,11 @@ const costOptions = computed(
 );
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>

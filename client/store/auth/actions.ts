@@ -60,12 +60,8 @@ export default {
   },
   async getMe() {
     const { api } = useApi();
-    try {
-      const { data } = await api.get("/auth/me");
+    const { data } = await api.get("/auth/me");
 
-      this.user = data;
-    } catch (e) {
-      console.log(e);
-    }
+    this.user = data;
   },
 };

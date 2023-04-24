@@ -8,6 +8,8 @@ export default {
     this.error = null;
 
     try {
+      if (this.data?.length) return;
+
       const { api } = useApi();
       const { data } = await api.get("/category");
       this.data = data;

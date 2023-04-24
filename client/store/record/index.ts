@@ -18,6 +18,8 @@ export const useRecordStore = defineStore("record", {
   }),
   actions: {
     async fetchAll() {
+      if (this.data?.length) return;
+
       const { api } = useApi();
 
       this.loading = true;

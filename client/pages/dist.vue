@@ -1,14 +1,14 @@
 <template>
   <div class="dist">
     <a-tabs v-model:activeKey="activeKey">
-      <a-tab-pane key="dist" tab="Приход">
+      <a-tab-pane key="inc" tab="Приход">
         <dist-list
           :items="incomingList"
           :model-value="incoming"
           @update:model-value="inputIncoming"
         />
       </a-tab-pane>
-      <a-tab-pane key="cost" tab="Расход">
+      <a-tab-pane key="dist" tab="Расход">
         <dist-list
           v-model:model-value="cost"
           :items="categoriesWithBalance"
@@ -26,7 +26,13 @@
       </template>
 
       <template #rightExtra>
-        <a-button class="mr-4" type="primary" shape="circle">
+        <a-button
+          v-if="activeKey === 'inc'"
+          class="mr-4"
+          type="primary"
+          shape="circle"
+          @click="message.warn('Пока не готово')"
+        >
           <template #icon><SettingOutlined /></template>
         </a-button>
       </template>
@@ -69,7 +75,7 @@ const balance = computed(() => {
   );
 });
 
-const activeKey = ref("dist");
+const activeKey = ref("inc");
 
 const inputIncoming = (e) => (incoming[e.id] = e.value);
 const inputCost = (e) => (cost[e.id] = e.value);

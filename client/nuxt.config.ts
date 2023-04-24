@@ -84,6 +84,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "nuxt-typed-router",
     "@nuxtjs/color-mode",
+    "nuxt-highcharts",
   ],
 
   // auto import components

@@ -14,8 +14,8 @@ export const useSocketStore = defineStore("socket", {
       const authStore = useAuthStore();
 
       this.socket = io("/", {
-        extraHeaders: {
-          access_token: authStore.computedToken,
+        auth: {
+          token: authStore.computedToken,
         },
       });
 

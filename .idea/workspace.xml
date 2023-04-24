@@ -5,24 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлена страница dist и stat">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_04_2023,_16_34_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_04_2023__16_34__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_17_04_2023,_16_34_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_17_04_2023__16_34__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/dist/list.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/dist/transferring.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/hooks/useStat.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_04_2023,_16_34_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_04_2023__16_34__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_17_04_2023,_16_34_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_17_04_2023__16_34__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/api/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/dist/transferring.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/dist/transferring.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useGlobalLoading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/hooks/useGlobalLoading.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/auth.global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/dist.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/dist.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/stat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.gateway.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/category.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.gateway.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/socket/authenticated-socket.adapter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/socket/authenticated-socket.adapter.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,14 +128,9 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml.client: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="services">
-            <list>
-              <option value="client" />
-            </list>
-          </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
@@ -167,8 +167,8 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       <item itemvalue="Docker.dev: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml.client: Compose Deployment" />
       <item itemvalue="npm.dev (1)" />
       <item itemvalue="npm.start:dev" />
       <item itemvalue="npm.dev" />
@@ -177,9 +177,9 @@
       <list>
         <item itemvalue="npm.dev (1)" />
         <item itemvalue="npm.start:dev" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="npm.dev" />
         <item itemvalue="Docker.dev: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.client: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -200,7 +200,9 @@
       <workItem from="1681738440756" duration="671000" />
       <workItem from="1681801057448" duration="9000" />
       <workItem from="1682099223010" duration="11740000" />
-      <workItem from="1682149222847" duration="7255000" />
+      <workItem from="1682149222847" duration="16966000" />
+      <workItem from="1682316047401" duration="8000" />
+      <workItem from="1682360322527" duration="3420000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -265,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681713679395</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Добавлена страница dist и stat">
+      <created>1682158811711</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682158811711</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

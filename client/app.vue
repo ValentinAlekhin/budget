@@ -52,7 +52,7 @@ yarn add -D @unocss/nuxt
   }
 
   .content {
-    overflow: scroll;
+    overflow-y: auto;
   }
 
   .error {
