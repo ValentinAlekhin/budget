@@ -1,4 +1,6 @@
-FROM node:18-alpine as builder
+FROM node:18-alpine
+
+RUN apk add --no-cache postgresql-client
 
 WORKDIR /app
 

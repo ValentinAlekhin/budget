@@ -4,7 +4,7 @@ import { optimizeLodashImports } from "@optimize-lodash/rollup-plugin";
 const { BASE_URL } = process.env;
 
 export default defineNuxtConfig({
-  ssr: true,
+  ssr: false,
 
   runtimeConfig: {
     public: {

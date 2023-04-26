@@ -1,7 +1,6 @@
 import { ForbiddenException, Inject, Injectable } from '@nestjs/common'
 import { UserService } from '@app/user/user.service'
 import { JwtService } from '@nestjs/jwt'
-import { compare } from 'bcrypt'
 import { UserEntity } from '@app/user/user.entity'
 import { pick } from 'lodash'
 import { AuthUserType } from '@app/auth/types/AuthUser.type'
@@ -37,7 +36,7 @@ export class AuthService {
       return null
     }
 
-    const isPasswordValid = await compare(password, user.password)
+    const isPasswordValid = await verifyHash(password, user.password)
     if (isPasswordValid) {
       return user
     }
@@ -46,9 +45,6 @@ export class AuthService {
   }
 
   async login(user: UserEntity): Promise<AuthUserType> {
-    await this.cacheManager.set('test', 'test')
-    const value = await this.cacheManager.get('test')
-    console.log(value)
     delete user.password
 
     const tokens = await this.getTokens(user)
@@ -67,8 +63,6 @@ export class AuthService {
       refreshToken,
       user.id,
     )
-
-    console.log(valid, validToken)
 
     if (!valid) {
       throw new ForbiddenException('Невалидный токен')

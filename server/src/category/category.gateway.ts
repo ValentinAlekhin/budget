@@ -5,6 +5,7 @@ import {
 } from '@nestjs/websockets'
 import { SocketServerI } from '@app/common/socket/socket.types'
 import { CategoryEntity } from '@app/category/category.entity'
+import { Logger } from '@nestjs/common'
 
 interface ActionInfo {
   type: 'update' | 'delete' | 'create'
@@ -13,6 +14,8 @@ interface ActionInfo {
 
 @WebSocketGateway()
 export class CategoryGateway implements OnGatewayConnection {
+  private readonly logger = new Logger(CategoryGateway.name)
+
   @WebSocketServer()
   public server: SocketServerI
 
@@ -47,19 +50,21 @@ export class CategoryGateway implements OnGatewayConnection {
     payload: CategoryEntity | CategoryEntity[],
     info: ActionInfo,
   ) {
-    return this.sockets
-      .filter((c) => c.data.user.id === id)
-      .forEach((c) => c.emit('category', { info, payload }))
+    try {
+      return this.sockets
+        .filter((c) => c.data.user.id === id)
+        .forEach((c) => c.emit('category', { info, payload }))
+    } catch (e) {
+      this.logger.error(e)
+    }
   }
 
   private setClients() {
-    this.sockets = Array.from(
+    const sockets = Array.from(
       this.server.sockets.sockets,
       ([_, value]) => value,
     )
 
-    if (!Array.isArray(this.sockets)) {
-      this.sockets = []
-    }
+    Array.isArray(sockets) ? (this.sockets = sockets) : (this.sockets = [])
   }
 }

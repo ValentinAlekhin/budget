@@ -5,6 +5,7 @@ import {
 } from '@nestjs/websockets'
 import { SocketServerI } from '@app/common/socket/socket.types'
 import { RecordResponseDto } from '@app/record/dto/recordResponse.dto'
+import { Logger } from '@nestjs/common'
 
 interface ActionInfo {
   type: 'update' | 'delete' | 'create'
@@ -13,6 +14,8 @@ interface ActionInfo {
 
 @WebSocketGateway()
 export class RecordGateway implements OnGatewayConnection {
+  private readonly logger = new Logger(RecordGateway.name)
+
   @WebSocketServer()
   public server: SocketServerI
 
@@ -23,10 +26,12 @@ export class RecordGateway implements OnGatewayConnection {
   }
 
   private setClients() {
-    this.sockets = Array.from(
+    const sockets = Array.from(
       this.server.sockets.sockets,
       ([_, value]) => value,
     )
+
+    Array.isArray(sockets) ? (this.sockets = sockets) : (this.sockets = [])
   }
 
   createRecord(body: RecordResponseDto, userId: string) {
@@ -54,8 +59,12 @@ export class RecordGateway implements OnGatewayConnection {
     payload: RecordResponseDto | RecordResponseDto[],
     info: ActionInfo,
   ) {
-    return this.sockets
-      .filter((c) => c.data.user.id === id)
-      .forEach((c) => c.emit('records', { info, payload }))
+    try {
+      return this.sockets
+        .filter((c) => c.data.user.id === id)
+        .forEach((c) => c.emit('records', { info, payload }))
+    } catch (e) {
+      this.logger.error(e)
+    }
   }
 }
