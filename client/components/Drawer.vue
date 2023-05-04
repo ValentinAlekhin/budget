@@ -40,5 +40,9 @@ const { links } = useMainLinks();
   position: fixed;
   bottom: 10px;
   right: 10px;
+
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
 }
 </style>

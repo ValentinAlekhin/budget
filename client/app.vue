@@ -26,7 +26,6 @@
 import { storeToRefs } from "pinia";
 import { useAuthStore } from "~/store/auth";
 import { useGlobalLoading } from "~/hooks/useGlobalLoading";
-import { useMainLinks } from "~/hooks/useMainLinks";
 
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
@@ -42,6 +41,7 @@ yarn add -D @unocss/nuxt
   &.loading,
   &.error,
   &.auth {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;

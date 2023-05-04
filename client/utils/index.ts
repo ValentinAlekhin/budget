@@ -45,3 +45,14 @@ export function setCaretPosition(elem, positions: number) {
 
 export const clearObject = (obj: Record<string, any>): void =>
   Object.keys(obj).forEach((key) => delete obj[key]);
+
+export const median = (numbers: number[]): number => {
+  const sorted = Array.from(numbers).sort((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+
+  if (sorted.length % 2 === 0) {
+    return (sorted[middle - 1] + sorted[middle]) / 2;
+  }
+
+  return sorted[middle];
+};

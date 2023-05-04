@@ -5,57 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы и обновления">
-      <change afterPath="$PROJECT_DIR$/client/components/Drawer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/ui/CategoryInput.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/hooks/useMainLinks.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/stat/charts/costs.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/stat/charts/delta.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/stat/tables/costs.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/constants/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/pages/stat/category/[id].vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/db.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/db.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/category/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Drawer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Drawer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/stat.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/utils/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/dto/loginUser.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/dto/loginUser.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/strategies/accessToken.strategy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/strategies/accessToken.strategy.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/strategies/local.strategy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/strategies/local.strategy.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/token.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/token.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/types/AuthUser.type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/auth/types/AuthUser.type.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/backup/backup.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/backup/backup.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/backup/backup.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/backup/backup.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/backup/backup.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/backup/backup.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.gateway.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/dto/createCategory.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/dto/createCategory.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/dto/updateManyCategories.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/dto/updateManyCategories.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/common/socket/socket.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/common/socket/socket.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/dto/createManyRecords.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/dto/createManyRecords.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/dto/createRecord.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/dto/createRecord.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/dto/recordResponse.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/dto/recordResponse.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/dto/updateRecord.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/dto/updateRecord.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.gateway.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/socket/authenticated-socket.adapter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/socket/authenticated-socket.adapter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/telegram/telegram.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/telegram/telegram.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/telegram/telegram.update.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/telegram/telegram.update.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/dto/createUser.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/dto/createUser.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/types/user.type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/types/user.type.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/user.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,48 +100,30 @@
       <recent name="$PROJECT_DIR$/client/store" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/pages/stat" />
+      <recent name="$PROJECT_DIR$/client/components/stat/charts" />
       <recent name="$PROJECT_DIR$/client/plugins" />
       <recent name="C:\Users\Valentin\WebstormProjects\budget\client\pages\index" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build:ncc">
+  <component name="RunManager" selected="npm.start:dev">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="build:ncc" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/server/package.json" />
+    <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
       <scripts>
-        <script value="build:ncc" />
+        <script value="dev" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="build:tsdk" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/server/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build:tsdk" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/server/dist-projects/dist-default/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="start:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="start:dev" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
       <scripts>
@@ -189,32 +133,10 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="start:prod-ncc" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/server/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start:prod-ncc" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="npm.build:ncc" />
-      <item itemvalue="npm.build:tsdk" />
-      <item itemvalue="npm.start" />
-      <item itemvalue="npm.start:prod-ncc" />
+      <item itemvalue="npm.dev" />
       <item itemvalue="npm.start:dev" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.start:dev" />
-        <item itemvalue="npm.build:ncc" />
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.build:tsdk" />
-        <item itemvalue="npm.start:prod-ncc" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -242,7 +164,8 @@
       <workItem from="1682755731658" duration="2851000" />
       <workItem from="1683007127033" duration="455000" />
       <workItem from="1683121538658" duration="6341000" />
-      <workItem from="1683181099422" duration="1071000" />
+      <workItem from="1683181099422" duration="1134000" />
+      <workItem from="1683213142851" duration="13092000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -328,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682532536363</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Фиксы и обновления">
+      <created>1683182307494</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1683182307494</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
