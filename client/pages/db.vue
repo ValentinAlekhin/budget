@@ -4,11 +4,16 @@
       :columns="columns"
       :data-source="recordStore.data"
       :pagination="{ pageSize: 30 }"
-      :scroll="{ x: 700, y: 'calc(100vh - 220px)' }"
+      :scroll="{ x: 700 }"
+      size="small"
     >
       <template #bodyCell="{ column, text, record }">
         <span v-if="column.dataIndex === 'amount'">
           {{ numberWithSpaces(text) }}р
+        </span>
+
+        <span v-if="column.dataIndex === 'comment'" class="comment">
+          {{ text }}
         </span>
 
         <span v-if="column.dataIndex === 'category'">
@@ -24,11 +29,11 @@
         </span>
 
         <template v-else-if="column.dataIndex === 'action'">
-          <a-button class="mb-2" @click="startEdit(record)">
-            Редактировать
+          <a-button shape="circle" class="mr-4" @click="startEdit(record)">
+            <template #icon><EditOutlined /></template>
           </a-button>
-          <a-button type="danger" @click="showDeleteConfirm(record)">
-            Удалить
+          <a-button shape="circle" danger @click="showDeleteConfirm(record)">
+            <template #icon><DeleteOutlined /></template>
           </a-button>
         </template>
       </template>
@@ -95,6 +100,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { Modal, TableColumnsType } from "ant-design-vue";
 import { createVNode } from "vue";
 import { ExclamationCircleOutlined } from "@ant-design/icons-svg";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons-vue";
 import { useRecordStore } from "~/store/record";
 import { useCategoryStore } from "~/store/category";
 import { numberWithSpaces } from "~/utils";
@@ -214,12 +220,6 @@ const typeOptions = ["cost", "dist", "inc"].map((n) => ({
 </script>
 
 <style lang="scss" scoped>
-.db {
-  //overflow: auto;
-  //width: 100vw;
-  //height: calc(100vh - 110px);
-}
-
 .cost {
   color: red;
 }
@@ -230,5 +230,14 @@ const typeOptions = ["cost", "dist", "inc"].map((n) => ({
 
 .inc {
   color: greenyellow;
+}
+
+.comment {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100px;
+  display: inline-block;
+  height: 1.2em;
+  white-space: nowrap;
 }
 </style>

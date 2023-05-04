@@ -3,9 +3,9 @@ import {
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets'
-import { SocketServerI } from '@app/common/socket/socket.types'
-import { CategoryEntity } from '@app/category/category.entity'
 import { Logger } from '@nestjs/common'
+import { SocketServerI } from '../common/socket/socket.types'
+import { CategoryEntity } from './category.entity'
 
 interface ActionInfo {
   type: 'update' | 'delete' | 'create'

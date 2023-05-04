@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { RecordEntity } from '@app/record/record.entity'
-import { CategoryEntity } from '@app/category/category.entity'
-import { BackupController } from '@app/backup/backup.controller'
-import { BackupService } from '@app/backup/backup.service'
+import { RecordEntity } from '../record/record.entity'
+import { CategoryEntity } from '../category/category.entity'
+import { BackupController } from './backup.controller'
+import { BackupService } from './backup.service'
 
 @Module({
   imports: [TypeOrmModule.forFeature([RecordEntity, CategoryEntity])],

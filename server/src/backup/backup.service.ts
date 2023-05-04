@@ -1,12 +1,12 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { RecordEntity } from '@app/record/record.entity'
 import { FindManyOptions, Repository } from 'typeorm'
-import { CategoryEntity, CategoryTypeEnum } from '@app/category/category.entity'
 import { parse } from 'csv-parse/sync'
 import * as dayjs from 'dayjs'
 import * as customParseFormat from 'dayjs/plugin/customParseFormat'
-import { UserType } from '@app/user/types/user.type'
+import { CategoryTypeEnum, RecordEntity } from 'src/record/record.entity'
+import { CategoryEntity } from '../category/category.entity'
+import { UserType } from '../user/types/user.type'
 
 dayjs.extend(customParseFormat)
 
@@ -73,14 +73,18 @@ export class BackupService {
 
       categories = await manager.save(categories)
 
-      records = preparedData.map((item) =>
-        this.recordRepo.create({
-          ...item,
-          type: item.type,
-          timestamp: item.date.toDate(),
-          category: { id: categories.find((c) => c.name === item.category).id },
-        }),
-      )
+      records = preparedData
+        .map((item) =>
+          this.recordRepo.create({
+            ...item,
+            type: item.type,
+            timestamp: item.date.toDate(),
+            category: {
+              id: categories.find((c) => c.name === item.category)?.id,
+            },
+          }),
+        )
+        .filter((r) => r.category.id)
 
       records = await manager.save(records)
     })

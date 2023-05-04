@@ -1,5 +1,5 @@
-import { RecordEntity } from '@app/record/record.entity'
 import { OmitType } from '@nestjs/swagger'
+import { RecordEntity } from '../record.entity'
 
 export class RecordResponseDto extends OmitType(RecordEntity, [
   'category',

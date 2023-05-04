@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import * as cookieParser from 'cookie-parser'
-import config from '@app/config'
-import { AuthenticatedSocketAdapter } from '@app/socket/authenticated-socket.adapter'
 import { ValidationPipe } from '@nestjs/common'
+import config from './config'
 import { AppModule } from './app.module'
+import { AuthenticatedSocketAdapter } from './socket/authenticated-socket.adapter'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)

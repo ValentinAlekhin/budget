@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne } from 'typeorm'
-import { AbstractEntity } from '@app/common/abstract-entity'
-import { UserEntity } from '@app/user/user.entity'
+import { UserEntity } from '../user/user.entity'
+import { AbstractEntity } from '../common/abstract-entity'
 
 @Entity('refresh_tokens')
 export class TokenEntity extends AbstractEntity {

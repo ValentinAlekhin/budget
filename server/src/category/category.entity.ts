@@ -7,10 +7,10 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator'
-import { UserEntity } from '@app/user/user.entity'
 import { ApiProperty } from '@nestjs/swagger'
-import { RecordEntity } from '@app/record/record.entity'
-import { AbstractEntity } from '@app/common/abstract-entity'
+import { UserEntity } from 'src/user/user.entity'
+import { RecordEntity } from '../record/record.entity'
+import { AbstractEntity } from '../common/abstract-entity'
 
 export enum CategoryTypeEnum {
   Inc = 'inc',

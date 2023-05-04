@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { In, IsNull, Repository } from 'typeorm'
-import { CreateCategoryDto } from '@app/category/dto/createCategory.dto'
-import { CategoryEntity } from '@app/category/category.entity'
-import { UserEntity } from '@app/user/user.entity'
-import { CategoryNotFoundException } from '@app/category/exceptions/category-not-found.exception'
-import { CategoryGateway } from '@app/category/category.gateway'
 import * as dayjs from 'dayjs'
-import { UpdateManyCategoriesDto } from '@app/category/dto/updateManyCategories.dto'
+import { UserEntity } from 'src/user/user.entity'
+import { CategoryEntity } from './category.entity'
+import { CategoryGateway } from './category.gateway'
+import { CreateCategoryDto } from './dto/createCategory.dto'
+import { CategoryNotFoundException } from './exceptions/category-not-found.exception'
+import { UpdateManyCategoriesDto } from './dto/updateManyCategories.dto'
 
 @Injectable()
 export class CategoryService {

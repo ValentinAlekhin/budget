@@ -5,10 +5,10 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
-import { UserService } from '@app/user/user.service'
 import { ApiTags } from '@nestjs/swagger'
-import { UserEntity } from '@app/user/user.entity'
-import { CreateUserDto } from '@app/user/dto/createUser.dto'
+import { UserService } from './user.service'
+import { CreateUserDto } from './dto/createUser.dto'
+import { UserEntity } from './user.entity'
 
 @ApiTags('user')
 @Controller('user')

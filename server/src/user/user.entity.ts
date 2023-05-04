@@ -7,9 +7,9 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator'
-import { CategoryEntity } from '@app/category/category.entity'
-import { AbstractEntity } from '@app/common/abstract-entity'
-import { TokenEntity } from '@app/auth/token.entity'
+import { AbstractEntity } from 'src/common/abstract-entity'
+import { CategoryEntity } from '../category/category.entity'
+import { TokenEntity } from '../auth/token.entity'
 
 @Entity('users')
 export class UserEntity extends AbstractEntity {

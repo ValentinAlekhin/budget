@@ -1,7 +1,7 @@
 import { OmitType } from '@nestjs/swagger'
-import { CategoryEntity } from '@app/category/category.entity'
 import { IsArray, ValidateNested } from 'class-validator'
 import { Type } from 'class-transformer'
+import { CategoryEntity } from '../category.entity'
 
 class UpdateOneCategoryDto extends OmitType(CategoryEntity, [
   'user',

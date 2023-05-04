@@ -1,7 +1,7 @@
 import { INestApplicationContext } from '@nestjs/common'
 import { IoAdapter } from '@nestjs/platform-socket.io'
-import { AuthService } from '@app/auth/auth.service'
-import { SocketServerI } from '@app/common/socket/socket.types'
+import { AuthService } from 'src/auth/auth.service'
+import { SocketServerI } from '../common/socket/socket.types'
 
 export class AuthenticatedSocketAdapter extends IoAdapter {
   private readonly authService: AuthService

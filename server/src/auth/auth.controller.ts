@@ -8,15 +8,15 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
-import { LocalAuthGuard } from '@app/auth/guards/local-auth.guard'
-import { AuthService } from '@app/auth/auth.service'
-import { JwtAuthGuard } from '@app/auth/guards/jwt-auth.guard'
 import { ApiBody, ApiTags } from '@nestjs/swagger'
-import { UserType } from '@app/user/types/user.type'
-import { LoginUserDto } from '@app/auth/dto/loginUser.dto'
-import { RefreshTokenDto } from '@app/auth/dto/refreshToken.dto'
-import { RefreshTokenGuard } from '@app/auth/guards/refreshToken.guard'
-import { JwtTokensType } from '@app/auth/types/JwtTokens.type'
+import { UserType } from '../user/types/user.type'
+import { AuthService } from './auth.service'
+import { LocalAuthGuard } from './guards/local-auth.guard'
+import { LoginUserDto } from './dto/loginUser.dto'
+import { JwtAuthGuard } from './guards/jwt-auth.guard'
+import { RefreshTokenGuard } from './guards/refreshToken.guard'
+import { RefreshTokenDto } from './dto/refreshToken.dto'
+import { JwtTokensType } from './types/JwtTokens.type'
 
 @ApiTags('auth')
 @Controller('auth')

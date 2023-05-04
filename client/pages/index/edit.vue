@@ -172,6 +172,8 @@ const save = async () => {
   }));
 
   await categoryStore.updateMany(payload);
+
+  await router.push("/");
 };
 
 const saveNew = async () => {

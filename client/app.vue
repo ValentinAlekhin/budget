@@ -17,7 +17,7 @@
         <NuxtPage />
       </a-layout-content>
 
-      <Footer v-if="user" />
+      <Drawer v-if="user" />
     </template>
   </a-layout>
 </template>
@@ -26,6 +26,7 @@
 import { storeToRefs } from "pinia";
 import { useAuthStore } from "~/store/auth";
 import { useGlobalLoading } from "~/hooks/useGlobalLoading";
+import { useMainLinks } from "~/hooks/useMainLinks";
 
 const authStore = useAuthStore();
 const { user } = storeToRefs(authStore);
@@ -37,11 +38,7 @@ onMounted(() => initSocket());
 yarn add -D @unocss/nuxt
 <style lang="scss" scoped>
 .layout {
-  height: 100vh;
-
-  display: grid;
-  grid-template-rows: 64px 1fr 50px;
-
+  padding-bottom: 50px;
   &.loading,
   &.error,
   &.auth {
@@ -51,22 +48,27 @@ yarn add -D @unocss/nuxt
     padding-bottom: 0;
   }
 
-  .content {
-    overflow-y: auto;
-  }
-
   .error {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
+
+  .content {
+    height: 100%;
+  }
 }
 </style>
 
 <style lang="scss">
+html,
 body,
 #__nuxt,
 .ant-layout {
-  height: 100%;
+  //height: 100%;
+}
+
+body {
+  padding-bottom: 100px;
 }
 </style>

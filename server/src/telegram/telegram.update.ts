@@ -1,7 +1,7 @@
 import { Command, Update } from 'nestjs-telegraf'
 import { UseGuards } from '@nestjs/common'
-import { AdminGuard } from '@app/telegram/guards/admin.guard'
-import { TelegramService } from '@app/telegram/telegram.service'
+import { TelegramService } from './telegram.service'
+import { AdminGuard } from './guards/admin.guard'
 
 @Update()
 export class TelegramUpdate {

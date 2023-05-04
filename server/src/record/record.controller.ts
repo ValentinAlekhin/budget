@@ -9,13 +9,13 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common'
-import { RecordService } from '@app/record/record.service'
-import { CreateRecordDto } from '@app/record/dto/createRecord.dto'
 import { ApiTags } from '@nestjs/swagger'
-import { JwtAuthGuard } from '@app/auth/guards/jwt-auth.guard'
-import { RecordResponseDto } from '@app/record/dto/recordResponse.dto'
-import { UpdateRecordDto } from '@app/record/dto/updateRecord.dto'
-import { CreateManyRecordsDto } from '@app/record/dto/createManyRecords.dto'
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard'
+import { RecordService } from './record.service'
+import { RecordResponseDto } from './dto/recordResponse.dto'
+import { CreateRecordDto } from './dto/createRecord.dto'
+import { CreateManyRecordsDto } from './dto/createManyRecords.dto'
+import { UpdateRecordDto } from './dto/updateRecord.dto'
 
 @Controller('records')
 @UseGuards(JwtAuthGuard)

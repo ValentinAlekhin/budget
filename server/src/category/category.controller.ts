@@ -11,12 +11,12 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
-import { JwtAuthGuard } from '@app/auth/guards/jwt-auth.guard'
-import { CategoryService } from '@app/category/category.service'
-import { CategoryEntity } from '@app/category/category.entity'
-import { CreateCategoryDto } from '@app/category/dto/createCategory.dto'
 import { ApiTags } from '@nestjs/swagger'
-import { UpdateManyCategoriesDto } from '@app/category/dto/updateManyCategories.dto'
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard'
+import { CategoryEntity } from './category.entity'
+import { CategoryService } from './category.service'
+import { CreateCategoryDto } from './dto/createCategory.dto'
+import { UpdateManyCategoriesDto } from './dto/updateManyCategories.dto'
 
 @Controller('category')
 @UseGuards(JwtAuthGuard)

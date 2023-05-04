@@ -1,7 +1,7 @@
 import { OmitType } from '@nestjs/swagger'
-import { RecordEntity } from '@app/record/record.entity'
 import { IsString } from 'class-validator'
 import { IsULID } from '@yuzu441/is-ulid'
+import { RecordEntity } from '../record.entity'
 
 export class UpdateRecordDto extends OmitType(RecordEntity, [
   'id',

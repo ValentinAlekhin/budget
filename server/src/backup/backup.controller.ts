@@ -1,4 +1,3 @@
-import { BackupService } from '@app/backup/backup.service'
 import {
   Controller,
   Post,
@@ -8,7 +7,8 @@ import {
   UseInterceptors,
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { JwtAuthGuard } from '@app/auth/guards/jwt-auth.guard'
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard'
+import { BackupService } from './backup.service'
 
 @Controller('backup')
 @UseGuards(JwtAuthGuard)

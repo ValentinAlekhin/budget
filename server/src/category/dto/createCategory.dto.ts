@@ -1,5 +1,5 @@
 import { OmitType } from '@nestjs/swagger'
-import { CategoryEntity } from '@app/category/category.entity'
+import { CategoryEntity } from '../category.entity'
 
 export class CreateCategoryDto extends OmitType(CategoryEntity, [
   'id',

@@ -1,5 +1,5 @@
-import { UserType } from '@app/user/types/user.type'
 import { ApiProperty } from '@nestjs/swagger'
+import { UserType } from '../../user/types/user.type'
 
 export class AuthUserType {
   user: UserType

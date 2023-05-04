@@ -12,7 +12,7 @@ export default {
 
       const { api } = useApi();
       const { data } = await api.get("/category");
-      this.data = data;
+      this.data = data.map((c) => ({ ...c, name: c.name.slice(0, 12) }));
     } catch (e) {
       message.error("Ошибка при загрузке категорий");
       this.error = e;

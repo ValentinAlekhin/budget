@@ -12,8 +12,8 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator'
-import { CategoryEntity } from '@app/category/category.entity'
-import { AbstractEntity } from '@app/common/abstract-entity'
+import { AbstractEntity } from '../common/abstract-entity'
+import { CategoryEntity } from '../category/category.entity'
 
 export enum CategoryTypeEnum {
   Inc = 'inc',

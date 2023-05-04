@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { RecordEntity } from '@app/record/record.entity'
-import { CategoryModule } from '@app/category/category.module'
-import { RecordGateway } from '@app/record/record.gateway'
+import { CategoryModule } from '../category/category.module'
 import { RecordController } from './record.controller'
 import { RecordService } from './record.service'
+import { RecordEntity } from './record.entity'
+import { RecordGateway } from './record.gateway'
 
 @Module({
   providers: [RecordGateway, RecordService],

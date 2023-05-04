@@ -22,7 +22,7 @@ export class TelegramService {
 
   private readonly logger = new Logger(TelegramService.name)
 
-  @Cron(CronExpression.EVERY_DAY_AT_1PM)
+  @Cron(CronExpression.EVERY_12_HOURS)
   async handleCron() {
     await this.backup()
   }

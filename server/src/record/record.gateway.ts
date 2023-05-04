@@ -3,9 +3,9 @@ import {
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets'
-import { SocketServerI } from '@app/common/socket/socket.types'
-import { RecordResponseDto } from '@app/record/dto/recordResponse.dto'
 import { Logger } from '@nestjs/common'
+import { SocketServerI } from '../common/socket/socket.types'
+import { RecordResponseDto } from './dto/recordResponse.dto'
 
 interface ActionInfo {
   type: 'update' | 'delete' | 'create'

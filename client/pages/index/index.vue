@@ -140,8 +140,6 @@ const save = async () => {
 
   message.success("Записи добавлены");
 };
-
-const mathHelpers = ["/", "*", "+", "-", "(", ")"];
 </script>
 
 <style lang="scss" scoped>
