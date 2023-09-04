@@ -38,7 +38,6 @@ export default {
     const { api } = useApi();
     try {
       await api.put("/category/many", { data });
-      message.success("Категории обновлены");
     } catch (e) {
       message.error("Ошибка при обновлении категорий");
     }

@@ -28,7 +28,7 @@
             icon="i-heroicons-trash"
             :ui="{ rounded: 'rounded-full' }"
             variant="ghost"
-            @click="addModal = true"
+            @click="itemToDelete = element"
           />
 
           <UInput
@@ -69,6 +69,13 @@
         </template>
       </UCard>
     </UModal>
+
+    <common-modal-remove
+      :is-open="!!itemToDelete"
+      :title="`Remove category '${itemToDelete?.name}'?`"
+      @close="itemToDelete = null"
+      @remove="removeItem(itemToDelete?.id)"
+    />
   </div>
 </template>
 
@@ -96,6 +103,7 @@ const formState = reactive<Record<string, { name: string; order: number }>>(
 );
 const drag = ref<boolean>(false);
 const addModal = ref<boolean>(false);
+const itemToDelete = ref<any>(null);
 const schema = object({
   name: string().required("Category name required").min(4),
 });
@@ -168,6 +176,11 @@ const saveNew = async () => {
 
   await categoryStore.addCategory(payload);
   addModal.value = false;
+};
+
+const removeItem = async (id: string) => {
+  await categoryStore.delete(id);
+  itemToDelete.value = null;
 };
 
 onMounted(() =>

@@ -4,43 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы и обновления">
-      <change afterPath="$PROJECT_DIR$/client/components/BottomTabs.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/Header/Dropdown.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/Header/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/common/modal/Remove.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/db/EditModal.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/ui/Actions.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/ui/BackButton.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/ui/Numpad/button.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/ui/Numpad/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/ui/ThemeSwitch.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/layouts/auth.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/layouts/default.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/middleware/reset-actions.global.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/settings.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/store/actions/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/tailwind.config.ts" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Перевод на nuxt ui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/assets/scss/index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Header.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/auth/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/auth/LoginForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/auth/RegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/auth/RegisterForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/dist/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/dist/list.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/dist/transferring.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/dist/transferring.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/hooks/useMainLinks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/hooks/useMainLinks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/auth.global.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/auth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/auth.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/db.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/db.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/dist.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/dist.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/index/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/actions.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +182,7 @@
       <workItem from="1693573991532" duration="5517000" />
       <workItem from="1693811207728" duration="5000" />
       <workItem from="1693839079262" duration="4991000" />
-      <workItem from="1693845866927" duration="4742000" />
+      <workItem from="1693845866927" duration="5662000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -322,11 +289,30 @@
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Перевод на nuxt ui">
+      <option name="closed" value="true" />
+      <created>1693850903797</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1693850903797</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add nuxt3 client" />
@@ -340,7 +326,8 @@
     <MESSAGE value="Фиксы и добавлены докерфайлы" />
     <MESSAGE value="Добавлена страница dist и stat" />
     <MESSAGE value="Фиксы и обновления" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фиксы и обновления" />
+    <MESSAGE value="Перевод на nuxt ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Перевод на nuxt ui" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />
