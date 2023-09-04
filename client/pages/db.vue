@@ -1,106 +1,59 @@
 <template>
-  <div class="db">
-    <a-table
-      :columns="columns"
-      :data-source="recordStore.data"
-      :pagination="{ pageSize: 30 }"
-      :scroll="{ x: 700 }"
-      size="small"
-    >
-      <template #bodyCell="{ column, text, record }">
-        <span v-if="column.dataIndex === 'amount'">
-          {{ numberWithSpaces(text) }}р
-        </span>
-
-        <span v-if="column.dataIndex === 'comment'" class="comment">
-          {{ text }}
-        </span>
-
-        <span v-if="column.dataIndex === 'category'">
-          {{ getCategoryName(text) }}
-        </span>
-
-        <a-tag v-if="column.dataIndex === 'type'" :color="getTypeColor(text)">
-          {{ text }}
-        </a-tag>
-
-        <span v-else-if="column.dataIndex === 'timestamp'">
-          {{ dayjs(text).format("DD.MM.YYYY") }}
-        </span>
-
-        <template v-else-if="column.dataIndex === 'action'">
-          <a-button shape="circle" class="mr-4" @click="startEdit(record)">
-            <template #icon><EditOutlined /></template>
-          </a-button>
-          <a-button shape="circle" danger @click="showDeleteConfirm(record)">
-            <template #icon><DeleteOutlined /></template>
-          </a-button>
-        </template>
+  <div>
+    <UTable class="w-screen overflow-x-auto" :columns="columns" :rows="rows">
+      <template #amount-data="{ row }">
+        <span> {{ numberWithSpaces(row.amount) }}р </span>
       </template>
-    </a-table>
 
-    <a-modal
-      :visible="editId"
-      :title="`Редактирование записи '${editId}'`"
-      @ok="save"
-      @cancel="editId = null"
-    >
-      <a-form :model="formState">
-        <a-form-item
-          name="amount"
-          :rules="[{ required: true, message: 'Please input amount!' }]"
-        >
-          <a-input
-            v-model:value="formState.amount"
-            placeholder="Сумма"
-            type="number"
-          />
-        </a-form-item>
-
-        <a-form-item name="category">
-          <a-select
-            ref="select"
-            v-model:value="formState.category"
-            :options="categoryOptions"
-          />
-        </a-form-item>
-
-        <a-form-item name="category">
-          <a-select
-            ref="select"
-            v-model:value="formState.type"
-            :options="typeOptions"
-          />
-        </a-form-item>
-
-        <a-form-item>
-          <a-date-picker v-model:value="formState.timestamp" />
-        </a-form-item>
-
-        <a-form-item name="comment">
-          <a-input
-            v-model:value="formState.comment"
-            placeholder="Комментарий"
-          />
-        </a-form-item>
-      </a-form>
-
-      <template #footer>
-        <a-button key="back" @click="editId = null">Отмена</a-button>
-        <a-button key="submit" type="primary" :loading="loading" @click="save">
-          Сохранить
-        </a-button>
+      <template #category-data="{ row }">
+        <span> {{ getCategoryName(row.category) }} </span>
       </template>
-    </a-modal>
+
+      <template #type-data="{ row }">
+        <UBadge :label="row.type" :color="getTypeColor(row)" variant="solid" />
+      </template>
+
+      <template #timestamp-data="{ row }">
+        <span>
+          {{ dayjs(row.timestamp).format("DD.MM.YYYY") }}
+        </span>
+      </template>
+
+      <template #action-data="{ row }">
+        <UDropdown :items="items(row)">
+          <UButton
+            color="gray"
+            variant="ghost"
+            icon="i-heroicons-ellipsis-horizontal-20-solid"
+          />
+        </UDropdown>
+      </template>
+    </UTable>
+
+    <div class="flex justify-center mt-10">
+      <UPagination
+        v-model="page"
+        :page-count="pageCount"
+        :total="recordStore.data.length"
+      />
+    </div>
+
+    <db-edit-modal
+      :is-open="!!editRecord"
+      :record="editRecord"
+      @close="editRecord = null"
+    />
+
+    <common-modal-remove
+      :is-open="!!deleteId"
+      @close="deleteId = ''"
+      @remove="removeRecord(deleteId)"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import dayjs, { Dayjs } from "dayjs";
-import { Modal, TableColumnsType } from "ant-design-vue";
-import { createVNode } from "vue";
-import { ExclamationCircleOutlined } from "@ant-design/icons-svg";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons-vue";
+import dayjs from "dayjs";
 import { useRecordStore } from "~/store/record";
 import { useCategoryStore } from "~/store/category";
 import { numberWithSpaces } from "~/utils";
@@ -111,133 +64,82 @@ const categoriesStore = useCategoryStore();
 const getCategoryName = (id: string) =>
   categoriesStore.getById(id)?.name || "Не найдена";
 
-const editId = ref(null);
-const loading = ref(false);
+const editRecord = ref(null);
+const deleteId = ref("");
 
-const categoryOptions = computed(() =>
-  categoriesStore.data.map((c) => ({ value: c.id, label: c.name }))
-);
-
-interface FormStateI {
-  amount: number;
-  category: string;
-  type: string;
-  comment: string;
-  timestamp: Dayjs;
-}
-
-const formState = reactive<FormStateI>({
-  amount: 0,
-  category: "",
-  type: "",
-  timestamp: dayjs(),
-  comment: "",
-});
-
-const startEdit = (record) => {
-  editId.value = record.id;
-
-  formState.amount = record.amount;
-  formState.category = record.category;
-  formState.type = record.type;
-  formState.comment = record.comment;
-  formState.timestamp = dayjs(record.timestamp);
-};
-
-const save = async () => {
-  await recordStore.update({
-    ...formState,
-    id: editId.value,
-    timestamp: formState.timestamp.toISOString(),
-    amount: Number(formState.amount),
-  });
-  editId.value = null;
-};
-
-const showDeleteConfirm = (record) =>
-  Modal.confirm({
-    title: "Удалить запись?",
-    icon: createVNode(ExclamationCircleOutlined),
-    okText: "Удалить",
-    okType: "danger",
-    cancelText: "Отмена",
-    async onOk() {
-      await recordStore.delete(record.id);
-    },
-  });
-
-const getTypeColor = (type: string) => {
-  switch (type) {
+const getTypeColor = (row) => {
+  switch (row.type) {
     case "cost":
-      return "volcano";
+      return "red";
 
     case "dist":
-      return "geekblue";
+      return "cyan";
 
     case "inc":
       return "green";
   }
 };
 
-const columns: TableColumnsType = [
+const columns = [
   {
-    title: "Сумма",
+    label: "Amount",
     dataIndex: "amount",
     key: "amount",
     width: 100,
   },
   {
-    title: "Катерогия",
+    label: "Category",
     dataIndex: "category",
     key: "category",
   },
   {
-    title: "Тип",
+    label: "Type",
     dataIndex: "type",
     key: "type",
   },
   {
-    title: "Коммент",
+    label: "Comment",
     dataIndex: "comment",
     key: "comment",
   },
   {
-    title: "Время",
+    label: "Timestamp",
     dataIndex: "timestamp",
     key: "timestamp",
   },
   {
-    title: "Действие",
+    label: "Action",
     key: "action",
     dataIndex: "action",
   },
 ];
 
-const typeOptions = ["cost", "dist", "inc"].map((n) => ({
-  value: n,
-  label: n,
-}));
+const items = (row) => [
+  [
+    {
+      label: "Edit",
+      icon: "i-heroicons-pencil-square-20-solid",
+      click: () => (editRecord.value = row),
+    },
+  ],
+  [
+    {
+      label: "Delete",
+      icon: "i-heroicons-trash-20-solid",
+      click: () => (deleteId.value = row.id),
+    },
+  ],
+];
+
+const page = ref(1);
+const pageCount = 20;
+
+const rows = computed(() =>
+  recordStore.data.slice((page.value - 1) * pageCount, page.value * pageCount)
+);
+
+const removeRecord = (id: string) => {
+  deleteId.value = "";
+  recordStore.delete(id);
+};
 </script>
-
-<style lang="scss" scoped>
-.cost {
-  color: red;
-}
-
-.inc {
-  color: greenyellow;
-}
-
-.inc {
-  color: greenyellow;
-}
-
-.comment {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 100px;
-  display: inline-block;
-  height: 1.2em;
-  white-space: nowrap;
-}
-</style>

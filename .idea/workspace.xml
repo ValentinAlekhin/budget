@@ -5,9 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы и обновления">
-      <change afterPath="$PROJECT_DIR$/server/src/common/time.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/BottomTabs.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/Header/Dropdown.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/Header/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/common/modal/Remove.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/db/EditModal.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/ui/Actions.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/ui/BackButton.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/ui/Numpad/button.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/ui/Numpad/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/ui/ThemeSwitch.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/layouts/auth.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/layouts/default.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/middleware/reset-actions.global.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/pages/settings.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/store/actions/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/tailwind.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/common/abstract-entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/common/abstract-entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/assets/scss/index.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Header.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/auth/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/auth/LoginForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/auth/RegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/auth/RegisterForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/dist/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/dist/list.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/dist/transferring.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/dist/transferring.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useMainLinks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/hooks/useMainLinks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/auth.global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/auth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/auth.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/db.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/db.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/dist.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/dist.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/index/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/index/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,26 +94,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/valentin/Documents/projects/changelog-microservice&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/valentin/Documents/projects/budget/server/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/valentin/Documents/projects/budget/server/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Valentin/Documents/projects/budget",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/home/valentin/Documents/projects/budget/server/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "ts.external.directory.path": "C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -90,6 +123,7 @@
       <recent name="$PROJECT_DIR$/client/store" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Valentin\Documents\projects\budget\client\components\Header" />
       <recent name="$PROJECT_DIR$/client/pages/stat" />
       <recent name="$PROJECT_DIR$/client/components/stat/charts" />
       <recent name="$PROJECT_DIR$/client/plugins" />
@@ -100,6 +134,14 @@
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
       </deployment>
       <method v="2" />
     </configuration>
@@ -124,9 +166,15 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       <item itemvalue="npm.dev" />
       <item itemvalue="npm.start:dev" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -155,7 +203,19 @@
       <workItem from="1683007127033" duration="455000" />
       <workItem from="1683121538658" duration="6341000" />
       <workItem from="1683181099422" duration="1134000" />
-      <workItem from="1683213142851" duration="15502000" />
+      <workItem from="1683213142851" duration="16052000" />
+      <workItem from="1683270465775" duration="42000" />
+      <workItem from="1683648701413" duration="282000" />
+      <workItem from="1683649773546" duration="4218000" />
+      <workItem from="1692358623868" duration="12734000" />
+      <workItem from="1692534065934" duration="33000" />
+      <workItem from="1692601346839" duration="6000" />
+      <workItem from="1692626122053" duration="12368000" />
+      <workItem from="1693571793611" duration="2144000" />
+      <workItem from="1693573991532" duration="5517000" />
+      <workItem from="1693811207728" duration="5000" />
+      <workItem from="1693839079262" duration="4991000" />
+      <workItem from="1693845866927" duration="4742000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -255,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683227794650</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Фиксы и обновления">
+      <created>1683230578760</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1683230578760</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,5 +341,8 @@
     <MESSAGE value="Добавлена страница dist и stat" />
     <MESSAGE value="Фиксы и обновления" />
     <option name="LAST_COMMIT_MESSAGE" value="Фиксы и обновления" />
+  </component>
+  <component name="VueSettings">
+    <option name="innerServiceType" value="DISABLED" />
   </component>
 </project>

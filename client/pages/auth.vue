@@ -1,25 +1,29 @@
 <template>
-  <div class="auth">
-    <a-tabs v-model:activeKey="activeKey">
-      <a-tab-pane key="login" tab="Логин"><auth-login-form /></a-tab-pane>
-      <a-tab-pane key="register" tab="Регистрация"
-        ><auth-register-form
-      /></a-tab-pane>
-    </a-tabs>
+  <div class="flex justify-center items-center h-full flex-col w-full">
+    <ui-theme-switch />
+
+    <UCard class="mt-8 w-80">
+      <UTabs :items="items" class="w-full">
+        <template #login><auth-login-form /></template>
+        <template #reg><auth-register-form /></template>
+      </UTabs>
+    </UCard>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+definePageMeta({
+  layout: "auth",
+});
 
-const activeKey = ref("login");
+const items = [
+  {
+    slot: "login",
+    label: "Login",
+  },
+  {
+    slot: "reg",
+    label: "Register",
+  },
+];
 </script>
-
-<style lang="scss" scoped>
-.auth {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>

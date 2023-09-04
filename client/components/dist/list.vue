@@ -1,19 +1,29 @@
 <template>
-  <div class="list">
-      <a-input v-for="(inp, i) of props.items"
+  <div>
+      <UInput v-for="(inp, i) of props.items"
         :id="inp.id"
         :value="getValue(inp.id)"
-        :suffix="i + 1"
-               type="number"
+        size="md"
+        :ui="{ leading: { padding: { md: 'ps-40' } } }"
+        class="mb-2"
+        type="number"
         @input="setValue($event, inp.id)"
       >
-          <template #prefix>
-              <div class="prefix">
-                  <span class="name">{{ inp.name }}</span>
-                  <span v-if="inp.balance" class="balance">{{ inp.balance }}</span>
-              </div>
-          </template>
-      </a-input>
+        <template #leading>
+          <div
+              class="text-gray-500 dark:text-gray-400 flex justify-between items-center w-36"
+          >
+            <span>{{ inp.name }}</span>
+            <span>{{ inp.balance }}</span>
+          </div>
+        </template>
+
+        <template #trailing>
+          <span class="text-gray-500 dark:text-gray-400 text-xs">
+            {{ i + 1 }}
+          </span>
+        </template>
+      </UInput>
   </div>
 </template>
 
@@ -30,16 +40,3 @@ const setValue = (e, id: string) => {
 }
 
 </script>
-
-<style lang="scss" scoped>
-.prefix {
-  min-width: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.balance {
-  margin-right: 4px;
-}
-</style>

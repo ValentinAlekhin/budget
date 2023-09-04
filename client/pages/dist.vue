@@ -1,23 +1,25 @@
 <template>
-  <div class="dist">
-    <a-tabs v-model:activeKey="activeKey">
-      <a-tab-pane key="inc" tab="Приход">
+  <div class="dist p-2">
+    <UTabs v-model:activeKey="activeKey" :items="tabs">
+      <template #incoming>
         <dist-list
           :items="incomingList"
           :model-value="incoming"
           @update:model-value="inputIncoming"
         />
-      </a-tab-pane>
-      <a-tab-pane key="dist" tab="Расход">
+      </template>
+
+      <template #distribution>
         <dist-list
           v-model:model-value="cost"
           :items="categoriesWithBalance"
           @update:model-value="inputCost"
         />
-      </a-tab-pane>
-      <a-tab-pane key="transferring" tab="Перекид">
+      </template>
+
+      <template #transferring>
         <dist-transferring />
-      </a-tab-pane>
+      </template>
 
       <template #leftExtra>
         <div style="min-width: 100px; padding-left: 10px">
@@ -36,12 +38,7 @@
           <template #icon><SettingOutlined /></template>
         </a-button>
       </template>
-    </a-tabs>
-
-    <template v-if="activeKey !== 'transferring'">
-      <a-button @click="save">Save</a-button>
-      <a-button @click="resetAll">Reset</a-button>
-    </template>
+    </UTabs>
   </div>
 </template>
 
@@ -62,6 +59,21 @@ const recordStore = useRecordStore();
 const { incoming: incomingList } = storeToRefs(categoryStore);
 const { dist: recordDist, inc: recordInc } = storeToRefs(recordStore);
 const { categoriesWithBalance } = useCategoriesWithBalance();
+
+const tabs = [
+  {
+    slot: "incoming",
+    label: "Incoming",
+  },
+  {
+    slot: "distribution",
+    label: "Distribution",
+  },
+  {
+    slot: "transferring",
+    label: "Transferring",
+  },
+];
 
 const incoming = reactive<Record<string, number>>({});
 const cost = reactive<Record<string, number>>({});

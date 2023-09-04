@@ -1,29 +1,10 @@
 <template>
   <div class="category-edit">
-    <div class="header">
-      <div>
-        <a-button
-          class="mb-3 mr-4"
-          type="primary"
-          shape="circle"
-          @click="router.back"
-        >
-          <template #icon><ArrowLeftOutlined /></template>
-        </a-button>
-        <a-typography-title style="display: inline-block" :level="5">
-          Настройки категорий
-        </a-typography-title>
-      </div>
-
-      <a-button
-        class="mb-3 mr-4"
-        type="primary"
-        shape="circle"
-        @click="addModal = true"
-      >
-        <template #icon><PlusOutlined /></template>
-      </a-button>
-    </div>
+    <ClientOnly>
+      <Teleport to="#headerTeleport">
+        <BackButton class="mr-2" to="/" />
+      </Teleport>
+    </ClientOnly>
 
     <Draggable
       v-model="computedInputs"
@@ -40,74 +21,69 @@
       @end="drag = false"
     >
       <template #item="{ element }">
-        <div class="item">
-          <a-button size="large" @click="showDeleteConfirm(element)">
-            <template #icon> <DeleteOutlined /> </template>
-          </a-button>
+        <div class="flex w-full justify-between items-center mb-2">
+          <UButton
+            size="sm"
+            color="rose"
+            icon="i-heroicons-trash"
+            :ui="{ rounded: 'rounded-full' }"
+            variant="ghost"
+            @click="addModal = true"
+          />
 
-          <a-input
-            size="large"
+          <UInput
+            class="w-[75vw]"
+            size="md"
             :value="element.name"
             :suffix="element.order"
             @input="element.setName"
           />
 
-          <a-button class="handle" size="large">
-            <template #icon> <MenuOutlined /> </template>
-          </a-button>
+          <UButton
+            class="handle"
+            size="sm"
+            :ui="{ rounded: 'rounded-full' }"
+            icon="i-heroicons-arrows-up-down"
+            variant="soft"
+          />
         </div>
       </template>
     </Draggable>
 
-    <a-button :disabled="!canSave" @click="save">Сохранить</a-button>
+    <UModal v-model="addModal">
+      <UCard>
+        <template #header>
+          <span class="dark:text-white font-medium text-xl">
+            Add new category
+          </span>
+        </template>
 
-    <a-modal
-      :visible="addModal"
-      title="Добавление новой категории трат"
-      @ok="saveNew"
-      @cancel="addModal = false"
-    >
-      <a-form :model="newFormState">
-        <a-form-item
-          name="name"
-          :rules="[{ required: true, message: 'Введите имя' }]"
-        >
-          <a-input v-model:value="newFormState.name" placeholder="Имя" />
-        </a-form-item>
-      </a-form>
+        <UForm ref="form" :schema="schema" :state="state">
+          <UFormGroup label="Name" name="name">
+            <UInput v-model="state.name" />
+          </UFormGroup>
+        </UForm>
 
-      <template #footer>
-        <a-button key="back" @click="addModal = false">Отмена</a-button>
-        <a-button
-          key="submit"
-          :disabled="!validNew"
-          type="primary"
-          :loading="false"
-          @click="saveNew"
-        >
-          Добавить
-        </a-button>
-      </template>
-    </a-modal>
+        <template #footer>
+          <UButton block @click="saveNew"> Add </UButton>
+        </template>
+      </UCard>
+    </UModal>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  ArrowLeftOutlined,
-  MenuOutlined,
-  PlusOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons-vue";
 import Draggable from "vuedraggable";
 import { get, last, set } from "lodash";
-import { Modal } from "ant-design-vue";
-import { createVNode } from "vue";
-import { ExclamationCircleOutlined } from "@ant-design/icons-svg";
 import { storeToRefs } from "pinia";
+import { object, string } from "yup";
 import { useCategoryStore } from "~/store/category";
+import { useActionsStore } from "~/store/actions";
+import BackButton from "~/components/ui/BackButton.vue";
 
+const actionsStore = useActionsStore();
 const categoryStore = useCategoryStore();
+const toast = useToast();
 const { costs } = storeToRefs(categoryStore);
 const router = useRouter();
 
@@ -119,10 +95,20 @@ const formState = reactive<Record<string, { name: string; order: number }>>(
   }, {})
 );
 const drag = ref<boolean>(false);
-
-const newFormState = reactive<{ name: string }>({ name: "" });
 const addModal = ref<boolean>(false);
-const validNew = computed(() => newFormState.name?.length >= 2);
+const schema = object({
+  name: string().required("Category name required").min(4),
+});
+const state = ref({
+  name: "",
+});
+const form = ref();
+const dragOptions = {
+  animation: 150,
+  group: "description",
+  disabled: false,
+  ghostClass: "ghost",
+};
 
 watch(
   costs,
@@ -154,15 +140,6 @@ const computedInputs = computed({
   set: (value) => value.forEach((item, i) => item.setOrder(i + 1)),
 });
 
-const canSave = computed(() => computedInputs.value.every((inp) => inp.name));
-
-const dragOptions = {
-  animation: 150,
-  group: "description",
-  disabled: false,
-  ghostClass: "ghost",
-};
-
 const save = async () => {
   const payload = computedInputs.value.map(({ id, order, name }) => ({
     id,
@@ -177,8 +154,14 @@ const save = async () => {
 };
 
 const saveNew = async () => {
+  try {
+    await form.value?.validate();
+  } catch (e) {
+    toast.add({ title: "Invalid category name" });
+  }
+
   const payload = {
-    name: newFormState.name,
+    name: state.value.name,
     type: "cost",
     order: (last(categoryStore.costs)?.order || 0) + 1,
   };
@@ -187,38 +170,11 @@ const saveNew = async () => {
   addModal.value = false;
 };
 
-const showDeleteConfirm = (category) =>
-  Modal.confirm({
-    title: `Удалить категорию "${category.name}"?`,
-    icon: createVNode(ExclamationCircleOutlined),
-    okText: "Удалить",
-    okType: "danger",
-    cancelText: "Отмена",
-    async onOk() {
-      await categoryStore.delete(category.id);
-    },
-  });
+onMounted(() =>
+  actionsStore.setActions({
+    add: () => (addModal.value = true),
+    submit: save,
+    cancel: () => router.push("/"),
+  })
+);
 </script>
-
-<style lang="scss" scoped>
-.category-edit {
-  .header {
-    padding: 10px 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-</style>
-
-<style lang="scss">
-.ant-input-group-addon {
-  font-size: 18px;
-}
-</style>

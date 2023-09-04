@@ -13,20 +13,11 @@ export default defineNuxtConfig({
   },
 
   app: {
-    // head
     head: {
-      title: "Бюджет",
+      title: "Budget",
       meta: [
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        {
-          hid: "Бюджет",
-          name: "Бюджет",
-          content: "Бюджет",
-        },
       ],
-      htmlAttrs: {
-        class: "dark",
-      },
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
   },
@@ -40,9 +31,6 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["store"],
   },
-
-  // css
-  css: ["~/assets/scss/index.scss"],
 
   typescript: {
     strict: true,
@@ -73,35 +61,33 @@ export default defineNuxtConfig({
     compressPublicAssets: { gzip: true, brotli: true },
     routeRules: {
       "/api/**": { proxy: `http://${BASE_URL}/**` },
-      "/socket.io/**": { proxy: `http://${BASE_URL}/socket.io/**` },
+      "/socket.io/**": { proxy: `ws://${BASE_URL}/socket.io/**` },
     },
   },
 
-  // build modules
+  colorMode: {
+    classSuffix: "",
+    fallback: "dark",
+  },
+
   modules: [
     "@vueuse/nuxt",
-    "@unocss/nuxt",
     "@pinia/nuxt",
     "nuxt-typed-router",
     "@nuxtjs/color-mode",
     "nuxt-highcharts",
+    "@nuxthq/ui",
   ],
 
-  // auto import components
+  ui: {
+    icons: ["heroicons"],
+  },
+
   components: true,
 
-  // vueuse
   vueuse: {
     ssrHandlers: true,
   },
 
-  unocss: {
-    uno: true,
-    attributify: true,
-    icons: {
-      scale: 1.2,
-    },
-  },
-
-  devtools: false,
+  devtools: true,
 });

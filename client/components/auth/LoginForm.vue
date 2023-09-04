@@ -1,48 +1,39 @@
 <template>
-  <a-form :model="formState" @finish="onFinish">
-    <a-form-item
-      name="username"
-      :rules="[{ required: true, message: 'Please input your username!' }]"
-    >
-      <a-input
-        v-model:value="formState.username"
-        placeholder="Имя пользователя"
-      />
-    </a-form-item>
+  <UForm ref="form" :schema="schema" :state="state" @submit.prevent="submit">
+    <UFormGroup label="Username" name="username">
+      <UInput v-model="state.username" />
+    </UFormGroup>
 
-    <a-form-item
-      name="password"
-      :rules="[{ required: true, message: 'Please input your pass!' }]"
-    >
-      <a-input
-        v-model:value="formState.password"
-        placeholder="Пароль"
-        type="password"
-      />
-    </a-form-item>
+    <UFormGroup label="Password" name="password" class="mt-4">
+      <UInput v-model="state.password" type="password" />
+    </UFormGroup>
 
-    <a-form-item>
-      <a-button type="primary" html-type="submit">Войти</a-button>
-    </a-form-item>
-  </a-form>
+    <UButton class="mt-6" type="submit" block> Login </UButton>
+  </UForm>
 </template>
 
 <script lang="ts" setup>
+import { object, string } from "yup";
 import { useAuthStore } from "~/store/auth";
 
-const authStore = useAuthStore();
+const schema = object({
+  username: string().required("Username required"),
+  password: string()
+    .min(8, "Must be at least 8 characters")
+    .required("Password required"),
+});
 
-interface FormStateI {
-  username: string;
-  password: string;
-}
-
-const formState = reactive<FormStateI>({
+const state = ref({
   username: "",
   password: "",
 });
 
-const onFinish = (values: FormStateI) => {
-  authStore.login(values);
-};
+const form = ref();
+
+async function submit() {
+  await form.value!.validate();
+  await authStore.login(state.value);
+}
+
+const authStore = useAuthStore();
 </script>

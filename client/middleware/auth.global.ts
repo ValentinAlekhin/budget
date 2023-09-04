@@ -20,7 +20,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
     if (token) {
       await authStore.getMe();
       await fetchAll();
-      console.log("getMe");
 
       if (toAuth) return navigateTo("/");
     }

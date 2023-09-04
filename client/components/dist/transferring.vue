@@ -1,24 +1,42 @@
 <template>
-  <div class="transferring">
-      <a-select
-              ref="select"
-              v-model:value="fromValue"
-              style="width: 100%"
-              :options="options"
-      />
+  <UForm
+      ref="form"
+      :schema="schema"
+      :state="state"
+      @submit.prevent="save"
+  >
+    <UFormGroup label="From" name="from" class="mt-2">
+      <USelectMenu
+          v-model="state.from"
+          :options="options"
+          value-attribute="id"
+          size="md"
+      >
+        <template #label>
+          {{ fromLabel }}
+        </template>
+      </USelectMenu>
+    </UFormGroup>
 
-      <a-select
-              ref="select"
-              v-model:value="toValue"
-              style="width: 100%"
+    <UFormGroup label="To" name="to" class="mt-2">
+      <USelectMenu
+          v-model="state.to"
+          :options="options"
+          value-attribute="id"
+          size="md"
+      >
+        <template #label>
+          {{ toLabel }}
+        </template>
+      </USelectMenu>
+    </UFormGroup>
 
-              :options="options"
-      />
+    <UFormGroup label="Amount" name="amount" class="mt-2">
+      <UInput v-model="state.amount" type="number" size="md" />
+    </UFormGroup>
 
-      <a-input v-model:value.number="amount" placeholder="Сумма" type="number" />
-
-      <a-button :disabled="disabled" @click="save">Save</a-button>
-  </div>
+    <UButton class="mt-8" size="md" type="submit" block> Submit </UButton>
+  </UForm>
 </template>
 
 <script lang="ts" setup>
@@ -26,29 +44,46 @@ import {useCategoriesWithBalance} from '~/hooks/useCategoriesWithBalance'
 import {message} from 'ant-design-vue'
 import {useRecordStore} from '~/store/record'
 import dayjs from 'dayjs'
-
-const fromValue = ref<string>('')
-const toValue = ref<string>('')
-const amount = ref<number>(0)
+import {number, object, string} from 'yup'
 
 const recordStore = useRecordStore()
 const { categoriesWithBalance } = useCategoriesWithBalance()
-const options = computed(() => categoriesWithBalance.value.map(({ id, name, balance }) => ({value: id, label: `${name} - ${balance}`})))
+const options = computed(() => categoriesWithBalance.value.map(({ id, name, balance }) => ({ id, label: `${name} - ${balance}`})))
 
-const disabled = computed(() => !(fromValue.value && toValue.value && amount.value))
+const toast = useToast()
+
+const schema = object({
+  from: string().required(),
+  to: string().required(),
+  amount: number().required(),
+});
+
+const state = ref({
+  from: null,
+  to: null,
+  amount: number().required(),
+});
+
+const fromLabel = computed(
+    () => options.value.find((c) => c.id === state.value.from)?.label || "Select option"
+);
+
+const toLabel = computed(
+    () => options.value.find((c) => c.id === state.value.to)?.label || "Select option"
+);
 
 const save = async () => {
     const timestamp = dayjs().toISOString()
     const payload = [
         {
-            category: fromValue.value,
-            amount: -amount.value,
+            category: state.value.from,
+            amount: -state.value.amount,
             type: 'dist',
             timestamp,
         },
         {
-            category: toValue.value,
-            amount: amount.value,
+            category: state.value.to,
+            amount: +state.value.amount,
             type: 'dist',
             timestamp,
         }
@@ -56,9 +91,9 @@ const save = async () => {
 
     await recordStore.addRecords(payload)
 
-    amount.value = 0
+    state.value.amount = 0
 
-    message.success('Перевод сохранен')
+    toast.add({ title: 'Перевод сохранен' })
 }
 </script>
 

@@ -1,44 +1,50 @@
 <template>
-  <div class="cost">
+  <div class="p-2">
     <template v-for="(inp, i) of computedInputs" :key="inp.id">
-      <a-input
+      <UInput
         :id="inp.id"
         :value="inp.inputValue"
-        :suffix="i + 1"
+        size="md"
+        :ui="{ leading: { padding: { md: 'ps-40' } } }"
+        class="mb-2"
         @input="inp.setValue"
         @focus="focusedId = inp.id"
       >
-        <template #prefix>
-          <div class="prefix">
-            <span class="name">{{ inp.name }}</span>
-            <span class="balance">{{ inp.balance }}</span>
+        <template #leading>
+          <div
+            class="text-gray-500 dark:text-gray-400 flex justify-between items-center w-36"
+          >
+            <span>{{ inp.name }}</span>
+            <span>{{ inp.balance }}</span>
           </div>
         </template>
-      </a-input>
+
+        <template #trailing>
+          <span class="text-gray-500 dark:text-gray-400 text-xs">
+            {{ i + 1 }}
+          </span>
+        </template>
+      </UInput>
 
       <div v-if="inp.focused" class="math-helpers">
-        <a-button
-          v-for="mathHelper of mathHelpers"
+        <UButton
+          v-for="mathHelper of []"
           :key="mathHelper"
           @click="inp.addHelper(mathHelper)"
         >
           {{ mathHelper }}
-        </a-button>
+        </UButton>
       </div>
 
-      <a-input
+      <UInput
         v-if="inp.showCommentInp"
         :value="inp.comment"
         placeholder="Комментарий"
+        class="mb-2"
+        size="md"
         @input="inp.setComment"
       />
     </template>
-
-    <a-button class="m4" :disabled="!formValid" @click="save">
-      Сохранить
-    </a-button>
-
-    <a-button class="m4" @click="pushToSettings">Настройки</a-button>
   </div>
 </template>
 
@@ -46,15 +52,17 @@
 import { Parser } from "expr-eval";
 import dayjs from "dayjs";
 import { get, set } from "lodash";
-import { message } from "ant-design-vue";
 import { useRecordStore } from "~/store/record";
 import { doGetCaretPosition, setCaretPosition } from "~/utils";
 import { useCategoriesWithBalance } from "~/hooks/useCategoriesWithBalance";
+import { useActionsStore } from "~/store/actions";
 
 const parser = new Parser();
 
+const actionsStore = useActionsStore();
 const recordStore = useRecordStore();
 const router = useRouter();
+const toast = useToast();
 
 const { categoriesWithBalance } = useCategoriesWithBalance();
 
@@ -112,6 +120,10 @@ const computedInputs = computed(() =>
   })
 );
 
+const formHasAnyValue = computed(
+  () => !!Object.values(formState).find((item) => item.value)
+);
+
 const formValid = computed(
   () =>
     !computedInputs.value.find((inp) => !inp.valid) &&
@@ -124,6 +136,8 @@ const resetForm = () =>
   );
 
 const save = async () => {
+  if (!formValid.value) return toast.add({ title: "Invalid form values" });
+
   const payload = computedInputs.value
     .filter((inp) => inp.value)
     .map(({ evaluatedValue, id, comment }) => ({
@@ -138,40 +152,26 @@ const save = async () => {
 
   resetForm();
 
-  message.success("Записи добавлены");
+  toast.add({ title: "Records saved" });
 };
-</script>
 
-<style lang="scss" scoped>
-.cost {
-}
-
-.prefix {
-  min-width: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.balance {
-  margin-right: 4px;
-}
-
-.math-helpers {
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>
-
-<style lang="scss">
-div.cost {
-  span.ant-input-group {
-    span.ant-input-group-addon {
-      width: 120px;
-      overflow: hidden;
-    }
+watch(formHasAnyValue, (value) => {
+  if (value) {
+    actionsStore.setActions({
+      submit: save,
+      cancel: resetForm,
+      edit: pushToSettings,
+    });
+  } else {
+    actionsStore.setActions({
+      edit: pushToSettings,
+    });
   }
-}
-</style>
+});
+
+onMounted(() =>
+  actionsStore.setActions({
+    edit: pushToSettings,
+  })
+);
+</script>
