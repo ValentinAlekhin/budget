@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { io, Socket } from "socket.io-client";
-import { message } from "ant-design-vue";
 import { useAuthStore } from "~/store/auth";
+import { useNotify } from "~/hooks/useNotify";
 
 interface State {
   socket: null | Socket;
@@ -12,6 +12,7 @@ export const useSocketStore = defineStore("socket", {
   actions: {
     init() {
       const authStore = useAuthStore();
+      const notify = useNotify();
 
       this.socket = io("/", {
         auth: {
@@ -19,9 +20,9 @@ export const useSocketStore = defineStore("socket", {
         },
       });
 
-      this.socket.on("connect", () => message.info("Соединен с сервером"));
+      this.socket.on("connect", () => notify.info("Соединен с сервером"));
       this.socket.on("disconnect", () =>
-        message.error("Потеряно соединение с сервером")
+        notify.error("Потеряно соединение с сервером")
       );
     },
   },

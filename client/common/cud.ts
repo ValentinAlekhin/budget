@@ -1,5 +1,5 @@
-import { message } from "ant-design-vue";
 import { useSocketStore } from "~/store/socket";
+import { useNotify } from "~/hooks/useNotify";
 
 export interface CudControllerOptions {
   action: string;
@@ -57,7 +57,9 @@ export const cudController = (opt: CudControllerOptions): CudActions => {
       );
     },
     cud_delete({ id }) {
-      if (!id) return message.error("TEC: Нет id в экшене cud_delete");
+      const notify = useNotify();
+
+      if (!id) return notify.error("TEC: Нет id в экшене cud_delete");
 
       this[dataField] = this[dataField].filter((item) => item.id !== id);
     },

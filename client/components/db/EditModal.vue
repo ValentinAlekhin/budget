@@ -18,6 +18,10 @@
             <UInput v-model="state.amount" />
           </UFormGroup>
 
+          <UFormGroup label="Type" name="type" class="mt-2">
+            <USelectMenu v-model="state.type" :options="types" />
+          </UFormGroup>
+
           <UFormGroup label="Category" name="category" class="mt-2">
             <USelectMenu
               v-model="state.category"
@@ -28,10 +32,6 @@
                 {{ currentCategory.label }}
               </template>
             </USelectMenu>
-          </UFormGroup>
-
-          <UFormGroup label="Type" name="type" class="mt-2">
-            <USelectMenu v-model="state.type" :options="types" />
           </UFormGroup>
         </UForm>
 
@@ -46,7 +46,6 @@
 <script lang="ts" setup>
 import { object, string, date, mixed, number } from "yup";
 import dayjs from "dayjs";
-import { any } from "vue-types";
 import { useCategoryStore } from "~/store/category";
 import { useRecordStore } from "~/store/record";
 
@@ -55,7 +54,7 @@ const categoriesStore = useCategoryStore();
 
 const props = defineProps({
   isOpen: { type: Boolean },
-  record: { type: any, default: () => ({}) },
+  record: { type: Object, default: () => ({}) },
 });
 const emit = defineEmits(["close"]);
 
@@ -94,11 +93,11 @@ watch(
   (record) => {
     if (!record) return;
 
-    state.value.amount = record.amount;
-    state.value.category = record.category;
-    state.value.type = record.type;
-    state.value.timestamp = record.timestamp;
-    state.value.comment = record.comment;
+    state.value.amount = record?.amount;
+    state.value.category = record?.category;
+    state.value.type = record?.type;
+    state.value.timestamp = record?.timestamp;
+    state.value.comment = record?.comment;
   }
 );
 
@@ -111,7 +110,7 @@ const submit = async () => {
   loading.value = true;
   await recordStore.update({
     ...state.value,
-    id: props.record.id,
+    id: props.record?.id,
     amount: Number(state.value.amount),
   });
 

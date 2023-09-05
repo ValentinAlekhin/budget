@@ -1,8 +1,8 @@
 import { acceptHMRUpdate, defineStore, StateTree } from "pinia";
-import { message } from "ant-design-vue";
 import { RecordEntity } from "../../../server/src/record/record.entity";
 import { useApi } from "~/api";
 import { cudController } from "~/common/cud";
+import { useNotify } from "~/hooks/useNotify";
 
 interface State {
   data: RecordEntity[];
@@ -21,6 +21,7 @@ export const useRecordStore = defineStore("record", {
       if (this.data?.length) return;
 
       const { api } = useApi();
+      const notify = useNotify();
 
       this.loading = true;
       this.error = null;
@@ -29,7 +30,7 @@ export const useRecordStore = defineStore("record", {
         const { data } = await api.get("/records");
         this.data = data;
       } catch (e) {
-        message.error("Ошибка при загрузке записей");
+        notify.error("Ошибка при загрузке записей");
         this.error = e;
       } finally {
         this.loading = false;

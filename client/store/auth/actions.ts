@@ -1,9 +1,11 @@
-import { message } from "ant-design-vue";
 import { useApi } from "~/api";
 import { useGlobalLoading } from "~/hooks/useGlobalLoading";
+import { useNotify } from "~/hooks/useNotify";
 
 export default {
   async login(credentials: { username: string; password: string }) {
+    const notify = useNotify();
+
     try {
       const { api } = useApi();
 
@@ -25,12 +27,12 @@ export default {
       const router = useRouter();
       await router.push({ path: "/" });
 
-      message.success("Вы вошли");
+      notify.success("Вы вошли");
 
       const { fetchAll } = useGlobalLoading();
       await fetchAll();
     } catch (e) {
-      message.error("Невалидные данные");
+      notify.error("Невалидные данные");
     }
   },
   logout() {
@@ -51,11 +53,13 @@ export default {
     email: string;
   }) {
     const { api } = useApi();
+    const notify = useNotify();
+
     try {
       await api.post("/user", credentials);
       await this.login(credentials);
     } catch (e) {
-      message.error("Ошибка при регистарции");
+      notify.error("Ошибка при регистарции");
     }
   },
   async getMe() {

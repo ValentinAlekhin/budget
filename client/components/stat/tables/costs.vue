@@ -1,37 +1,27 @@
 <template>
-  <a-table
-    :columns="columns"
-    :data-source="data"
-    :pagination="pagination"
-    size="small"
-  >
-    <template #bodyCell="{ column, text, record }">
-      <template v-if="column.dataIndex === 'category'">
-        <nuxt-link v-if="record.to" :to="record.to">
-          {{ text }}
-        </nuxt-link>
+  <UTable :columns="columns" :rows="data">
+    <template #category-data="{ row }">
+      <ULink v-if="row.to" :to="row.to">
+        {{ row.category }}
+      </ULink>
 
-        <span v-else>{{ text }}</span>
-      </template>
-
-      <span v-else-if="column.dataIndex === 'percent'">{{
-        text ? `${text}%` : ""
-      }}</span>
-
-      <span v-else>{{ text === null ? "" : numberWithSpaces(text) }}</span>
+      <span v-else>{{ row.category }}</span>
     </template>
-  </a-table>
+
+    <template #percent-data="{ row }">
+      <span>{{ row.percent ? `${row.percent}%` : "" }}</span>
+    </template>
+  </UTable>
 </template>
 
 <script lang="ts" setup>
-import { TableColumnsType } from "ant-design-vue";
 import { storeToRefs } from "pinia";
 import { round, sum, sumBy } from "lodash";
 import dayjs from "dayjs";
 import { useRouteQuery } from "@vueuse/router";
 import { AVAILABLE_MONTH, MONTH_LIST_RU } from "~/constants";
 import { useCategoryStore } from "~/store/category";
-import { median, numberWithSpaces } from "~/utils";
+import { median } from "~/utils";
 const categoryStore = useCategoryStore();
 
 const { costs: categories } = storeToRefs(categoryStore);
@@ -42,47 +32,36 @@ const year = useRouteQuery("year", dayjs().year().toString(), {
 
 const props = defineProps(["records"]);
 
-const pagination = computed(() => ({
-  pageSize: categories.value.length + 1,
-  disabled: true,
-}));
-
-const columns: TableColumnsType = [
+const columns = [
   {
-    title: "Категория",
-    dataIndex: "category",
+    label: "Категория",
     key: "category",
     width: 200,
   },
-  ...MONTH_LIST_RU.map((title, i) => ({
-    title,
+  ...MONTH_LIST_RU.map((label, i) => ({
+    label,
     key: `${i}`,
-    dataIndex: `${i}`,
   })),
   {
-    title: "Среднее",
+    label: "Среднее",
     key: "average",
-    dataIndex: "average",
   },
   {
-    title: "Медианное",
+    label: "Медианное",
     key: "median",
-    dataIndex: "median",
   },
   // {
-  //   title: "Модальное",
+  //   label: "Модальное",
   //   key: "modal",
-  //   dataIndex: "modal",
+  //   key: "modal",
   // },
   {
-    title: "Сумма",
+    label: "Сумма",
     key: "sum",
-    dataIndex: "sum",
   },
   {
-    title: "Процент",
+    label: "Процент",
     key: "percent",
-    dataIndex: "percent",
   },
 ];
 

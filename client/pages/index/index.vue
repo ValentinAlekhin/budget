@@ -1,5 +1,5 @@
 <template>
-  <div class="p-2">
+  <div>
     <template v-for="(inp, i) of computedInputs" :key="inp.id">
       <UInput
         :id="inp.id"
@@ -15,7 +15,7 @@
             class="text-gray-500 dark:text-gray-400 flex justify-between items-center w-36"
           >
             <span>{{ inp.name }}</span>
-            <span>{{ inp.balance }}</span>
+            <span :class="inp.colorClass">{{ inp.formattedBalance }}</span>
           </div>
         </template>
 
@@ -83,41 +83,45 @@ const formState = reactive<Record<string, { value: string; comment: string }>>(
   {}
 );
 const computedInputs = computed(() =>
-  categoriesWithBalance.value.map(({ id, name, balance }) => {
-    const scope = {
-      $1: 100,
-    };
-    const valuePath = `${id}.value`;
-    const commentPath = `${id}.comment`;
-    const value = get(formState, valuePath, "");
-    const comment = get(formState, commentPath, "");
-    const evaluatedValue = evaluate(value, scope);
-    const focused = focusedId.value === id;
-    const valid = evaluatedValue !== "Ошибка выражения";
+  categoriesWithBalance.value.map(
+    ({ id, name, balance, formattedBalance, colorClass }) => {
+      const scope = {
+        $1: 100,
+      };
+      const valuePath = `${id}.value`;
+      const commentPath = `${id}.comment`;
+      const value = get(formState, valuePath, "");
+      const comment = get(formState, commentPath, "");
+      const evaluatedValue = evaluate(value, scope);
+      const focused = focusedId.value === id;
+      const valid = evaluatedValue !== "Ошибка выражения";
 
-    return {
-      id,
-      name,
-      balance,
-      showCommentInp: !!value,
-      comment,
-      value,
-      evaluatedValue,
-      focused,
-      valid,
-      inputValue: focused ? value : evaluatedValue,
-      setValue: (e) => set(formState, valuePath, e.target.value),
-      setComment: (e) => set(formState, commentPath, e.target.value),
-      addHelper: (helper: string) => {
-        const inputEl = document.getElementById(id);
-        const pos = doGetCaretPosition(inputEl);
-        const arr = value.split("");
-        arr.splice(pos, 0, helper);
-        set(formState, valuePath, arr.join(""));
-        setCaretPosition(inputEl, pos);
-      },
-    };
-  })
+      return {
+        id,
+        name,
+        balance,
+        formattedBalance,
+        colorClass,
+        showCommentInp: !!value,
+        comment,
+        value,
+        evaluatedValue,
+        focused,
+        valid,
+        inputValue: focused ? value : evaluatedValue,
+        setValue: (e) => set(formState, valuePath, e.target.value),
+        setComment: (e) => set(formState, commentPath, e.target.value),
+        addHelper: (helper: string) => {
+          const inputEl = document.getElementById(id);
+          const pos = doGetCaretPosition(inputEl);
+          const arr = value.split("");
+          arr.splice(pos, 0, helper);
+          set(formState, valuePath, arr.join(""));
+          setCaretPosition(inputEl, pos);
+        },
+      };
+    }
+  )
 );
 
 const formHasAnyValue = computed(
@@ -151,8 +155,6 @@ const save = async () => {
   await recordStore.addRecords(payload);
 
   resetForm();
-
-  toast.add({ title: "Records saved" });
 };
 
 watch(formHasAnyValue, (value) => {

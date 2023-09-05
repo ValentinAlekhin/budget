@@ -1,5 +1,5 @@
 <template>
-  <div class="category-edit">
+  <div class="pb-40">
     <ClientOnly>
       <Teleport to="#headerTeleport">
         <BackButton class="mr-2" to="/" />
@@ -21,7 +21,7 @@
       @end="drag = false"
     >
       <template #item="{ element }">
-        <div class="flex w-full justify-between items-center mb-2">
+        <div class="grid grid-cols-3 gap-1 items-center mb-2 inputContainer">
           <UButton
             size="sm"
             color="rose"
@@ -44,7 +44,7 @@
             size="sm"
             :ui="{ rounded: 'rounded-full' }"
             icon="i-heroicons-arrows-up-down"
-            variant="soft"
+            variant="ghost"
           />
         </div>
       </template>
@@ -191,3 +191,9 @@ onMounted(() =>
   })
 );
 </script>
+
+<style lang="scss" scoped>
+.inputContainer {
+  grid-template-columns: 30px 1fr 30px;
+}
+</style>

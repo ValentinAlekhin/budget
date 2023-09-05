@@ -1,5 +1,13 @@
 <template>
-  <div class="dist p-2">
+  <div>
+    <ClientOnly>
+      <Teleport to="#headerTeleport">
+        <span v-if="balance" class="mr-4 font-semibold text-base">{{
+          numberWithSpaces(balance)
+        }}</span>
+      </Teleport>
+    </ClientOnly>
+
     <UTabs v-model:activeKey="activeKey" :items="tabs">
       <template #incoming>
         <dist-list
@@ -11,7 +19,7 @@
 
       <template #distribution>
         <dist-list
-          v-model:model-value="cost"
+          v-model="cost"
           :items="categoriesWithBalance"
           @update:model-value="inputCost"
         />
@@ -20,42 +28,26 @@
       <template #transferring>
         <dist-transferring />
       </template>
-
-      <template #leftExtra>
-        <div style="min-width: 100px; padding-left: 10px">
-          {{ numberWithSpaces(balance) }}
-        </div>
-      </template>
-
-      <template #rightExtra>
-        <a-button
-          v-if="activeKey === 'inc'"
-          class="mr-4"
-          type="primary"
-          shape="circle"
-          @click="message.warn('Пока не готово')"
-        >
-          <template #icon><SettingOutlined /></template>
-        </a-button>
-      </template>
     </UTabs>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { SettingOutlined } from "@ant-design/icons-vue";
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import { sum, sumBy } from "lodash";
-import { message } from "ant-design-vue";
 import dayjs from "dayjs";
 import { useCategoryStore } from "~/store/category";
-import { numberWithSpaces, clearObject } from "~/utils";
 import { useCategoriesWithBalance } from "~/hooks/useCategoriesWithBalance";
 import { useRecordStore } from "~/store/record";
+import { useNotify } from "~/hooks/useNotify";
+import { useActionsStore } from "~/store/actions";
 
 const categoryStore = useCategoryStore();
 const recordStore = useRecordStore();
+const notify = useNotify();
+const actionsStore = useActionsStore();
+
 const { incoming: incomingList } = storeToRefs(categoryStore);
 const { dist: recordDist, inc: recordInc } = storeToRefs(recordStore);
 const { categoriesWithBalance } = useCategoriesWithBalance();
@@ -78,6 +70,13 @@ const tabs = [
 const incoming = reactive<Record<string, number>>({});
 const cost = reactive<Record<string, number>>({});
 
+const hasValue = computed(() => {
+  const incomingHas = !!Object.values(incoming).find((v) => v);
+  const costHas = !!Object.values(cost).find((v) => v);
+
+  return incomingHas || costHas;
+});
+
 const balance = computed(() => {
   return (
     sum(Object.values(incoming)) +
@@ -96,9 +95,9 @@ const resetAll = () => {
   clearObject(incoming);
   clearObject(cost);
 };
+
 const save = async () => {
-  if (balance.value <= 0)
-    return message.error("Баланс не может быть меньше или равен 0");
+  if (balance.value < 0) return notify.error("Баланс не может быть меньше 0");
 
   const payload = [
     ...Object.entries(incoming).map(([category, amount]) => ({
@@ -119,10 +118,15 @@ const save = async () => {
 
   await recordStore.addRecords(payload);
 
-  message.success("Записи добавлены");
-
   resetAll();
 };
-</script>
 
-<style lang="scss" scoped></style>
+watch(hasValue, (value) => {
+  if (value) {
+    actionsStore.setActions({
+      cancel: resetAll,
+      submit: save,
+    });
+  } else actionsStore.$reset();
+});
+</script>

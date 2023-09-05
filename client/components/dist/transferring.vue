@@ -41,7 +41,6 @@
 
 <script lang="ts" setup>
 import {useCategoriesWithBalance} from '~/hooks/useCategoriesWithBalance'
-import {message} from 'ant-design-vue'
 import {useRecordStore} from '~/store/record'
 import dayjs from 'dayjs'
 import {number, object, string} from 'yup'
@@ -50,7 +49,6 @@ const recordStore = useRecordStore()
 const { categoriesWithBalance } = useCategoriesWithBalance()
 const options = computed(() => categoriesWithBalance.value.map(({ id, name, balance }) => ({ id, label: `${name} - ${balance}`})))
 
-const toast = useToast()
 
 const schema = object({
   from: string().required(),
@@ -61,7 +59,7 @@ const schema = object({
 const state = ref({
   from: null,
   to: null,
-  amount: number().required(),
+  amount: 0,
 });
 
 const fromLabel = computed(
@@ -93,7 +91,6 @@ const save = async () => {
 
     state.value.amount = 0
 
-    toast.add({ title: 'Перевод сохранен' })
 }
 </script>
 

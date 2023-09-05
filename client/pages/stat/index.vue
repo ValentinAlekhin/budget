@@ -1,9 +1,9 @@
 <template>
-  <div class="stat">
+  <div>
     <ClientOnly fallback-tag="span">
       <template v-if="isLargeScreen">
-        <a-select
-          v-model:value="year"
+        <USelectMenu
+          v-model="year"
           :options="yearsOptions"
           style="width: 100px"
         />
@@ -22,12 +22,12 @@
         </a-tabs>
       </template>
 
-      <span v-else class="center">
+      <span v-else class="center dark:text-white">
         Статистика доступна только с экрана компьютера
       </span>
 
       <template #fallback>
-        <a-spin class="center" size="large" />
+        <span class="center">Loading</span>
       </template>
     </ClientOnly>
   </div>
@@ -43,20 +43,15 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)");
 
 const { years, cost, inc } = useStat();
 
-const yearsOptions = computed(() =>
-  years.value.map((year) => ({ label: year, value: year }))
-);
-
-const year = useRouteQuery("year", dayjs().year().toString(), {
-  transform: Number,
-});
+const yearsOptions = years.value.map((y) => y.toString());
+const year = useRouteQuery("year", dayjs().year().toString());
 
 const recordsCostByYear = computed(() =>
-  cost.value.filter((r) => r.year === year.value)
+  cost.value.filter((r) => r.year === +year.value)
 );
 
 const recordsIncByYear = computed(() =>
-  inc.value.filter((r) => r.year === year.value)
+  inc.value.filter((r) => r.year === +year.value)
 );
 
 const activeKey = ref("table");

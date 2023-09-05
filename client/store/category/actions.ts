@@ -1,6 +1,6 @@
-import { message } from "ant-design-vue";
 import { useApi } from "~/api";
 import { cudController } from "~/common/cud";
+import { useNotify } from "~/hooks/useNotify";
 
 export default {
   async fetchAll() {
@@ -14,7 +14,8 @@ export default {
       const { data } = await api.get("/category");
       this.data = data.map((c) => ({ ...c, name: c.name.slice(0, 12) }));
     } catch (e) {
-      message.error("Ошибка при загрузке категорий");
+      const notify = useNotify();
+      notify.error("Ошибка при загрузке категорий");
       this.error = e;
     } finally {
       this.loading = false;
@@ -29,7 +30,8 @@ export default {
     try {
       await api.post("/category", category);
     } catch (e) {
-      message.error("Ошибка при сохранении");
+      const notify = useNotify();
+      notify.error("Ошибка при сохранении");
     }
   },
   async updateMany(
@@ -39,7 +41,8 @@ export default {
     try {
       await api.put("/category/many", { data });
     } catch (e) {
-      message.error("Ошибка при обновлении категорий");
+      const notify = useNotify();
+      notify.error("Ошибка при обновлении категорий");
     }
   },
   async delete(id: string) {
@@ -47,7 +50,8 @@ export default {
     try {
       await api.delete(`/category/${id}`);
     } catch (e) {
-      message.error("Ошибка при удалении");
+      const notify = useNotify();
+      notify.error("Ошибка при удалении");
     }
   },
   ...cudController({ action: "category" }),

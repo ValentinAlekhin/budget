@@ -20,7 +20,15 @@ export function useCategoriesWithBalance() {
         "amount"
       );
 
-      return { ...c, balance: numberWithSpaces(allDist - allCost) };
+      const balance = allDist - allCost;
+      const colorClass = balance < 0 ? "text-rose-300" : "";
+
+      return {
+        ...c,
+        formattedBalance: numberWithSpaces(balance),
+        balance,
+        colorClass,
+      };
     })
   );
 

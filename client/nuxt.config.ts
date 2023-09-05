@@ -37,7 +37,7 @@ export default defineNuxtConfig({
     shim: false,
   },
 
-  plugins: ["@/plugins/antd", "@/plugins/draggable"],
+  plugins: ["@/plugins/draggable"],
 
   vite: {
     server: {

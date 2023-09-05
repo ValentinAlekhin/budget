@@ -1,6 +1,6 @@
 <template>
   <div class="pt-14 pb-20">
-    <a-spin v-if="loading" size="large" />
+    <span v-if="loading">Loading</span>
 
     <UCard v-else-if="error" class="flex flex-col justify-center">
       <template #header>

@@ -64,7 +64,7 @@ const categoriesStore = useCategoryStore();
 const getCategoryName = (id: string) =>
   categoriesStore.getById(id)?.name || "Не найдена";
 
-const editRecord = ref(null);
+const editRecord = ref<any>(null);
 const deleteId = ref("");
 
 const getTypeColor = (row) => {
