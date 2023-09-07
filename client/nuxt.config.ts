@@ -5,6 +5,7 @@ const { BASE_URL } = process.env;
 
 export default defineNuxtConfig({
   ssr: false,
+  spaLoadingTemplate: "spa-loading-template.html",
 
   runtimeConfig: {
     public: {
@@ -16,7 +17,14 @@ export default defineNuxtConfig({
     head: {
       title: "Budget",
       meta: [
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          name: "viewport",
+          content: "width=device-width, initial-scale=1, maximum-scale=1",
+        },
+        {
+          name: "theme-color",
+          content: "#030712",
+        },
       ],
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },

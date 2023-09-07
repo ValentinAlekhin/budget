@@ -1,5 +1,9 @@
 <template>
   <div class="h-screen dark:bg-gray-950 overflow-y-auto">
+    <Head>
+      <Meta name="theme-color" :content="color" />
+    </Head>
+
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -11,3 +15,9 @@
     />
   </div>
 </template>
+
+<script lang="ts" setup>
+const colorMode = useColorMode();
+
+const color = computed(() => (colorMode.value === "dark" ? "#030712" : "#fff"));
+</script>

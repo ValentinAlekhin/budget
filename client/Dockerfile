@@ -11,12 +11,16 @@ COPY . .
 
 ENV BASE_URL 11.5.0.6:3000
 
-RUN npm run build
+RUN npm run generate
 
-FROM node:18-alpine
+FROM nginx:alpine
 
-WORKDIR /app
+WORKDIR /usr/share/nginx/html
 
-COPY --from=builder /app/.output .
+RUN rm -rf ./*
 
-CMD ["node", "./server/index.mjs"]
+COPY --from=builder /app/.output/public .
+
+COPY ./nginx/conf.conf /etc/nginx/conf.d/default.conf
+
+CMD ["nginx", "-g", "daemon off;"]

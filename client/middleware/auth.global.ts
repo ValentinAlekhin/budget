@@ -5,6 +5,7 @@ import { useGlobalLoading } from "~/hooks/useGlobalLoading";
 
 export default defineNuxtRouteMiddleware(async (to) => {
   const { api } = useApi();
+  const toast = useToast();
   const toAuth = to.path.includes("auth");
   const { value: token } = useCookie<string>("accessToken");
   const authStore = useAuthStore();
@@ -24,6 +25,11 @@ export default defineNuxtRouteMiddleware(async (to) => {
       if (toAuth) return navigateTo("/");
     }
   } catch (e) {
+    toast.add({
+      title: "err",
+      description: JSON.stringify(e, null, 2),
+      timeout: 5,
+    });
     authStore.logout();
     return navigateTo("/auth");
   }
