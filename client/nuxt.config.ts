@@ -85,6 +85,7 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "nuxt-highcharts",
     "@nuxthq/ui",
+    "nuxt-icon",
   ],
 
   ui: {

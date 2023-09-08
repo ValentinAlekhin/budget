@@ -43,7 +43,12 @@ export class CategoryEntity extends AbstractEntity {
   @Column({ nullable: true })
   @IsString()
   @IsOptional()
-  comment: string | null
+  icon?: string | null
+
+  @Column({ nullable: true })
+  @IsString()
+  @IsOptional()
+  comment?: string | null
 
   @ManyToOne(() => UserEntity, (user) => user.categories, {
     onDelete: 'CASCADE',

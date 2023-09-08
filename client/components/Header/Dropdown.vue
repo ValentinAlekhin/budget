@@ -4,7 +4,7 @@
     :ui="{ item: { disabled: 'cursor-text select-text' } }"
     :popper="{ placement: 'bottom-start' }"
   >
-    <UAvatar alt="U" />
+    <UAvatar :alt="usernameFirstLetter" />
 
     <template #account="{ item }">
       <div>
@@ -41,15 +41,21 @@
 </template>
 
 <script lang="ts" setup>
+import { storeToRefs } from "pinia";
 import { useAuthStore } from "~/store/auth";
 
 const authStore = useAuthStore();
+const { user } = storeToRefs(authStore);
 const isOpen = ref(false);
+
+const usernameFirstLetter = computed(() =>
+  user.value?.username[0].toUpperCase()
+);
 
 const items = [
   [
     {
-      label: authStore?.user?.username,
+      label: user.value?.username,
       slot: "account",
       disabled: true,
     },

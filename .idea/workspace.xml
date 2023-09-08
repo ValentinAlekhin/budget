@@ -5,49 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Перевод на nuxt ui">
-      <change afterPath="$PROJECT_DIR$/client/components/BaseLayout.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/cost/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/db/ActionsDropdown.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/db/List.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/db/Table.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/db/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/ui/Loader.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/ui/MobileOnly.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/hooks/useCategory.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/hooks/useRecord.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/hooks/useScreenSize.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/layouts/desktop.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/layouts/mobile.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/api/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/BottomTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BottomTabs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Header/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/EditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/EditModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/stat/charts/costs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/stat/charts/costs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/stat/charts/delta.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/stat/charts/delta.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/stat/tables/costs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/stat/tables/costs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/hooks/useCategoriesWithBalance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/hooks/useCategoriesWithBalance.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/hooks/useGlobalLoading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/hooks/useGlobalLoading.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/hooks/useStat.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/hooks/useStat.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/layouts/default.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/auth.global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Header/Dropdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/Dropdown.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useRecord.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/hooks/useRecord.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/db.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/db.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/dist.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/dist.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/index/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/auth/getters.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.gateway.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.gateway.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/category.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.entity.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,11 +98,11 @@
       <recent name="$PROJECT_DIR$/client/store" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Valentin\Documents\projects\budget\server\src\migrations" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\client" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\components\Header" />
       <recent name="$PROJECT_DIR$/client/pages/stat" />
       <recent name="$PROJECT_DIR$/client/components/stat/charts" />
-      <recent name="$PROJECT_DIR$/client/plugins" />
     </key>
   </component>
   <component name="RunManager" selected="npm.start:dev">
@@ -241,7 +209,8 @@
       <workItem from="1694070141076" duration="3593000" />
       <workItem from="1694077527078" duration="5882000" />
       <workItem from="1694084198167" duration="11811000" />
-      <workItem from="1694103440693" duration="6046000" />
+      <workItem from="1694103440693" duration="6736000" />
+      <workItem from="1694175743101" duration="7451000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -380,7 +349,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694079808776</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Перевод на nuxt ui">
+      <option name="closed" value="true" />
+      <created>1694174019232</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1694174019232</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

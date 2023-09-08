@@ -17,7 +17,7 @@ export function useRecord() {
   const getTypeBackgroundClasses = (type: string) => {
     const color = getTypeColor(type);
 
-    return twMerge(`bg-${color}-300`);
+    return twMerge(`bg-${color}-400`);
   };
 
   return { getTypeColor, getTypeBackgroundClasses };

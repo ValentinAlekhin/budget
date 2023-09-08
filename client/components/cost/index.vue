@@ -4,17 +4,31 @@
       <UInput
         :id="inp.id"
         :value="inp.inputValue"
+        :placeholder="inp.icon ? inp.name : ''"
         size="md"
-        :ui="{ leading: { padding: { md: 'ps-40' } } }"
+        :ui="{ leading: { padding: { md: inp.padding } } }"
         class="mb-2"
         @input="inp.setValue"
         @focus="focusedId = inp.id"
       >
         <template #leading>
           <div
-            class="text-gray-500 dark:text-gray-400 flex justify-between items-center w-36"
+            class="text-gray-500 dark:text-gray-400 flex justify-between items-center"
+            :class="inp.leadingClass"
           >
-            <span>{{ inp.name }}</span>
+            <Icon
+              v-if="inp.icon"
+              :name="inp.icon"
+              size="28"
+              :class="{ 'text-cyan-400': inp.focused }"
+            />
+            <span
+              v-else
+              class="text-ellipsis truncate w-20"
+              :class="{ 'text-cyan-400': inp.focused }"
+            >
+              {{ inp.name }}
+            </span>
             <span :class="inp.colorClass">{{ inp.formattedBalance }}</span>
           </div>
         </template>
@@ -84,7 +98,7 @@ const formState = reactive<Record<string, { value: string; comment: string }>>(
 );
 const computedInputs = computed(() =>
   categoriesWithBalance.value.map(
-    ({ id, name, balance, formattedBalance, colorClass }) => {
+    ({ id, name, balance, formattedBalance, colorClass, icon }) => {
       const scope = {
         $1: 100,
       };
@@ -104,10 +118,13 @@ const computedInputs = computed(() =>
         colorClass,
         showCommentInp: !!value,
         comment,
+        icon,
         value,
         evaluatedValue,
         focused,
         valid,
+        leadingClass: icon ? "w-24" : "w-36",
+        padding: icon ? "ps-32" : "ps-40",
         inputValue: focused ? value : evaluatedValue,
         setValue: (e) => set(formState, valuePath, e.target.value),
         setComment: (e) => set(formState, commentPath, e.target.value),

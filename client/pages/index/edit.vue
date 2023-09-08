@@ -33,13 +33,15 @@
             @click="itemToDelete = element"
           />
 
-          <UInput
-            class="w-[75vw]"
-            size="md"
-            :value="element.name"
-            :suffix="element.order"
-            @input="element.setName"
-          />
+          <div class="grid grid-cols-2 gap-2 w-[75vw]">
+            <UInput size="md" :value="element.name" @input="element.setName" />
+
+            <UInput size="md" :value="element.icon" @input="element.setIcon">
+              <template v-if="element.icon" #trailing>
+                <Icon :name="element.icon" size="24" />
+              </template>
+            </UInput>
+          </div>
 
           <UButton
             class="handle"
@@ -61,8 +63,26 @@
         </template>
 
         <UForm ref="form" :schema="schema" :state="state">
-          <UFormGroup label="Name" name="name">
+          <UFormGroup label="Name" name="name" class="mb-2">
             <UInput v-model="state.name" />
+          </UFormGroup>
+
+          <UFormGroup label="Icon" name="icon">
+            <UInput v-model="state.icon" class="mb-1">
+              <template v-if="state.icon" #trailing>
+                <Icon :name="state.icon" size="24" />
+              </template>
+            </UInput>
+
+            <span class="text-sm text-neutral-400"
+              >Search icons
+              <a
+                href="https://icon-sets.iconify.design/"
+                target="_blank"
+                class="text-cyan-500 underline"
+                >here</a
+              >
+            </span>
           </UFormGroup>
         </UForm>
 
@@ -85,7 +105,7 @@
 import Draggable from "vuedraggable";
 import { storeToRefs } from "pinia";
 import { object, string } from "yup";
-import { get } from "lodash-es";
+import { get, last } from "lodash-es";
 import { set } from "vue-demi";
 import { useCategoryStore } from "~/store/category";
 import { useActionsStore } from "~/store/actions";
@@ -98,9 +118,11 @@ const toast = useToast();
 const { costs } = storeToRefs(categoryStore);
 const router = useRouter();
 
-const formState = reactive<Record<string, { name: string; order: number }>>(
+const formState = reactive<
+  Record<string, { name: string; order: number; icon?: string }>
+>(
   costs.value.reduce((acc, c, i) => {
-    acc[c.id] = { order: i + 1, name: c.name };
+    acc[c.id] = { order: i + 1, name: c.name, icon: c.icon };
 
     return acc;
   }, {})
@@ -108,13 +130,19 @@ const formState = reactive<Record<string, { name: string; order: number }>>(
 const drag = ref<boolean>(false);
 const addModal = ref<boolean>(false);
 const itemToDelete = ref<any>(null);
+
 const schema = object({
   name: string().required("Category name required").min(4),
+  icon: string(),
 });
+
 const state = ref({
   name: "",
+  icon: "",
 });
+
 const form = ref();
+
 const dragOptions = {
   animation: 150,
   group: "description",
@@ -125,7 +153,9 @@ const dragOptions = {
 watch(
   costs,
   (value) =>
-    value.forEach((c, i) => (formState[c.id] = { order: i + 1, name: c.name })),
+    value.forEach(
+      (c, i) => (formState[c.id] = { order: i + 1, name: c.name, icon: c.icon })
+    ),
   {
     deep: true,
   }
@@ -137,15 +167,19 @@ const computedInputs = computed({
       .map(({ id }, i) => {
         const namePath = `${id}.name`;
         const orderPath = `${id}.order`;
+        const iconPath = `${id}.icon`;
         const name = get(formState, namePath, "");
         const order = get(formState, orderPath, i + 1);
+        const icon = get(formState, iconPath, "");
 
         return {
           id,
           name,
           order,
+          icon,
           setName: (e) => set(formState, namePath, e.target.value),
           setOrder: (order) => set(formState, orderPath, order),
+          setIcon: (e) => set(formState, iconPath, e.target.value),
         };
       })
       .sort((a, b) => a.order - b.order),
@@ -153,10 +187,11 @@ const computedInputs = computed({
 });
 
 const save = async () => {
-  const payload = computedInputs.value.map(({ id, order, name }) => ({
+  const payload = computedInputs.value.map(({ id, order, name, icon }) => ({
     id,
     order,
     name,
+    icon,
     type: "cost",
   }));
 
@@ -174,6 +209,7 @@ const saveNew = async () => {
 
   const payload = {
     name: state.value.name,
+    icon: state.value.icon,
     type: "cost",
     order: (last(categoryStore.costs)?.order || 0) + 1,
   };
