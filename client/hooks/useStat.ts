@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { storeToRefs } from "pinia";
-import { uniq } from "lodash";
+import { uniq } from "lodash-es";
 import { useCategoryStore } from "~/store/category";
 import { useRecordStore } from "~/store/record";
 

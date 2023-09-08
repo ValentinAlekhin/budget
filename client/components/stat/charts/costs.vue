@@ -4,8 +4,8 @@
 
 <script lang="ts" setup>
 import { Options } from "highcharts";
-import { sumBy } from "lodash";
 import { storeToRefs } from "pinia";
+import { sumBy } from "lodash-es";
 import { AVAILABLE_MONTH, MONTH_LIST_RU } from "~/constants";
 import { useCategoryStore } from "~/store/category";
 const categoryStore = useCategoryStore();

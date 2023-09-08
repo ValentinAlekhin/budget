@@ -1,5 +1,5 @@
 import { storeToRefs } from "pinia";
-import { sumBy } from "lodash";
+import { sumBy } from "lodash-es";
 import { useCategoryStore } from "~/store/category";
 import { useRecordStore } from "~/store/record";
 

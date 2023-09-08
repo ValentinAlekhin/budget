@@ -1,9 +1,11 @@
 <template>
   <div class="pb-40">
     <ClientOnly>
-      <Teleport to="#headerTeleport">
-        <BackButton class="mr-2" to="/" />
-      </Teleport>
+      <MobileOnly>
+        <Teleport to="#headerTeleport">
+          <BackButton class="mr-2" to="/" />
+        </Teleport>
+      </MobileOnly>
     </ClientOnly>
 
     <Draggable
@@ -81,12 +83,14 @@
 
 <script setup lang="ts">
 import Draggable from "vuedraggable";
-import { get, last, set } from "lodash";
 import { storeToRefs } from "pinia";
 import { object, string } from "yup";
+import { get } from "lodash-es";
+import { set } from "vue-demi";
 import { useCategoryStore } from "~/store/category";
 import { useActionsStore } from "~/store/actions";
 import BackButton from "~/components/ui/BackButton.vue";
+import MobileOnly from "~/components/ui/MobileOnly.vue";
 
 const actionsStore = useActionsStore();
 const categoryStore = useCategoryStore();

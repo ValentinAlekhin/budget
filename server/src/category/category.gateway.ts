@@ -52,7 +52,7 @@ export class CategoryGateway implements OnGatewayConnection {
   ) {
     try {
       return this.sockets
-        .filter((c) => c.data.user.id === id)
+        ?.filter((c) => c.data.user.id === id)
         .forEach((c) => c.emit('category', { info, payload }))
     } catch (e) {
       this.logger.error(e)

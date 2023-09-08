@@ -16,9 +16,9 @@
 
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
-import { round, sum, sumBy } from "lodash";
 import dayjs from "dayjs";
 import { useRouteQuery } from "@vueuse/router";
+import { round, sum, sumBy } from "lodash-es";
 import { AVAILABLE_MONTH, MONTH_LIST_RU } from "~/constants";
 import { useCategoryStore } from "~/store/category";
 import { median } from "~/utils";

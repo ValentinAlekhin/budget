@@ -18,6 +18,10 @@
             <UInput v-model="state.amount" />
           </UFormGroup>
 
+          <UFormGroup label="Comment" name="comment">
+            <UInput v-model="state.comment" />
+          </UFormGroup>
+
           <UFormGroup label="Type" name="type" class="mt-2">
             <USelectMenu v-model="state.type" :options="types" />
           </UFormGroup>

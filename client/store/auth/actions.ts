@@ -7,17 +7,16 @@ export default {
     const notify = useNotify();
 
     try {
-      const { api } = useApi();
+      const { api, tokensStore } = useApi();
 
       const { data } = await api.post("/auth/login", credentials, {
         withCredentials: true,
       });
 
-      const accessToken = useCookie("accessToken");
-      accessToken.value = data.accessToken;
-
-      const refreshToken = useCookie("refreshToken");
-      refreshToken.value = data.refreshToken;
+      tokensStore.value = {
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+      };
 
       api.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
 
@@ -27,8 +26,6 @@ export default {
       const router = useRouter();
       await router.push({ path: "/" });
 
-      notify.success("Вы вошли");
-
       const { fetchAll } = useGlobalLoading();
       await fetchAll();
     } catch (e) {
@@ -36,13 +33,10 @@ export default {
     }
   },
   logout() {
+    const { resetTokens } = useApi();
+
     this.$reset();
-
-    const accessToken = useCookie("accessToken");
-    accessToken.value = null;
-
-    const refreshToken = useCookie("refreshToken");
-    refreshToken.value = null;
+    resetTokens();
 
     const router = useRouter();
     router.push({ path: "/auth" });

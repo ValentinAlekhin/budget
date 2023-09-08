@@ -1,5 +1,4 @@
 import { defineNuxtConfig } from "nuxt/config";
-import { optimizeLodashImports } from "@optimize-lodash/rollup-plugin";
 
 const { BASE_URL } = process.env;
 
@@ -30,12 +29,6 @@ export default defineNuxtConfig({
     },
   },
 
-  hooks: {
-    "vite:extendConfig": (config) => {
-      config.plugins?.push(optimizeLodashImports());
-    },
-  },
-
   imports: {
     dirs: ["store"],
   },
@@ -60,6 +53,13 @@ export default defineNuxtConfig({
         "/socket.io": {
           target: `ws://${BASE_URL}`,
           ws: true,
+        },
+      },
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          inlineDynamicImports: true,
         },
       },
     },
@@ -91,7 +91,10 @@ export default defineNuxtConfig({
     icons: ["heroicons"],
   },
 
-  components: true,
+  components: {
+    global: true,
+    dirs: ["~/components"],
+  },
 
   vueuse: {
     ssrHandlers: true,

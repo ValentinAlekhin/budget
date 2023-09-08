@@ -1,6 +1,6 @@
 <template>
   <div
-    class="pt-2 px-2 w-full fixed bottom-0 rounded-t-xl border-t bg-background/75 backdrop-blur border-gray-200 dark:border-gray-800"
+    class="pt-2 px-2 w-full fixed bottom-0 rounded-t-xl border-t bg-background/75 backdrop-blur border-gray-200 dark:border-gray-800 z-30"
   >
     <UTabs
       :model-value="activeIndex"
@@ -24,6 +24,7 @@ const router = useRouter();
 const { links, activeIndex } = useMainLinks();
 
 const push = (index: number) => {
+  window.navigator.vibrate([10]);
   const to = links.value.find((_, i) => i === index)?.to;
   router.push(to);
 };

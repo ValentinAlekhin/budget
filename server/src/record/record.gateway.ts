@@ -61,7 +61,7 @@ export class RecordGateway implements OnGatewayConnection {
   ) {
     try {
       return this.sockets
-        .filter((c) => c.data.user.id === id)
+        ?.filter((c) => c.data.user.id === id)
         .forEach((c) => c.emit('records', { info, payload }))
     } catch (e) {
       this.logger.error(e)

@@ -12,8 +12,6 @@ export function useGlobalLoading() {
   const fetchAll = async () => {
     if (!authStore.user) return;
 
-    console.log("fetch");
-
     await Promise.all([categoryStore.fetchAll(), recordStore.fetchAll()]);
   };
 

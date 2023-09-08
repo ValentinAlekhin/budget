@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useLocalStorage } from "@vueuse/core";
 
 const api = axios.create();
 
@@ -8,6 +9,15 @@ export function useApi() {
   } = useRuntimeConfig();
 
   api.defaults.baseURL = !process.client ? baseUrl : "/api";
+
+  const tokensStore = useLocalStorage(
+    "tokens",
+    { accessToken: "", refreshToken: "" },
+    { mergeDefaults: true }
+  );
+
+  const resetTokens = () =>
+    (tokensStore.value = { accessToken: "", refreshToken: "" });
 
   api.interceptors.response.use(
     (res) => res,
@@ -19,17 +29,17 @@ export function useApi() {
 
       originalConfig._retry = true;
 
-      const refreshToken = useCookie("refreshToken");
-      const accessToken = useCookie("accessToken");
       const router = useRouter();
 
       try {
         const { data } = await api.post("/auth/refresh-tokens", {
-          refreshToken: refreshToken.value,
+          refreshToken: tokensStore.value.refreshToken,
         });
 
-        refreshToken.value = data.refreshToken;
-        accessToken.value = data.accessToken;
+        tokensStore.value = {
+          refreshToken: data.refreshToken,
+          accessToken: data.accessToken,
+        };
 
         const authHeader = `Bearer ${data.accessToken}`;
         api.defaults.headers.common.Authorization = authHeader;
@@ -37,13 +47,12 @@ export function useApi() {
 
         return api(originalConfig);
       } catch (e) {
-        refreshToken.value = null;
-        accessToken.value = null;
+        resetTokens();
         await router.push("/auth");
         return Promise.reject(e);
       }
     }
   );
 
-  return { api, baseUrl };
+  return { api, baseUrl, tokensStore, resetTokens };
 }

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { io, Socket } from "socket.io-client";
-import { useAuthStore } from "~/store/auth";
 import { useNotify } from "~/hooks/useNotify";
+import { useApi } from "~/api";
 
 interface State {
   socket: null | Socket;
@@ -11,16 +11,15 @@ export const useSocketStore = defineStore("socket", {
   state: () => ({ socket: null } as State),
   actions: {
     init() {
-      const authStore = useAuthStore();
       const notify = useNotify();
+      const { tokensStore } = useApi();
 
       this.socket = io("/", {
         auth: {
-          token: authStore.computedToken,
+          token: tokensStore.value.accessToken,
         },
       });
 
-      this.socket.on("connect", () => notify.info("Соединен с сервером"));
       this.socket.on("disconnect", () =>
         notify.error("Потеряно соединение с сервером")
       );
