@@ -8,18 +8,18 @@
           style="width: 100px"
         />
 
-        <a-tabs v-model:activeKey="activeKey">
-          <a-tab-pane key="table" tab="Таблицы">
+        <UTabs :items="items" class="w-full">
+          <template #table>
             <stat-tables-costs :records="recordsCostByYear" />
-          </a-tab-pane>
-          <a-tab-pane key="chart" tab="Графики">
+          </template>
+          <template #chart>
             <stat-charts-costs :records="recordsCostByYear" />
             <stat-charts-delta
               :cost="recordsCostByYear"
               :inc="recordsIncByYear"
             />
-          </a-tab-pane>
-        </a-tabs>
+          </template>
+        </UTabs>
       </template>
 
       <span v-else class="center dark:text-white">
@@ -36,7 +36,6 @@
 <script setup lang="ts">
 import dayjs from "dayjs";
 import { useRouteQuery } from "@vueuse/router";
-import { ref } from "vue";
 import { useStat } from "~/composables/useStat";
 
 const isLargeScreen = useMediaQuery("(min-width: 1024px)");
@@ -54,7 +53,16 @@ const recordsIncByYear = computed(() =>
   inc.value.filter((r) => r.year === +year.value)
 );
 
-const activeKey = ref("table");
+const items = [
+  {
+    label: "Charts",
+    slot: "chart",
+  },
+  {
+    label: "Table",
+    slot: "table",
+  },
+];
 </script>
 
 <style lang="scss" scoped>

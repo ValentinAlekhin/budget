@@ -1,7 +1,11 @@
 <template>
   <UTable :columns="columns" :rows="data">
     <template #category-data="{ row }">
-      <ULink v-if="row.to" :to="row.to">
+      <ULink
+        v-if="row.to"
+        class="font-medium underline text-cyan-500"
+        :to="row.to"
+      >
         {{ row.category }}
       </ULink>
 

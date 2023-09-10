@@ -74,10 +74,10 @@ import { storeToRefs } from "pinia";
 import { sumBy } from "lodash-es";
 import { Dayjs } from "dayjs";
 import { useLocalStorage } from "@vueuse/core";
-import { useTimestamp } from "~/hooks/useTimestamp";
-import { useRecord } from "~/hooks/useRecord";
+import { useTimestamp } from "~/composables/useTimestamp";
+import { useRecord } from "~/composables/useRecord";
 import { useRecordStore } from "~/store/record";
-import { useCategoriesWithBalance } from "~/hooks/useCategoriesWithBalance";
+import { useCategoriesWithBalance } from "~/composables/useCategoriesWithBalance";
 
 interface Range {
   name: string;

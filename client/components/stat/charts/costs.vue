@@ -35,6 +35,7 @@ const options = computed(
   (): Options => ({
     chart: {
       type: "area",
+      backgroundColor: "rgba(0,0,0,0)",
     },
     plotOptions: {
       series: {
@@ -76,6 +77,11 @@ const options = computed(
       text: "Статистика по всем категориям",
     },
     series: series.value,
+    legend: {
+      itemStyle: {
+        color: "#fff",
+      },
+    },
   })
 );
 </script>

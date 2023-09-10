@@ -1,6 +1,5 @@
-import { useApi } from "~/api";
 import { useAuthStore } from "~/store/auth";
-import { useGlobalLoading } from "~/hooks/useGlobalLoading";
+import { useGlobalLoading } from "~/composables/useGlobalLoading";
 
 export default defineNuxtRouteMiddleware(async (to) => {
   const { api, tokensStore } = useApi();

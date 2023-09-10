@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { io, Socket } from "socket.io-client";
-import { useNotify } from "~/hooks/useNotify";
-import { useApi } from "~/api";
+import { useNotify } from "~/composables/useNotify";
 
 interface State {
   socket: null | Socket;

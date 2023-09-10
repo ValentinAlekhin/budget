@@ -4,13 +4,56 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Перевод на nuxt ui">
-      <change afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/hooks/useTimestamp.ts" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлены карточки со статистикой">
+      <change afterPath="$PROJECT_DIR$/client/components/dist/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/stat/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/dto/category.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/dto/record.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/common/cud.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/common/cud.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/BaseLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BaseLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/BottomTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BottomTabs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/hooks/useRecord.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/hooks/useRecord.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/db/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/List.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/db/Table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/Table.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/db/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/dist/transferring.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/dist/transferring.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/stat/charts/costs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/stat/charts/costs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/stat/charts/delta.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/stat/charts/delta.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/stat/tables/costs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/stat/tables/costs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/Actions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/Actions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useCategoriesWithBalance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useCategory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useGlobalLoading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useMainLinks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useMainLinks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useNotify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useNotify.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useRecord.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useRecord.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useRenderEnv.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useRenderEnv.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useScreenSize.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useScreenSize.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useStat.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useStat.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useTimestamp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useTimestamp.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/layouts/desktop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/layouts/desktop.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/auth.global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/getters.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/state.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/backup/backup.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/backup/backup.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.entity.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,14 +136,14 @@
       <recent name="$PROJECT_DIR$/client/store" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Valentin\Documents\projects\budget\client\composables" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\server\src\migrations" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\client" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\components\Header" />
       <recent name="$PROJECT_DIR$/client/pages/stat" />
-      <recent name="$PROJECT_DIR$/client/components/stat/charts" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.start:dev">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -206,7 +249,9 @@
       <workItem from="1694084198167" duration="11811000" />
       <workItem from="1694103440693" duration="6736000" />
       <workItem from="1694175743101" duration="8120000" />
-      <workItem from="1694291751670" duration="5686000" />
+      <workItem from="1694291751670" duration="7371000" />
+      <workItem from="1694343510762" duration="11480000" />
+      <workItem from="1694377752861" duration="374000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -361,7 +406,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694195862364</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Добавлены карточки со статистикой">
+      <option name="closed" value="true" />
+      <created>1694337823372</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1694337823372</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +444,8 @@
     <MESSAGE value="Добавлена страница dist и stat" />
     <MESSAGE value="Фиксы и обновления" />
     <MESSAGE value="Перевод на nuxt ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="Перевод на nuxt ui" />
+    <MESSAGE value="Добавлены карточки со статистикой" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены карточки со статистикой" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />

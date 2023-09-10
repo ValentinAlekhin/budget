@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
 import { useVibrate } from "@vueuse/core";
-import { useMainLinks } from "~/hooks/useMainLinks";
+import { useMainLinks } from "~/composables/useMainLinks";
 
 const router = useRouter();
 

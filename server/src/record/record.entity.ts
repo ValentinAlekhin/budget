@@ -34,7 +34,7 @@ export class RecordEntity extends AbstractEntity {
   @Column({ nullable: true })
   @IsString()
   @IsOptional()
-  comment: string | null
+  comment?: string | null
 
   @ManyToOne(() => CategoryEntity, (category) => category.records, {
     onDelete: 'CASCADE',

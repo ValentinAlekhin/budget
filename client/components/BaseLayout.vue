@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-14 pb-40 lg:pb-2 h-full overflow-y-auto">
+  <div class="pt-14 pb-40 lg:pb-0 h-full overflow-y-auto">
     <Header />
 
     <UiLoader v-if="loading" />
@@ -30,8 +30,8 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGlobalLoading } from "~/hooks/useGlobalLoading";
-import { useScreenSize } from "~/hooks/useScreenSize";
+import { useGlobalLoading } from "~/composables/useGlobalLoading";
+import { useScreenSize } from "~/composables/useScreenSize";
 
 const { fetchAll, loading, error, initSocket } = useGlobalLoading();
 

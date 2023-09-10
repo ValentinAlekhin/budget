@@ -70,7 +70,7 @@ import dayjs from "dayjs";
 import { get, set } from "lodash-es";
 import { useRecordStore } from "~/store/record";
 import { doGetCaretPosition, setCaretPosition } from "~/utils";
-import { useCategoriesWithBalance } from "~/hooks/useCategoriesWithBalance";
+import { useCategoriesWithBalance } from "~/composables/useCategoriesWithBalance";
 import { useActionsStore } from "~/store/actions";
 
 const parser = new Parser();

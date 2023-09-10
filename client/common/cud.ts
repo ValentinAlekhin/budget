@@ -1,5 +1,5 @@
 import { useSocketStore } from "~/store/socket";
-import { useNotify } from "~/hooks/useNotify";
+import { useNotify } from "~/composables/useNotify";
 
 export interface CudControllerOptions {
   action: string;

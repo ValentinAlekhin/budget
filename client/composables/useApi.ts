@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useLocalStorage } from "@vueuse/core";
+import axios, { AxiosResponse } from "axios";
 
 const api = axios.create();
 
@@ -20,7 +20,7 @@ export function useApi() {
     (tokensStore.value = { accessToken: "", refreshToken: "" });
 
   api.interceptors.response.use(
-    (res) => res,
+    (res: AxiosResponse) => res,
     async (err) => {
       const originalConfig = err.config;
       const isAuthErr = err.response.status === 401;

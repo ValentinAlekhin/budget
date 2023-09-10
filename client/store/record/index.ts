@@ -1,11 +1,10 @@
-import { acceptHMRUpdate, defineStore, StateTree } from "pinia";
-import { RecordEntity } from "../../../server/src/record/record.entity";
-import { useApi } from "~/api";
+import { acceptHMRUpdate, defineStore } from "pinia";
+import { RecordDto } from "../../../common/dto/record";
 import { cudController } from "~/common/cud";
-import { useNotify } from "~/hooks/useNotify";
+import { useNotify } from "~/composables/useNotify";
 
 interface State {
-  data: RecordEntity[];
+  data: RecordDto[];
   loading: boolean;
   error: Error | null | unknown;
 }

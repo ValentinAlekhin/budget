@@ -41,6 +41,7 @@ const series = computed(() => {
 const options = computed(() => ({
   chart: {
     type: "spline",
+    backgroundColor: "rgba(0,0,0,0)",
   },
   title: {
     text: "Соотношение доходов к расходам",
@@ -67,6 +68,12 @@ const options = computed(() => ({
   plotOptions: {
     series: {
       pointStart: 1,
+    },
+  },
+
+  legend: {
+    itemStyle: {
+      color: "#fff",
     },
   },
 

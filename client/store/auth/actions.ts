@@ -1,6 +1,5 @@
-import { useApi } from "~/api";
-import { useGlobalLoading } from "~/hooks/useGlobalLoading";
-import { useNotify } from "~/hooks/useNotify";
+import { useGlobalLoading } from "~/composables/useGlobalLoading";
+import { useNotify } from "~/composables/useNotify";
 
 export default {
   async login(credentials: { username: string; password: string }) {

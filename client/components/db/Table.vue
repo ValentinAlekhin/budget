@@ -1,9 +1,5 @@
 <template>
-  <UTable
-    class="w-screen overflow-x-auto"
-    :columns="columns"
-    :rows="props.rows"
-  >
+  <UTable class="w-full overflow-x-auto" :columns="columns" :rows="props.rows">
     <template #amount-data="{ row }">
       <span> {{ numberWithSpaces(row.amount) }}р </span>
     </template>
@@ -38,8 +34,8 @@
 <script lang="ts" setup>
 import dayjs from "dayjs";
 import { numberWithSpaces } from "~/utils";
-import { useCategory } from "~/hooks/useCategory";
-import { useRecord } from "~/hooks/useRecord";
+import { useCategory } from "~/composables/useCategory";
+import { useRecord } from "~/composables/useRecord";
 
 const { getCategoryName } = useCategory();
 const { getTypeColor } = useRecord();

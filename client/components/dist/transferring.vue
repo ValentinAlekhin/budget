@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts" setup>
-import {useCategoriesWithBalance} from '~/hooks/useCategoriesWithBalance'
+import {useCategoriesWithBalance} from '~/composables/useCategoriesWithBalance'
 import {useRecordStore} from '~/store/record'
 import dayjs from 'dayjs'
 import {number, object, string} from 'yup'

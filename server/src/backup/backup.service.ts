@@ -29,7 +29,7 @@ export class BackupService {
     const preparedData = data
       .filter((row) => row[0] && row[1] && row[2] && row[3])
       .map(([date, type, category, amount, comment]) => ({
-        date: dayjs(date, 'DD-MM-YYYY'),
+        date: dayjs(date, 'DD.MM.YYYY'),
         type: type as CategoryTypeEnum,
         category,
         amount: parseInt(amount),

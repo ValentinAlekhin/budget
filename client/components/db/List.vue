@@ -39,8 +39,8 @@
 
 <script lang="ts" setup>
 import dayjs from "dayjs";
-import { useCategory } from "~/hooks/useCategory";
-import { useRecord } from "~/hooks/useRecord";
+import { useCategory } from "~/composables/useCategory";
+import { useRecord } from "~/composables/useRecord";
 
 const props = defineProps<{ rows: any[] }>();
 const emit = defineEmits(["edit", "delete"]);

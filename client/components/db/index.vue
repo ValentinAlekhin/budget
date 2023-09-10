@@ -36,7 +36,7 @@
 
 <script lang="ts" setup>
 import { useRecordStore } from "~/store/record";
-import { useScreenSize } from "~/hooks/useScreenSize";
+import { useScreenSize } from "~/composables/useScreenSize";
 
 const recordStore = useRecordStore();
 

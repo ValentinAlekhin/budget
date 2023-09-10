@@ -21,34 +21,36 @@
 
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
+import { useVibrate } from "@vueuse/core";
 import { useActionsStore } from "~/store/actions";
 
 const actionsStore = useActionsStore();
 const actionsRef = storeToRefs(actionsStore);
+const { vibrate } = useVibrate({ pattern: [10] });
 
 const buttons = computed(() =>
   [
     {
       icon: "plus",
       color: "primary",
-      click: actionsRef.add?.value,
+      click: actionsRef.add?.value as Function,
     },
     {
       icon: "cog-6-tooth",
       color: "primary",
       class: "mb-2",
-      click: actionsRef.edit?.value,
+      click: actionsRef.edit?.value as Function,
     },
     {
       icon: "check-20-solid",
       color: "green",
       class: "mb-2 mt-4",
-      click: actionsRef.submit?.value,
+      click: actionsRef.submit?.value as Function,
     },
     {
       icon: "x-mark-20-solid",
       color: "rose",
-      click: actionsRef.cancel?.value,
+      click: actionsRef.cancel?.value as Function,
     },
   ]
     .filter((btn) => btn.click)
@@ -56,6 +58,10 @@ const buttons = computed(() =>
       ...btn,
       class: btn?.class || "",
       icon: `i-heroicons-${btn.icon}`,
+      click: () => {
+        btn.click();
+        vibrate();
+      },
     }))
 );
 </script>
