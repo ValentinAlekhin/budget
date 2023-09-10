@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge";
+import dayjs, { Dayjs } from "dayjs";
 
 export function useRecord() {
   const getTypeColor = (type: string) => {
@@ -20,5 +21,12 @@ export function useRecord() {
     return twMerge(`bg-${color}-400`);
   };
 
-  return { getTypeColor, getTypeBackgroundClasses };
+  const filterRecordsByRange = (list: any[], start: Dayjs, end: Dayjs) =>
+    list.filter(({ timestamp }) => {
+      const time = dayjs(timestamp);
+
+      return time.isAfter(start) && time.isBefore(end);
+    });
+
+  return { getTypeColor, getTypeBackgroundClasses, filterRecordsByRange };
 }

@@ -10,6 +10,10 @@ export default {
         "screen-small": "100svh",
         "screen-large": "100lvh",
       },
+      scale: {
+        "175": "1.75",
+        "200": "2",
+      },
     },
   },
 } satisfies Config;

@@ -1,5 +1,7 @@
 <template>
   <div>
+    <CostCards />
+
     <template v-for="(inp, i) of computedInputs" :key="inp.id">
       <UInput
         :id="inp.id"
