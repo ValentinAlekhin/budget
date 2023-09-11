@@ -1,5 +1,5 @@
 import { Server } from 'socket.io'
-import { UserEntity } from '../../user/user.entity'
+import { UserEntity } from '@app/user/user.entity'
 
 interface ClientToServerEvents {
   hello: () => void

@@ -26,8 +26,8 @@ async function bootstrap() {
   app.use(cookieParser())
 
   const docConfig = new DocumentBuilder()
-    .setTitle('NestJS Course')
-    .setDescription('The NestJS Course API description')
+    .setTitle('Budget Swagger')
+    .setDescription('The Budget app API description')
     .setVersion('1.0')
     .addBearerAuth()
     .build()
@@ -37,7 +37,7 @@ async function bootstrap() {
   app.enableShutdownHooks()
   await app.listen(config.port)
 
-  console.log(`App started on port ${config.port}`)
+  console.log(`🚀 App started on port ${config.port}`)
 }
 
 bootstrap()
