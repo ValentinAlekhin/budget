@@ -22,20 +22,20 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build and push server
         uses: docker/build-push-action@v3
         with:
           push: true
           context: "{{defaultContext}}:server"
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/budget-server:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server:latest
-          cache-to: type=inline
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server:buildcache,mode=max
 
-      - name: Build and push
+      - name: Build and push client
         uses: docker/build-push-action@v3
         with:
           push: true
           context: "{{defaultContext}}:client"
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/budget-client:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client:latest
-          cache-to: type=inline
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client:buildcache,mode=max

@@ -243,7 +243,7 @@
       <workItem from="1694377752861" duration="1917000" />
       <workItem from="1694415695011" duration="7000" />
       <workItem from="1694424911552" duration="1808000" />
-      <workItem from="1694426797428" duration="3263000" />
+      <workItem from="1694426797428" duration="3632000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -422,7 +422,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694430001241</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Добавлены github actions">
+      <option name="closed" value="true" />
+      <created>1694430187296</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1694430187296</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
