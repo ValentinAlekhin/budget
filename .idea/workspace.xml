@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Рефактор">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлены github actions">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/common/socket/socket.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/common/socket/socket.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/ormconfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/ormconfig.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +243,7 @@
       <workItem from="1694377752861" duration="1917000" />
       <workItem from="1694415695011" duration="7000" />
       <workItem from="1694424911552" duration="1808000" />
-      <workItem from="1694426797428" duration="2851000" />
+      <workItem from="1694426797428" duration="3263000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -419,7 +414,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694378354749</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Добавлены github actions">
+      <option name="closed" value="true" />
+      <created>1694430001241</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1694430001241</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +454,8 @@
     <MESSAGE value="Перевод на nuxt ui" />
     <MESSAGE value="Добавлены карточки со статистикой" />
     <MESSAGE value="Рефактор" />
-    <option name="LAST_COMMIT_MESSAGE" value="Рефактор" />
+    <MESSAGE value="Добавлены github actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены github actions" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />
