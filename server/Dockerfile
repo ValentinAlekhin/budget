@@ -12,4 +12,6 @@ COPY . .
 
 RUN npm run build
 
+RUN touch .env
+
 CMD ["npm", "run", "start:prod"]
