@@ -65,7 +65,7 @@ jobs:
               -e REFRESH_TOKEN_EXPIRATION=${{ secrets.REFRESH_TOKEN_EXPIRATION }} \
               -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} \
               -e BOT_ADMIN=${{ secrets.BOT_ADMIN }} \
-              --net budget_app_net \
+              --network=budget_app_net \
               --ip 10.5.0.6 \
               --restart unless-stopped 
             docker exec $CONTAINER_NAME sh -c "cd /app && npm run migration:run"
@@ -117,6 +117,6 @@ jobs:
             docker container run -d --name $CONTAINER_NAME ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME \
               -e TZ=Europe/Moscow \
               -e BASE_URL=11.5.0.6:3000 \
-              --net budget_app_net \
+              --network=budget_app_net \
               -p 3010:80 \
               --restart unless-stopped 
