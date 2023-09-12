@@ -31,6 +31,45 @@ jobs:
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server:buildcache,mode=max
 
+  deploy-server:
+    name: Run container
+    runs-on: ubuntu-latest
+    needs: build-server
+    steps:
+      - name: multiple command
+        uses: appleboy/ssh-action@master
+        env:
+          CONTAINER_NAME: 'budget-server'
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: CONTAINER_NAME
+          script: |
+            docker container stop $CONTAINER_NAME
+            docker container rm $CONTAINER_NAME
+            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME:latest
+            docker container run -d --name $CONTAINER_NAME ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME \
+              -e TZ=Europe/Moscow \
+              -e PORT=3000 \
+              -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} \
+              -e DB_HOST=${{ secrets.DB_HOST }} \
+              -e DB_PORT=${{ secrets.DB_PORT }} \
+              -e DB_USER=${{ secrets.DB_USER }} \
+              -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+              -e DB_DATABASE=${{ secrets.DB_DATABASE }} \
+              -e ACCESS_TOKEN_SECRET=${{ secrets.ACCESS_TOKEN_SECRET }} \
+              -e ACCESS_TOKEN_EXPIRATION=${{ secrets.ACCESS_TOKEN_EXPIRATION }} \
+              -e REFRESH_TOKEN_SECRET=${{ secrets.REFRESH_TOKEN_SECRET }} \
+              -e REFRESH_TOKEN_EXPIRATION=${{ secrets.REFRESH_TOKEN_EXPIRATION }} \
+              -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} \
+              -e BOT_ADMIN=${{ secrets.BOT_ADMIN }} \
+              --net budget_app_net \
+              --ip 10.5.0.6 \
+              --restart unless-stopped 
+            docker exec $CONTAINER_NAME sh -c "cd /app && npm run migration:run"
+
   build-client:
     name: Build and push client image
     runs-on: ubuntu-latest
@@ -55,3 +94,29 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/budget-client:latest
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client:buildcache,mode=max
+
+  deploy-client:
+    name: Run container
+    runs-on: ubuntu-latest
+    needs: build-client
+    steps:
+      - name: multiple command
+        uses: appleboy/ssh-action@master
+        env:
+          CONTAINER_NAME: 'budget-client'
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: CONTAINER_NAME
+          script: |
+            docker container stop $CONTAINER_NAME
+            docker container rm $CONTAINER_NAME
+            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME:latest
+            docker container run -d --name $CONTAINER_NAME ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME \
+              -e TZ=Europe/Moscow \
+              -e BASE_URL=11.5.0.6:3000 \
+              --net budget_app_net \
+              -p 3010:80
+              --restart unless-stopped 
