@@ -94,7 +94,7 @@ export default defineNuxtConfig({
     manifest: {
       name: "Budget",
       short_name: "Budget",
-      theme_color: "#22d3ee",
+      theme_color: "#030712",
       background_color: "#030712",
       icons: [
         {
