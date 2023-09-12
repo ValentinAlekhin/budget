@@ -118,5 +118,5 @@ jobs:
               -e TZ=Europe/Moscow \
               -e BASE_URL=11.5.0.6:3000 \
               --net budget_app_net \
-              -p 3010:80
+              -p 3010:80 \
               --restart unless-stopped 
