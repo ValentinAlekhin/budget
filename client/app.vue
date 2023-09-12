@@ -1,5 +1,7 @@
 <template>
   <div class="h-screen dark:bg-gray-950 overflow-y-auto">
+    <VitePwaManifest />
+
     <Head>
       <Meta name="theme-color" :content="color" />
     </Head>
