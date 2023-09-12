@@ -97,4 +97,4 @@ jobs:
             docker container stop $CONTAINER_NAME
             docker container rm $CONTAINER_NAME
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME:latest
-            docker container run -p 3010:80 --name $CONTAINER_NAME -e TZ=Europe/Moscow -e BASE_URL=11.6.0.6:3000 --net budget_app_net --restart unless-stopped -d ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME
+            docker container run -p 3010:80 --name $CONTAINER_NAME -e TZ=Europe/Moscow -e BASE_URL=11.6.0.6:3000 --net budget_app_net --ip 11.6.0.4 --restart unless-stopped -d ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME
