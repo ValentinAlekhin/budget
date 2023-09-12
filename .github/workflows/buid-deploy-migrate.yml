@@ -31,17 +31,8 @@ jobs:
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server:buildcache,mode=max
 
-      - name: Build and push client
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          context: "{{defaultContext}}:client"
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/budget-client:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client:buildcache,mode=max
-
   build-client:
-    name: Build and push server client image
+    name: Build and push client image
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
