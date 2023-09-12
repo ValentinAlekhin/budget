@@ -50,7 +50,7 @@ jobs:
             docker container stop $CONTAINER_NAME
             docker container rm $CONTAINER_NAME
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME:latest
-            docker container run --name $CONTAINER_NAME --network=budget_app_net --ip 172.21.0.6 -e TZ=Europe/Moscow -e PORT=3000 -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} -e DB_HOST=${{ secrets.DB_HOST }} -e DB_PORT=${{ secrets.DB_PORT }} -e DB_USER=${{ secrets.DB_USER }} -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} -e DB_DATABASE=${{ secrets.DB_DATABASE }} -e ACCESS_TOKEN_SECRET=${{ secrets.ACCESS_TOKEN_SECRET }} -e ACCESS_TOKEN_EXPIRATION=${{ secrets.ACCESS_TOKEN_EXPIRATION }} -e REFRESH_TOKEN_SECRET=${{ secrets.REFRESH_TOKEN_SECRET }} -e REFRESH_TOKEN_EXPIRATION=${{ secrets.REFRESH_TOKEN_EXPIRATION }} -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} -e BOT_ADMIN=${{ secrets.BOT_ADMIN }} --restart unless-stopped -d ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME
+            docker container run --name $CONTAINER_NAME --net budget_app_net --ip 11.6.0.6 -e TZ=Europe/Moscow -e PORT=3000 -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} -e DB_HOST=${{ secrets.DB_HOST }} -e DB_PORT=${{ secrets.DB_PORT }} -e DB_USER=${{ secrets.DB_USER }} -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} -e DB_DATABASE=${{ secrets.DB_DATABASE }} -e ACCESS_TOKEN_SECRET=${{ secrets.ACCESS_TOKEN_SECRET }} -e ACCESS_TOKEN_EXPIRATION=${{ secrets.ACCESS_TOKEN_EXPIRATION }} -e REFRESH_TOKEN_SECRET=${{ secrets.REFRESH_TOKEN_SECRET }} -e REFRESH_TOKEN_EXPIRATION=${{ secrets.REFRESH_TOKEN_EXPIRATION }} -e BOT_TOKEN=${{ secrets.BOT_TOKEN }} -e BOT_ADMIN=${{ secrets.BOT_ADMIN }} --restart unless-stopped -d ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME
             docker exec $CONTAINER_NAME sh -c "cd /app && npm run migration:run"
 
   build-client:
@@ -97,4 +97,4 @@ jobs:
             docker container stop $CONTAINER_NAME
             docker container rm $CONTAINER_NAME
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME:latest
-            docker container run -d --name $CONTAINER_NAME -e TZ=Europe/Moscow -e BASE_URL=172.21.0.6:3000 --network=budget_app_net -p 3010:80 --restart unless-stopped ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME
+            docker container run -d --name $CONTAINER_NAME -e TZ=Europe/Moscow -e BASE_URL=11.6.0.6:3000 --net budget_app_net -p 3010:80 --restart unless-stopped ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME

@@ -245,7 +245,7 @@
       <workItem from="1694415695011" duration="7000" />
       <workItem from="1694424911552" duration="1808000" />
       <workItem from="1694426797428" duration="4397000" />
-      <workItem from="1694523682259" duration="4303000" />
+      <workItem from="1694523682259" duration="4729000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -504,7 +504,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694527765406</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Добавлен деплой">
+      <option name="closed" value="true" />
+      <created>1694528086855</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1694528086855</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
