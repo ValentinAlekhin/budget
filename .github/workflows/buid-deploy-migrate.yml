@@ -32,7 +32,7 @@ jobs:
           cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server:buildcache,mode=max
 
   deploy-server:
-    name: Run container
+    name: Run and migrate server container
     runs-on: ubuntu-latest
     needs: build-server
     steps:
@@ -96,7 +96,7 @@ jobs:
           cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client:buildcache,mode=max
 
   deploy-client:
-    name: Run container
+    name: Run client container
     runs-on: ubuntu-latest
     needs: build-client
     steps:
