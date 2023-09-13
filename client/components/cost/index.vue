@@ -54,7 +54,7 @@
 
       <UInput
         v-if="inp.showCommentInp"
-        :value="inp.comment"
+        :model-value="inp.comment"
         placeholder="Комментарий"
         class="mb-2"
         size="md"

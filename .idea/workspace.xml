@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлена асинхронная валидация почты и логина">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс инпутов">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/dist/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/dist/list.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/edit.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +245,7 @@
       <workItem from="1694424911552" duration="1808000" />
       <workItem from="1694426797428" duration="4397000" />
       <workItem from="1694523682259" duration="12706000" />
-      <workItem from="1694617829175" duration="4169000" />
+      <workItem from="1694617829175" duration="4411000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -354,14 +351,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Добавлены github actions">
-      <option name="closed" value="true" />
-      <created>1694430001241</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1694430001241</updated>
     </task>
     <task id="LOCAL-00025" summary="Добавлены github actions">
       <option name="closed" value="true" />
@@ -627,7 +616,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694620857993</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Фикс инпутов">
+      <option name="closed" value="true" />
+      <created>1694624267560</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1694624267560</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -666,7 +663,8 @@
     <MESSAGE value="Добавлен favicon.ico" />
     <MESSAGE value="Добавлен pwa" />
     <MESSAGE value="Добавлена асинхронная валидация почты и логина" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлена асинхронная валидация почты и логина" />
+    <MESSAGE value="Фикс инпутов" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фикс инпутов" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />
