@@ -34,9 +34,17 @@
           />
 
           <div class="grid grid-cols-2 gap-2 w-[75vw]">
-            <UInput size="md" :value="element.name" @input="element.setName" />
+            <UInput
+              size="md"
+              :model-value="element.name"
+              @input="element.setName"
+            />
 
-            <UInput size="md" :value="element.icon" @input="element.setIcon">
+            <UInput
+              size="md"
+              :model-value="element.icon"
+              @input="element.setIcon"
+            >
               <template v-if="element.icon" #trailing>
                 <Icon :name="element.icon" size="24" />
               </template>

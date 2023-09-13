@@ -5,7 +5,7 @@
     <template v-for="(inp, i) of computedInputs" :key="inp.id">
       <UInput
         :id="inp.id"
-        :value="inp.inputValue"
+        :model-value="inp.inputValue"
         :placeholder="inp.icon ? inp.name : ''"
         size="md"
         :ui="{ leading: { padding: { md: inp.padding } } }"

@@ -2,7 +2,7 @@
   <div>
       <UInput v-for="(inp, i) of props.items"
         :id="inp.id"
-        :value="getValue(inp.id)"
+        :model-value="getValue(inp.id)"
         size="md"
         :ui="{ leading: { padding: { md: 'ps-40' } } }"
         class="mb-2"
