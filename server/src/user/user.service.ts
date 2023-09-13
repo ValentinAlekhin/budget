@@ -1,6 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
+import {
+  UserEmailValidationRequestDto,
+  UserUsernameValidationRequestDto,
+  UserValidationResponseDto,
+} from '@app/user/dto/filedValidations.dto'
 import { hash } from '../common/utils/hash'
 import { UserEntity } from './user.entity'
 import { CreateUserDto } from './dto/createUser.dto'
@@ -47,5 +52,21 @@ export class UserService {
         HttpStatus.UNPROCESSABLE_ENTITY,
       )
     }
+  }
+
+  async validateEmail({
+    email,
+  }: UserEmailValidationRequestDto): Promise<UserValidationResponseDto> {
+    const user = await this.userRepository.findOne({ where: { email } })
+
+    return { valid: !user }
+  }
+
+  async validateUsername({
+    username,
+  }: UserUsernameValidationRequestDto): Promise<UserValidationResponseDto> {
+    const user = await this.userRepository.findOne({ where: { username } })
+
+    return { valid: !user }
   }
 }

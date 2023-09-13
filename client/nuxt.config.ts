@@ -85,7 +85,7 @@ export default defineNuxtConfig({
     "nuxt-typed-router",
     "@nuxtjs/color-mode",
     "nuxt-highcharts",
-    "@nuxthq/ui",
+    "@nuxt/ui",
     "nuxt-icon",
     "@vite-pwa/nuxt",
   ],

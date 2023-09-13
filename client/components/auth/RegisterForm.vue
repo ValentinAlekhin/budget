@@ -19,12 +19,14 @@
 <script lang="ts" setup>
 import { object, string } from "yup";
 import { useAuthStore } from "~/store/auth";
+import { useBackendValidators } from "~/composables/useBackendValidators";
 
 const authStore = useAuthStore();
+const { usernameSchema, emailSchema } = useBackendValidators();
 
 const schema = object({
-  username: string().required("Username required"),
-  email: string().required("Email required").email(),
+  username: usernameSchema,
+  email: emailSchema,
   password: string()
     .min(8, "Must be at least 8 characters")
     .required("Password required"),
