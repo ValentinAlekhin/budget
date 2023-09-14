@@ -10,7 +10,11 @@
         :class="connected ? 'bg-green-600' : 'bg-red-600'"
       />
 
-      <Icon name="heroicons-outline:server" size="24" />
+      <Icon
+        name="heroicons-outline:server"
+        size="24"
+        class="text-slate-500 dark:text-white"
+      />
     </span>
 
     <template #panel>
@@ -18,15 +22,10 @@
         <div class="flex flex-col items-center">
           <UBadge
             :color="isOnline ? 'green' : 'red'"
-            variant="soft"
             label="Network"
             class="mb-2"
           />
-          <UBadge
-            :color="connected ? 'green' : 'red'"
-            variant="soft"
-            label="Server"
-          />
+          <UBadge :color="connected ? 'green' : 'red'" label="Server" />
         </div>
       </UCard>
     </template>
