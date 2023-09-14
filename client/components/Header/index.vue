@@ -7,15 +7,11 @@
     >
       <div class="flex items-center">
         <div id="headerTeleport" />
-
-        <span
-          class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-        >
-          Budget
-        </span>
       </div>
 
-      <div class="flex justify-between items-center w-20">
+      <div class="flex justify-between items-center w-28">
+        <header-connection />
+
         <ui-theme-switch />
 
         <header-dropdown />
@@ -23,5 +19,3 @@
     </header>
   </div>
 </template>
-
-<script lang="ts" setup></script>

@@ -4,10 +4,11 @@ import { useNotify } from "~/composables/useNotify";
 
 interface State {
   socket: null | Socket;
+  connected: boolean;
 }
 
 export const useSocketStore = defineStore("socket", {
-  state: () => ({ socket: null } as State),
+  state: (): State => ({ socket: null, connected: true }),
   actions: {
     init() {
       const notify = useNotify();
@@ -19,9 +20,15 @@ export const useSocketStore = defineStore("socket", {
         },
       });
 
-      this.socket.on("disconnect", () =>
-        notify.error("Потеряно соединение с сервером")
-      );
+      this.socket.on("connect", () => {
+        if (!this.connected)
+          notify.success("Восстановлено соединение с сервером");
+        this.connected = true;
+      });
+      this.socket.on("disconnect", () => {
+        this.connected = false;
+        notify.error("Потеряно соединение с сервером");
+      });
     },
   },
 });

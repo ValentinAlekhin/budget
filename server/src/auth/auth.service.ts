@@ -108,12 +108,7 @@ export class AuthService {
       }),
     ])
 
-    const newTokenRecord = this.tokenRepo.create({
-      refreshToken: await hash(refreshToken),
-      user: { id: user.id },
-      expiresAt: dayjs().add(7, 'd').toDate(),
-    })
-    await this.tokenRepo.save(newTokenRecord)
+    this.saveToken(refreshToken, user.id)
 
     return {
       accessToken,
@@ -151,5 +146,14 @@ export class AuthService {
       valid: true,
       token: currentTokens.find((t) => t.id === validToken.id),
     }
+  }
+
+  private async saveToken(refreshToken: string, userId: string) {
+    const newTokenRecord = this.tokenRepo.create({
+      refreshToken: await hash(refreshToken),
+      user: { id: userId },
+      expiresAt: dayjs().add(7, 'd').toDate(),
+    })
+    return this.tokenRepo.save(newTokenRecord)
   }
 }
