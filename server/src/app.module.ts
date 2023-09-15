@@ -22,7 +22,7 @@ import { ormconfig } from './ormconfig'
       validationOptions,
       isGlobal: true,
     }),
-    CacheModule.register({ isGlobal: true }),
+    CacheModule.register({ isGlobal: true, ttl: 1000 * 60 * 60 * 24 }),
     TelegrafModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

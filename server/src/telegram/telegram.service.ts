@@ -24,6 +24,7 @@ export class TelegramService implements OnModuleInit {
 
   async onModuleInit() {
     const nodeEnv = this.configService.get<string>('NODE_ENV')
+    this.logger.debug(nodeEnv)
     if (nodeEnv !== 'production') {
       return
     }
