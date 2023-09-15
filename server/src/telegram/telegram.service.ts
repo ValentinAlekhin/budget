@@ -22,6 +22,11 @@ export class TelegramService {
 
   private readonly logger = new Logger(TelegramService.name)
 
+  async onModuleInit() {
+    const adminId = +this.configService.get<string>('BOT_ADMIN')
+    await this.bot.telegram.sendMessage(adminId, 'Server started')
+  }
+
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
   async handleCron() {
     await this.backup()
