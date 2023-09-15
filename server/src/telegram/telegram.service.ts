@@ -1,7 +1,7 @@
 import * as path from 'path'
 import { promisify } from 'util'
 import { exec } from 'child_process'
-import { Injectable, Logger } from '@nestjs/common'
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common'
 import { Telegraf } from 'telegraf'
 import { InjectBot } from 'nestjs-telegraf'
 import { ConfigService } from '@nestjs/config'
@@ -13,7 +13,7 @@ import { Cron, CronExpression } from '@nestjs/schedule'
 const promiseExec = promisify(exec)
 
 @Injectable()
-export class TelegramService {
+export class TelegramService implements OnModuleInit {
   constructor(
     @InjectBot()
     private readonly bot: Telegraf,

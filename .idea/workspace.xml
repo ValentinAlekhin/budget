@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Ускорен рефреш токенов и добавлены статусы соединения с сервером">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлено сообщение и запуске сервере в телеге">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -247,7 +248,7 @@
       <workItem from="1694523682259" duration="12706000" />
       <workItem from="1694617829175" duration="5002000" />
       <workItem from="1694703140404" duration="5248000" />
-      <workItem from="1694764146523" duration="430000" />
+      <workItem from="1694764146523" duration="1984000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -353,14 +354,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Изменен buid-deploy-migrate.yml">
-      <option name="closed" value="true" />
-      <created>1694523978176</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1694523978176</updated>
     </task>
     <task id="LOCAL-00029" summary="Добавлен деплой">
       <option name="closed" value="true" />
@@ -626,7 +619,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694710721472</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Добавлено сообщение и запуске сервере в телеге">
+      <option name="closed" value="true" />
+      <created>1694764623203</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1694764623203</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,7 +668,8 @@
     <MESSAGE value="Добавлена асинхронная валидация почты и логина" />
     <MESSAGE value="Фикс инпутов" />
     <MESSAGE value="Ускорен рефреш токенов и добавлены статусы соединения с сервером" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ускорен рефреш токенов и добавлены статусы соединения с сервером" />
+    <MESSAGE value="Добавлено сообщение и запуске сервере в телеге" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлено сообщение и запуске сервере в телеге" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />

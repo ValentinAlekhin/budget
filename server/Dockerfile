@@ -14,4 +14,6 @@ RUN npm run build
 
 RUN touch .env
 
+EXPOSE 443
+
 CMD ["npm", "run", "start:prod"]
