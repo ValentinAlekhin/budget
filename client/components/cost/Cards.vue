@@ -38,7 +38,7 @@
   </UCard>
 
   <p class="mb-2 text-sm text-cyan-500 font-medium" @click="handleClick">
-    {{ currentRange.name }}
+    {{ currentRange?.name }}
   </p>
 
   <div class="grid grid-cols-2 gap-2 mb-6">
@@ -74,6 +74,7 @@ import { storeToRefs } from "pinia";
 import { sumBy } from "lodash-es";
 import { Dayjs } from "dayjs";
 import { useLocalStorage } from "@vueuse/core";
+import { ComputedRef } from "vue";
 import { useTimestamp } from "~/composables/useTimestamp";
 import { useRecord } from "~/composables/useRecord";
 import { useRecordStore } from "~/store/record";
@@ -96,26 +97,35 @@ const {
 } = useTimestamp();
 const { filterRecordsByRange } = useRecord();
 
-const rangeValues: Range[] = [
-  { name: "Current day", start: startOfCurrentDay, end: endOfCurrentDay },
-  { name: "Current month", start: startOfCurrentMonth, end: endOfCurrentMonth },
+const rangeValues: ComputedRef<Range[]> = computed(() => [
+  {
+    name: "Current day",
+    start: startOfCurrentDay.value,
+    end: endOfCurrentDay.value,
+  },
+  {
+    name: "Current month",
+    start: startOfCurrentMonth.value,
+    end: endOfCurrentMonth.value,
+  },
   {
     name: "Last 30 days",
-    start: endOfCurrentDay.subtract(30, "day"),
-    end: endOfCurrentDay,
+    start: endOfCurrentDay.value.subtract(30, "day"),
+    end: endOfCurrentDay.value,
   },
-];
+]);
 
-const currentRange = useLocalStorage<Range>("home-range", rangeValues[0]);
+const currentRangeIndex = useLocalStorage<number>("home-range-index", 0);
+const currentRange = computed(() =>
+  rangeValues.value.find((_, i) => i === currentRangeIndex.value)
+);
 
 const handleClick = () => {
-  const currentIndex = rangeValues.findIndex(
-    (item) => item.name === currentRange.value.name
+  const currentIndex = rangeValues.value.findIndex(
+    (item) => item.name === currentRange.value?.name
   );
-  const lastIndex = rangeValues.length - 1;
-  const newIndex = currentIndex === lastIndex ? 0 : currentIndex + 1;
-
-  currentRange.value = rangeValues[newIndex];
+  const lastIndex = rangeValues.value.length - 1;
+  currentRangeIndex.value = currentIndex === lastIndex ? 0 : currentIndex + 1;
 };
 
 const currentBalance = computed(() =>
@@ -138,8 +148,8 @@ const miniCards = computed(() =>
     value: sumBy(
       filterRecordsByRange(
         item.list.value,
-        currentRange.value.start as Dayjs,
-        currentRange.value.end as Dayjs
+        currentRange.value?.start as Dayjs,
+        currentRange.value?.end as Dayjs
       ),
       "amount"
     ),

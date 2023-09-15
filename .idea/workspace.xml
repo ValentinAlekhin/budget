@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлено сообщение и запуске сервере в телеге">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useTimestamp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useTimestamp.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +98,7 @@
       <recent name="$PROJECT_DIR$/client/pages/stat" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start:dev">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -247,7 +249,8 @@
       <workItem from="1694523682259" duration="12706000" />
       <workItem from="1694617829175" duration="5002000" />
       <workItem from="1694703140404" duration="5248000" />
-      <workItem from="1694764146523" duration="2828000" />
+      <workItem from="1694764146523" duration="3436000" />
+      <workItem from="1694791806645" duration="1026000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -353,14 +356,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Добавлен деплой">
-      <option name="closed" value="true" />
-      <created>1694527132716</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1694527132716</updated>
     </task>
     <task id="LOCAL-00033" summary="Добавлен деплой">
       <option name="closed" value="true" />
@@ -626,7 +621,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694766649955</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Добавлено сообщение и запуске сервере в телеге">
+      <option name="closed" value="true" />
+      <created>1694767024372</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1694767024372</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

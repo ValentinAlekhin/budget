@@ -23,8 +23,13 @@ export class TelegramService implements OnModuleInit {
   private readonly logger = new Logger(TelegramService.name)
 
   async onModuleInit() {
+    const nodeEnv = this.configService.get<string>('NODE_ENV')
+    if (nodeEnv !== 'production') {
+      return
+    }
+
     const adminId = +this.configService.get<string>('BOT_ADMIN')
-    await this.bot.telegram.sendMessage(adminId, 'Server started')
+    await this.bot.telegram.sendMessage(adminId, 'Server started 🚀')
   }
 
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
