@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлено сообщение и запуске сервере в телеге">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useTimestamp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useTimestamp.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +250,7 @@
       <workItem from="1694617829175" duration="5002000" />
       <workItem from="1694703140404" duration="5248000" />
       <workItem from="1694764146523" duration="3436000" />
-      <workItem from="1694791806645" duration="1026000" />
+      <workItem from="1694791806645" duration="2345000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -356,14 +356,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Добавлен деплой">
-      <option name="closed" value="true" />
-      <created>1694527486073</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1694527486073</updated>
     </task>
     <task id="LOCAL-00034" summary="Добавлен деплой">
       <option name="closed" value="true" />
@@ -629,7 +621,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694767024372</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Фиксы">
+      <option name="closed" value="true" />
+      <created>1694793033244</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1694793033244</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -671,7 +671,8 @@
     <MESSAGE value="Фикс инпутов" />
     <MESSAGE value="Ускорен рефреш токенов и добавлены статусы соединения с сервером" />
     <MESSAGE value="Добавлено сообщение и запуске сервере в телеге" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлено сообщение и запуске сервере в телеге" />
+    <MESSAGE value="Фиксы" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фиксы" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />

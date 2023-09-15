@@ -2,6 +2,8 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { IsNull, Repository } from 'typeorm'
 import { keyBy } from 'lodash'
+import { CACHE_MANAGER } from '@nestjs/cache-manager'
+import { Cache } from 'cache-manager'
 import { CategoryService } from '../category/category.service'
 import { UserEntity } from '../user/user.entity'
 import { RecordEntity } from './record.entity'
@@ -20,21 +22,32 @@ export class RecordService {
     @Inject(CategoryService)
     private readonly categoryService: CategoryService,
     private recordGateway: RecordGateway,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
   async find(user): Promise<RecordResponseDto[]> {
+    const cache = await this.getCache(user.id)
+    if (cache) {
+      return cache
+    }
+
     const records = await this.recordRepository.find({
       relations: ['category'],
       where: { category: { user: { id: user.id }, deletedAt: IsNull() } },
       order: { timestamp: 'desc' },
     })
 
-    return records.map((r) => this.buildRecordResponse(r))
+    const data = records.map((r) => this.buildRecordResponse(r))
+    this.setCache(user.id, data)
+
+    return data
   }
 
   async create(
     user,
     createRecordDto: CreateRecordDto,
   ): Promise<RecordResponseDto> {
+    await this.cacheManager.del(this.getCacheKey(user.id))
+
     const category = await this.categoryService.findOneByIdAndUserId(
       createRecordDto.category,
       user.id,
@@ -56,6 +69,8 @@ export class RecordService {
     user,
     createManyRecordsDto: CreateManyRecordsDto,
   ): Promise<RecordResponseDto[]> {
+    await this.cacheManager.del(this.getCacheKey(user.id))
+
     const categoryIds = createManyRecordsDto.data.map((r) => r.category)
     const categories = await this.categoryService.findManyByIdsAndUserId(
       categoryIds,
@@ -92,6 +107,8 @@ export class RecordService {
     id: string,
     updateRecordDto: UpdateRecordDto,
   ): Promise<RecordResponseDto> {
+    await this.cacheManager.del(this.getCacheKey(user.id))
+
     let record = await this.findOneByIdAndUserId(id, user.id)
     const category = await this.categoryService.findOneByIdAndUserId(
       updateRecordDto.category,
@@ -109,6 +126,9 @@ export class RecordService {
   }
 
   async deleteOne(id: string, user: UserEntity): Promise<RecordResponseDto> {
+    await this.cacheManager.del(this.getCacheKey(user.id))
+
+    await this.cacheManager.del(this.getCacheKey(user.id))
     const record = await this.findOneByIdAndUserId(id, user.id)
     await this.recordRepository.remove(record)
 
@@ -147,5 +167,23 @@ export class RecordService {
     }
 
     return record
+  }
+
+  private async getCache(userId: string) {
+    const data = await this.cacheManager.get(this.getCacheKey(userId))
+    if (data) {
+      return JSON.parse(<string>data)
+    }
+
+    return null
+  }
+
+  private async setCache(userId: string, data: RecordResponseDto[]) {
+    const json = JSON.stringify(data)
+    await this.cacheManager.set(this.getCacheKey(userId), json)
+  }
+
+  private getCacheKey(userId: string) {
+    return `records_${userId}`
   }
 }
