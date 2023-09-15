@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлен кеш для записей">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +248,7 @@
       <workItem from="1694617829175" duration="5002000" />
       <workItem from="1694703140404" duration="5248000" />
       <workItem from="1694764146523" duration="3436000" />
-      <workItem from="1694791806645" duration="3095000" />
+      <workItem from="1694791806645" duration="3335000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -356,14 +354,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Добавлен деплой">
-      <option name="closed" value="true" />
-      <created>1694528086855</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1694528086855</updated>
     </task>
     <task id="LOCAL-00036" summary="Добавлен деплой">
       <option name="closed" value="true" />
@@ -629,7 +619,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694794262988</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Добавлен кеш для записей">
+      <option name="closed" value="true" />
+      <created>1694794981658</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1694794981658</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
