@@ -165,7 +165,7 @@ const save = async () => {
     .filter((inp) => inp.value)
     .map(({ evaluatedValue, id, comment }) => ({
       amount: evaluatedValue,
-      category: id,
+      categoryId: id,
       timestamp: dayjs().toISOString(),
       comment,
       type: "cost",

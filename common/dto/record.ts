@@ -8,5 +8,5 @@ export interface RecordDto {
     type: CategoryTypeEnum
     amount: number
     comment?: string | null
-    category: string
+    categoryId: string
 }

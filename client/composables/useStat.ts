@@ -13,7 +13,7 @@ const createRecordMapper = (categories: any[]) => (records: any[]) =>
       year: date.year(),
       month: date.month(),
       day: date.day(),
-      category: categories.find((c) => c.id === r.category),
+      category: categories.find((c) => c.id === r.categoryId),
     };
   });
 

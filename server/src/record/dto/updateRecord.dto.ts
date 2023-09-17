@@ -12,5 +12,5 @@ export class UpdateRecordDto extends OmitType(RecordEntity, [
 ] as const) {
   @IsString()
   @IsULID()
-  category: string
+  categoryId: string
 }

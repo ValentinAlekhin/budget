@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm'
+import { Column, Entity, ManyToOne, OneToMany, JoinColumn } from 'typeorm'
 import {
   IsEnum,
   IsNumber,
@@ -53,7 +53,11 @@ export class CategoryEntity extends AbstractEntity {
   @ManyToOne(() => UserEntity, (user) => user.categories, {
     onDelete: 'CASCADE',
   })
+  @JoinColumn({ name: 'user_id' })
   user: UserEntity
+
+  @Column()
+  userId: string
 
   @OneToMany(() => RecordEntity, (record) => record.category)
   records: RecordEntity[]

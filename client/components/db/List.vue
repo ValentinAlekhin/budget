@@ -16,7 +16,7 @@
           <span
             class="text-sm font-medium text-gray-900 truncate dark:text-white"
           >
-            {{ getCategoryName(row.category) }}
+            {{ getCategoryName(row.categoryId) }}
           </span>
         </div>
         <span class="text-sm text-gray-500 truncate dark:text-gray-400">

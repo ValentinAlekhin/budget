@@ -12,11 +12,11 @@ export function useCategoriesWithBalance() {
   const categoriesWithBalance = computed(() =>
     categoryCosts.value.map((c) => {
       const allDist = sumBy(
-        dist.value.filter((r) => r.category === c.id),
+        dist.value.filter((r) => r.categoryId === c.id),
         "amount"
       );
       const allCost = sumBy(
-        costs.value.filter((r) => r.category === c.id),
+        costs.value.filter((r) => r.categoryId === c.id),
         "amount"
       );
 

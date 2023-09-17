@@ -4,6 +4,7 @@ import {
   Entity,
   ManyToOne,
   UpdateDateColumn,
+  JoinColumn,
 } from 'typeorm'
 import {
   IsDateString,
@@ -39,7 +40,11 @@ export class RecordEntity extends AbstractEntity {
   @ManyToOne(() => CategoryEntity, (category) => category.records, {
     onDelete: 'CASCADE',
   })
+  @JoinColumn({ name: 'category_id' })
   category: CategoryEntity
+
+  @Column()
+  categoryId: string
 
   @Column('timestamp')
   @IsDateString()

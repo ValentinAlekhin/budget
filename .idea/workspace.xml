@@ -6,7 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлен кеш для записей">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/db/EditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/EditModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/db/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/List.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/dist/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/dist/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/dist/transferring.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/dist/transferring.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useStat.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useStat.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/dto/record.ts" beforeDir="false" afterPath="$PROJECT_DIR$/common/dto/record.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/category.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/ormconfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/ormconfig.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/dto/createRecord.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/dto/createRecord.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/dto/updateRecord.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/dto/updateRecord.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +264,8 @@
       <workItem from="1694617829175" duration="5002000" />
       <workItem from="1694703140404" duration="5248000" />
       <workItem from="1694764146523" duration="3436000" />
-      <workItem from="1694791806645" duration="3335000" />
+      <workItem from="1694791806645" duration="4378000" />
+      <workItem from="1694860743515" duration="2104000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -354,14 +371,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Добавлен деплой">
-      <option name="closed" value="true" />
-      <created>1694528523227</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1694528523227</updated>
     </task>
     <task id="LOCAL-00037" summary="Добавлен деплой">
       <option name="closed" value="true" />
@@ -627,7 +636,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694794981658</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Добавлен кеш для записей">
+      <option name="closed" value="true" />
+      <created>1694795240354</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1694795240354</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

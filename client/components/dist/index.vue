@@ -103,14 +103,14 @@ const save = async () => {
   if (balance.value < 0) return notify.error("Баланс не может быть меньше 0");
 
   const payload = [
-    ...Object.entries(incoming).map(([category, amount]) => ({
-      category,
+    ...Object.entries(incoming).map(([categoryId, amount]) => ({
+      categoryId,
       amount,
       timestamp: dayjs().toISOString(),
       type: "inc",
     })),
-    ...Object.entries(cost).map(([category, amount]) => ({
-      category,
+    ...Object.entries(cost).map(([categoryId, amount]) => ({
+      categoryId,
       amount,
       timestamp: dayjs().toISOString(),
       type: "dist",

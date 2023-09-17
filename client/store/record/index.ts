@@ -47,7 +47,7 @@ export const useRecordStore = defineStore("record", {
       data: Array<{
         amount: number;
         comment?: string;
-        category: string;
+        categoryId: string;
         type: string;
         timestamp: string;
       }>

@@ -24,22 +24,20 @@ export class RecordService {
     private recordGateway: RecordGateway,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
-  async find(user): Promise<RecordResponseDto[]> {
+  async find(user): Promise<RecordEntity[]> {
     const cache = await this.getCache(user.id)
     if (cache) {
       return cache
     }
 
     const records = await this.recordRepository.find({
-      relations: ['category'],
       where: { category: { user: { id: user.id }, deletedAt: IsNull() } },
       order: { timestamp: 'desc' },
     })
 
-    const data = records.map((r) => this.buildRecordResponse(r))
-    this.setCache(user.id, data)
+    this.setCache(user.id, records)
 
-    return data
+    return records
   }
 
   async create(
@@ -49,7 +47,7 @@ export class RecordService {
     await this.cacheManager.del(this.getCacheKey(user.id))
 
     const category = await this.categoryService.findOneByIdAndUserId(
-      createRecordDto.category,
+      createRecordDto.categoryId,
       user.id,
     )
 
@@ -71,7 +69,7 @@ export class RecordService {
   ): Promise<RecordResponseDto[]> {
     await this.cacheManager.del(this.getCacheKey(user.id))
 
-    const categoryIds = createManyRecordsDto.data.map((r) => r.category)
+    const categoryIds = createManyRecordsDto.data.map((r) => r.categoryId)
     const categories = await this.categoryService.findManyByIdsAndUserId(
       categoryIds,
       user.id,
@@ -88,7 +86,7 @@ export class RecordService {
         amount: r.amount,
         timestamp: r.timestamp,
         type: r.type,
-        category: categoriesObj[r.category],
+        category: categoriesObj[r.categoryId],
         comment: r.comment,
       }),
     )
@@ -111,7 +109,7 @@ export class RecordService {
 
     let record = await this.findOneByIdAndUserId(id, user.id)
     const category = await this.categoryService.findOneByIdAndUserId(
-      updateRecordDto.category,
+      updateRecordDto.categoryId,
       user.id,
     )
 
@@ -143,7 +141,7 @@ export class RecordService {
       delete record.user
     }
 
-    return { ...record, category: record.category.id }
+    return { ...record }
   }
 
   async findOneByIdAndUserId(
@@ -178,7 +176,7 @@ export class RecordService {
     return null
   }
 
-  private async setCache(userId: string, data: RecordResponseDto[]) {
+  private async setCache(userId: string, data: RecordEntity[]) {
     const json = JSON.stringify(data)
     await this.cacheManager.set(this.getCacheKey(userId), json)
   }

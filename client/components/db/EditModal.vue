@@ -28,7 +28,7 @@
 
           <UFormGroup label="Category" name="category" class="mt-2">
             <USelectMenu
-              v-model="state.category"
+              v-model="state.categoryId"
               :options="categoryOptions"
               value-attribute="id"
             >
@@ -74,7 +74,7 @@ const types = ["cost", "dist", "inc"];
 
 const schema = object({
   amount: number().required(),
-  category: mixed().required(),
+  categoryId: mixed().required(),
   type: mixed().oneOf(types),
   timestamp: date().required(),
   comment: string(),
@@ -82,14 +82,15 @@ const schema = object({
 
 const state = ref({
   amount: 0,
-  category: "",
+  categoryId: "",
   type: "",
   timestamp: dayjs(),
   comment: "",
 });
 
 const currentCategory = computed(
-  () => categoryOptions.value.find((c) => c.id === state.value.category) || " "
+  () =>
+    categoryOptions.value.find((c) => c.id === state.value.categoryId) || " "
 );
 
 watch(
@@ -98,7 +99,7 @@ watch(
     if (!record) return;
 
     state.value.amount = record?.amount;
-    state.value.category = record?.category;
+    state.value.categoryId = record?.categoryId;
     state.value.type = record?.type;
     state.value.timestamp = record?.timestamp;
     state.value.comment = record?.comment;

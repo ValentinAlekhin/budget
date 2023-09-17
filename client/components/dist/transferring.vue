@@ -57,9 +57,9 @@ const schema = object({
 });
 
 const state = ref({
-  from: null,
-  to: null,
-  amount: 0,
+  from: '',
+  to: '',
+  amount: '',
 });
 
 const fromLabel = computed(
@@ -74,13 +74,13 @@ const save = async () => {
     const timestamp = dayjs().toISOString()
     const payload = [
         {
-            category: state.value.from,
+            categoryId: state.value.from,
             amount: -state.value.amount,
             type: 'dist',
             timestamp,
         },
         {
-            category: state.value.to,
+            categoryId: state.value.to,
             amount: +state.value.amount,
             type: 'dist',
             timestamp,
@@ -89,7 +89,7 @@ const save = async () => {
 
     await recordStore.addRecords(payload)
 
-    state.value.amount = 0
+    state.value.amount = ''
 
 }
 </script>
