@@ -1,67 +1,85 @@
 <template>
   <div>
-    <ClientOnly fallback-tag="span">
-      <template v-if="isLargeScreen">
-        <USelectMenu
-          v-model="year"
-          :options="yearsOptions"
-          style="width: 100px"
-        />
+    <div class="flex items-center justify-between mb-4">
+      <p class="mb-2 text-sm text-cyan-500 font-medium" @click="handleClick">
+        {{ currentRange?.name }}
+      </p>
+      <USelectMenu v-model="selected" class="w-36" :options="categoryTypes">
+        <template #label>
+          {{ selected.label }}
+        </template>
+      </USelectMenu>
+    </div>
 
-        <a-tabs v-model:activeKey="activeKey">
-          <a-tab-pane key="table" tab="Таблицы">
-            <stat-tables-costs :records="recordsCostByYear" />
-          </a-tab-pane>
-          <a-tab-pane key="chart" tab="Графики">
-            <stat-charts-costs :records="recordsCostByYear" />
-            <stat-charts-delta
-              :cost="recordsCostByYear"
-              :inc="recordsIncByYear"
-            />
-          </a-tab-pane>
-        </a-tabs>
-      </template>
-
-      <span v-else class="center dark:text-white">
-        Статистика доступна только с экрана компьютера
-      </span>
-
-      <template #fallback>
-        <span class="center">Loading</span>
-      </template>
-    </ClientOnly>
+    <div>
+      <UCard v-for="item of list" :key="item.id" class="mb-2" :ui="cardUi">
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-gray-500 dark:text-gray-400">
+            {{ item.name }}
+          </span>
+          <span class="font-bold text-gray-900 dark:text-white">
+            {{ item.sum }}
+          </span>
+        </div>
+      </UCard>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import dayjs from "dayjs";
-import { useRouteQuery } from "@vueuse/router";
-import { ref } from "vue";
-import { useStat } from "~/composables/useStat";
+import { storeToRefs } from "pinia";
+import { Dayjs } from "dayjs";
+import { sumBy } from "lodash-es";
+import { RecordDto } from "../../../common/dto/record";
+import { useCommonRanges } from "~/composables/useCommonRanges";
+import { useCategoryStore } from "~/store/category";
+import { useRecordStore } from "~/store/record";
+import { useRecord } from "~/composables/useRecord";
 
-const isLargeScreen = useMediaQuery("(min-width: 1024px)");
+const categoryStore = useCategoryStore();
+const { costs, incoming } = storeToRefs(categoryStore);
+const recordStore = useRecordStore();
+const { data: records } = storeToRefs(recordStore);
+const { filterRecordsByRange } = useRecord();
+const { handleClick, currentRange } = useCommonRanges("stat-range-index");
 
-const { years, cost, inc } = useStat();
+const categoryTypes = computed(() =>
+  [
+    { label: "Costs", list: costs.value },
+    { label: "Incoming", list: incoming.value },
+  ].map((t, id) => ({ ...t, id }))
+);
+const selected = ref(categoryTypes.value[0]);
 
-const yearsOptions = years.value.map((y) => y.toString());
-const year = useRouteQuery("year", dayjs().year().toString());
-
-const recordsCostByYear = computed(() =>
-  cost.value.filter((r) => r.year === +year.value)
+const filteredRecords = computed(() =>
+  filterRecordsByRange(
+    records.value,
+    currentRange.value?.start as Dayjs,
+    currentRange.value?.end as Dayjs
+  )
 );
 
-const recordsIncByYear = computed(() =>
-  inc.value.filter((r) => r.year === +year.value)
+const getSum = (id: string, list: RecordDto[]) =>
+  numberWithSpaces(
+    sumBy(
+      list.filter((r) => r.categoryId === id),
+      "amount"
+    )
+  );
+
+const list = computed(() =>
+  selected.value.list.map((c) => ({
+    name: c.name,
+    id: c.id,
+    sum: getSum(c.id, filteredRecords.value),
+  }))
 );
 
-const activeKey = ref("table");
+const cardUi = {
+  body: {
+    base: "",
+    background: "",
+    padding: "px-6 py-3 sm:p-6",
+  },
+};
 </script>
-
-<style lang="scss" scoped>
-.center {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-</style>

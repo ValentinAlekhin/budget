@@ -73,60 +73,16 @@
 import { storeToRefs } from "pinia";
 import { sumBy } from "lodash-es";
 import { Dayjs } from "dayjs";
-import { useLocalStorage } from "@vueuse/core";
-import { ComputedRef } from "vue";
-import { useTimestamp } from "~/composables/useTimestamp";
 import { useRecord } from "~/composables/useRecord";
 import { useRecordStore } from "~/store/record";
 import { useCategoriesWithBalance } from "~/composables/useCategoriesWithBalance";
-
-interface Range {
-  name: string;
-  start: Dayjs;
-  end: Dayjs;
-}
+import { useCommonRanges } from "~/composables/useCommonRanges";
 
 const recordStore = useRecordStore();
 const { costs, inc } = storeToRefs(recordStore);
 const { categoriesWithBalance } = useCategoriesWithBalance();
-const {
-  startOfCurrentMonth,
-  startOfCurrentDay,
-  endOfCurrentMonth,
-  endOfCurrentDay,
-} = useTimestamp();
 const { filterRecordsByRange } = useRecord();
-
-const rangeValues: ComputedRef<Range[]> = computed(() => [
-  {
-    name: "Current day",
-    start: startOfCurrentDay.value,
-    end: endOfCurrentDay.value,
-  },
-  {
-    name: "Current month",
-    start: startOfCurrentMonth.value,
-    end: endOfCurrentMonth.value,
-  },
-  {
-    name: "Last 30 days",
-    start: endOfCurrentDay.value.subtract(30, "day"),
-    end: endOfCurrentDay.value,
-  },
-]);
-
-const currentRangeIndex = useLocalStorage<number>("home-range-index", 0);
-const currentRange = computed(() =>
-  rangeValues.value.find((_, i) => i === currentRangeIndex.value)
-);
-
-const handleClick = () => {
-  const currentIndex = rangeValues.value.findIndex(
-    (item) => item.name === currentRange.value?.name
-  );
-  const lastIndex = rangeValues.value.length - 1;
-  currentRangeIndex.value = currentIndex === lastIndex ? 0 : currentIndex + 1;
-};
+const { handleClick, currentRange } = useCommonRanges("home-range-index");
 
 const currentBalance = computed(() =>
   numberWithSpaces(sumBy(categoriesWithBalance.value, "balance"))

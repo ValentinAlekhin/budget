@@ -5,6 +5,7 @@ export interface RecordDto {
     createdAt: Date
     updatedAt: Date
     deletedAt: Date
+    timestamp: string
     type: CategoryTypeEnum
     amount: number
     comment?: string | null

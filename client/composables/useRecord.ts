@@ -1,5 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import dayjs, { Dayjs } from "dayjs";
+import { UnwrapRef } from "vue";
+import { RecordDto } from "../../common/dto/record";
 
 export function useRecord() {
   const getTypeColor = (type: string) => {
@@ -21,7 +23,11 @@ export function useRecord() {
     return twMerge(`bg-${color}-400`);
   };
 
-  const filterRecordsByRange = (list: any[], start: Dayjs, end: Dayjs) =>
+  const filterRecordsByRange = (
+    list: RecordDto[] | UnwrapRef<RecordDto>[],
+    start: Dayjs,
+    end: Dayjs
+  ) =>
     list.filter(({ timestamp }) => {
       const time = dayjs(timestamp);
 
