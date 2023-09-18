@@ -97,13 +97,23 @@ const totalCost = computed(() =>
 
 const miniCards = computed(() =>
   [
-    { color: "green", icon: "bi:arrow-up-right", list: inc, name: "Income" },
-    { color: "red", icon: "bi:arrow-down-right", list: costs, name: "Cost" },
+    {
+      color: "green",
+      icon: "bi:arrow-up-right",
+      categories: inc,
+      name: "Income",
+    },
+    {
+      color: "red",
+      icon: "bi:arrow-down-right",
+      categories: costs,
+      name: "Cost",
+    },
   ].map((item) => ({
     ...item,
     value: sumBy(
       filterRecordsByRange(
-        item.list.value,
+        item.categories.value,
         currentRange.value?.start as Dayjs,
         currentRange.value?.end as Dayjs
       ),
