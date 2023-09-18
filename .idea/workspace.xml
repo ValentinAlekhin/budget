@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлена простая статистика">
-      <change afterPath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.eslintrc.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintrc.cjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useRecord.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useRecord.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/dto/record.ts" beforeDir="false" afterPath="$PROJECT_DIR$/common/dto/record.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -361,22 +356,6 @@
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
     </task>
-    <task id="LOCAL-00037" summary="Добавлен деплой">
-      <option name="closed" value="true" />
-      <created>1694528696171</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1694528696171</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Добавлен деплой">
-      <option name="closed" value="true" />
-      <created>1694529056648</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1694529056648</updated>
-    </task>
     <task id="LOCAL-00039" summary="Добавлен деплой">
       <option name="closed" value="true" />
       <created>1694529276336</created>
@@ -633,7 +612,23 @@
       <option name="project" value="LOCAL" />
       <updated>1694795240354</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Добавлена простая статистика">
+      <option name="closed" value="true" />
+      <created>1695055246197</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1695055246197</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Добавлена простая статистика">
+      <option name="closed" value="true" />
+      <created>1695055255419</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1695055255419</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

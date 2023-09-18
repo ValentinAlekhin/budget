@@ -39,7 +39,7 @@ import { useRecord } from "~/composables/useRecord";
 const categoryStore = useCategoryStore();
 const { costs, incoming } = storeToRefs(categoryStore);
 const recordStore = useRecordStore();
-const { data: records } = storeToRefs(recordStore);
+const recordsRefs = storeToRefs(recordStore);
 const { filterRecordsByRange } = useRecord();
 const { handleClick, currentRange } = useCommonRanges("stat-range-index");
 
@@ -53,7 +53,7 @@ const selected = ref(categoryTypes.value[0]);
 
 const filteredRecords = computed(() =>
   filterRecordsByRange(
-    records.value,
+    [...recordsRefs.costs, ...recordsRefs.inc],
     currentRange.value?.start as Dayjs,
     currentRange.value?.end as Dayjs
   )
