@@ -38,7 +38,7 @@ export class TelegramService implements OnModuleInit {
   }
 
   async backup() {
-    this.logger.debug('Backup')
+    this.logger.log('Backup')
     const adminId = +this.configService.get<string>('BOT_ADMIN')
     const { filename, source } = this.getFileName()
 

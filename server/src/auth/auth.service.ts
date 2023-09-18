@@ -1,4 +1,4 @@
-import { ForbiddenException, Inject, Injectable, Logger } from '@nestjs/common'
+import { ForbiddenException, Inject, Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { pick } from 'lodash'
 import { CACHE_MANAGER } from '@nestjs/cache-manager'
@@ -25,8 +25,6 @@ export class AuthService {
     @InjectRepository(TokenEntity) private tokenRepo: Repository<TokenEntity>,
     private readonly configService: ConfigService,
   ) {}
-
-  private readonly logger = new Logger(AuthService.name)
 
   async validateUser(
     username: string,
@@ -61,14 +59,12 @@ export class AuthService {
     { refreshToken }: RefreshTokenDto,
     user: UserEntity,
   ): Promise<JwtTokensType> {
-    this.logger.debug(refreshToken)
     const { valid, token: validToken } = await this.validateRefreshToken(
       refreshToken,
       user.id,
     )
 
     if (!valid) {
-      this.logger.debug('Невалидный токен')
       throw new ForbiddenException('Невалидный токен')
     }
 
