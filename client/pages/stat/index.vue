@@ -53,7 +53,7 @@ const selected = ref(categoryTypes.value[0]);
 
 const filteredRecords = computed(() =>
   filterRecordsByRange(
-    [...recordsRefs.costs, ...recordsRefs.inc],
+    [...recordsRefs.costs.value, ...recordsRefs.inc.value],
     currentRange.value?.start as Dayjs,
     currentRange.value?.end as Dayjs
   )
