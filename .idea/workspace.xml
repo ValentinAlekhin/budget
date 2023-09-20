@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Удалены лишние логи">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлены проценты в статистике">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/db/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/List.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +96,7 @@
       <recent name="$PROJECT_DIR$/client/pages/stat" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.start:dev">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -251,7 +250,10 @@
       <workItem from="1694764146523" duration="3436000" />
       <workItem from="1694791806645" duration="4378000" />
       <workItem from="1694860743515" duration="2104000" />
-      <workItem from="1695059944567" duration="1375000" />
+      <workItem from="1695059944567" duration="2033000" />
+      <workItem from="1695107165817" duration="6000" />
+      <workItem from="1695137077449" duration="891000" />
+      <workItem from="1695220949140" duration="951000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -357,14 +359,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Добавлен деплой">
-      <option name="closed" value="true" />
-      <created>1694530422318</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1694530422318</updated>
     </task>
     <task id="LOCAL-00043" summary="Добавлен деплой">
       <option name="closed" value="true" />
@@ -630,7 +624,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695055956037</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Добавлены проценты в статистике">
+      <option name="closed" value="true" />
+      <created>1695061422544</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1695061422545</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -648,7 +650,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Рефактор сервера и переход на ULID" />
     <MESSAGE value="Рефактор сервера и добавление нормальной сессии" />
     <MESSAGE value="Добавлено обновление и удаление записи отрефакторен фронт" />
     <MESSAGE value="Добавлен socket.io добавлена стрница с БД" />
@@ -673,7 +674,8 @@
     <MESSAGE value="Добавлен кеш для записей" />
     <MESSAGE value="Добавлена простая статистика" />
     <MESSAGE value="Удалены лишние логи" />
-    <option name="LAST_COMMIT_MESSAGE" value="Удалены лишние логи" />
+    <MESSAGE value="Добавлены проценты в статистике" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены проценты в статистике" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />
