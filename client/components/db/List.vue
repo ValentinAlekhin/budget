@@ -5,9 +5,9 @@
     <li
       v-for="row of props.rows"
       :key="row.id"
-      class="flex items-center justify-between p-1 sm:b-2 px-3 sm:px-4 mb-2 sm:mb-3"
+      class="flex items-start justify-between p-1 sm:b-2 px-3 sm:px-4 mb-2 sm:mb-3"
     >
-      <div class="flex flex-col justify-between">
+      <div class="flex flex-col justify-between mt-1">
         <div class="grid grid-cols-12 items-center mb-2 w-72">
           <span
             class="col-span-1 flex w-3 h-3 rounded-full mr-2"
@@ -31,6 +31,7 @@
           {{ row.comment }}
         </p>
       </div>
+
       <div class="flex flex-col items-end justify-end">
         <span class="text-base font-semibold text-gray-900 dark:text-white">
           {{ numberWithSpaces(row.amount) }}

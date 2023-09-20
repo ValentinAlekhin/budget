@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлены проценты в статистике">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлена БД для телефонов">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/db/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/List.vue" afterDir="false" />
     </list>
@@ -253,7 +253,7 @@
       <workItem from="1695059944567" duration="2033000" />
       <workItem from="1695107165817" duration="6000" />
       <workItem from="1695137077449" duration="891000" />
-      <workItem from="1695220949140" duration="951000" />
+      <workItem from="1695220949140" duration="1411000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -359,14 +359,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00043" summary="Добавлен деплой">
-      <option name="closed" value="true" />
-      <created>1694530594891</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1694530594891</updated>
     </task>
     <task id="LOCAL-00044" summary="Добавлен деплой">
       <option name="closed" value="true" />
@@ -632,7 +624,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695061422545</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Обновлена БД для телефонов">
+      <option name="closed" value="true" />
+      <created>1695222000867</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1695222000867</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,7 +650,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Рефактор сервера и добавление нормальной сессии" />
     <MESSAGE value="Добавлено обновление и удаление записи отрефакторен фронт" />
     <MESSAGE value="Добавлен socket.io добавлена стрница с БД" />
     <MESSAGE value="Добавлена страница cost" />
@@ -675,7 +674,8 @@
     <MESSAGE value="Добавлена простая статистика" />
     <MESSAGE value="Удалены лишние логи" />
     <MESSAGE value="Добавлены проценты в статистике" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены проценты в статистике" />
+    <MESSAGE value="Обновлена БД для телефонов" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновлена БД для телефонов" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />
