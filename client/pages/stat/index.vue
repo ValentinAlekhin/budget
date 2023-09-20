@@ -21,21 +21,33 @@
     </UCard>
 
     <div>
-      <UCard v-for="item of list" :key="item.id" class="mb-2" :ui="cardUi">
-        <div class="grid grid-cols-5">
-          <span class="text-sm text-gray-500 dark:text-gray-400 col-span-3">
-            {{ item.name }}
-          </span>
+      <template v-if="list.length">
+        <UCard v-for="item of list" :key="item.id" class="mb-2" :ui="cardUi">
+          <div class="grid grid-cols-5">
+            <span class="text-sm text-gray-500 dark:text-gray-400 col-span-3">
+              {{ item.name }}
+            </span>
 
-          <span class="text-sm text-gray-500 dark:text-gray-400">
-            {{ item.percentage }}%
-          </span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">
+              {{ item.percentage }}%
+            </span>
 
-          <span class="font-bold text-gray-900 dark:text-white text-end">
-            {{ numberWithSpaces(item.sum) }}
-          </span>
-        </div>
-      </UCard>
+            <span class="font-bold text-gray-900 dark:text-white text-end">
+              {{ numberWithSpaces(item.sum) }}
+            </span>
+          </div>
+        </UCard>
+      </template>
+
+      <div v-else class="flex justify-center items-center mt-10">
+        <Icon name="carbon:db2-database" size="24" class="mr-2" />
+
+        <span
+          class="text-center font-semibold text-lg text-gray-900 dark:text-white"
+        >
+          No records
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -90,18 +102,20 @@ const getSum = (id: string, list: RecordDto[]) =>
   );
 
 const list = computed(() =>
-  selected.value.categories.map((c) => {
-    const sum = getSum(c.id, filteredRecords.value);
-    const percentage =
-      Math.round((sum / totalSum.value) * 100 * 100) / 100 || 0;
+  selected.value.categories
+    .map((c) => {
+      const sum = getSum(c.id, filteredRecords.value);
+      const percentage =
+        Math.round((sum / totalSum.value) * 100 * 100) / 100 || 0;
 
-    return {
-      name: c.name,
-      id: c.id,
-      sum,
-      percentage,
-    };
-  })
+      return {
+        name: c.name,
+        id: c.id,
+        sum,
+        percentage,
+      };
+    })
+    .filter((c) => c.sum)
 );
 
 const cardUi = {
