@@ -38,7 +38,7 @@ export default defineNuxtConfig({
     shim: false,
   },
 
-  plugins: ['@/plugins/draggable'],
+  plugins: ['@/plugins/draggable', '@/plugins/chartjs'],
 
   vite: {
     server: {

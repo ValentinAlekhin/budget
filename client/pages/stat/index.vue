@@ -11,6 +11,8 @@
       </USelectMenu>
     </div>
 
+    <Doughnut :data="chartData" :options="chartOptions" />
+
     <UCard class="mb-4" :ui="cardUi">
       <div class="flex items-center justify-between">
         <span class="font-bold text-gray-900 dark:text-white"> Total sum </span>
@@ -56,11 +58,34 @@
 import { storeToRefs } from 'pinia'
 import { Dayjs } from 'dayjs'
 import { sumBy } from 'lodash-es'
+import { Doughnut } from 'vue-chartjs'
 import { RecordDto } from '../../../common/dto/record'
 import { useCommonRanges } from '~/composables/useCommonRanges'
 import { useCategoryStore } from '~/store/category'
 import { useRecordStore } from '~/store/record'
 import { useRecord } from '~/composables/useRecord'
+
+const chartData = {
+  labels: ['Red', 'Blue', 'Yellow'],
+  datasets: [
+    {
+      label: 'My First Dataset',
+      data: [300, 50, 100],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)',
+      ],
+      hoverOffset: 4,
+    },
+  ],
+}
+
+const chartOptions = ref({
+  radius: 150,
+  cutout: '70%',
+  borderColor: 'rgba(0,0,0,0)',
+})
 
 const categoryStore = useCategoryStore()
 const { costs, incoming } = storeToRefs(categoryStore)
