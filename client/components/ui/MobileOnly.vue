@@ -3,9 +3,9 @@
 </template>
 
 <script lang="ts" setup>
-import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 
-const breakpoints = useBreakpoints(breakpointsTailwind);
+const breakpoints = useBreakpoints(breakpointsTailwind)
 
-const smallerThanLg = breakpoints.smaller("lg");
+const smallerThanLg = breakpoints.smaller('lg')
 </script>

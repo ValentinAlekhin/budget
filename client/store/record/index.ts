@@ -1,15 +1,15 @@
-import { acceptHMRUpdate, defineStore } from "pinia";
-import { RecordDto } from "../../../common/dto/record";
-import { cudController } from "~/common/cud";
-import { useNotify } from "~/composables/useNotify";
+import { acceptHMRUpdate, defineStore } from 'pinia'
+import { RecordDto } from '../../../common/dto/record'
+import { cudController } from '~/common/cud'
+import { useNotify } from '~/composables/useNotify'
 
 interface State {
-  data: RecordDto[];
-  loading: boolean;
-  error: Error | null | unknown;
+  data: RecordDto[]
+  loading: boolean
+  error: Error | null | unknown
 }
 
-export const useRecordStore = defineStore("record", {
+export const useRecordStore = defineStore('record', {
   state: (): State => ({
     data: [],
     loading: false,
@@ -17,62 +17,62 @@ export const useRecordStore = defineStore("record", {
   }),
   actions: {
     async fetchAll() {
-      if (this.data?.length) return;
+      if (this.data?.length) return
 
-      const { api } = useApi();
-      const notify = useNotify();
+      const { api } = useApi()
+      const notify = useNotify()
 
-      this.loading = true;
-      this.error = null;
+      this.loading = true
+      this.error = null
 
       try {
-        const { data } = await api.get("/records");
-        this.data = data;
+        const { data } = await api.get('/records')
+        this.data = data
       } catch (e) {
-        notify.error("Ошибка при загрузке записей");
-        this.error = e;
+        notify.error('Ошибка при загрузке записей')
+        this.error = e
       } finally {
-        this.loading = false;
+        this.loading = false
       }
     },
     async init() {
-      await this.cudInit();
-      await this.fetchAll();
+      await this.cudInit()
+      await this.fetchAll()
     },
     async addRecord(cost: { name: string; comment: string }) {
-      const { api } = useApi();
-      await api.post("/records", { ...cost, type: "cost" });
+      const { api } = useApi()
+      await api.post('/records', { ...cost, type: 'cost' })
     },
     async addRecords(
       data: Array<{
-        amount: number;
-        comment?: string;
-        categoryId: string;
-        type: string;
-        timestamp: string;
+        amount: number
+        comment?: string
+        categoryId: string
+        type: string
+        timestamp: string
       }>
     ) {
-      const { api } = useApi();
-      await api.post("/records/many", { data });
+      const { api } = useApi()
+      await api.post('/records/many', { data })
     },
     async delete(id: string) {
-      const { api } = useApi();
-      await api.delete(`/records/${id}`);
+      const { api } = useApi()
+      await api.delete(`/records/${id}`)
     },
 
     async update(body: any) {
-      const { api } = useApi();
-      await api.put(`/records/${body.id}`, body);
+      const { api } = useApi()
+      await api.put(`/records/${body.id}`, body)
     },
-    ...cudController({ action: "records" }),
+    ...cudController({ action: 'records' }),
   },
   getters: {
-    costs: (state: State) => state.data.filter((r) => r.type === "cost"),
-    dist: (state: State) => state.data.filter((r) => r.type === "dist"),
-    inc: (state: State) => state.data.filter((r) => r.type === "inc"),
+    costs: (state: State) => state.data.filter((r) => r.type === 'cost'),
+    dist: (state: State) => state.data.filter((r) => r.type === 'dist'),
+    inc: (state: State) => state.data.filter((r) => r.type === 'inc'),
   },
-});
+})
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useRecordStore, import.meta.hot));
+  import.meta.hot.accept(acceptHMRUpdate(useRecordStore, import.meta.hot))
 }

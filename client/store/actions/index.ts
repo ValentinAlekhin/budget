@@ -1,13 +1,13 @@
-import { acceptHMRUpdate, defineStore } from "pinia";
+import { acceptHMRUpdate, defineStore } from 'pinia'
 
 interface State {
-  edit?: null | Function;
-  submit?: null | Function;
-  cancel?: null | Function;
-  add?: null | Function;
+  edit?: null | Function
+  submit?: null | Function
+  cancel?: null | Function
+  add?: null | Function
 }
 
-export const useActionsStore = defineStore("actions", {
+export const useActionsStore = defineStore('actions', {
   state: () =>
     ({
       edit: null,
@@ -17,17 +17,17 @@ export const useActionsStore = defineStore("actions", {
     } as State),
   actions: {
     setActions(actions: State) {
-      this.$reset();
+      this.$reset()
 
-      this.submit = actions.submit;
-      this.edit = actions.edit;
-      this.cancel = actions.cancel;
-      this.add = actions.add;
+      this.submit = actions.submit
+      this.edit = actions.edit
+      this.cancel = actions.cancel
+      this.add = actions.add
     },
   },
   getters: {},
-});
+})
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useActionsStore, import.meta.hot));
+  import.meta.hot.accept(acceptHMRUpdate(useActionsStore, import.meta.hot))
 }

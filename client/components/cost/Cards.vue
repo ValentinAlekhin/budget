@@ -1,6 +1,6 @@
 <template>
   <UCard class="mb-4">
-    <div class="flex flex-col mb-4">
+    <div class="mb-4 flex flex-col">
       <span class="text-sm text-gray-700 dark:text-gray-400">
         Current balance
       </span>
@@ -8,12 +8,12 @@
     </div>
 
     <div>
-      <span class="text-sm text-gray-700 dark:text-gray-400 mb-1 block">
+      <span class="mb-1 block text-sm text-gray-700 dark:text-gray-400">
         Sum
       </span>
       <div class="grid grid-cols-2">
         <div class="flex flex-col">
-          <span class="text-xs mb-0.5">
+          <span class="mb-0.5 text-xs">
             <Icon
               name="ic:round-arrow-drop-up"
               class="scale-200 text-green-500"
@@ -24,7 +24,7 @@
         </div>
 
         <div class="flex flex-col">
-          <span class="text-xs mb-0.5">
+          <span class="mb-0.5 text-xs">
             <Icon
               name="ic:round-arrow-drop-down"
               class="scale-200 text-rose-500"
@@ -37,20 +37,20 @@
     </div>
   </UCard>
 
-  <p class="mb-2 text-sm text-cyan-500 font-medium" @click="handleClick">
+  <p class="mb-2 text-sm font-medium text-cyan-500" @click="handleClick">
     {{ currentRange?.name }}
   </p>
 
-  <div class="grid grid-cols-2 gap-2 mb-6">
+  <div class="mb-6 grid grid-cols-2 gap-2">
     <UCard v-for="card of miniCards" :key="card.icon">
-      <div class="flex items-center mb-4">
+      <div class="mb-4 flex items-center">
         <span
-          class="rounded-full h-8 w-8 mr-2"
+          class="mr-2 h-8 w-8 rounded-full"
           :class="`bg-${card.color}-300/25`"
         >
           <Icon
             :name="card.icon"
-            class="mt-[5px] ml-[8px]"
+            class="ml-[8px] mt-[5px]"
             :class="`text-${card.color}-500`"
           />
         </span>
@@ -64,50 +64,48 @@
         </div>
       </div>
 
-      <div class="w-full h-0.5 rounded" :class="`bg-${card.color}-500`" />
+      <div class="h-0.5 w-full rounded" :class="`bg-${card.color}-500`" />
     </UCard>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from "pinia";
-import { sumBy } from "lodash-es";
-import { Dayjs } from "dayjs";
-import { useRecord } from "~/composables/useRecord";
-import { useRecordStore } from "~/store/record";
-import { useCategoriesWithBalance } from "~/composables/useCategoriesWithBalance";
-import { useCommonRanges } from "~/composables/useCommonRanges";
+import { storeToRefs } from 'pinia'
+import { sumBy } from 'lodash-es'
+import { Dayjs } from 'dayjs'
+import { useRecord } from '~/composables/useRecord'
+import { useRecordStore } from '~/store/record'
+import { useCategoriesWithBalance } from '~/composables/useCategoriesWithBalance'
+import { useCommonRanges } from '~/composables/useCommonRanges'
 
-const recordStore = useRecordStore();
-const { costs, inc } = storeToRefs(recordStore);
-const { categoriesWithBalance } = useCategoriesWithBalance();
-const { filterRecordsByRange } = useRecord();
-const { handleClick, currentRange } = useCommonRanges("home-range-index");
+const recordStore = useRecordStore()
+const { costs, inc } = storeToRefs(recordStore)
+const { categoriesWithBalance } = useCategoriesWithBalance()
+const { filterRecordsByRange } = useRecord()
+const { handleClick, currentRange } = useCommonRanges('home-range-index')
 
 const currentBalance = computed(() =>
-  numberWithSpaces(sumBy(categoriesWithBalance.value, "balance"))
-);
+  numberWithSpaces(sumBy(categoriesWithBalance.value, 'balance'))
+)
 
 const totalIncoming = computed(() =>
-  numberWithSpaces(sumBy(inc.value, "amount"))
-);
-const totalCost = computed(() =>
-  numberWithSpaces(sumBy(costs.value, "amount"))
-);
+  numberWithSpaces(sumBy(inc.value, 'amount'))
+)
+const totalCost = computed(() => numberWithSpaces(sumBy(costs.value, 'amount')))
 
 const miniCards = computed(() =>
   [
     {
-      color: "green",
-      icon: "bi:arrow-up-right",
+      color: 'green',
+      icon: 'bi:arrow-up-right',
       categories: inc,
-      name: "Income",
+      name: 'Income',
     },
     {
-      color: "red",
-      icon: "bi:arrow-down-right",
+      color: 'red',
+      icon: 'bi:arrow-down-right',
       categories: costs,
-      name: "Cost",
+      name: 'Cost',
     },
   ].map((item) => ({
     ...item,
@@ -117,8 +115,8 @@ const miniCards = computed(() =>
         currentRange.value?.start as Dayjs,
         currentRange.value?.end as Dayjs
       ),
-      "amount"
+      'amount'
     ),
   }))
-);
+)
 </script>

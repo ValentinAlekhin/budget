@@ -13,9 +13,9 @@ export default {
   props: {
     to: {
       type: String,
-      default: "",
+      default: '',
     },
   },
-  emits: ["click"],
-};
+  emits: ['click'],
+}
 </script>

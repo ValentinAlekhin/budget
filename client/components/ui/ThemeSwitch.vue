@@ -9,20 +9,20 @@
     />
 
     <template #fallback>
-      <div class="w-8 h-8" />
+      <div class="h-8 w-8" />
     </template>
   </ClientOnly>
 </template>
 
 <script setup>
-const colorMode = useColorMode();
+const colorMode = useColorMode()
 
 const isDark = computed({
   get() {
-    return colorMode.value === "dark";
+    return colorMode.value === 'dark'
   },
   set() {
-    colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
+    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
   },
-});
+})
 </script>

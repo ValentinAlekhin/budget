@@ -12,23 +12,23 @@
 
 <script setup lang="ts">
 const props = defineProps({
-  text: { type: String, default: "" },
-});
+  text: { type: String, default: '' },
+})
 
-const emit = defineEmits(["click"]);
+const emit = defineEmits(['click'])
 
-const pressed = ref<boolean>(false);
+const pressed = ref<boolean>(false)
 
 const onClick = (event) => {
-  emit("click", { event, props });
+  emit('click', { event, props })
 
-  pressed.value = true;
+  pressed.value = true
 
   const interval = setInterval(() => {
-    pressed.value = false;
-    clearInterval(interval);
-  }, 200);
-};
+    pressed.value = false
+    clearInterval(interval)
+  }, 200)
+}
 </script>
 
 <style lang="scss" scoped module>

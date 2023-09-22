@@ -13,27 +13,27 @@
 </template>
 
 <script lang="ts" setup>
-import { object, string } from "yup";
-import { useAuthStore } from "~/store/auth";
+import { object, string } from 'yup'
+import { useAuthStore } from '~/store/auth'
 
 const schema = object({
-  username: string().required("Username required"),
+  username: string().required('Username required'),
   password: string()
-    .min(8, "Must be at least 8 characters")
-    .required("Password required"),
-});
+    .min(8, 'Must be at least 8 characters')
+    .required('Password required'),
+})
 
 const state = ref({
-  username: "",
-  password: "",
-});
+  username: '',
+  password: '',
+})
 
-const form = ref();
+const form = ref()
 
 async function submit() {
-  await form.value!.validate();
-  await authStore.login(state.value);
+  await form.value!.validate()
+  await authStore.login(state.value)
 }
 
-const authStore = useAuthStore();
+const authStore = useAuthStore()
 </script>

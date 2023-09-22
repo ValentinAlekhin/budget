@@ -23,7 +23,7 @@ export class AuthenticatedSocketAdapter extends IoAdapter {
       try {
         socket.data.user = await this.authService.authenticateToken(token)
         return next()
-      } catch (e) {
+      } catch (e: any) {
         return next(new Error(e))
       }
     })

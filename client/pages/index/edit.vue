@@ -23,7 +23,7 @@
       @end="drag = false"
     >
       <template #item="{ element }">
-        <div class="grid grid-cols-3 gap-1 items-center mb-2 inputContainer">
+        <div class="inputContainer mb-2 grid grid-cols-3 items-center gap-1">
           <UButton
             size="sm"
             color="rose"
@@ -33,7 +33,7 @@
             @click="itemToDelete = element"
           />
 
-          <div class="grid grid-cols-2 gap-2 w-[75vw]">
+          <div class="grid w-[75vw] grid-cols-2 gap-2">
             <UInput
               size="md"
               :model-value="element.name"
@@ -65,7 +65,7 @@
     <UModal v-model="addModal">
       <UCard>
         <template #header>
-          <span class="dark:text-white font-medium text-xl">
+          <span class="text-xl font-medium dark:text-white">
             Add new category
           </span>
         </template>
@@ -110,53 +110,53 @@
 </template>
 
 <script setup lang="ts">
-import Draggable from "vuedraggable";
-import { storeToRefs } from "pinia";
-import { object, string } from "yup";
-import { get, last } from "lodash-es";
-import { set } from "vue-demi";
-import { useCategoryStore } from "~/store/category";
-import { useActionsStore } from "~/store/actions";
-import BackButton from "~/components/ui/BackButton.vue";
-import MobileOnly from "~/components/ui/MobileOnly.vue";
+import Draggable from 'vuedraggable'
+import { storeToRefs } from 'pinia'
+import { object, string } from 'yup'
+import { get, last } from 'lodash-es'
+import { set } from 'vue-demi'
+import { useCategoryStore } from '~/store/category'
+import { useActionsStore } from '~/store/actions'
+import BackButton from '~/components/ui/BackButton.vue'
+import MobileOnly from '~/components/ui/MobileOnly.vue'
 
-const actionsStore = useActionsStore();
-const categoryStore = useCategoryStore();
-const toast = useToast();
-const { costs } = storeToRefs(categoryStore);
-const router = useRouter();
+const actionsStore = useActionsStore()
+const categoryStore = useCategoryStore()
+const toast = useToast()
+const { costs } = storeToRefs(categoryStore)
+const router = useRouter()
 
 const formState = reactive<
   Record<string, { name: string; order: number; icon?: string }>
 >(
   costs.value.reduce((acc, c, i) => {
-    acc[c.id] = { order: i + 1, name: c.name, icon: c.icon };
+    acc[c.id] = { order: i + 1, name: c.name, icon: c.icon }
 
-    return acc;
+    return acc
   }, {})
-);
-const drag = ref<boolean>(false);
-const addModal = ref<boolean>(false);
-const itemToDelete = ref<any>(null);
+)
+const drag = ref<boolean>(false)
+const addModal = ref<boolean>(false)
+const itemToDelete = ref<any>(null)
 
 const schema = object({
-  name: string().required("Category name required").min(4),
+  name: string().required('Category name required').min(4),
   icon: string(),
-});
+})
 
 const state = ref({
-  name: "",
-  icon: "",
-});
+  name: '',
+  icon: '',
+})
 
-const form = ref();
+const form = ref()
 
 const dragOptions = {
   animation: 150,
-  group: "description",
+  group: 'description',
   disabled: false,
-  ghostClass: "ghost",
-};
+  ghostClass: 'ghost',
+}
 
 watch(
   costs,
@@ -167,18 +167,18 @@ watch(
   {
     deep: true,
   }
-);
+)
 
 const computedInputs = computed({
   get: () =>
     costs.value
       .map(({ id }, i) => {
-        const namePath = `${id}.name`;
-        const orderPath = `${id}.order`;
-        const iconPath = `${id}.icon`;
-        const name = get(formState, namePath, "");
-        const order = get(formState, orderPath, i + 1);
-        const icon = get(formState, iconPath, "");
+        const namePath = `${id}.name`
+        const orderPath = `${id}.order`
+        const iconPath = `${id}.icon`
+        const name = get(formState, namePath, '')
+        const order = get(formState, orderPath, i + 1)
+        const icon = get(formState, iconPath, '')
 
         return {
           id,
@@ -188,11 +188,11 @@ const computedInputs = computed({
           setName: (e) => set(formState, namePath, e.target.value),
           setOrder: (order) => set(formState, orderPath, order),
           setIcon: (e) => set(formState, iconPath, e.target.value),
-        };
+        }
       })
       .sort((a, b) => a.order - b.order),
   set: (value) => value.forEach((item, i) => item.setOrder(i + 1)),
-});
+})
 
 const save = async () => {
   const payload = computedInputs.value.map(({ id, order, name, icon }) => ({
@@ -200,44 +200,44 @@ const save = async () => {
     order,
     name,
     icon,
-    type: "cost",
-  }));
+    type: 'cost',
+  }))
 
-  await categoryStore.updateMany(payload);
+  await categoryStore.updateMany(payload)
 
-  await router.push("/");
-};
+  await router.push('/')
+}
 
 const saveNew = async () => {
   try {
-    await form.value?.validate();
+    await form.value?.validate()
   } catch (e) {
-    toast.add({ title: "Invalid category name" });
+    toast.add({ title: 'Invalid category name' })
   }
 
   const payload = {
     name: state.value.name,
     icon: state.value.icon,
-    type: "cost",
+    type: 'cost',
     order: (last(categoryStore.costs)?.order || 0) + 1,
-  };
+  }
 
-  await categoryStore.addCategory(payload);
-  addModal.value = false;
-};
+  await categoryStore.addCategory(payload)
+  addModal.value = false
+}
 
 const removeItem = async (id: string) => {
-  await categoryStore.delete(id);
-  itemToDelete.value = null;
-};
+  await categoryStore.delete(id)
+  itemToDelete.value = null
+}
 
 onMounted(() =>
   actionsStore.setActions({
     add: () => (addModal.value = true),
     submit: save,
-    cancel: () => router.push("/"),
+    cancel: () => router.push('/'),
   })
-);
+)
 </script>
 
 <style lang="scss" scoped>

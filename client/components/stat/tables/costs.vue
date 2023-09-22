@@ -3,7 +3,7 @@
     <template #category-data="{ row }">
       <ULink
         v-if="row.to"
-        class="font-medium underline text-cyan-500"
+        class="font-medium text-cyan-500 underline"
         :to="row.to"
       >
         {{ row.category }}
@@ -13,33 +13,33 @@
     </template>
 
     <template #percent-data="{ row }">
-      <span>{{ row.percent ? `${row.percent}%` : "" }}</span>
+      <span>{{ row.percent ? `${row.percent}%` : '' }}</span>
     </template>
   </UTable>
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from "pinia";
-import dayjs from "dayjs";
-import { useRouteQuery } from "@vueuse/router";
-import { round, sum, sumBy } from "lodash-es";
-import { AVAILABLE_MONTH, MONTH_LIST_RU } from "~/constants";
-import { useCategoryStore } from "~/store/category";
-import { median } from "~/utils";
-const categoryStore = useCategoryStore();
+import { storeToRefs } from 'pinia'
+import dayjs from 'dayjs'
+import { useRouteQuery } from '@vueuse/router'
+import { round, sum, sumBy } from 'lodash-es'
+import { AVAILABLE_MONTH, MONTH_LIST_RU } from '~/constants'
+import { useCategoryStore } from '~/store/category'
+import { median } from '~/utils'
+const categoryStore = useCategoryStore()
 
-const { costs: categories } = storeToRefs(categoryStore);
+const { costs: categories } = storeToRefs(categoryStore)
 
-const year = useRouteQuery("year", dayjs().year().toString(), {
+const year = useRouteQuery('year', dayjs().year().toString(), {
   transform: Number,
-});
+})
 
-const props = defineProps(["records"]);
+const props = defineProps(['records'])
 
 const columns = [
   {
-    label: "Категория",
-    key: "category",
+    label: 'Категория',
+    key: 'category',
     width: 200,
   },
   ...MONTH_LIST_RU.map((label, i) => ({
@@ -47,12 +47,12 @@ const columns = [
     key: `${i}`,
   })),
   {
-    label: "Среднее",
-    key: "average",
+    label: 'Среднее',
+    key: 'average',
   },
   {
-    label: "Медианное",
-    key: "median",
+    label: 'Медианное',
+    key: 'median',
   },
   // {
   //   label: "Модальное",
@@ -60,34 +60,34 @@ const columns = [
   //   key: "modal",
   // },
   {
-    label: "Сумма",
-    key: "sum",
+    label: 'Сумма',
+    key: 'sum',
   },
   {
-    label: "Процент",
-    key: "percent",
+    label: 'Процент',
+    key: 'percent',
   },
-];
+]
 
 const getNumbers = (obj: Record<string, string | number>): number[] => {
   return Object.entries(obj)
     .filter(([key]) => AVAILABLE_MONTH.includes(+key))
     .map(([_, value]) => value)
-    .filter((value) => value) as number[];
-};
+    .filter((value) => value) as number[]
+}
 
 const getMedian = (obj: Record<string, string | number>): number | null => {
-  const numbers = getNumbers(obj);
+  const numbers = getNumbers(obj)
 
-  const res = median(numbers);
-  return Number.isNaN(res) ? null : round(res);
-};
+  const res = median(numbers)
+  return Number.isNaN(res) ? null : round(res)
+}
 
 const getAverage = (obj: Record<string, string | number>) => {
-  const numbers = getNumbers(obj);
+  const numbers = getNumbers(obj)
 
-  return round(obj.sum / numbers.length) || null;
-};
+  return round(obj.sum / numbers.length) || null
+}
 
 const data = computed(() => {
   const mainData = categories.value.map((c) => {
@@ -97,35 +97,35 @@ const data = computed(() => {
           props.records.filter(
             (r) => r.month === month && r.category?.id === c.id
           ),
-          "amount"
+          'amount'
         ) || null
-    );
+    )
 
     const preparedSumByMonth = sumByMonth.reduce((acc, sum, i) => {
-      acc[i] = sum || null;
+      acc[i] = sum || null
 
-      return acc;
-    }, {});
+      return acc
+    }, {})
 
-    const sumByYear = sum(sumByMonth);
+    const sumByYear = sum(sumByMonth)
 
     return {
       to: `/stat/category/${c.id}?year=${year.value}`,
       category: c.name,
       ...preparedSumByMonth,
       sum: sumByYear || null,
-    };
-  });
+    }
+  })
 
   const totalSumByCategories = columns.reduce<Record<string, any>>(
     (acc, col) => {
       acc[col.key] =
-        col.key === "category" ? "Всего" : sumBy(mainData, col.key) || null;
+        col.key === 'category' ? 'Всего' : sumBy(mainData, col.key) || null
 
-      return acc;
+      return acc
     },
     {}
-  );
+  )
 
   const mainDataWithPercent = mainData.map((item, i) => ({
     ...item,
@@ -135,7 +135,7 @@ const data = computed(() => {
     average: getAverage(item),
     median: getMedian(item),
     modal: 0,
-  }));
+  }))
 
   return [
     ...mainDataWithPercent,
@@ -144,6 +144,6 @@ const data = computed(() => {
       average: getAverage(totalSumByCategories),
       median: getMedian(totalSumByCategories),
     },
-  ];
-});
+  ]
+})
 </script>

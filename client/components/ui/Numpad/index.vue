@@ -20,22 +20,22 @@
 </template>
 
 <script lang="ts" setup>
-const mathHelpers = ["/", "*", "+", "-", "(", ")"];
+const mathHelpers = ['/', '*', '+', '-', '(', ')']
 
 const numbers = [
   ...Array(10)
-    .fill("")
+    .fill('')
     .map((_, i) => ({
       text: i.toString(),
       style: { gridArea: `num_${i}` },
     })),
-  { text: "<", style: { gridArea: "remove" } },
-  { text: "ok", style: { gridArea: "ok" } },
-];
+  { text: '<', style: { gridArea: 'remove' } },
+  { text: 'ok', style: { gridArea: 'ok' } },
+]
 
 const onNumClick = (e) => {
-  console.log("click", e);
-};
+  console.log('click', e)
+}
 </script>
 
 <style lang="scss" module>
@@ -67,6 +67,6 @@ const onNumClick = (e) => {
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
-  grid-template-areas: "num_1 num_2 num_3" "num_4 num_5 num_6" "num_7 num_8 num_9" "ok num_0 remove";
+  grid-template-areas: 'num_1 num_2 num_3' 'num_4 num_5 num_6' 'num_7 num_8 num_9' 'ok num_0 remove';
 }
 </style>

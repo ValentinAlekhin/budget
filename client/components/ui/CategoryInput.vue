@@ -36,42 +36,42 @@
 </template>
 
 <script setup lang="ts">
-import { Parser } from "expr-eval";
+import { Parser } from 'expr-eval'
 
-const parser = new Parser();
+const parser = new Parser()
 const evaluate = (str: string, scope: Record<string, number> = {}) => {
-  if (!str) return "";
+  if (!str) return ''
 
   try {
-    return parser.evaluate(str, scope);
+    return parser.evaluate(str, scope)
   } catch (e) {
-    return "Ошибка выражения";
+    return 'Ошибка выражения'
   }
-};
+}
 
 const props = defineProps([
-  "id",
-  "suffix",
-  "isFocused",
-  "name",
-  "balance",
-  "comment",
-  "value",
-  "scope",
-]);
+  'id',
+  'suffix',
+  'isFocused',
+  'name',
+  'balance',
+  'comment',
+  'value',
+  'scope',
+])
 
-defineEmits(["update:value", "update:comment"]);
+defineEmits(['update:value', 'update:comment'])
 
-const localValue = ref<string>(props.value);
-const isFocus = ref<boolean>(false);
+const localValue = ref<string>(props.value)
+const isFocus = ref<boolean>(false)
 
-const calculatedValue = computed(() => evaluate(localValue.value, props.scope));
+const calculatedValue = computed(() => evaluate(localValue.value, props.scope))
 const computedValue = computed(() =>
   isFocus.value ? localValue : calculatedValue
-);
-const showComment = computed(() => props.comment);
+)
+const showComment = computed(() => props.comment)
 
-const mathHelpers = ["/", "*", "+", "-", "(", ")"];
+const mathHelpers = ['/', '*', '+', '-', '(', ')']
 </script>
 
 <style lang="scss" scoped>

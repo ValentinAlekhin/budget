@@ -17,31 +17,31 @@
 </template>
 
 <script lang="ts" setup>
-import { object, string } from "yup";
-import { useAuthStore } from "~/store/auth";
-import { useBackendValidators } from "~/composables/useBackendValidators";
+import { object, string } from 'yup'
+import { useAuthStore } from '~/store/auth'
+import { useBackendValidators } from '~/composables/useBackendValidators'
 
-const authStore = useAuthStore();
-const { usernameSchema, emailSchema } = useBackendValidators();
+const authStore = useAuthStore()
+const { usernameSchema, emailSchema } = useBackendValidators()
 
 const schema = object({
   username: usernameSchema,
   email: emailSchema,
   password: string()
-    .min(8, "Must be at least 8 characters")
-    .required("Password required"),
-});
+    .min(8, 'Must be at least 8 characters')
+    .required('Password required'),
+})
 
 const state = ref({
-  username: "",
-  password: "",
-  email: "",
-});
+  username: '',
+  password: '',
+  email: '',
+})
 
-const form = ref();
+const form = ref()
 
 const submit = async () => {
-  await form.value!.validate();
-  await authStore.register(state.value);
-};
+  await form.value!.validate()
+  await authStore.register(state.value)
+}
 </script>

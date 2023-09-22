@@ -1,15 +1,15 @@
 <template>
   <div
-    class="bg-background/75 backdrop-blur border-b border-gray-200 dark:border-gray-800 -mb-px fixed w-full top-0 z-50"
+    class="bg-background/75 fixed top-0 z-50 -mb-px w-full border-b border-gray-200 backdrop-blur dark:border-gray-800"
   >
     <header
-      class="py-2 px-2 flex flex-wrap justify-between items-center mx-auto max-w-screen-xl"
+      class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-2"
     >
       <div class="flex items-center">
         <div id="headerTeleport" />
       </div>
 
-      <div class="flex justify-between items-center w-28">
+      <div class="flex w-28 items-center justify-between">
         <header-connection />
 
         <ui-theme-switch />

@@ -12,7 +12,7 @@
       @edit="editRecord = $event"
       @delete="deleteId = $event.id"
     />
-    <div class="flex justify-center mt-10">
+    <div class="mt-10 flex justify-center">
       <UPagination
         v-model="page"
         :page-count="pageCount"
@@ -35,25 +35,25 @@
 </template>
 
 <script lang="ts" setup>
-import { useRecordStore } from "~/store/record";
-import { useScreenSize } from "~/composables/useScreenSize";
+import { useRecordStore } from '~/store/record'
+import { useScreenSize } from '~/composables/useScreenSize'
 
-const recordStore = useRecordStore();
+const recordStore = useRecordStore()
 
-const editRecord = ref<any>(null);
-const deleteId = ref("");
+const editRecord = ref<any>(null)
+const deleteId = ref('')
 
-const page = ref(1);
-const pageCount = 20;
+const page = ref(1)
+const pageCount = 20
 
-const { smallerThanLg } = useScreenSize();
+const { smallerThanLg } = useScreenSize()
 
 const rows = computed(() =>
   recordStore.data.slice((page.value - 1) * pageCount, page.value * pageCount)
-);
+)
 
 const removeRecord = (id: string) => {
-  deleteId.value = "";
-  recordStore.delete(id);
-};
+  deleteId.value = ''
+  recordStore.delete(id)
+}
 </script>

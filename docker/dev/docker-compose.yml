@@ -8,5 +8,5 @@ services:
       POSTGRES_USER: "budget"
       POSTGRES_PASSWORD: "budget"
     ports:
-      - "5433:5432"
+      - "5432:5432"
     restart: unless-stopped

@@ -1,15 +1,15 @@
-import { acceptHMRUpdate, defineStore } from "pinia";
-import { CategoryDto } from "../../../common/dto/category";
-import { useNotify } from "~/composables/useNotify";
-import { cudController } from "~/common/cud";
+import { acceptHMRUpdate, defineStore } from 'pinia'
+import { CategoryDto } from '../../../common/dto/category'
+import { useNotify } from '~/composables/useNotify'
+import { cudController } from '~/common/cud'
 
 export interface CategoryState {
-  data: CategoryDto[];
-  loading: boolean;
-  error: any;
+  data: CategoryDto[]
+  loading: boolean
+  error: any
 }
 
-export const useCategoryStore = defineStore("category", {
+export const useCategoryStore = defineStore('category', {
   state: (): CategoryState => ({
     data: [],
     loading: false,
@@ -17,69 +17,69 @@ export const useCategoryStore = defineStore("category", {
   }),
   actions: {
     async fetchAll() {
-      this.loading = true;
-      this.error = null;
+      this.loading = true
+      this.error = null
 
       try {
-        if (this.data?.length) return;
+        if (this.data?.length) return
 
-        const { api } = useApi();
-        const { data } = await api.get<CategoryDto[]>("/category");
-        this.data = data;
+        const { api } = useApi()
+        const { data } = await api.get<CategoryDto[]>('/category')
+        this.data = data
       } catch (e) {
-        const notify = useNotify();
-        notify.error("Ошибка при загрузке категорий");
-        this.error = e;
+        const notify = useNotify()
+        notify.error('Ошибка при загрузке категорий')
+        this.error = e
       } finally {
-        this.loading = false;
+        this.loading = false
       }
     },
     async init() {
-      await this.cudInit();
-      await this.fetchAll();
+      await this.cudInit()
+      await this.fetchAll()
     },
     async addCategory(category: { name: string; type: string; order: number }) {
-      const { api } = useApi();
+      const { api } = useApi()
       try {
-        await api.post("/category", category);
+        await api.post('/category', category)
       } catch (e) {
-        const notify = useNotify();
-        notify.error("Ошибка при сохранении");
+        const notify = useNotify()
+        notify.error('Ошибка при сохранении')
       }
     },
     async updateMany(data: CategoryDto[]) {
-      const { api } = useApi();
+      const { api } = useApi()
       try {
-        await api.put("/category/many", { data });
+        await api.put('/category/many', { data })
       } catch (e) {
-        const notify = useNotify();
-        notify.error("Ошибка при обновлении категорий");
+        const notify = useNotify()
+        notify.error('Ошибка при обновлении категорий')
       }
     },
     async delete(id: string) {
-      const { api } = useApi();
+      const { api } = useApi()
       try {
-        await api.delete(`/category/${id}`);
+        await api.delete(`/category/${id}`)
       } catch (e) {
-        const notify = useNotify();
-        notify.error("Ошибка при удалении");
+        const notify = useNotify()
+        notify.error('Ошибка при удалении')
       }
     },
-    ...cudController({ action: "category" }),
+    ...cudController({ action: 'category' }),
   },
   getters: {
     costs: (state) =>
       state.data
-        .filter((c) => c.type === "cost")
+        .filter((c) => c.type === 'cost')
         .sort((a, b) => a.order - b.order),
     incoming: (state) =>
       state.data
-        .filter((c) => c.type === "inc")
+        .filter((c) => c.type === 'inc')
         .sort((a, b) => a.order - b.order),
     getById: (state) => (id: string) => state.data.find((c) => c.id === id),
   },
-});
+})
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useCategoryStore, import.meta.hot));
+  import.meta.hot.accept(acceptHMRUpdate(useCategoryStore, import.meta.hot))
 }

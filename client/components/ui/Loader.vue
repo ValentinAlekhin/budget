@@ -14,7 +14,7 @@
   transform: translate(-50%, -50%);
 }
 .loader:before {
-  content: "";
+  content: '';
   position: absolute;
   transform: translate(-50%, -50%) rotate(45deg);
   height: 100%;
@@ -24,7 +24,7 @@
   top: 50%;
 }
 .loader:after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0.2em;
   bottom: 0.18em;

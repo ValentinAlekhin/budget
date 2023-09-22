@@ -3,8 +3,8 @@
     <UModal v-model="isOpen" @close="close">
       <UCard :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
         <template #header>
-          <span class="dark:text-white font-medium text-xl">
-            Редактирование записи {{ record?.id || "" }}
+          <span class="text-xl font-medium dark:text-white">
+            Редактирование записи {{ record?.id || '' }}
           </span>
         </template>
 
@@ -48,29 +48,29 @@
 </template>
 
 <script lang="ts" setup>
-import { object, string, date, mixed, number } from "yup";
-import dayjs from "dayjs";
-import { useCategoryStore } from "~/store/category";
-import { useRecordStore } from "~/store/record";
+import { object, string, date, mixed, number } from 'yup'
+import dayjs from 'dayjs'
+import { useCategoryStore } from '~/store/category'
+import { useRecordStore } from '~/store/record'
 
-const recordStore = useRecordStore();
-const categoriesStore = useCategoryStore();
+const recordStore = useRecordStore()
+const categoriesStore = useCategoryStore()
 
 const props = defineProps({
   isOpen: { type: Boolean },
   record: { type: Object, default: () => ({}) },
-});
-const emit = defineEmits(["close"]);
+})
+const emit = defineEmits(['close'])
 
 const isOpen = computed({
   get: () => props.isOpen,
-  set: () => emit("close"),
-});
+  set: () => emit('close'),
+})
 
 const categoryOptions = computed(() =>
   categoriesStore.data.map((c) => ({ id: c.id, label: c.name }))
-);
-const types = ["cost", "dist", "inc"];
+)
+const types = ['cost', 'dist', 'inc']
 
 const schema = object({
   amount: number().required(),
@@ -78,49 +78,49 @@ const schema = object({
   type: mixed().oneOf(types),
   timestamp: date().required(),
   comment: string(),
-});
+})
 
 const state = ref({
   amount: 0,
-  categoryId: "",
-  type: "",
+  categoryId: '',
+  type: '',
   timestamp: dayjs(),
-  comment: "",
-});
+  comment: '',
+})
 
 const currentCategory = computed(
   () =>
-    categoryOptions.value.find((c) => c.id === state.value.categoryId) || " "
-);
+    categoryOptions.value.find((c) => c.id === state.value.categoryId) || ' '
+)
 
 watch(
   () => props.record,
   (record) => {
-    if (!record) return;
+    if (!record) return
 
-    state.value.amount = record?.amount;
-    state.value.categoryId = record?.categoryId;
-    state.value.type = record?.type;
-    state.value.timestamp = record?.timestamp;
-    state.value.comment = record?.comment;
+    state.value.amount = record?.amount
+    state.value.categoryId = record?.categoryId
+    state.value.type = record?.type
+    state.value.timestamp = record?.timestamp
+    state.value.comment = record?.comment
   }
-);
+)
 
-const form = ref();
-const loading = ref(false);
+const form = ref()
+const loading = ref(false)
 
-const close = () => emit("close");
+const close = () => emit('close')
 
 const submit = async () => {
-  loading.value = true;
+  loading.value = true
   await recordStore.update({
     ...state.value,
     id: props.record?.id,
     amount: Number(state.value.amount),
-  });
+  })
 
-  loading.value = false;
+  loading.value = false
 
-  close();
-};
+  close()
+}
 </script>

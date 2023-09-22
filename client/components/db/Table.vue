@@ -18,7 +18,7 @@
 
     <template #timestamp-data="{ row }">
       <span>
-        {{ dayjs(row.timestamp).format("DD.MM.YYYY") }}
+        {{ dayjs(row.timestamp).format('DD.MM.YYYY') }}
       </span>
     </template>
 
@@ -32,48 +32,48 @@
   </UTable>
 </template>
 <script lang="ts" setup>
-import dayjs from "dayjs";
-import { numberWithSpaces } from "~/utils";
-import { useCategory } from "~/composables/useCategory";
-import { useRecord } from "~/composables/useRecord";
+import dayjs from 'dayjs'
+import { numberWithSpaces } from '~/utils'
+import { useCategory } from '~/composables/useCategory'
+import { useRecord } from '~/composables/useRecord'
 
-const { getCategoryName } = useCategory();
-const { getTypeColor } = useRecord();
+const { getCategoryName } = useCategory()
+const { getTypeColor } = useRecord()
 
-const props = defineProps<{ rows: any[] }>();
-const emit = defineEmits(["edit", "delete"]);
+const props = defineProps<{ rows: any[] }>()
+const emit = defineEmits(['edit', 'delete'])
 
 const columns = [
   {
-    label: "Amount",
-    dataIndex: "amount",
-    key: "amount",
+    label: 'Amount',
+    dataIndex: 'amount',
+    key: 'amount',
     width: 100,
   },
   {
-    label: "Category",
-    dataIndex: "category",
-    key: "category",
+    label: 'Category',
+    dataIndex: 'category',
+    key: 'category',
   },
   {
-    label: "Type",
-    dataIndex: "type",
-    key: "type",
+    label: 'Type',
+    dataIndex: 'type',
+    key: 'type',
   },
   {
-    label: "Comment",
-    dataIndex: "comment",
-    key: "comment",
+    label: 'Comment',
+    dataIndex: 'comment',
+    key: 'comment',
   },
   {
-    label: "Timestamp",
-    dataIndex: "timestamp",
-    key: "timestamp",
+    label: 'Timestamp',
+    dataIndex: 'timestamp',
+    key: 'timestamp',
   },
   {
-    label: "Action",
-    key: "action",
-    dataIndex: "action",
+    label: 'Action',
+    key: 'action',
+    dataIndex: 'action',
   },
-];
+]
 </script>

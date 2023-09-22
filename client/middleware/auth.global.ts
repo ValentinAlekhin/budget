@@ -1,29 +1,29 @@
-import { useAuthStore } from "~/store/auth";
-import { useGlobalLoading } from "~/composables/useGlobalLoading";
+import { useAuthStore } from '~/store/auth'
+import { useGlobalLoading } from '~/composables/useGlobalLoading'
 
 export default defineNuxtRouteMiddleware(async (to) => {
-  const { api, tokensStore } = useApi();
-  const toAuth = to.path.includes("auth");
-  const authStore = useAuthStore();
+  const { api, tokensStore } = useApi()
+  const toAuth = to.path.includes('auth')
+  const authStore = useAuthStore()
 
-  const token = tokensStore.value.accessToken;
+  const token = tokensStore.value.accessToken
 
-  if (!token && !toAuth) return navigateTo("/auth");
+  if (!token && !toAuth) return navigateTo('/auth')
 
-  api.defaults.headers.common.Authorization = `Bearer ${token}`;
+  api.defaults.headers.common.Authorization = `Bearer ${token}`
 
-  const { fetchAll } = useGlobalLoading();
+  const { fetchAll } = useGlobalLoading()
 
   try {
-    if (authStore.user) return;
+    if (authStore.user) return
     if (token) {
-      await authStore.getMe();
-      await fetchAll();
+      await authStore.getMe()
+      await fetchAll()
 
-      if (toAuth) return navigateTo("/");
+      if (toAuth) return navigateTo('/')
     }
   } catch (e) {
-    authStore.logout();
-    return navigateTo("/auth");
+    authStore.logout()
+    return navigateTo('/auth')
   }
-});
+})

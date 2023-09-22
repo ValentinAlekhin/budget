@@ -1,15 +1,15 @@
 <template>
-  <div class="pt-14 pb-40 lg:pb-0 h-full overflow-y-auto">
+  <div class="h-full overflow-y-auto pb-40 pt-14 lg:pb-0">
     <Header />
 
     <UiLoader v-if="loading" />
 
     <UCard
       v-else-if="error"
-      class="w-56 fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+      class="fixed left-[50%] top-[50%] w-56 translate-x-[-50%] translate-y-[-50%]"
     >
       <div class="flex flex-col items-center">
-        <span class="text-rose-400 text-center mb-4">
+        <span class="mb-4 text-center text-rose-400">
           Error loading data from the server
         </span>
 
@@ -29,13 +29,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useGlobalLoading } from "~/composables/useGlobalLoading";
-import { useScreenSize } from "~/composables/useScreenSize";
+import { onMounted } from 'vue'
+import { useGlobalLoading } from '~/composables/useGlobalLoading'
+import { useScreenSize } from '~/composables/useScreenSize'
 
-const { fetchAll, loading, error, initSocket } = useGlobalLoading();
+const { fetchAll, loading, error, initSocket } = useGlobalLoading()
 
-const { smallerThanLg } = useScreenSize();
+const { smallerThanLg } = useScreenSize()
 
-onMounted(() => initSocket());
+onMounted(() => initSocket())
 </script>

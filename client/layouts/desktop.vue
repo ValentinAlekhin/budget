@@ -1,10 +1,10 @@
 <template>
   <BaseLayout>
-    <ul class="grid gap-2 cardList">
+    <ul class="cardList grid gap-2">
       <UCard
         v-for="component of components"
         :key="component"
-        class="h-full overflow-y-auto hover:ring-cyan-500 dark:hover:ring-cyan-800 ease-in-out duration-200 scrollbar-none"
+        class="h-full overflow-y-auto duration-200 ease-in-out scrollbar-none hover:ring-cyan-500 dark:hover:ring-cyan-800"
       >
         <Component :is="component" />
       </UCard>
@@ -13,9 +13,9 @@
 </template>
 
 <script lang="ts" setup>
-const components = ["cost", "dist", "db", "stat"].map((name) =>
+const components = ['cost', 'dist', 'db', 'stat'].map((name) =>
   resolveComponent(name)
-);
+)
 </script>
 
 <style lang="scss" scoped>

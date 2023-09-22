@@ -1,6 +1,6 @@
-import { useActionsStore } from "~/store/actions";
+import { useActionsStore } from '~/store/actions'
 
 export default defineNuxtRouteMiddleware(() => {
-  const actionsStore = useActionsStore();
-  actionsStore.$reset();
-});
+  const actionsStore = useActionsStore()
+  actionsStore.$reset()
+})

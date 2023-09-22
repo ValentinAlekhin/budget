@@ -2,7 +2,7 @@
   <UModal v-model="open">
     <UCard>
       <template #header>
-        <span class="dark:text-white font-medium text-xl">{{ title }}</span>
+        <span class="text-xl font-medium dark:text-white">{{ title }}</span>
       </template>
 
       <div class="flex justify-between">
@@ -17,16 +17,16 @@
 export default {
   props: {
     isOpen: { type: Boolean },
-    title: { type: String, default: "Confirm remove" },
+    title: { type: String, default: 'Confirm remove' },
   },
-  emits: ["close", "remove"],
+  emits: ['close', 'remove'],
   computed: {
     open: {
       get: (vm) => vm.isOpen,
       set() {
-        this.$emit("close");
+        this.$emit('close')
       },
     },
   },
-};
+}
 </script>

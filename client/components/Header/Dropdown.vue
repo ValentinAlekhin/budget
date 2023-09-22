@@ -19,14 +19,14 @@
 
       <UIcon
         :name="item.icon"
-        class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
+        class="ms-auto h-4 w-4 shrink-0 text-gray-400 dark:text-gray-500"
       />
     </template>
 
     <UModal v-model="isOpen" class="w-80">
       <UCard>
         <template #header>
-          <span class="dark:text-white text-lg font-medium"
+          <span class="text-lg font-medium dark:text-white"
             >Confirm logout</span
           >
         </template>
@@ -41,38 +41,38 @@
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from "pinia";
-import { useAuthStore } from "~/store/auth";
+import { storeToRefs } from 'pinia'
+import { useAuthStore } from '~/store/auth'
 
-const authStore = useAuthStore();
-const { user } = storeToRefs(authStore);
-const isOpen = ref(false);
+const authStore = useAuthStore()
+const { user } = storeToRefs(authStore)
+const isOpen = ref(false)
 
 const usernameFirstLetter = computed(() =>
   user.value?.username[0].toUpperCase()
-);
+)
 
 const items = [
   [
     {
       label: user.value?.username,
-      slot: "account",
+      slot: 'account',
       disabled: true,
     },
   ],
   [
     {
-      label: "Settings",
-      icon: "i-heroicons-cog-8-tooth",
-      to: "/settings",
+      label: 'Settings',
+      icon: 'i-heroicons-cog-8-tooth',
+      to: '/settings',
     },
   ],
   [
     {
-      label: "Logout",
-      icon: "i-heroicons-arrow-left-on-rectangle",
+      label: 'Logout',
+      icon: 'i-heroicons-arrow-left-on-rectangle',
       click: () => (isOpen.value = true),
     },
   ],
-];
+]
 </script>

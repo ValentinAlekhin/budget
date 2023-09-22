@@ -3,15 +3,15 @@
 </template>
 
 <script lang="ts" setup>
-import { Options } from "highcharts";
-import { storeToRefs } from "pinia";
-import { sumBy } from "lodash-es";
-import { AVAILABLE_MONTH, MONTH_LIST_RU } from "~/constants";
-import { useCategoryStore } from "~/store/category";
-const categoryStore = useCategoryStore();
+import { Options } from 'highcharts'
+import { storeToRefs } from 'pinia'
+import { sumBy } from 'lodash-es'
+import { AVAILABLE_MONTH, MONTH_LIST_RU } from '~/constants'
+import { useCategoryStore } from '~/store/category'
+const categoryStore = useCategoryStore()
 
-const { costs: categories } = storeToRefs(categoryStore);
-const props = defineProps(["records"]);
+const { costs: categories } = storeToRefs(categoryStore)
+const props = defineProps(['records'])
 
 const series = computed(() =>
   Object.entries(
@@ -22,27 +22,27 @@ const series = computed(() =>
             props.records.filter(
               (r) => r.month === month && r.category?.id === id
             ),
-            "amount"
+            'amount'
           ) || null
-      );
+      )
 
-      return acc;
+      return acc
     }, {})
   ).map(([name, data]) => ({ name, data }))
-);
+)
 
 const options = computed(
   (): Options => ({
     chart: {
-      type: "area",
-      backgroundColor: "rgba(0,0,0,0)",
+      type: 'area',
+      backgroundColor: 'rgba(0,0,0,0)',
     },
     plotOptions: {
       series: {
         pointStart: 1,
       },
       area: {
-        stacking: "percent",
+        stacking: 'percent',
         marker: {
           enabled: false,
         },
@@ -51,18 +51,18 @@ const options = computed(
     accessibility: {
       point: {
         valueDescriptionFormat:
-          "{index}. {point.category}, {point.y:,.1f} тыс. рублей, {point.percentage:.1f}%.",
+          '{index}. {point.category}, {point.y:,.1f} тыс. рублей, {point.percentage:.1f}%.',
       },
     },
     xAxis: {
       categories: MONTH_LIST_RU,
       accessibility: {
-        description: "Months of the year",
+        description: 'Months of the year',
       },
     },
     yAxis: {
       labels: {
-        format: "{value}%",
+        format: '{value}%',
       },
       title: {
         enabled: false,
@@ -74,14 +74,14 @@ const options = computed(
       split: true,
     },
     title: {
-      text: "Статистика по всем категориям",
+      text: 'Статистика по всем категориям',
     },
     series: series.value,
     legend: {
       itemStyle: {
-        color: "#fff",
+        color: '#fff',
       },
     },
   })
-);
+)
 </script>

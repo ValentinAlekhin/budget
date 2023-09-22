@@ -2,10 +2,12 @@
   <div>
     <ClientOnly>
       <Teleport to="#headerTeleport">
-        <span v-if="balance" class="mr-4 font-semibold text-base" @click="copyBalance">
-          {{
-            numberWithSpaces(balance)
-          }}
+        <span
+          v-if="balance"
+          class="mr-4 font-semibold text-base"
+          @click="copyBalance"
+        >
+          {{ numberWithSpaces(balance) }}
         </span>
       </Teleport>
     </ClientOnly>
@@ -13,17 +15,17 @@
     <UTabs v-model:activeKey="activeKey" :items="tabs">
       <template #incoming>
         <dist-list
-            :items="incomingList"
-            :model-value="incoming"
-            @update:model-value="inputIncoming"
+          :items="incomingList"
+          :model-value="incoming"
+          @update:model-value="inputIncoming"
         />
       </template>
 
       <template #distribution>
         <dist-list
-            v-model="cost"
-            :items="categoriesWithBalance"
-            @update:model-value="inputCost"
+          v-model="cost"
+          :items="categoriesWithBalance"
+          @update:model-value="inputCost"
         />
       </template>
 
@@ -43,8 +45,8 @@ import { useCategoriesWithBalance } from "~/composables/useCategoriesWithBalance
 import { useRecordStore } from "~/store/record";
 import { useNotify } from "~/composables/useNotify";
 import { useActionsStore } from "~/store/actions";
-import {useClipboard} from '@vueuse/core'
-import {sum, sumBy} from 'lodash-es'
+import { useClipboard } from "@vueuse/core";
+import { sum, sumBy } from "lodash-es";
 
 const categoryStore = useCategoryStore();
 const recordStore = useRecordStore();
@@ -82,10 +84,10 @@ const hasValue = computed(() => {
 
 const balance = computed(() => {
   return (
-      sum(Object.values(incoming)) +
-      sumBy(recordInc.value, "amount") -
-      sum(Object.values(cost)) -
-      sumBy(recordDist.value, "amount")
+    sum(Object.values(incoming)) +
+    sumBy(recordInc.value, "amount") -
+    sum(Object.values(cost)) -
+    sumBy(recordDist.value, "amount")
   );
 });
 
@@ -125,10 +127,10 @@ const save = async () => {
 };
 
 const copyBalance = async () => {
-  const { copy } = useClipboard({ source: balance })
-  await copy()
-  notify.success('Copied')
-}
+  const { copy } = useClipboard({ source: balance });
+  await copy();
+  notify.success("Copied");
+};
 
 watch(hasValue, (value) => {
   if (value) {
@@ -139,4 +141,3 @@ watch(hasValue, (value) => {
   } else actionsStore.$reset();
 });
 </script>
-

@@ -21,6 +21,8 @@ export const validationSchema = Joi.object({
   ACCESS_TOKEN_EXPIRATION: Joi.string().required(),
   REFRESH_TOKEN_SECRET: Joi.string().required(),
   REFRESH_TOKEN_EXPIRATION: Joi.string().required(),
+
+  BOT_TOKEN: Joi.string().required()
 })
 
 export const validationOptions = {

@@ -1,10 +1,10 @@
 export default defineAppConfig({
-  title: "Budget",
+  title: 'Budget',
 
   ui: {
-    primary: "cyan",
+    primary: 'cyan',
     notifications: {
-      position: "bottom-10 right-0",
+      position: 'bottom-10 right-0',
     },
   },
-});
+})
