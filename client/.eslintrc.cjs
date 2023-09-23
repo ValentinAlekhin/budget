@@ -17,7 +17,10 @@ module.exports = {
   rules: {
     'vue/multi-word-component-names': 0,
     semi: [2, 'never'],
-    'prettier/prettier': ['error', { semi: false, singleQuote: true }],
+    'prettier/prettier': [
+      'error',
+      { semi: false, singleQuote: true, endOfLine: 'auto' },
+    ],
     quotes: [2, 'single', { avoidEscape: true }],
   },
 }
