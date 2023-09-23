@@ -13,7 +13,7 @@
       square
       variant="solid"
       :class="btn.class"
-      :ui="{ rounded: 'rounded-full' }"
+      class="rounded-xl"
       @click="btn.click"
     />
   </TransitionGroup>

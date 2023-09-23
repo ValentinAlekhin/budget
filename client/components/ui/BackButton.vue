@@ -1,7 +1,7 @@
 <template>
   <UButton
     icon="i-heroicons-arrow-small-left"
-    :ui="{ rounded: 'rounded-full' }"
+    class="rounded-md"
     size="xs"
     :to="to"
     @click="$emit('click')"

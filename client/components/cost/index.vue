@@ -42,7 +42,7 @@
         </template>
       </UInput>
 
-      <div v-if="inp.focused" class="math-helpers">
+      <div v-if="inp.focused">
         <UButton
           v-for="mathHelper of []"
           :key="mathHelper"
