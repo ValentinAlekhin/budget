@@ -26,12 +26,14 @@
             />
             <span
               v-else
-              class="w-20 truncate text-ellipsis"
+              class="w-20 truncate"
               :class="{ 'text-cyan-400': inp.focused }"
             >
               {{ inp.name }}
             </span>
-            <span :class="inp.colorClass">{{ inp.formattedBalance }}</span>
+            <span v-if="inp.formattedBalance" :class="inp.colorClass">
+              {{ inp.formattedBalance }}
+            </span>
           </div>
         </template>
 

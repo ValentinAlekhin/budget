@@ -23,46 +23,42 @@
       @end="drag = false"
     >
       <template #item="{ element }">
-        <div class="inputContainer mb-2 grid grid-cols-3 items-center gap-1">
-          <UButton
-            size="sm"
-            color="rose"
-            icon="i-heroicons-trash"
-            :ui="{ rounded: 'rounded-full' }"
-            variant="ghost"
-            @click="itemToDelete = element"
-          />
-
-          <div class="grid w-[75vw] grid-cols-2 gap-2">
-            <UInput
-              size="md"
-              :model-value="element.name"
-              @input="element.setName"
+        <UCard class="mb-2" :ui="cardUi">
+          <div class="inputContainer grid items-center gap-1">
+            <UButton
+              size="sm"
+              color="rose"
+              icon="i-heroicons-trash"
+              :ui="{ rounded: 'rounded-full' }"
+              variant="ghost"
+              @click="itemToDelete = element"
             />
 
-            <UInput
-              size="md"
-              :model-value="element.icon"
-              @input="element.setIcon"
-            >
-              <template v-if="element.icon" #trailing>
-                <Icon :name="element.icon" size="24" />
-              </template>
-            </UInput>
-          </div>
+            <div class="flex items-center">
+              <span class="mr-2"> {{ element.name }}</span>
+              <Icon v-if="element.icon" :name="element.icon" size="24" />
+            </div>
 
-          <UButton
-            class="handle"
-            size="sm"
-            :ui="{ rounded: 'rounded-full' }"
-            icon="i-heroicons-arrows-up-down"
-            variant="ghost"
-          />
-        </div>
+            <UButton
+              size="sm"
+              icon="i-heroicons-pencil-square"
+              variant="ghost"
+              @click="startEditCategory(element.id)"
+            />
+
+            <UButton
+              class="handle"
+              size="sm"
+              :ui="{ rounded: 'rounded-full' }"
+              icon="i-heroicons-arrows-up-down"
+              variant="ghost"
+            />
+          </div>
+        </UCard>
       </template>
     </Draggable>
 
-    <UModal v-model="addModal">
+    <UModal v-model="modalOpen">
       <UCard>
         <template #header>
           <span class="text-xl font-medium dark:text-white">
@@ -73,6 +69,14 @@
         <UForm ref="form" :schema="schema" :state="state">
           <UFormGroup label="Name" name="name" class="mb-2">
             <UInput v-model="state.name" />
+          </UFormGroup>
+
+          <UFormGroup label="Comment" name="comment" class="mb-2">
+            <UInput v-model="state.comment" />
+          </UFormGroup>
+
+          <UFormGroup label="Plan" name="plan" class="mb-2">
+            <UInput v-model="state.plan" />
           </UFormGroup>
 
           <UFormGroup label="Icon" name="icon">
@@ -95,7 +99,9 @@
         </UForm>
 
         <template #footer>
-          <UButton block @click="saveNew"> Add </UButton>
+          <UButton block @click="submitModal">
+            {{ editCategoryId ? 'Update' : 'Add' }}
+          </UButton>
         </template>
       </UCard>
     </UModal>
@@ -112,9 +118,10 @@
 <script setup lang="ts">
 import Draggable from 'vuedraggable'
 import { storeToRefs } from 'pinia'
-import { object, string } from 'yup'
-import { get, last } from 'lodash-es'
+import { number, object, string } from 'yup'
+import { cloneDeep, get, last } from 'lodash-es'
 import { set } from 'vue-demi'
+import Omit from 'lodash-es/omit'
 import { useCategoryStore } from '~/store/category'
 import { useActionsStore } from '~/store/actions'
 import BackButton from '~/components/ui/BackButton.vue'
@@ -126,28 +133,48 @@ const toast = useToast()
 const { costs } = storeToRefs(categoryStore)
 const router = useRouter()
 
-const formState = reactive<
-  Record<string, { name: string; order: number; icon?: string }>
->(
+class CategoryState {
+  name: string
+  order: number
+  comment: string
+  icon?: string
+  plan?: number | null
+}
+class CategoryStateWithoutOrder extends Omit<CategoryState, 'order'> {}
+
+const formState = reactive<Record<string, CategoryState>>(
   costs.value.reduce((acc, c, i) => {
-    acc[c.id] = { order: i + 1, name: c.name, icon: c.icon }
+    acc[c.id] = {
+      order: i + 1,
+      name: c.name,
+      icon: c.icon,
+      comment: c.comment,
+      plan: c.plan,
+    }
 
     return acc
   }, {})
 )
 const drag = ref<boolean>(false)
-const addModal = ref<boolean>(false)
+const modalOpen = ref<boolean>(false)
+const editCategoryId = ref<string | null>(null)
 const itemToDelete = ref<any>(null)
 
 const schema = object({
-  name: string().required('Category name required').min(4),
-  icon: string(),
+  name: string().required('Category name required').min(2),
+  icon: string().nullable(),
+  comment: string().nullable(),
+  plan: number().min(0).nullable(),
 })
 
-const state = ref({
+const defaultState = {
   name: '',
   icon: '',
-})
+  comment: '',
+  plan: null,
+}
+const state = ref<CategoryStateWithoutOrder>(cloneDeep(defaultState))
+const clearState = () => (state.value = cloneDeep(defaultState))
 
 const form = ref()
 
@@ -185,6 +212,8 @@ const computedInputs = computed({
           name,
           order,
           icon,
+          comment: get(formState, `${id}.comment`),
+          plan: get(formState, `${id}.plan`),
           setName: (e) => set(formState, namePath, e.target.value),
           setOrder: (order) => set(formState, orderPath, order),
           setIcon: (e) => set(formState, iconPath, e.target.value),
@@ -194,36 +223,73 @@ const computedInputs = computed({
   set: (value) => value.forEach((item, i) => item.setOrder(i + 1)),
 })
 
+const startEditCategory = (categoryId: string) => {
+  const targetCategory = categoryStore.getById(categoryId)
+  state.value = {
+    name: targetCategory.name,
+    icon: targetCategory.icon,
+    comment: targetCategory.comment,
+    plan: targetCategory.plan,
+  }
+  editCategoryId.value = categoryId
+  modalOpen.value = true
+}
 const save = async () => {
-  const payload = computedInputs.value.map(({ id, order, name, icon }) => ({
-    id,
-    order,
-    name,
-    icon,
-    type: 'cost',
-  }))
+  const payload = computedInputs.value.map(
+    ({ id, order, name, icon, comment, plan }) => ({
+      id,
+      order,
+      name,
+      icon,
+      comment,
+      plan,
+      type: 'cost',
+    })
+  )
 
   await categoryStore.updateMany(payload)
-
   await router.push('/')
 }
 
-const saveNew = async () => {
+const saveNewCategory = async () => {
   try {
     await form.value?.validate()
   } catch (e) {
-    toast.add({ title: 'Invalid category name' })
+    return toast.add({ title: 'Invalid form' })
   }
 
   const payload = {
     name: state.value.name,
     icon: state.value.icon,
+    comment: state.value.comment,
+    plan: state.value.plan,
     type: 'cost',
     order: (last(categoryStore.costs)?.order || 0) + 1,
   }
 
   await categoryStore.addCategory(payload)
-  addModal.value = false
+  modalOpen.value = false
+}
+
+const setUpdatedCategory = () => {
+  formState[editCategoryId.value] = {
+    ...formState[editCategoryId.value],
+    ...state.value,
+    plan: +state.value.plan,
+  }
+  editCategoryId.value = null
+}
+
+const submitModal = async () => {
+  try {
+    await form.value?.validate()
+  } catch (e) {
+    return toast.add({ title: 'Invalid form' })
+  }
+
+  editCategoryId ? setUpdatedCategory() : await saveNewCategory()
+
+  modalOpen.value = false
 }
 
 const removeItem = async (id: string) => {
@@ -231,9 +297,19 @@ const removeItem = async (id: string) => {
   itemToDelete.value = null
 }
 
+const cardUi = {
+  body: {
+    padding: 'px-6 py-3 sm:p-6',
+  },
+}
+
+watch(modalOpen, (value) => {
+  if (!value) clearState()
+})
+
 onMounted(() =>
   actionsStore.setActions({
-    add: () => (addModal.value = true),
+    add: () => (modalOpen.value = true),
     submit: save,
     cancel: () => router.push('/'),
   })
@@ -242,6 +318,6 @@ onMounted(() =>
 
 <style lang="scss" scoped>
 .inputContainer {
-  grid-template-columns: 30px 1fr 30px;
+  grid-template-columns: 30px 1fr 30px 30px;
 }
 </style>

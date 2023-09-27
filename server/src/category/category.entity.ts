@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne, OneToMany, JoinColumn } from 'typeorm'
 import {
   IsEnum,
+  IsHexColor,
   IsNumber,
   IsOptional,
   IsString,
@@ -41,6 +42,16 @@ export class CategoryEntity extends AbstractEntity {
   order: number
 
   @Column({ nullable: true })
+  @IsNumber()
+  @IsOptional()
+  plan: number | null
+
+  @Column({ nullable: true })
+  @IsHexColor()
+  @IsOptional()
+  color: string | null
+
+  @Column({ nullable: true })
   @IsString()
   @IsOptional()
   icon?: string | null
@@ -59,6 +70,8 @@ export class CategoryEntity extends AbstractEntity {
   @Column()
   userId: string
 
-  @OneToMany(() => RecordEntity, (record) => record.category)
+  @OneToMany(() => RecordEntity, (record) => record.category, {
+    onDelete: 'CASCADE',
+  })
   records: RecordEntity[]
 }

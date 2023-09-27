@@ -76,7 +76,8 @@ export const useCategoryStore = defineStore('category', {
       state.data
         .filter((c) => c.type === 'inc')
         .sort((a, b) => a.order - b.order),
-    getById: (state) => (id: string) => state.data.find((c) => c.id === id),
+    getById: (state) => (id: string) =>
+      state.data.find((c) => c.id === id) as CategoryDto,
   },
 })
 

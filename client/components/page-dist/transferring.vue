@@ -3,7 +3,7 @@
     <UFormGroup label="From" name="from" class="mt-2">
       <USelectMenu
         v-model="state.from"
-        :options="options"
+        :options="fromOptions"
         value-attribute="id"
         size="md"
       >
@@ -16,7 +16,7 @@
     <UFormGroup label="To" name="to" class="mt-2">
       <USelectMenu
         v-model="state.to"
-        :options="options"
+        :options="toOptions"
         value-attribute="id"
         size="md"
       >
@@ -35,64 +35,72 @@
 </template>
 
 <script lang="ts" setup>
-import { useCategoriesWithBalance } from "~/composables/useCategoriesWithBalance";
-import { useRecordStore } from "~/store/record";
-import dayjs from "dayjs";
-import { number, object, string } from "yup";
+import dayjs from 'dayjs'
+import { number, object, string } from 'yup'
+import { useCategoriesWithBalance } from '~/composables/useCategoriesWithBalance'
+import { useRecordStore } from '~/store/record'
 
-const recordStore = useRecordStore();
-const { categoriesWithBalance } = useCategoriesWithBalance();
+const recordStore = useRecordStore()
+const { categoriesWithBalance } = useCategoriesWithBalance()
 const options = computed(() =>
-  categoriesWithBalance.value.map(({ id, name, balance }) => ({
+  categoriesWithBalance.value.map(({ id, name, formattedBalance }) => ({
     id,
-    label: `${name} - ${balance}`,
+    label: `${name} ${formattedBalance ? ` (${formattedBalance})` : ''}`,
   }))
-);
+)
 
 const schema = object({
   from: string().required(),
   to: string().required(),
-  amount: number().required(),
-});
+  amount: number().positive().required(),
+})
 
 const state = ref({
-  from: "",
-  to: "",
-  amount: "",
-});
+  from: '',
+  to: '',
+  amount: '',
+})
 
 const fromLabel = computed(
   () =>
     options.value.find((c) => c.id === state.value.from)?.label ||
-    "Select option"
-);
+    'Select option'
+)
 
 const toLabel = computed(
   () =>
-    options.value.find((c) => c.id === state.value.to)?.label || "Select option"
-);
+    options.value.find((c) => c.id === state.value.to)?.label || 'Select option'
+)
+
+const fromOptions = computed(() =>
+  options.value.filter((opt) => opt.id !== state.value.to)
+)
+
+const toOptions = computed(() =>
+  options.value.filter((opt) => opt.id !== state.value.from)
+)
 
 const save = async () => {
-  const timestamp = dayjs().toISOString();
+  const timestamp = dayjs().toISOString()
   const payload = [
     {
       categoryId: state.value.from,
       amount: -state.value.amount,
-      type: "dist",
+      type: 'dist',
       timestamp,
     },
     {
       categoryId: state.value.to,
       amount: +state.value.amount,
-      type: "dist",
+      type: 'dist',
       timestamp,
     },
-  ];
+  ]
 
-  await recordStore.addRecords(payload);
+  await recordStore.addRecords(payload)
 
-  state.value.amount = "";
-};
+  state.value.amount = ''
+}
 </script>
 
 <style lang="scss" scoped>

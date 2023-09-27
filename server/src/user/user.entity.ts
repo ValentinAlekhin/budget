@@ -34,9 +34,11 @@ export class UserEntity extends AbstractEntity {
   })
   password: string
 
-  @OneToMany(() => CategoryEntity, (category) => category.user)
+  @OneToMany(() => CategoryEntity, (category) => category.user, {
+    onDelete: 'CASCADE',
+  })
   categories: CategoryEntity[]
 
-  @OneToMany(() => TokenEntity, (token) => token.user)
+  @OneToMany(() => TokenEntity, (token) => token.user, { onDelete: 'CASCADE' })
   tokens: TokenEntity[]
 }

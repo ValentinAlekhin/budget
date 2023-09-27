@@ -4,7 +4,9 @@
       <span class="text-sm text-gray-700 dark:text-gray-400">
         Current balance
       </span>
-      <span class="text-2xl font-bold">{{ currentBalance }}</span>
+      <span class="text-2xl font-bold">
+        {{ numberWithSpaces(currentBalance) }}
+      </span>
     </div>
 
     <div>
@@ -20,7 +22,7 @@
             />
             Income
           </span>
-          <span class="font-bold">+{{ totalIncoming }}</span>
+          <span class="font-bold">+{{ numberWithSpaces(totalIncoming) }}</span>
         </div>
 
         <div class="flex flex-col">
@@ -31,7 +33,7 @@
             />
             Costs
           </span>
-          <span class="font-bold">-{{ totalCost }}</span>
+          <span class="font-bold">-{{ numberWithSpaces(totalCost) }}</span>
         </div>
       </div>
     </div>
@@ -75,23 +77,17 @@ import { sumBy } from 'lodash-es'
 import { Dayjs } from 'dayjs'
 import { useRecord } from '~/composables/useRecord'
 import { useRecordStore } from '~/store/record'
-import { useCategoriesWithBalance } from '~/composables/useCategoriesWithBalance'
 import { useCommonRanges } from '~/composables/useCommonRanges'
 
 const recordStore = useRecordStore()
 const { costs, inc } = storeToRefs(recordStore)
-const { categoriesWithBalance } = useCategoriesWithBalance()
 const { filterRecordsByRange } = useRecord()
 const { handleClick, currentRange } = useCommonRanges('home-range-index')
 
-const currentBalance = computed(() =>
-  numberWithSpaces(sumBy(categoriesWithBalance.value, 'balance'))
-)
+const totalIncoming = computed(() => sumBy(inc.value, 'amount'))
+const totalCost = computed(() => sumBy(costs.value, 'amount'))
 
-const totalIncoming = computed(() =>
-  numberWithSpaces(sumBy(inc.value, 'amount'))
-)
-const totalCost = computed(() => numberWithSpaces(sumBy(costs.value, 'amount')))
+const currentBalance = computed(() => totalIncoming.value - totalCost.value)
 
 const miniCards = computed(() =>
   [

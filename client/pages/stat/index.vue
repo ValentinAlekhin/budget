@@ -120,8 +120,6 @@ const list = computed(() =>
 
 const cardUi = {
   body: {
-    base: '',
-    background: '',
     padding: 'px-6 py-3 sm:p-6',
   },
 }
