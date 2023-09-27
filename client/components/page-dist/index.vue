@@ -1,23 +1,14 @@
 <template>
   <div>
-    <UTabs v-model:activeKey="activeKey" :items="tabs">
-      <template #incoming>
-        <page-dist-list
-          :items="incomingList"
-          :model-value="incoming"
-          @update:model-value="inputIncoming"
-        />
-      </template>
-
-      <template #transferring>
-        <page-dist-transferring />
-      </template>
-    </UTabs>
+    <page-dist-list
+      :items="incomingList"
+      :model-value="incoming"
+      @update:model-value="inputIncoming"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import dayjs from 'dayjs'
 import { useCategoryStore } from '~/store/category'
@@ -30,20 +21,8 @@ const actionsStore = useActionsStore()
 
 const { incoming: incomingList } = storeToRefs(categoryStore)
 
-const tabs = [
-  {
-    slot: 'incoming',
-    label: 'Incoming',
-  },
-  {
-    slot: 'transferring',
-    label: 'Transferring',
-  },
-]
-
 const incoming = reactive<Record<string, number>>({})
 const hasValue = computed(() => !!Object.values(incoming).find((v) => v))
-const activeKey = ref('inc')
 
 const inputIncoming = (e) => (incoming[e.id] = e.value)
 
