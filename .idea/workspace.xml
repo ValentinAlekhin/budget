@@ -4,26 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлена статистика для телефона">
-      <change afterPath="$PROJECT_DIR$/client/components/page-dist/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/migrations/1695837850028-UpdateCategory.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Заменено распределение на план">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/dist/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/dist/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/page-dist/list.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/dist/transferring.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/page-dist/transferring.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/dist.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/dist.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/dto/category.ts" beforeDir="false" afterPath="$PROJECT_DIR$/common/dto/category.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,7 +255,7 @@
       <workItem from="1695107165817" duration="6000" />
       <workItem from="1695137077449" duration="891000" />
       <workItem from="1695220949140" duration="2278000" />
-      <workItem from="1695837144507" duration="6533000" />
+      <workItem from="1695837144507" duration="6998000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -377,14 +361,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00045" summary="Добавлен деплой">
-      <option name="closed" value="true" />
-      <created>1694531321379</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1694531321379</updated>
     </task>
     <task id="LOCAL-00046" summary="Добавлен деплой">
       <option name="closed" value="true" />
@@ -650,7 +626,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695222415555</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Заменено распределение на план">
+      <option name="closed" value="true" />
+      <created>1695843982056</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1695843982056</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -668,7 +652,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлено обновление и удаление записи отрефакторен фронт" />
     <MESSAGE value="Добавлен socket.io добавлена стрница с БД" />
     <MESSAGE value="Добавлена страница cost" />
     <MESSAGE value="Фиксы и добавлены докерфайлы" />
@@ -693,7 +676,8 @@
     <MESSAGE value="Удалены лишние логи" />
     <MESSAGE value="Добавлены проценты в статистике" />
     <MESSAGE value="Обновлена БД для телефонов" />
-    <option name="LAST_COMMIT_MESSAGE" value="Обновлена БД для телефонов" />
+    <MESSAGE value="Заменено распределение на план" />
+    <option name="LAST_COMMIT_MESSAGE" value="Заменено распределение на план" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />

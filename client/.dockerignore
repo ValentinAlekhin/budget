@@ -1,5 +1,4 @@
 node_modules
 .nuxt
 .output
-components/page-dist
 .env
