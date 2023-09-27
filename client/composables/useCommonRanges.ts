@@ -14,6 +14,8 @@ export function useCommonRanges(name: string) {
     startOfCurrentDay,
     endOfCurrentMonth,
     endOfCurrentDay,
+    endOfCurrentYear,
+    startOfCurrentYear,
   } = useTimestamp()
 
   const rangeValues: ComputedRef<Range[]> = computed(() => [
@@ -31,6 +33,11 @@ export function useCommonRanges(name: string) {
       name: 'Last 30 days',
       start: endOfCurrentDay.value.subtract(30, 'day'),
       end: endOfCurrentDay.value,
+    },
+    {
+      name: 'Current year',
+      start: startOfCurrentYear.value,
+      end: endOfCurrentYear.value,
     },
   ])
 

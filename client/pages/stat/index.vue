@@ -15,7 +15,7 @@
       <div class="flex items-center justify-between">
         <span class="font-bold text-gray-900 dark:text-white"> Total sum </span>
         <span class="text-xl font-bold text-gray-900 dark:text-white">
-          {{ totalSum }}
+          {{ numberWithSpaces(totalSum) }}
         </span>
       </div>
     </UCard>

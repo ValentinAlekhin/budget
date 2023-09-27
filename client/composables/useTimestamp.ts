@@ -14,6 +14,10 @@ export function useTimestamp() {
   const endOfCurrentMonth = computed(() =>
     startOfCurrentMonth.value.add(1, 'month')
   )
+  const startOfCurrentYear = computed(() => startOfCurrentMonth.value.month(0))
+  const endOfCurrentYear = computed(() =>
+    startOfCurrentYear.value.add(1, 'year')
+  )
 
   return {
     now,
@@ -21,5 +25,7 @@ export function useTimestamp() {
     startOfCurrentMonth,
     endOfCurrentDay,
     endOfCurrentMonth,
+    startOfCurrentYear,
+    endOfCurrentYear,
   }
 }

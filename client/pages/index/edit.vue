@@ -71,12 +71,12 @@
             <UInput v-model="state.name" />
           </UFormGroup>
 
-          <UFormGroup label="Comment" name="comment" class="mb-2">
-            <UInput v-model="state.comment" />
-          </UFormGroup>
-
           <UFormGroup label="Plan" name="plan" class="mb-2">
             <UInput v-model="state.plan" />
+          </UFormGroup>
+
+          <UFormGroup label="Comment" name="comment" class="mb-2">
+            <UInput v-model="state.comment" />
           </UFormGroup>
 
           <UFormGroup label="Icon" name="icon">
