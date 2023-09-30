@@ -42,7 +42,7 @@
           {{ row.comment }}
         </p>
 
-        <span v-else class="col-span-4" />
+        <span v-else class="col-span-10" />
 
         <DbActionsDropdown
           class="col-span-1 justify-self-end"
