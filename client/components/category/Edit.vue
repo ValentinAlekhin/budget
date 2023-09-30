@@ -118,7 +118,7 @@
 <script setup lang="ts">
 import Draggable from 'vuedraggable'
 import { storeToRefs } from 'pinia'
-import { number, object, string } from 'yup'
+import { object, string } from 'yup'
 import { cloneDeep, get, last } from 'lodash-es'
 import { set } from 'vue-demi'
 import Omit from 'lodash-es/omit'
@@ -176,7 +176,7 @@ const schema = object({
   name: string().required('Category name required').min(2),
   icon: string().nullable(),
   comment: string().nullable(),
-  plan: number().min(0).nullable(),
+  plan: string().min(0).nullable().optional(),
 })
 
 const defaultState = {
@@ -243,7 +243,7 @@ const save = async () => {
       name,
       icon,
       comment,
-      plan,
+      plan: plan || null,
       type: props.type,
     })
   )
