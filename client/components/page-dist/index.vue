@@ -1,10 +1,15 @@
 <template>
   <div>
     <page-dist-list
+      v-if="incomingList.length"
       :items="incomingList"
       :model-value="incoming"
       @update:model-value="inputIncoming"
     />
+
+    <UButton v-else block class="mt-4" @click="edit">
+      Add incoming category
+    </UButton>
   </div>
 </template>
 
@@ -15,6 +20,7 @@ import { useCategoryStore } from '~/store/category'
 import { useRecordStore } from '~/store/record'
 import { useActionsStore } from '~/store/actions'
 
+const router = useRouter()
 const categoryStore = useCategoryStore()
 const recordStore = useRecordStore()
 const actionsStore = useActionsStore()
@@ -45,12 +51,21 @@ const save = async () => {
   resetAll()
 }
 
+const edit = () => router.push('/dist/edit')
+
 watch(hasValue, (value) => {
   if (value) {
     actionsStore.setActions({
+      edit,
       cancel: resetAll,
       submit: save,
     })
-  } else actionsStore.$reset()
+  } else {
+    actionsStore.setActions({
+      edit,
+    })
+  }
 })
+
+onMounted(() => actionsStore.setActions({ edit }))
 </script>
