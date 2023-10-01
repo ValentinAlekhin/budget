@@ -88,6 +88,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     'nuxt-icon',
     '@vite-pwa/nuxt',
+    '@formkit/auto-animate/nuxt',
   ],
 
   pwa: {

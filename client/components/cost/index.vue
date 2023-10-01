@@ -2,67 +2,69 @@
   <div>
     <CostCards />
 
-    <template v-for="(inp, i) of computedInputs" :key="inp.id">
-      <UInput
-        :id="inp.id"
-        :model-value="inp.inputValue"
-        :placeholder="inp.icon ? inp.name : ''"
-        size="md"
-        :ui="{ leading: { padding: { md: inp.padding } } }"
-        class="mb-2"
-        @input="inp.setValue"
-        @focus="focusedId = inp.id"
-      >
-        <template #leading>
-          <div
-            class="flex items-center justify-between text-gray-500 dark:text-gray-400"
-            :class="inp.leadingClass"
-          >
-            <Icon
-              v-if="inp.icon"
-              :name="inp.icon"
-              size="28"
-              :class="{ 'text-cyan-400': inp.focused }"
-            />
-            <span
-              v-else
-              class="w-20 truncate"
-              :class="{ 'text-cyan-400': inp.focused }"
-            >
-              {{ inp.name }}
-            </span>
-            <span v-if="inp.formattedBalance" :class="inp.colorClass">
-              {{ inp.formattedBalance }}
-            </span>
-          </div>
-        </template>
-
-        <template #trailing>
-          <span class="text-xs text-gray-500 dark:text-gray-400">
-            {{ i + 1 }}
-          </span>
-        </template>
-      </UInput>
-
-      <div v-if="inp.focused">
-        <UButton
-          v-for="mathHelper of []"
-          :key="mathHelper"
-          @click="inp.addHelper(mathHelper)"
+    <div v-auto-animate>
+      <template v-for="(inp, i) of computedInputs" :key="inp.id">
+        <UInput
+          :id="inp.id"
+          :model-value="inp.inputValue"
+          :placeholder="inp.icon ? inp.name : ''"
+          size="md"
+          :ui="{ leading: { padding: { md: inp.padding } } }"
+          class="mb-2"
+          @input="inp.setValue"
+          @focus="focusedId = inp.id"
         >
-          {{ mathHelper }}
-        </UButton>
-      </div>
+          <template #leading>
+            <div
+              class="flex items-center justify-between text-gray-500 dark:text-gray-400"
+              :class="inp.leadingClass"
+            >
+              <Icon
+                v-if="inp.icon"
+                :name="inp.icon"
+                size="28"
+                :class="{ 'text-cyan-400': inp.focused }"
+              />
+              <span
+                v-else
+                class="w-20 truncate"
+                :class="{ 'text-cyan-400': inp.focused }"
+              >
+                {{ inp.name }}
+              </span>
+              <span v-if="inp.formattedBalance" :class="inp.colorClass">
+                {{ inp.formattedBalance }}
+              </span>
+            </div>
+          </template>
 
-      <UInput
-        v-if="inp.showCommentInp"
-        :model-value="inp.comment"
-        placeholder="Комментарий"
-        class="mb-2"
-        size="md"
-        @input="inp.setComment"
-      />
-    </template>
+          <template #trailing>
+            <span class="text-xs text-gray-500 dark:text-gray-400">
+              {{ i + 1 }}
+            </span>
+          </template>
+        </UInput>
+
+        <div v-if="inp.focused">
+          <UButton
+            v-for="mathHelper of []"
+            :key="mathHelper"
+            @click="inp.addHelper(mathHelper)"
+          >
+            {{ mathHelper }}
+          </UButton>
+        </div>
+
+        <UInput
+          v-if="inp.showCommentInp"
+          :model-value="inp.comment"
+          placeholder="Комментарий"
+          class="mb-2"
+          size="md"
+          @input="inp.setComment"
+        />
+      </template>
+    </div>
   </div>
 </template>
 

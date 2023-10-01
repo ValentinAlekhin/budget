@@ -1,5 +1,6 @@
 <template>
   <ul
+    v-auto-animate
     class="divide-y divide-gray-200 text-gray-900 dark:divide-gray-700 dark:text-white"
   >
     <li

@@ -20,10 +20,10 @@
       </div>
     </UCard>
 
-    <div>
+    <div v-auto-animate>
       <template v-if="list.length">
         <UCard v-for="item of list" :key="item.id" class="mb-2" :ui="cardUi">
-          <div class="grid grid-cols-5">
+          <div class="grid grid-cols-6 items-center">
             <span class="col-span-3 text-sm text-gray-500 dark:text-gray-400">
               {{ item.name }}
             </span>
@@ -32,7 +32,9 @@
               {{ item.percentage }}%
             </span>
 
-            <span class="text-end font-bold text-gray-900 dark:text-white">
+            <span
+              class="col-span-2 text-end font-bold text-gray-900 dark:text-white"
+            >
               {{ numberWithSpaces(item.sum) }}
             </span>
           </div>
