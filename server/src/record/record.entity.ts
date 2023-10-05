@@ -20,6 +20,7 @@ export enum CategoryTypeEnum {
   Inc = 'inc',
   Cost = 'cost',
   Dist = 'dist',
+  Adjustment = 'adjustment',
 }
 
 @Entity('records')
