@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config'
+import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin'
 
 const { BASE_URL } = process.env
 
@@ -63,6 +64,7 @@ export default defineNuxtConfig({
         },
       },
     },
+    plugins: [optimizeLodashImports()],
   },
 
   nitro: {
