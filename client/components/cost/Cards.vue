@@ -119,10 +119,6 @@ const totalIncoming = computed(() => sumBy(inc.value, 'amount'))
 const totalCost = computed(() => sumBy(costs.value, 'amount'))
 const totalAdjustment = computed(() => sumBy(adjustment.value, 'amount'))
 
-onMounted(() => {
-  console.log(costs.value)
-})
-
 const currentBalance = computed(
   () => totalIncoming.value - totalCost.value + totalAdjustment.value,
 )

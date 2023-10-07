@@ -2,23 +2,24 @@
   <div>
     <DbList
       v-if="smallerThanLg"
-      :rows="rows"
+      :rows="recordStore.data"
       @edit="editRecord = $event"
       @delete="deleteId = $event.id"
     />
-    <DbTable
-      v-else
-      :rows="rows"
-      @edit="editRecord = $event"
-      @delete="deleteId = $event.id"
-    />
-    <div class="mt-10 flex justify-center">
-      <UPagination
-        v-model="page"
-        :page-count="pageCount"
-        :total="recordStore.data.length"
+    <template v-else>
+      <DbTable
+        :rows="rows"
+        @edit="editRecord = $event"
+        @delete="deleteId = $event.id"
       />
-    </div>
+      <div class="mt-10 flex justify-center">
+        <UPagination
+          v-model="page"
+          :page-count="pageCount"
+          :total="recordStore.data.length"
+        />
+      </div>
+    </template>
 
     <db-edit-modal
       :is-open="!!editRecord"
@@ -49,7 +50,7 @@ const pageCount = 20
 const { smallerThanLg } = useScreenSize()
 
 const rows = computed(() =>
-  recordStore.data.slice((page.value - 1) * pageCount, page.value * pageCount)
+  recordStore.data.slice((page.value - 1) * pageCount, page.value * pageCount),
 )
 
 const removeRecord = (id: string) => {

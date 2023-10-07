@@ -4,7 +4,7 @@
     class="divide-y divide-gray-200 text-gray-900 dark:divide-gray-700 dark:text-white"
   >
     <li
-      v-for="row of props.rows"
+      v-for="row of data"
       :key="row.id"
       class="sm:b-2 mb-2 flex flex-col justify-between p-1 px-3 sm:mb-3 sm:px-4"
     >
@@ -54,9 +54,13 @@
       </div>
     </li>
   </ul>
+
+  <InfiniteLoading @infinite="load" />
 </template>
 
 <script lang="ts" setup>
+import InfiniteLoading from 'v3-infinite-loading'
+import 'v3-infinite-loading/lib/style.css'
 import dayjs from 'dayjs'
 import { useCategory } from '~/composables/useCategory'
 import { useRecord } from '~/composables/useRecord'
@@ -66,4 +70,20 @@ const emit = defineEmits(['edit', 'delete'])
 
 const { getCategoryName } = useCategory()
 const { getTypeBackgroundClasses } = useRecord()
+
+const pageSize = 20
+const data = ref(props.rows.slice(0, pageSize))
+let page = 1
+const load = async ($state) => {
+  const offset = pageSize * page - 1
+  const nextData = props.rows.filter(
+    (_, i) => i >= offset && i <= offset + pageSize,
+  )
+  if (nextData.length === 0) $state.complete()
+  else {
+    data.value.push(...nextData)
+    $state.loaded()
+  }
+  page++
+}
 </script>
