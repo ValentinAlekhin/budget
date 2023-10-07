@@ -14,10 +14,10 @@ export const useActionsStore = defineStore('actions', {
       submit: null,
       cancel: null,
       add: null,
-    } as State),
+    }) as State,
   actions: {
-    setActions(actions: State) {
-      this.$reset()
+    setActions(actions: State, reset = true) {
+      if (reset) this.$reset()
 
       this.submit = actions.submit
       this.edit = actions.edit

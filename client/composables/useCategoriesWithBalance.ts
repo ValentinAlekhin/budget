@@ -8,8 +8,9 @@ export function useCategoriesWithBalance() {
   const recordStore = useRecordStore()
   const { startOfCurrentMonth, endOfCurrentMonth } = useTimestamp()
   const { filterRecordsByRange } = useRecord()
-  const { costs: categoryCosts } = storeToRefs(categoryStore)
-  const { costs } = storeToRefs(recordStore)
+  const { costs: categoryCosts, incoming: categoryIncoming } =
+    storeToRefs(categoryStore)
+  const { costs, inc } = storeToRefs(recordStore)
 
   const categoriesWithBalance = computed(() =>
     categoryCosts.value.map((c) => {
@@ -19,7 +20,7 @@ export function useCategoriesWithBalance() {
       const rangedCostList = filterRecordsByRange(
         allCostList,
         startOfCurrentMonth.value,
-        endOfCurrentMonth.value
+        endOfCurrentMonth.value,
       )
       const allCostSum = sumBy(rangedCostList, 'amount')
 
@@ -32,7 +33,7 @@ export function useCategoriesWithBalance() {
         balance,
         colorClass,
       }
-    })
+    }),
   )
 
   return { categoriesWithBalance }

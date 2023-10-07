@@ -1,9 +1,11 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { IsNull, Repository } from 'typeorm'
+import { In, IsNull, Repository } from 'typeorm'
 import { keyBy } from 'lodash'
 import { CACHE_MANAGER } from '@nestjs/cache-manager'
 import { Cache } from 'cache-manager'
+import { AdjustmentDto } from '@app/record/dto/adjustmentDto'
+import * as dayjs from 'dayjs'
 import { CategoryService } from '../category/category.service'
 import { UserEntity } from '../user/user.entity'
 import { RecordEntity } from './record.entity'
@@ -31,7 +33,9 @@ export class RecordService {
     }
 
     const records = await this.recordRepository.find({
-      where: { category: { user: { id: user.id }, deletedAt: IsNull() } },
+      where: {
+        category: { user: { id: user.id }, deletedAt: IsNull() },
+      },
       order: { timestamp: 'desc' },
     })
 
@@ -55,6 +59,7 @@ export class RecordService {
     Object.assign(record, { ...createRecordDto, category, user })
 
     record = await this.recordRepository.save(record)
+    record = await this.recordRepository.findOne({ where: { id: record.id } })
 
     const response = this.buildRecordResponse(record)
 
@@ -85,13 +90,15 @@ export class RecordService {
       this.recordRepository.create({
         amount: r.amount,
         timestamp: r.timestamp,
-        type: r.type,
         category: categoriesObj[r.categoryId],
         comment: r.comment,
       }),
     )
 
     records = await this.recordRepository.save(records)
+    records = await this.recordRepository.find({
+      where: { id: In(records.map((r) => r.id)) },
+    })
 
     const response = records.map((r) => this.buildRecordResponse(r))
 
@@ -114,7 +121,8 @@ export class RecordService {
     )
 
     Object.assign(record, { ...updateRecordDto, category })
-    record = await this.recordRepository.save(record)
+    await this.recordRepository.save(record)
+    record = await this.recordRepository.findOne({ where: { id } })
 
     const response = this.buildRecordResponse(record)
 
@@ -126,7 +134,6 @@ export class RecordService {
   async deleteOne(id: string, user: UserEntity): Promise<RecordResponseDto> {
     await this.cacheManager.del(this.getCacheKey(user.id))
 
-    await this.cacheManager.del(this.getCacheKey(user.id))
     const record = await this.findOneByIdAndUserId(id, user.id)
     await this.recordRepository.remove(record)
 
@@ -136,9 +143,31 @@ export class RecordService {
     return response
   }
 
+  async adjustment(
+    user: UserEntity,
+    { diff }: AdjustmentDto,
+  ): Promise<RecordResponseDto> {
+    await this.cacheManager.del(this.getCacheKey(user.id))
+
+    const category = await this.categoryService.getAdjustmentCategory(user)
+    let record = this.recordRepository.create({
+      category,
+      amount: diff,
+      timestamp: dayjs(),
+    })
+    record = await this.recordRepository.save(record)
+    const response = this.buildRecordResponse(record)
+    this.recordGateway.createManyRecord([response], user.id)
+    return response
+  }
+
   buildRecordResponse(record): RecordResponseDto {
     if (record.user) {
       delete record.user
+    }
+
+    if (record.category) {
+      delete record.category
     }
 
     return { ...record }

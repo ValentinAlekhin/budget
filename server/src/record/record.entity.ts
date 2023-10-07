@@ -5,30 +5,18 @@ import {
   ManyToOne,
   UpdateDateColumn,
   JoinColumn,
+  AfterLoad,
+  AfterInsert,
+  AfterRemove,
+  AfterUpdate,
 } from 'typeorm'
-import {
-  IsDateString,
-  IsEnum,
-  IsNumber,
-  IsOptional,
-  IsString,
-} from 'class-validator'
+import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator'
+import { CategoryTypeEnum } from '@app/common/enum'
 import { AbstractEntity } from '../common/abstract-entity'
 import { CategoryEntity } from '../category/category.entity'
 
-export enum CategoryTypeEnum {
-  Inc = 'inc',
-  Cost = 'cost',
-  Dist = 'dist',
-  Adjustment = 'adjustment',
-}
-
 @Entity('records')
 export class RecordEntity extends AbstractEntity {
-  @Column()
-  @IsEnum(CategoryTypeEnum)
-  type: CategoryTypeEnum
-
   @Column()
   @IsNumber()
   amount: number
@@ -40,6 +28,7 @@ export class RecordEntity extends AbstractEntity {
 
   @ManyToOne(() => CategoryEntity, (category) => category.records, {
     onDelete: 'CASCADE',
+    eager: true,
   })
   @JoinColumn({ name: 'category_id' })
   category: CategoryEntity
@@ -56,4 +45,14 @@ export class RecordEntity extends AbstractEntity {
 
   @UpdateDateColumn()
   updatedAt: Date
+
+  type: CategoryTypeEnum
+
+  @AfterInsert()
+  @AfterRemove()
+  @AfterUpdate()
+  @AfterLoad()
+  private afterLoad() {
+    this.type = this.category?.type
+  }
 }

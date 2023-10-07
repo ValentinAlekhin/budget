@@ -45,7 +45,7 @@ export const cudController = (opt: CudControllerOptions): CudActions => {
           }: {
             info: { type: 'update' | 'delete' | 'create'; many: boolean }
             payload: Item | Item[]
-          }) => this[`cud_${type}${many ? '_many' : ''}`](payload)
+          }) => this[`cud_${type}${many ? '_many' : ''}`](payload),
         )
       } else {
         console.error('No socket')
@@ -53,7 +53,7 @@ export const cudController = (opt: CudControllerOptions): CudActions => {
     },
     cud_update(payload) {
       this[dataField] = this[dataField].map((item) =>
-        item.id === payload.id ? payload : item
+        item.id === payload.id ? payload : item,
       )
     },
     cud_delete({ id }) {
@@ -64,9 +64,11 @@ export const cudController = (opt: CudControllerOptions): CudActions => {
       this[dataField] = this[dataField].filter((item) => item.id !== id)
     },
     cud_create(payload) {
+      console.log(payload)
       this[dataField] = [payload, ...this[dataField]]
     },
     cud_create_many(payload) {
+      console.log(payload)
       this[dataField] = [...payload, ...this[dataField]]
     },
     cud_update_many(payload) {

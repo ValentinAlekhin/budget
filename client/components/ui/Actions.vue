@@ -56,13 +56,13 @@ const buttons = computed(() =>
     .filter((btn) => btn.click)
     .map((btn) => ({
       ...btn,
-      class: btn?.class || '',
+      class: btn.class || '',
       icon: `i-heroicons-${btn.icon}`,
       click: () => {
         btn.click()
         vibrate()
       },
-    }))
+    })),
 )
 </script>
 

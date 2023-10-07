@@ -1,3 +1,0 @@
-<template>
-  <PageDist />
-</template>

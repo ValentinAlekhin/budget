@@ -6,6 +6,7 @@ import {
   UserUsernameValidationRequestDto,
   UserValidationResponseDto,
 } from '@app/user/dto/filedValidations.dto'
+import { CategoryService } from '@app/category/category.service'
 import { hash } from '../common/utils/hash'
 import { UserEntity } from './user.entity'
 import { CreateUserDto } from './dto/createUser.dto'
@@ -15,6 +16,7 @@ export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
+    private readonly categoryService: CategoryService,
   ) {}
 
   async findById(id: string): Promise<UserEntity> {
@@ -43,6 +45,7 @@ export class UserService {
 
     try {
       const newUser = await this.userRepository.save(user)
+      await this.categoryService.createAdjustment(newUser)
       delete newUser.password
 
       return newUser

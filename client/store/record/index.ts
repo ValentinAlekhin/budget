@@ -50,7 +50,7 @@ export const useRecordStore = defineStore('record', {
         categoryId: string
         type: string
         timestamp: string
-      }>
+      }>,
     ) {
       const { api } = useApi()
       await api.post('/records/many', { data })
@@ -64,12 +64,18 @@ export const useRecordStore = defineStore('record', {
       const { api } = useApi()
       await api.put(`/records/${body.id}`, body)
     },
+    async adjustmentBalance(diff: number) {
+      const { api } = useApi()
+      await api.post('/records/adjustment', { diff })
+    },
     ...cudController({ action: 'records' }),
   },
   getters: {
     costs: (state: State) => state.data.filter((r) => r.type === 'cost'),
     dist: (state: State) => state.data.filter((r) => r.type === 'dist'),
     inc: (state: State) => state.data.filter((r) => r.type === 'inc'),
+    adjustment: (state: State) =>
+      state.data.filter((r) => r.type === 'adjustment'),
   },
 })
 

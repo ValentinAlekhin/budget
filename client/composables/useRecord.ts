@@ -14,6 +14,9 @@ export function useRecord() {
 
       case 'inc':
         return 'green'
+
+      case 'adjustment':
+        return 'yellow'
     }
   }
 
@@ -26,7 +29,7 @@ export function useRecord() {
   const filterRecordsByRange = (
     list: RecordDto[] | UnwrapRef<RecordDto>[],
     start: Dayjs,
-    end: Dayjs
+    end: Dayjs,
   ) =>
     list.filter(({ timestamp }) => {
       const time = dayjs(timestamp)

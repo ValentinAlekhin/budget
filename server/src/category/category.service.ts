@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { In, IsNull, Repository } from 'typeorm'
 import * as dayjs from 'dayjs'
 import { UserEntity } from 'src/user/user.entity'
+import { CategoryTypeEnum } from '@app/common/enum'
 import { CategoryEntity } from './category.entity'
 import { CategoryGateway } from './category.gateway'
 import { CreateCategoryDto } from './dto/createCategory.dto'
@@ -13,7 +14,7 @@ import { UpdateManyCategoriesDto } from './dto/updateManyCategories.dto'
 export class CategoryService {
   constructor(
     @InjectRepository(CategoryEntity)
-    private readonly categoryRepository: Repository<CategoryEntity>,
+    private readonly repo: Repository<CategoryEntity>,
 
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
@@ -22,9 +23,12 @@ export class CategoryService {
   ) {}
 
   async find(user): Promise<CategoryEntity[]> {
-    const categories = await this.categoryRepository.find({
+    const categories = await this.repo.find({
       relations: ['user'],
-      where: { user: { id: user.id }, deletedAt: IsNull() },
+      where: {
+        user: { id: user.id },
+        deletedAt: IsNull(),
+      },
     })
 
     return categories.map((category) => {
@@ -41,7 +45,7 @@ export class CategoryService {
     const category = new CategoryEntity()
     Object.assign(category, { ...createCategoryDto, user })
 
-    const response = await this.categoryRepository.save(category)
+    const response = await this.repo.save(category)
 
     this.categoryGateway.createCategory(response, user.id)
 
@@ -55,7 +59,7 @@ export class CategoryService {
       throw new CategoryNotFoundException(id)
     }
 
-    await this.categoryRepository.save({
+    await this.repo.save({
       ...category,
       deletedAt: dayjs().toDate(),
     })
@@ -77,7 +81,7 @@ export class CategoryService {
     }
 
     Object.assign(category, createCategoryDto)
-    const response = await this.categoryRepository.save(category)
+    const response = await this.repo.save(category)
 
     this.categoryGateway.updateCategory(response, user.id)
 
@@ -89,7 +93,7 @@ export class CategoryService {
     updateManyCategoriesDto: UpdateManyCategoriesDto,
   ): Promise<CategoryEntity[]> {
     const ids = updateManyCategoriesDto.data.map(({ id }) => id)
-    const categories = await this.categoryRepository.find({
+    const categories = await this.repo.find({
       where: { user: { id: user.id }, id: In(ids) },
     })
 
@@ -97,9 +101,7 @@ export class CategoryService {
       throw new CategoryNotFoundException(ids.join(', '))
     }
 
-    const response = await this.categoryRepository.save(
-      updateManyCategoriesDto.data,
-    )
+    const response = await this.repo.save(updateManyCategoriesDto.data)
 
     this.categoryGateway.updateManyCategory(response, user.id)
 
@@ -118,7 +120,7 @@ export class CategoryService {
     id: string,
     userId: string,
   ): Promise<CategoryEntity> {
-    const category = await this.categoryRepository.findOne({
+    const category = await this.repo.findOne({
       relations: ['user'],
       where: { id, user: { id: userId } },
     })
@@ -134,9 +136,31 @@ export class CategoryService {
     ids: string[],
     userId: string,
   ): Promise<CategoryEntity[]> {
-    return await this.categoryRepository.find({
+    return await this.repo.find({
       relations: ['user'],
       where: { id: In(ids), user: { id: userId } },
     })
+  }
+
+  async createAdjustment(user: UserEntity): Promise<CategoryEntity> {
+    const category = this.repo.create({
+      name: 'adjustment',
+      type: CategoryTypeEnum.Adjustment,
+      user,
+      comment: 'Service category',
+    })
+    return this.repo.save(category)
+  }
+
+  async getAdjustmentCategory(user: UserEntity): Promise<CategoryEntity> {
+    const category = await this.repo.findOne({
+      where: { user: { id: user.id }, type: CategoryTypeEnum.Adjustment },
+    })
+
+    if (!category) {
+      return this.createAdjustment(user)
+    }
+
+    return category
   }
 }

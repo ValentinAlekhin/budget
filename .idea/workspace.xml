@@ -5,11 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлены nuxt @nuxt/ui">
+      <change afterPath="$PROJECT_DIR$/client/.eslintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/category/List.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/composables/useCategoryTabs.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/common/enum/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/record/dto/adjustmentDto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslintrc.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintrc.cjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/common/cud.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/common/cud.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/Actions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/Actions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useMainLinks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useMainLinks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useRecord.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useRecord.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/dist/edit.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/dist/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/index/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/actions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/actions/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/backup/backup.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/backup/backup.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/category.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/category/category.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/category/category.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/record/record.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/user.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/user/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +99,7 @@
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\eslint&quot;,
     &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
@@ -93,8 +118,8 @@
       <recent name="$PROJECT_DIR$/server/src/category/dto" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Valentin\Documents\projects\budget\client\pages\dist" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\server\src\migrations" />
+      <recent name="C:\Users\Valentin\Documents\projects\budget\client\pages\dist" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\composables" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\client" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\components\Header" />
@@ -266,6 +291,8 @@
       <workItem from="1696237694739" duration="7000" />
       <workItem from="1696521229362" duration="1645000" />
       <workItem from="1696524470955" duration="498000" />
+      <workItem from="1696524988265" duration="5949000" />
+      <workItem from="1696604198743" duration="6768000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -371,14 +398,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Добавлен favicon.ico">
-      <option name="closed" value="true" />
-      <created>1694534906134</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1694534906134</updated>
     </task>
     <task id="LOCAL-00054" summary="Добавлен pwa">
       <option name="closed" value="true" />
@@ -644,7 +663,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696174089929</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Обновлены nuxt @nuxt/ui">
+      <option name="closed" value="true" />
+      <created>1696525090946</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1696525090946</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -662,7 +689,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлена страница dist и stat" />
     <MESSAGE value="Фиксы и обновления" />
     <MESSAGE value="Перевод на nuxt ui" />
     <MESSAGE value="Добавлены карточки со статистикой" />
@@ -687,7 +713,8 @@
     <MESSAGE value="Добавлен новый ренж" />
     <MESSAGE value="Рефактор категорий и db" />
     <MESSAGE value="Добавлена анимация" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлена анимация" />
+    <MESSAGE value="Обновлены nuxt @nuxt/ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновлены nuxt @nuxt/ui" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />

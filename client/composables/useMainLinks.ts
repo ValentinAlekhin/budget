@@ -4,11 +4,6 @@ export function useMainLinks() {
   const links = computed(() =>
     [
       { name: 'Costs', icon: 'i-heroicons-banknotes', to: '/' },
-      {
-        name: 'Distribution',
-        icon: 'i-heroicons-inbox-arrow-down',
-        to: '/dist',
-      },
       { name: 'Data', icon: 'i-heroicons-circle-stack', to: '/db' },
       {
         name: 'Statistic',
@@ -24,7 +19,7 @@ export function useMainLinks() {
       }
 
       return { ...l, active }
-    })
+    }),
   )
 
   const activeIndex = computed(() => links.value.findIndex((l) => l.active))

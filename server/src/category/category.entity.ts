@@ -10,14 +10,9 @@ import {
 } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
 import { UserEntity } from 'src/user/user.entity'
+import { CategoryTypeEnum } from '@app/common/enum'
 import { RecordEntity } from '../record/record.entity'
 import { AbstractEntity } from '../common/abstract-entity'
-
-export enum CategoryTypeEnum {
-  Inc = 'inc',
-  Cost = 'cost',
-  Dist = 'dist',
-}
 
 @Entity('categories')
 export class CategoryEntity extends AbstractEntity {

@@ -12,6 +12,7 @@ import {
 import { ApiTags } from '@nestjs/swagger'
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard'
 import { RecordEntity } from '@app/record/record.entity'
+import { AdjustmentDto } from '@app/record/dto/adjustmentDto'
 import { RecordService } from './record.service'
 import { RecordResponseDto } from './dto/recordResponse.dto'
 import { CreateRecordDto } from './dto/createRecord.dto'
@@ -43,6 +44,14 @@ export class RecordController {
     @Body() createManyRecordsDto: CreateManyRecordsDto,
   ): Promise<RecordResponseDto[]> {
     return this.recordService.createMany(req.user, createManyRecordsDto)
+  }
+
+  @Post('adjustment')
+  adjustment(
+    @Req() req,
+    @Body() adjustmentDto: AdjustmentDto,
+  ): Promise<RecordResponseDto> {
+    return this.recordService.adjustment(req.user, adjustmentDto)
   }
 
   @Delete(':id')
