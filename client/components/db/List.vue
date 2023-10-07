@@ -4,7 +4,7 @@
     class="divide-y divide-gray-200 text-gray-900 dark:divide-gray-700 dark:text-white"
   >
     <li
-      v-for="row of data"
+      v-for="row of dataToShow"
       :key="row.id"
       class="sm:b-2 mb-2 flex flex-col justify-between p-1 px-3 sm:mb-3 sm:px-4"
     >
@@ -72,18 +72,15 @@ const { getCategoryName } = useCategory()
 const { getTypeBackgroundClasses } = useRecord()
 
 const pageSize = 20
-const data = ref(props.rows.slice(0, pageSize))
-let page = 1
+const page = ref(1)
+const dataToShow = computed(() =>
+  props.rows.filter((_, i) => i <= pageSize * page.value),
+)
 const load = async ($state) => {
-  const offset = pageSize * page - 1
-  const nextData = props.rows.filter(
-    (_, i) => i >= offset && i <= offset + pageSize,
-  )
-  if (nextData.length === 0) $state.complete()
+  if (pageSize * page.value >= props.rows.length) $state.complete()
   else {
-    data.value.push(...nextData)
     $state.loaded()
   }
-  page++
+  page.value++
 }
 </script>
