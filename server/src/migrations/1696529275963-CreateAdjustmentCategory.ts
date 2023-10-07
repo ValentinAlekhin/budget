@@ -10,7 +10,7 @@ export class CreateAdjustmentCategory1696529275963
     const users = await queryRunner.manager.find(UserEntity)
     const adjustmentCategories = users.map((user) =>
       Object.assign(new CategoryEntity(), {
-        name: 'adjustment',
+        name: 'Adjustment',
         type: CategoryTypeEnum.Adjustment,
         order: 0,
         comment: 'Service category',

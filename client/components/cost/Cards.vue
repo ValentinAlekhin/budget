@@ -27,23 +27,23 @@
         <div class="flex flex-col">
           <span class="mb-0.5 text-xs">
             <Icon
-              name="ic:round-arrow-drop-up"
-              class="scale-200 text-green-500"
-            />
-            Income
-          </span>
-          <span class="font-bold">+{{ numberWithSpaces(totalIncoming) }}</span>
-        </div>
-
-        <div class="flex flex-col">
-          <span class="mb-0.5 text-xs">
-            <Icon
               name="ic:round-arrow-drop-down"
               class="scale-200 text-rose-500"
             />
             Costs
           </span>
           <span class="font-bold">-{{ numberWithSpaces(totalCost) }}</span>
+        </div>
+
+        <div class="flex flex-col">
+          <span class="mb-0.5 text-xs">
+            <Icon
+              name="ic:round-arrow-drop-up"
+              class="scale-200 text-green-500"
+            />
+            Income
+          </span>
+          <span class="font-bold">+{{ numberWithSpaces(totalIncoming) }}</span>
         </div>
       </div>
     </div>
@@ -106,7 +106,7 @@ import { Dayjs } from 'dayjs'
 import { useRecord } from '~/composables/useRecord'
 import { useRecordStore } from '~/store/record'
 import { useCommonRanges } from '~/composables/useCommonRanges'
-import { InferType, number, object, string } from 'yup'
+import { InferType, number, object } from 'yup'
 
 const recordStore = useRecordStore()
 const { costs, inc, adjustment } = storeToRefs(recordStore)
@@ -130,16 +130,16 @@ const currentBalance = computed(
 const miniCards = computed(() =>
   [
     {
-      color: 'green',
-      icon: 'bi:arrow-up-right',
-      categories: inc,
-      name: 'Income',
-    },
-    {
       color: 'red',
       icon: 'bi:arrow-down-right',
       categories: costs,
       name: 'Cost',
+    },
+    {
+      color: 'green',
+      icon: 'bi:arrow-up-right',
+      categories: inc,
+      name: 'Income',
     },
   ].map((item) => ({
     ...item,

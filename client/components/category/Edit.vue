@@ -151,8 +151,8 @@ const categories = computed(() =>
       cost: costs.value,
     },
     props.type,
-    []
-  )
+    [],
+  ),
 )
 const formState = reactive<Record<string, CategoryState>>(
   categories.value.reduce((acc, c, i) => {
@@ -165,7 +165,7 @@ const formState = reactive<Record<string, CategoryState>>(
     }
 
     return acc
-  }, {})
+  }, {}),
 )
 const drag = ref<boolean>(false)
 const modalOpen = ref<boolean>(false)
@@ -245,7 +245,7 @@ const save = async () => {
       comment,
       plan: plan || null,
       type: props.type,
-    })
+    }),
   )
 
   await categoryStore.updateMany(payload)
@@ -288,7 +288,7 @@ const removeItem = async (id: string) => {
 
 const cardUi = {
   body: {
-    padding: 'px-6 py-3 sm:p-6',
+    padding: 'p-3 sm:p-6',
   },
 }
 
@@ -304,8 +304,8 @@ watch(categories, (value) =>
           plan: c.plan,
           comment: c.comment,
           color: c.color,
-        })
-    )
+        }),
+    ),
 )
 
 watch(modalOpen, (value) => {
@@ -317,7 +317,7 @@ onMounted(() =>
     add: () => (modalOpen.value = true),
     submit: save,
     cancel: () => emit('cancel'),
-  })
+  }),
 )
 </script>
 

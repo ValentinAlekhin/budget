@@ -40,7 +40,7 @@
         </UForm>
 
         <template #footer>
-          <UButton type="submit" @click="submit"> Submit </UButton>
+          <UButton type="submit" block @click="submit"> Submit </UButton>
         </template>
       </UCard>
     </UModal>
@@ -68,7 +68,7 @@ const isOpen = computed({
 })
 
 const categoryOptions = computed(() =>
-  categoriesStore.data.map((c) => ({ id: c.id, label: c.name }))
+  categoriesStore.data.map((c) => ({ id: c.id, label: c.name })),
 )
 const types = ['cost', 'dist', 'inc']
 
@@ -90,7 +90,7 @@ const state = ref({
 
 const currentCategory = computed(
   () =>
-    categoryOptions.value.find((c) => c.id === state.value.categoryId) || ' '
+    categoryOptions.value.find((c) => c.id === state.value.categoryId) || ' ',
 )
 
 watch(
@@ -103,7 +103,7 @@ watch(
     state.value.type = record?.type
     state.value.timestamp = record?.timestamp
     state.value.comment = record?.comment
-  }
+  },
 )
 
 const form = ref()

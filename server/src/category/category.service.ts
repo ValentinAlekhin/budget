@@ -144,7 +144,7 @@ export class CategoryService {
 
   async createAdjustment(user: UserEntity): Promise<CategoryEntity> {
     const category = this.repo.create({
-      name: 'adjustment',
+      name: 'Adjustment',
       type: CategoryTypeEnum.Adjustment,
       user,
       comment: 'Service category',
