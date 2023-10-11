@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлен бесконечный скролл в БД">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлены уведомления в телегу">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/record/record.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +81,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/valentin/Documents/projects/budget/server/node_modules/prettier&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Valentin\\Documents\\projects\\budget\\server\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -265,7 +269,14 @@
       <workItem from="1696524470955" duration="498000" />
       <workItem from="1696524988265" duration="5949000" />
       <workItem from="1696604198743" duration="6768000" />
-      <workItem from="1696693691148" duration="3052000" />
+      <workItem from="1696693691148" duration="3547000" />
+      <workItem from="1696768699509" duration="3933000" />
+      <workItem from="1696790449777" duration="1210000" />
+      <workItem from="1696835017614" duration="6000" />
+      <workItem from="1696953473219" duration="154000" />
+      <workItem from="1696953639064" duration="297000" />
+      <workItem from="1696955935773" duration="621000" />
+      <workItem from="1697034307852" duration="376000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -371,14 +382,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00058" summary="Фикс инпутов">
-      <option name="closed" value="true" />
-      <created>1694624267560</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1694624267560</updated>
     </task>
     <task id="LOCAL-00059" summary="Фикс инпутов">
       <option name="closed" value="true" />
@@ -644,7 +647,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696696336654</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Добавлены уведомления в телегу">
+      <option name="closed" value="true" />
+      <created>1696697681377</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1696697681377</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -662,7 +673,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Рефактор" />
     <MESSAGE value="Добавлены github actions" />
     <MESSAGE value="Изменен период бекапа бд" />
     <MESSAGE value="Изменен buid-deploy-migrate.yml" />
@@ -687,7 +697,8 @@
     <MESSAGE value="Обновлены пакеты сервера" />
     <MESSAGE value="Мелкие фиксы" />
     <MESSAGE value="Добавлен бесконечный скролл в БД" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен бесконечный скролл в БД" />
+    <MESSAGE value="Добавлены уведомления в телегу" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены уведомления в телегу" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />

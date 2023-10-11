@@ -9,6 +9,7 @@ import {
   AfterInsert,
   AfterRemove,
   AfterUpdate,
+  Index,
 } from 'typeorm'
 import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator'
 import { CategoryTypeEnum } from '@app/common/enum'
@@ -34,6 +35,7 @@ export class RecordEntity extends AbstractEntity {
   category: CategoryEntity
 
   @Column()
+  @Index()
   categoryId: string
 
   @Column('timestamp')

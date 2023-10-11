@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { CacheModule } from '@nestjs/cache-manager'
 import { TelegrafModule } from 'nestjs-telegraf'
 import { ScheduleModule } from '@nestjs/schedule'
+import { IconifyModule } from 'nestjs-iconify'
 import { AuthModule } from './auth/auth.module'
 import { CategoryModule } from './category/category.module'
 import { RecordModule } from './record/record.module'
@@ -31,6 +32,7 @@ import { ormconfig } from './ormconfig'
       }),
     }),
     ScheduleModule.forRoot(),
+    IconifyModule.register({ prefix: 'iconify' }),
     UserModule,
     AuthModule,
     CategoryModule,

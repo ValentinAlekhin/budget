@@ -39,7 +39,9 @@ export class RecordService {
       order: { timestamp: 'desc' },
     })
 
-    this.setCache(user.id, records)
+    const response = records.map((r) => this.buildRecordResponse(r))
+
+    this.setCache(user.id, response)
 
     return records
   }
@@ -205,7 +207,7 @@ export class RecordService {
     return null
   }
 
-  private async setCache(userId: string, data: RecordEntity[]) {
+  private async setCache(userId: string, data: RecordResponseDto[]) {
     const json = JSON.stringify(data)
     await this.cacheManager.set(this.getCacheKey(userId), json)
   }
