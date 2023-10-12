@@ -2,6 +2,7 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import { CategoryDto } from '../../../common/dto/category'
 import { useNotify } from '~/composables/useNotify'
 import { cudController } from '~/common/cud'
+import { generatePiniaLocalStorageKey } from '~/utils'
 
 export interface CategoryState {
   data: CategoryDto[]
@@ -16,12 +17,12 @@ export const useCategoryStore = defineStore('category', {
     error: null,
   }),
   actions: {
-    async fetchAll() {
+    async fetchAll({ force = false }) {
       this.loading = true
       this.error = null
 
       try {
-        if (this.data?.length) return
+        if (!force && this.data?.length) return
 
         const { api } = useApi()
         const { data } = await api.get<CategoryDto[]>('/category')
@@ -78,6 +79,10 @@ export const useCategoryStore = defineStore('category', {
         .sort((a, b) => a.order - b.order),
     getById: (state) => (id: string) =>
       state.data.find((c) => c.id === id) as CategoryDto,
+  },
+  persist: {
+    storage: persistedState.localStorage,
+    key: generatePiniaLocalStorageKey,
   },
 })
 

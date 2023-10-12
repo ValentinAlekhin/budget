@@ -12,16 +12,22 @@ export function useGlobalLoading() {
   const fetchAll = async () => {
     if (!authStore.user) return
 
-    await Promise.all([categoryStore.fetchAll(), recordStore.fetchAll()])
+    await Promise.all([
+      categoryStore.fetchAll({ force: true }),
+      recordStore.fetchAll({ force: true }),
+    ])
   }
 
   const initSocket = () =>
     [socketStore.init, categoryStore.cudInit, recordStore.cudInit].forEach(
-      (fn) => fn()
+      (fn) => fn(),
     )
 
   const loading = computed(() => categoryStore.loading || recordStore.loading)
+  const dataExists = computed(
+    () => categoryStore.data.length && recordStore.data.length,
+  )
   const error = computed(() => categoryStore.error || recordStore.error)
 
-  return { fetchAll, initSocket, loading, error }
+  return { fetchAll, initSocket, loading, error, dataExists }
 }

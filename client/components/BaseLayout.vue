@@ -2,7 +2,7 @@
   <div class="h-full overflow-y-auto pb-40 pt-14 lg:pb-0">
     <Header />
 
-    <UiLoader v-if="loading" />
+    <UiLoader v-if="!dataExists && loading" />
 
     <UCard
       v-else-if="error"
@@ -33,7 +33,7 @@ import { onMounted } from 'vue'
 import { useGlobalLoading } from '~/composables/useGlobalLoading'
 import { useScreenSize } from '~/composables/useScreenSize'
 
-const { fetchAll, loading, error, initSocket } = useGlobalLoading()
+const { fetchAll, loading, error, initSocket, dataExists } = useGlobalLoading()
 
 const { smallerThanLg } = useScreenSize()
 

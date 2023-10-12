@@ -18,7 +18,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
     if (authStore.user) return
     if (token) {
       await authStore.getMe()
-      await fetchAll()
+      fetchAll()
 
       if (toAuth) return navigateTo('/')
     }

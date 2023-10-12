@@ -2,6 +2,7 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import { RecordDto } from '../../../common/dto/record'
 import { cudController } from '~/common/cud'
 import { useNotify } from '~/composables/useNotify'
+import { generatePiniaLocalStorageKey } from '~/utils'
 
 interface State {
   data: RecordDto[]
@@ -16,8 +17,8 @@ export const useRecordStore = defineStore('record', {
     error: null,
   }),
   actions: {
-    async fetchAll() {
-      if (this.data?.length) return
+    async fetchAll({ force = false }) {
+      if (!force && this.data?.length) return
 
       const { api } = useApi()
       const notify = useNotify()
@@ -76,6 +77,10 @@ export const useRecordStore = defineStore('record', {
     inc: (state: State) => state.data.filter((r) => r.type === 'inc'),
     adjustment: (state: State) =>
       state.data.filter((r) => r.type === 'adjustment'),
+  },
+  persist: {
+    storage: persistedState.localStorage,
+    key: generatePiniaLocalStorageKey,
   },
 })
 
