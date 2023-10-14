@@ -64,11 +64,9 @@ export const cudController = (opt: CudControllerOptions): CudActions => {
       this[dataField] = this[dataField].filter((item) => item.id !== id)
     },
     cud_create(payload) {
-      console.log(payload)
       this[dataField] = [payload, ...this[dataField]]
     },
     cud_create_many(payload) {
-      console.log(payload)
       this[dataField] = [...payload, ...this[dataField]]
     },
     cud_update_many(payload) {
