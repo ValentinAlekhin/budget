@@ -22,10 +22,13 @@
         <div class="flex flex-col items-center">
           <UBadge
             :color="isOnline ? 'green' : 'red'"
-            label="Network"
+            :label="$t('common.network')"
             class="mb-2"
           />
-          <UBadge :color="connected ? 'green' : 'red'" label="Server" />
+          <UBadge
+            :color="connected ? 'green' : 'red'"
+            :label="$t('common.server')"
+          />
         </div>
       </UCard>
     </template>

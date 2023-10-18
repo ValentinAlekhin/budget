@@ -13,7 +13,9 @@
 
     <UCard class="mb-4" :ui="cardUi">
       <div class="flex items-center justify-between">
-        <span class="font-bold text-gray-900 dark:text-white"> Total sum </span>
+        <span class="font-bold text-gray-900 dark:text-white">
+          {{ t('common.totalSum') }}
+        </span>
         <span class="text-xl font-bold text-gray-900 dark:text-white">
           {{ numberWithSpaces(totalSum) }}
         </span>
@@ -47,7 +49,7 @@
         <span
           class="text-center text-lg font-semibold text-gray-900 dark:text-white"
         >
-          No records
+          {{ t('common.noRecords') }}
         </span>
       </div>
     </div>
@@ -70,20 +72,21 @@ const recordStore = useRecordStore()
 const recordsRefs = storeToRefs(recordStore)
 const { filterRecordsByRange } = useRecord()
 const { handleClick, currentRange } = useCommonRanges('stat-range-index')
+const { t } = useI18n()
 
 const categoryTypes = computed(() =>
   [
     {
-      label: 'Costs',
+      label: t('common.costs'),
       categories: costs.value,
       records: recordsRefs.costs.value,
     },
     {
-      label: 'Incoming',
+      label: t('common.incoming'),
       categories: incoming.value,
       records: recordsRefs.inc.value,
     },
-  ].map((t, id) => ({ ...t, id }))
+  ].map((t, id) => ({ ...t, id })),
 )
 const selected = ref(categoryTypes.value[0])
 
@@ -91,8 +94,8 @@ const filteredRecords = computed(() =>
   filterRecordsByRange(
     selected.value.records as RecordDto[],
     currentRange.value?.start as Dayjs,
-    currentRange.value?.end as Dayjs
-  )
+    currentRange.value?.end as Dayjs,
+  ),
 )
 
 const totalSum = computed(() => sumBy(filteredRecords.value, 'amount'))
@@ -100,7 +103,7 @@ const totalSum = computed(() => sumBy(filteredRecords.value, 'amount'))
 const getSum = (id: string, list: RecordDto[]) =>
   sumBy(
     list.filter((r) => r.categoryId === id),
-    'amount'
+    'amount',
   )
 
 const list = computed(() =>
@@ -117,7 +120,7 @@ const list = computed(() =>
         percentage,
       }
     })
-    .filter((c) => c.sum)
+    .filter((c) => c.sum),
 )
 
 const cardUi = {

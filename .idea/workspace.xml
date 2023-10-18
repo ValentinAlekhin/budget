@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлено кеширование категорий и записей">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлен перевод на русский">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/common/cud.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/common/cud.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Header/Dropdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/Dropdown.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/i18n.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -279,7 +279,9 @@
       <workItem from="1697122831544" duration="50000" />
       <workItem from="1697122891829" duration="5270000" />
       <workItem from="1697180801193" duration="12000" />
-      <workItem from="1697281301727" duration="386000" />
+      <workItem from="1697281301727" duration="4322000" />
+      <workItem from="1697443806387" duration="10000" />
+      <workItem from="1697641250634" duration="6536000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -385,22 +387,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Ускорен рефреш токенов и добавлены статусы соединения с сервером">
-      <option name="closed" value="true" />
-      <created>1694710721472</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1694710721472</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Добавлено сообщение и запуске сервере в телеге">
-      <option name="closed" value="true" />
-      <created>1694764623203</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1694764623203</updated>
     </task>
     <task id="LOCAL-00063" summary="Добавлено сообщение и запуске сервере в телеге">
       <option name="closed" value="true" />
@@ -658,7 +644,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697127012740</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Фикс добавления категории">
+      <option name="closed" value="true" />
+      <created>1697281735611</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1697281735611</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Добавлен перевод на русский">
+      <option name="closed" value="true" />
+      <created>1697653221841</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1697653221841</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -676,8 +678,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Изменен buid-deploy-migrate.yml" />
-    <MESSAGE value="Добавлен деплой" />
     <MESSAGE value="Добавлен favicon.ico" />
     <MESSAGE value="Добавлен pwa" />
     <MESSAGE value="Добавлена асинхронная валидация почты и логина" />
@@ -701,7 +701,9 @@
     <MESSAGE value="Добавлены уведомления в телегу" />
     <MESSAGE value="Добавлен индекс для колонки" />
     <MESSAGE value="Добавлено кеширование категорий и записей" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлено кеширование категорий и записей" />
+    <MESSAGE value="Фикс добавления категории" />
+    <MESSAGE value="Добавлен перевод на русский" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлен перевод на русский" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />

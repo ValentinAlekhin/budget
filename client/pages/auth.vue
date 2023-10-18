@@ -16,14 +16,16 @@ definePageMeta({
   layout: 'auth',
 })
 
-const items = [
+const { t } = useI18n()
+
+const items = computed(() => [
   {
     slot: 'login',
-    label: 'Login',
+    label: t('common.login'),
   },
   {
     slot: 'reg',
-    label: 'Register',
+    label: t('common.register'),
   },
-]
+])
 </script>

@@ -1,14 +1,16 @@
 <template>
   <UForm ref="form" :schema="schema" :state="state" @submit.prevent="submit">
-    <UFormGroup label="Username" name="username">
+    <UFormGroup :label="$t('common.username')" name="username">
       <UInput v-model="state.username" />
     </UFormGroup>
 
-    <UFormGroup label="Password" name="password" class="mt-4">
+    <UFormGroup :label="$t('common.password')" name="password" class="mt-4">
       <UInput v-model="state.password" type="password" />
     </UFormGroup>
 
-    <UButton class="mt-6" type="submit" block> Login </UButton>
+    <UButton class="mt-6" type="submit" block>
+      {{ $t('common.login') }}
+    </UButton>
   </UForm>
 </template>
 

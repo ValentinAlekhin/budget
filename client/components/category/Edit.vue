@@ -62,45 +62,40 @@
       <UCard>
         <template #header>
           <span class="text-xl font-medium dark:text-white">
-            Add new category
+            {{ $t('category.add') }}
           </span>
         </template>
 
         <UForm ref="form" :schema="schema" :state="state">
-          <UFormGroup label="Name" name="name" class="mb-2">
+          <UFormGroup :label="$t('common.name')" name="name" class="mb-2">
             <UInput v-model="state.name" />
           </UFormGroup>
 
-          <UFormGroup label="Plan" name="plan" class="mb-2">
+          <UFormGroup :label="$t('common.plan')" name="plan" class="mb-2">
             <UInput v-model.number="state.plan" />
           </UFormGroup>
 
-          <UFormGroup label="Comment" name="comment" class="mb-2">
+          <UFormGroup :label="$t('common.comment')" name="comment" class="mb-2">
             <UInput v-model="state.comment" />
           </UFormGroup>
 
-          <UFormGroup label="Icon" name="icon">
+          <UFormGroup :label="$t('common.icon')" name="icon">
             <UInput v-model="state.icon" class="mb-1">
               <template v-if="state.icon" #trailing>
                 <Icon :name="state.icon" size="24" />
               </template>
             </UInput>
 
-            <span class="text-sm text-neutral-400"
-              >Search icons
-              <a
-                href="https://icon-sets.iconify.design/"
-                target="_blank"
-                class="text-cyan-500 underline"
-                >here</a
-              >
-            </span>
+            <span
+              class="text-sm text-neutral-400"
+              v-html="$t('icon.resource')"
+            />
           </UFormGroup>
         </UForm>
 
         <template #footer>
           <UButton block @click="submitModal">
-            {{ editCategoryId ? 'Update' : 'Add' }}
+            {{ $t(`common.${editCategoryId ? 'edit' : 'add'}`) }}
           </UButton>
         </template>
       </UCard>
@@ -173,7 +168,7 @@ const editCategoryId = ref<string | null>(null)
 const itemToDelete = ref<any>(null)
 
 const schema = object({
-  name: string().required('Category name required').min(2),
+  name: string().required().min(2),
   icon: string().nullable(),
   comment: string().nullable(),
   plan: string().min(0).nullable().optional(),

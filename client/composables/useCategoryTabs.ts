@@ -1,18 +1,19 @@
 import { useLocalStorage } from '@vueuse/core'
 
 export function useCategoryTabs() {
+  const { t } = useI18n()
   const currentTab = useLocalStorage('category-tab', 0)
 
-  const tabs = [
+  const tabs = computed(() => [
     {
-      label: 'Costs',
+      label: t('common.costs'),
       slot: 'cost',
     },
     {
-      label: 'Incoming',
+      label: t('common.incoming'),
       slot: 'inc',
     },
-  ]
+  ])
 
   return { tabs, currentTab }
 }

@@ -2,7 +2,7 @@
   <UCard class="mb-4">
     <div class="mb-4 flex flex-col">
       <span class="text-sm text-gray-700 dark:text-gray-400">
-        Current balance
+        {{ $t('common.currentBalance') }}
       </span>
       <div class="flex items-center">
         <span class="text-2xl font-bold">
@@ -21,7 +21,7 @@
 
     <div>
       <span class="mb-1 block text-sm text-gray-700 dark:text-gray-400">
-        Sum
+        {{ $t('common.sum') }}
       </span>
       <div class="grid grid-cols-2">
         <div class="flex flex-col">
@@ -30,7 +30,7 @@
               name="ic:round-arrow-drop-down"
               class="scale-200 text-rose-500"
             />
-            Costs
+            {{ $t('common.costs') }}
           </span>
           <span class="font-bold">-{{ numberWithSpaces(totalCost) }}</span>
         </div>
@@ -41,7 +41,7 @@
               name="ic:round-arrow-drop-up"
               class="scale-200 text-green-500"
             />
-            Income
+            {{ $t('common.incoming') }}
           </span>
           <span class="font-bold">+{{ numberWithSpaces(totalIncoming) }}</span>
         </div>
@@ -109,6 +109,7 @@ import { useCommonRanges } from '~/composables/useCommonRanges'
 import { InferType, number, object } from 'yup'
 
 const recordStore = useRecordStore()
+const { t } = useI18n()
 const { costs, inc, adjustment } = storeToRefs(recordStore)
 const { filterRecordsByRange } = useRecord()
 const { handleClick, currentRange } = useCommonRanges('home-range-index')
@@ -129,13 +130,13 @@ const miniCards = computed(() =>
       color: 'red',
       icon: 'bi:arrow-down-right',
       categories: costs,
-      name: 'Cost',
+      name: t('common.costs'),
     },
     {
       color: 'green',
       icon: 'bi:arrow-up-right',
       categories: inc,
-      name: 'Income',
+      name: t('common.incoming'),
     },
   ].map((item) => ({
     ...item,

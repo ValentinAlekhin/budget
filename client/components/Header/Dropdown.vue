@@ -26,14 +26,16 @@
     <UModal v-model="isOpen" class="w-80">
       <UCard>
         <template #header>
-          <span class="text-lg font-medium dark:text-white"
-            >Confirm logout</span
-          >
+          <span class="text-lg font-medium dark:text-white">
+            {{ $t('common.confirmLogout') }}
+          </span>
         </template>
 
         <div class="flex justify-between">
-          <UButton color="red" @click="authStore.logout">Logout</UButton>
-          <UButton @click="isOpen = false">Cancel</UButton>
+          <UButton color="red" @click="authStore.logout">
+            {{ $t('common.logout') }}
+          </UButton>
+          <UButton @click="isOpen = false">{{ $t('common.cancel') }}</UButton>
         </div>
       </UCard>
     </UModal>
@@ -47,12 +49,13 @@ import { useAuthStore } from '~/store/auth'
 const authStore = useAuthStore()
 const { user } = storeToRefs(authStore)
 const isOpen = ref(false)
+const { t } = useI18n()
 
-const usernameFirstLetter = computed(() =>
-  user.value?.username[0].toUpperCase()
+const usernameFirstLetter = computed(
+  () => user.value?.username[0].toUpperCase(),
 )
 
-const items = [
+const items = computed(() => [
   [
     {
       label: user.value?.username,
@@ -62,17 +65,17 @@ const items = [
   ],
   [
     {
-      label: 'Settings',
+      label: t('common.settings'),
       icon: 'i-heroicons-cog-8-tooth',
       to: '/settings',
     },
   ],
   [
     {
-      label: 'Logout',
+      label: t('common.logout'),
       icon: 'i-heroicons-arrow-left-on-rectangle',
       click: () => (isOpen.value = true),
     },
   ],
-]
+])
 </script>

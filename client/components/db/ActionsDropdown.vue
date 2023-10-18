@@ -11,20 +11,23 @@
 <script lang="ts" setup>
 const props = defineProps<{ record: any }>()
 const emit = defineEmits(['edit', 'delete'])
-const items = [
+
+const { t } = useI18n()
+
+const items = computed(() => [
   [
     {
-      label: 'Edit',
+      label: t('common.edit'),
       icon: 'i-heroicons-pencil-square-20-solid',
       click: () => emit('edit', props.record),
     },
   ],
   [
     {
-      label: 'Delete',
+      label: t('common.delete'),
       icon: 'i-heroicons-trash-20-solid',
       click: () => emit('delete', props.record),
     },
   ],
-]
+])
 </script>

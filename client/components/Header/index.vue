@@ -11,7 +11,9 @@
       </div>
 
       <div v-if="ready || loading" class="inset-center flex items-center">
-        <span class="mr-2 text-sm text-slate-300">Updating</span>
+        <span class="mr-2 text-sm text-slate-300">
+          {{ $t('common.updating') }}
+        </span>
         <div class="w-8">
           <ui-loaders-puls v-if="loading" />
           <Icon class="ml-1" v-else name="heroicons:check-20-solid" />

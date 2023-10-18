@@ -9,6 +9,7 @@ export interface Range {
 }
 
 export function useCommonRanges(name: string) {
+  const { t } = useI18n()
   const {
     startOfCurrentMonth,
     startOfCurrentDay,
@@ -20,22 +21,22 @@ export function useCommonRanges(name: string) {
 
   const rangeValues: ComputedRef<Range[]> = computed(() => [
     {
-      name: 'Current day',
+      name: t('range.currentDay'),
       start: startOfCurrentDay.value,
       end: endOfCurrentDay.value,
     },
     {
-      name: 'Current month',
+      name: t('range.currentMonth'),
       start: startOfCurrentMonth.value,
       end: endOfCurrentMonth.value,
     },
     {
-      name: 'Last 30 days',
+      name: t('range.last30days'),
       start: endOfCurrentDay.value.subtract(30, 'day'),
       end: endOfCurrentDay.value,
     },
     {
-      name: 'Current year',
+      name: t('range.currentYear'),
       start: startOfCurrentYear.value,
       end: endOfCurrentYear.value,
     },
@@ -43,12 +44,12 @@ export function useCommonRanges(name: string) {
 
   const currentRangeIndex = useLocalStorage<number>(name, 0)
   const currentRange = computed(() =>
-    rangeValues.value.find((_, i) => i === currentRangeIndex.value)
+    rangeValues.value.find((_, i) => i === currentRangeIndex.value),
   )
 
   const handleClick = () => {
     const currentIndex = rangeValues.value.findIndex(
-      (item) => item.name === currentRange.value?.name
+      (item) => item.name === currentRange.value?.name,
     )
     const lastIndex = rangeValues.value.length - 1
     currentRangeIndex.value = currentIndex === lastIndex ? 0 : currentIndex + 1

@@ -95,6 +95,7 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@vite-pwa/nuxt',
     '@formkit/auto-animate/nuxt',
+    '@nuxtjs/i18n',
   ],
 
   pwa: {
@@ -159,6 +160,30 @@ export default defineNuxtConfig({
 
   vueuse: {
     ssrHandlers: true,
+  },
+
+  i18n: {
+    vueI18n: './i18n.config.ts',
+    defaultLocale: 'en',
+    // @ts-ignore
+    setLocaleCookie: true,
+    getLocaleCookie: 'i18n',
+    strategy: 'no_prefix',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n',
+      alwaysRedirect: true,
+    },
+    locales: [
+      {
+        code: 'en',
+        name: 'English',
+      },
+      {
+        code: 'ru',
+        name: 'Русский',
+      },
+    ],
   },
 
   devtools: true,

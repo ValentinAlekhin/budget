@@ -2,6 +2,7 @@ import { string } from 'yup'
 
 export function useBackendValidators() {
   const { api } = useApi()
+  const { t } = useI18n()
 
   const isAvailableUsername = async (username: string) => {
     const { data } = await api.post('/user-field-validation/username', {
@@ -20,17 +21,13 @@ export function useBackendValidators() {
   }
 
   const usernameSchema = string()
-    .required('Username required')
-    .test(
-      'isAvailableUsername',
-      'Username is already taken',
-      isAvailableUsername
-    )
+    .required(t('validation.required'))
+    .test('isAvailableUsername', t('validation.taken'), isAvailableUsername)
 
   const emailSchema = string()
-    .required('Email required')
+    .required(t('validation.required'))
     .email()
-    .test('isAvailableEmail', 'Еmail is already taken', isAvailableEmail)
+    .test('isAvailableEmail', t('validation.taken'), isAvailableEmail)
 
   return { isAvailableUsername, usernameSchema, isAvailableEmail, emailSchema }
 }

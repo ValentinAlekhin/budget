@@ -4,7 +4,7 @@
       <UCard :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
         <template #header>
           <span class="text-xl font-medium dark:text-white">
-            Редактирование записи {{ record?.id || '' }}
+            {{ $t('record.edit', { date: formattedDate }) }}
           </span>
         </template>
 
@@ -14,19 +14,19 @@
           :state="state"
           @submit.prevent="submit"
         >
-          <UFormGroup label="Amount" name="amount">
+          <UFormGroup :label="$t('common.amount')" name="amount">
             <UInput v-model="state.amount" />
           </UFormGroup>
 
-          <UFormGroup label="Comment" name="comment">
+          <UFormGroup :label="$t('common.comment')" name="comment" class="mt-2">
             <UInput v-model="state.comment" />
           </UFormGroup>
 
-          <UFormGroup label="Type" name="type" class="mt-2">
-            <USelectMenu v-model="state.type" :options="types" />
-          </UFormGroup>
-
-          <UFormGroup label="Category" name="category" class="mt-2">
+          <UFormGroup
+            :label="$t('common.category')"
+            name="category"
+            class="mt-2"
+          >
             <USelectMenu
               v-model="state.categoryId"
               :options="categoryOptions"
@@ -40,7 +40,9 @@
         </UForm>
 
         <template #footer>
-          <UButton type="submit" block @click="submit"> Submit </UButton>
+          <UButton type="submit" block @click="submit">
+            {{ $t('common.submit') }}
+          </UButton>
         </template>
       </UCard>
     </UModal>
@@ -70,12 +72,10 @@ const isOpen = computed({
 const categoryOptions = computed(() =>
   categoriesStore.data.map((c) => ({ id: c.id, label: c.name })),
 )
-const types = ['cost', 'dist', 'inc']
 
 const schema = object({
   amount: number().required(),
   categoryId: mixed().required(),
-  type: mixed().oneOf(types),
   timestamp: date().required(),
   comment: string(),
 })
@@ -83,7 +83,6 @@ const schema = object({
 const state = ref({
   amount: 0,
   categoryId: '',
-  type: '',
   timestamp: dayjs(),
   comment: '',
 })
@@ -93,21 +92,12 @@ const currentCategory = computed(
     categoryOptions.value.find((c) => c.id === state.value.categoryId) || ' ',
 )
 
-watch(
-  () => props.record,
-  (record) => {
-    if (!record) return
-
-    state.value.amount = record?.amount
-    state.value.categoryId = record?.categoryId
-    state.value.type = record?.type
-    state.value.timestamp = record?.timestamp
-    state.value.comment = record?.comment
-  },
-)
-
 const form = ref()
 const loading = ref(false)
+
+const formattedDate = computed(() =>
+  dayjs(props.record?.timestamp).format('DD.MM.YYYY'),
+)
 
 const close = () => emit('close')
 
@@ -123,4 +113,16 @@ const submit = async () => {
 
   close()
 }
+
+watch(
+  () => props.record,
+  (record) => {
+    if (!record) return
+
+    state.value.amount = record?.amount
+    state.value.categoryId = record?.categoryId
+    state.value.timestamp = record?.timestamp
+    state.value.comment = record?.comment
+  },
+)
 </script>
