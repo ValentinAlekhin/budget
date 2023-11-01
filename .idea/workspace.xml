@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Удален индекс">
-      <change afterPath="$PROJECT_DIR$/client/components/cost/edit.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/composables/usePlan.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/composables/useYap.ts" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлен useYup обновлен nuxt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/auth/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/auth/LoginForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/auth/RegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/auth/RegisterForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index/edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useTimestamp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useTimestamp.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/dto/record.ts" beforeDir="false" afterPath="$PROJECT_DIR$/common/dto/record.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.entity.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,7 +284,7 @@
       <workItem from="1697641250634" duration="11198000" />
       <workItem from="1697699216617" duration="10000" />
       <workItem from="1697969433919" duration="1408000" />
-      <workItem from="1698850211405" duration="2029000" />
+      <workItem from="1698850211405" duration="4403000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -401,14 +390,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00066" summary="Добавлено сообщение и запуске сервере в телеге">
-      <option name="closed" value="true" />
-      <created>1694767024372</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1694767024372</updated>
     </task>
     <task id="LOCAL-00067" summary="Фиксы">
       <option name="closed" value="true" />
@@ -674,7 +655,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697970259596</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Добавлен useYup обновлен nuxt">
+      <option name="closed" value="true" />
+      <created>1698852404932</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1698852404932</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -692,7 +681,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлена асинхронная валидация почты и логина" />
     <MESSAGE value="Фикс инпутов" />
     <MESSAGE value="Ускорен рефреш токенов и добавлены статусы соединения с сервером" />
     <MESSAGE value="Добавлено сообщение и запуске сервере в телеге" />
@@ -717,7 +705,8 @@
     <MESSAGE value="Добавлен перевод на русский" />
     <MESSAGE value="Обновлен перевод" />
     <MESSAGE value="Удален индекс" />
-    <option name="LAST_COMMIT_MESSAGE" value="Удален индекс" />
+    <MESSAGE value="Добавлен useYup обновлен nuxt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлен useYup обновлен nuxt" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />

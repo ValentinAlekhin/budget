@@ -1,15 +1,11 @@
 <template>
   <div>
-    <div class="mb-4 flex items-center justify-between">
-      <p class="mb-2 text-sm font-medium text-cyan-500" @click="handleClick">
-        {{ currentRange?.name }}
-      </p>
-      <USelectMenu v-model="selected" class="w-36" :options="categoryTypes">
-        <template #label>
-          {{ selected.label }}
-        </template>
-      </USelectMenu>
-    </div>
+    <UTabs :items="tabs" v-model:model-value="currentTab" class="w-full" />
+    <UTabs
+      :items="ranges"
+      v-model:model-value="currentRangeIndex"
+      class="w-full"
+    />
 
     <UCard class="mb-4" :ui="cardUi">
       <div class="flex items-center justify-between">
@@ -61,40 +57,85 @@ import { storeToRefs } from 'pinia'
 import { Dayjs } from 'dayjs'
 import { sumBy } from 'lodash-es'
 import type { RecordDto } from '../../../common/dto/record'
-import { useCommonRanges } from '~/composables/useCommonRanges'
 import { useCategoryStore } from '~/store/category'
 import { useRecordStore } from '~/store/record'
 import { useRecord } from '~/composables/useRecord'
+import { useCategoryTabs } from '~/composables/useCategoryTabs'
+import { useLocalStorage } from '@vueuse/core/index'
 
 const categoryStore = useCategoryStore()
 const { costs, incoming } = storeToRefs(categoryStore)
 const recordStore = useRecordStore()
 const recordsRefs = storeToRefs(recordStore)
 const { filterRecordsByRange } = useRecord()
-const { handleClick, currentRange } = useCommonRanges('stat-range-index')
 const { t } = useI18n()
+const { currentTab, tabs } = useCategoryTabs()
+const {
+  startOfCurrentDay,
+  endOfCurrentDay,
+  startOfCurrentYear,
+  endOfCurrentYear,
+  startOfCurrentMonth,
+  endOfCurrentMonth,
+  startOfCurrentWeek,
+  endOfCurrentWeek,
+  startOfCurrentQuarter,
+  endOfCurrentQuarter,
+} = useTimestamp()
 
-const categoryTypes = computed(() =>
-  [
-    {
-      label: t('common.costs'),
-      categories: costs.value,
-      records: recordsRefs.costs.value,
-    },
-    {
-      label: t('common.incoming'),
-      categories: incoming.value,
-      records: recordsRefs.inc.value,
-    },
-  ].map((t, id) => ({ ...t, id })),
-)
-const selected = ref(categoryTypes.value[0])
+const categoryTypes = computed(() => [
+  {
+    categories: costs.value,
+    records: recordsRefs.costs.value,
+  },
+  {
+    categories: incoming.value,
+    records: recordsRefs.inc.value,
+  },
+])
+const selected = computed(() => categoryTypes.value[currentTab.value])
+
+const currentRangeIndex = useLocalStorage('stat-range', 0)
+const ranges = computed(() => [
+  {
+    label: 'День',
+    start: startOfCurrentDay.value,
+    end: endOfCurrentDay.value,
+    step: 'day',
+  },
+  {
+    label: 'Неделя',
+    start: startOfCurrentWeek.value,
+    end: endOfCurrentWeek.value,
+    step: 'week',
+  },
+  {
+    label: 'Месяц',
+    start: startOfCurrentMonth.value,
+    end: endOfCurrentMonth.value,
+    step: 'month',
+  },
+  {
+    label: 'Квартал',
+    start: startOfCurrentQuarter.value,
+    end: endOfCurrentQuarter.value,
+    step: 'quarter',
+  },
+  {
+    label: 'Год',
+    start: startOfCurrentYear.value,
+    end: endOfCurrentYear.value,
+    step: 'year',
+  },
+])
+
+const currentRange = computed(() => ranges.value[currentRangeIndex.value])
 
 const filteredRecords = computed(() =>
   filterRecordsByRange(
     selected.value.records as RecordDto[],
-    currentRange.value?.start as Dayjs,
-    currentRange.value?.end as Dayjs,
+    currentRange?.value?.start as Dayjs,
+    currentRange?.value?.end as Dayjs,
   ),
 )
 
