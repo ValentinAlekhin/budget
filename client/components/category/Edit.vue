@@ -113,7 +113,6 @@
 <script setup lang="ts">
 import Draggable from 'vuedraggable'
 import { storeToRefs } from 'pinia'
-import { number, object, string } from 'yup'
 import { cloneDeep, get, last } from 'lodash-es'
 import { set } from 'vue-demi'
 import Omit from 'lodash-es/omit'
@@ -121,11 +120,14 @@ import { useCategoryStore } from '~/store/category'
 import { useActionsStore } from '~/store/actions'
 import BackButton from '~/components/ui/BackButton.vue'
 import MobileOnly from '~/components/ui/MobileOnly.vue'
+import { useYap } from '#imports'
 
 const actionsStore = useActionsStore()
 const categoryStore = useCategoryStore()
 const toast = useToast()
 const { costs, incoming } = storeToRefs(categoryStore)
+const { object, string } = useYap()
+const { t } = useI18n()
 
 const props = defineProps<{ type: 'cost' | 'inc' }>()
 const emit = defineEmits(['submit', 'cancel'])
@@ -230,7 +232,7 @@ const startEditCategory = (categoryId: string) => {
   editCategoryId.value = categoryId
   modalOpen.value = true
 }
-const save = async () => {
+const save = async (redirect = true) => {
   const payload = computedInputs.value.map(
     ({ id, order, name, icon, comment, plan }) => ({
       id,
@@ -244,7 +246,8 @@ const save = async () => {
   )
 
   await categoryStore.updateMany(payload)
-  emit('submit')
+
+  if (redirect) emit('submit')
 }
 const submitModal = async () => {
   try {
@@ -259,6 +262,8 @@ const submitModal = async () => {
       ...state.value,
       plan: +state.value.plan,
     }
+
+    await save(false)
   } else {
     const payload = {
       name: state.value.name,

@@ -60,7 +60,7 @@
 import { storeToRefs } from 'pinia'
 import { Dayjs } from 'dayjs'
 import { sumBy } from 'lodash-es'
-import { RecordDto } from '../../../common/dto/record'
+import type { RecordDto } from '../../../common/dto/record'
 import { useCommonRanges } from '~/composables/useCommonRanges'
 import { useCategoryStore } from '~/store/category'
 import { useRecordStore } from '~/store/record'

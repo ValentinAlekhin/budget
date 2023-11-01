@@ -1,5 +1,5 @@
 <template>
-  <UForm ref="form" :schema="schema" :state="state" @submit.prevent="submit">
+  <UForm ref="form" :schema="schema" :state="state" @submit="submit">
     <UFormGroup :label="$t('common.username')" name="username">
       <UInput v-model="state.username" />
     </UFormGroup>
@@ -15,14 +15,13 @@
 </template>
 
 <script lang="ts" setup>
-import { object, string } from 'yup'
 import { useAuthStore } from '~/store/auth'
 
+const { object, string } = useYap()
+
 const schema = object({
-  username: string().required('Username required'),
-  password: string()
-    .min(8, 'Must be at least 8 characters')
-    .required('Password required'),
+  username: string().required(),
+  password: string().min(8).required(),
 })
 
 const state = ref({

@@ -1,5 +1,5 @@
 <template>
-  <UForm ref="form" :schema="schema" :state="state" @submit.prevent="submit">
+  <UForm ref="form" :schema="schema" :state="state" @submit="submit">
     <UFormGroup :label="$t('common.username')" name="username">
       <UInput v-model="state.username" />
     </UFormGroup>
@@ -19,9 +19,10 @@
 </template>
 
 <script lang="ts" setup>
-import { object, string } from 'yup'
 import { useAuthStore } from '~/store/auth'
 import { useBackendValidators } from '~/composables/useBackendValidators'
+
+const { object, string } = useYap()
 
 const authStore = useAuthStore()
 const { usernameSchema, emailSchema } = useBackendValidators()
@@ -29,9 +30,7 @@ const { usernameSchema, emailSchema } = useBackendValidators()
 const schema = object({
   username: usernameSchema,
   email: emailSchema,
-  password: string()
-    .min(8, 'Must be at least 8 characters')
-    .required('Password required'),
+  password: string().min(8).required(),
 })
 
 const state = ref({

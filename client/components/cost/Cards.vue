@@ -106,13 +106,15 @@ import { Dayjs } from 'dayjs'
 import { useRecord } from '~/composables/useRecord'
 import { useRecordStore } from '~/store/record'
 import { useCommonRanges } from '~/composables/useCommonRanges'
-import { InferType, number, object } from 'yup'
+import { useYap } from '~/composables/useYap'
+import type { InferType } from 'yup'
 
 const recordStore = useRecordStore()
 const { t } = useI18n()
 const { costs, inc, adjustment } = storeToRefs(recordStore)
 const { filterRecordsByRange } = useRecord()
 const { handleClick, currentRange } = useCommonRanges('home-range-index')
+const { number, object } = useYap()
 
 const adjustmentModal = ref(false)
 
