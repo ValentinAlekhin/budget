@@ -29,8 +29,9 @@ export function useTimestamp() {
     startOfCurrentMonth.value.add(1, 'month'),
   )
 
+  const currentQuarterNumber = computed(() => startOfCurrentDay.value.quarter())
   const startOfCurrentQuarter = computed(() =>
-    startOfCurrentDay.value.quarter(1),
+    startOfCurrentDay.value.quarter(currentQuarterNumber.value),
   )
   const endOfCurrentQuarter = computed(() =>
     startOfCurrentQuarter.value.add(1, 'quarter'),
