@@ -7,12 +7,13 @@
       class="w-full"
     />
 
-    <div class="mb-2 flex justify-between">
+    <div class="mb-2 flex items-center justify-between">
       <UButton
         icon="i-heroicons-chevron-left"
         :padded="false"
         color="gray"
         variant="link"
+        size="xl"
         @click="prevDate"
       />
       <span class="font-semibold">
@@ -23,6 +24,7 @@
         :padded="false"
         color="gray"
         variant="link"
+        size="xl"
         @click="nextDate"
       />
     </div>
