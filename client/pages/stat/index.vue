@@ -7,6 +7,26 @@
       class="w-full"
     />
 
+    <div class="mb-2 flex justify-between">
+      <UButton
+        icon="i-heroicons-chevron-left"
+        :padded="false"
+        color="gray"
+        variant="link"
+        @click="prevDate"
+      />
+      <span class="font-semibold">
+        {{ currentRange.rangeView(startEndDates) }}
+      </span>
+      <UButton
+        icon="i-heroicons-chevron-right"
+        :padded="false"
+        color="gray"
+        variant="link"
+        @click="nextDate"
+      />
+    </div>
+
     <UCard class="mb-4" :ui="cardUi">
       <div class="flex items-center justify-between">
         <span class="font-bold text-gray-900 dark:text-white">
@@ -54,8 +74,8 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { Dayjs } from 'dayjs'
-import { sumBy } from 'lodash-es'
+import { Dayjs, ManipulateType } from 'dayjs'
+import { capitalize, sumBy } from 'lodash-es'
 import type { RecordDto } from '../../../common/dto/record'
 import { useCategoryStore } from '~/store/category'
 import { useRecordStore } from '~/store/record'
@@ -83,6 +103,11 @@ const {
   endOfCurrentQuarter,
 } = useTimestamp()
 
+const startEndDates = ref({
+  start: startOfCurrentDay.value,
+  end: endOfCurrentDay.value,
+})
+
 const categoryTypes = computed(() => [
   {
     categories: costs.value,
@@ -98,34 +123,44 @@ const selected = computed(() => categoryTypes.value[currentTab.value])
 const currentRangeIndex = useLocalStorage('stat-range', 0)
 const ranges = computed(() => [
   {
-    label: 'День',
+    label: capitalize(t('common.day')),
     start: startOfCurrentDay.value,
     end: endOfCurrentDay.value,
     step: 'day',
+    rangeView: ({ start }: { start: Dayjs; end?: Dayjs }) =>
+      start.format('D MMMM, YYYY'),
   },
   {
-    label: 'Неделя',
+    label: capitalize(t('common.week')),
     start: startOfCurrentWeek.value,
     end: endOfCurrentWeek.value,
     step: 'week',
+    rangeView: ({ start, end }: { start: Dayjs; end?: Dayjs }) =>
+      `${start.format('D MMMM')} - ${end.format('D MMM, YYYY')}`,
   },
   {
-    label: 'Месяц',
+    label: capitalize(t('common.month')),
     start: startOfCurrentMonth.value,
     end: endOfCurrentMonth.value,
     step: 'month',
+    rangeView: ({ start }: { start: Dayjs; end?: Dayjs }) =>
+      capitalize(`${start.format('MMMM, YYYY')}`),
   },
   {
-    label: 'Квартал',
+    label: capitalize(t('common.quarter')),
     start: startOfCurrentQuarter.value,
     end: endOfCurrentQuarter.value,
     step: 'quarter',
+    rangeView: ({ start }: { start: Dayjs; end?: Dayjs }) =>
+      `${start.quarter()} ${t('common.quarter')}, ${start.format('YYYY')}`,
   },
   {
-    label: 'Год',
+    label: capitalize(t('common.year')),
     start: startOfCurrentYear.value,
     end: endOfCurrentYear.value,
     step: 'year',
+    rangeView: ({ start }: { start: Dayjs; end?: Dayjs }) =>
+      start.format('YYYY'),
   },
 ])
 
@@ -134,8 +169,8 @@ const currentRange = computed(() => ranges.value[currentRangeIndex.value])
 const filteredRecords = computed(() =>
   filterRecordsByRange(
     selected.value.records as RecordDto[],
-    currentRange?.value?.start as Dayjs,
-    currentRange?.value?.end as Dayjs,
+    startEndDates.value.start as Dayjs,
+    startEndDates.value.end as Dayjs,
   ),
 )
 
@@ -169,4 +204,35 @@ const cardUi = {
     padding: 'px-6 py-3 sm:p-6',
   },
 }
+
+const prevDate = () => {
+  const step = currentRange.value.step as ManipulateType
+
+  startEndDates.value = {
+    start: startEndDates.value.start.subtract(1, step),
+    end: startEndDates.value.end.subtract(1, step),
+  }
+}
+const nextDate = () => {
+  const step = currentRange.value.step as ManipulateType
+
+  startEndDates.value = {
+    start: startEndDates.value.start.add(1, step),
+    end: startEndDates.value.end.add(1, step),
+  }
+}
+
+onMounted(() => {
+  startEndDates.value = {
+    start: currentRange.value.start,
+    end: currentRange.value.end,
+  }
+})
+
+watch(currentRange, (value: any) => {
+  startEndDates.value = {
+    start: value?.start,
+    end: value?.end,
+  }
+})
 </script>

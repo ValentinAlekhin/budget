@@ -34,6 +34,11 @@ interface Locale {
     email: string
     cancel: string
     confirmLogout: string
+    quarter: string
+    day: string
+    week: string
+    year: string
+    month: string
   }
   range: {
     currentYear: string
@@ -93,6 +98,11 @@ const messages: Record<string, Locale> = {
       email: 'Почта',
       cancel: 'Отмена',
       confirmLogout: 'Подтвердите выход',
+      quarter: 'квартал',
+      day: 'день',
+      week: 'неделя',
+      year: 'год',
+      month: 'месяц',
     },
     range: {
       currentYear: 'Текущий год',
@@ -151,6 +161,11 @@ const messages: Record<string, Locale> = {
       email: 'Email',
       cancel: 'Cancel',
       confirmLogout: 'Confirm logout',
+      quarter: 'quarter',
+      day: 'day',
+      week: 'week',
+      year: 'year',
+      month: 'month',
     },
     range: {
       currentYear: 'Current Year',

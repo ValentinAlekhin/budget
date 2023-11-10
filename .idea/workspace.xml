@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлены новые диапазоны в стату">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлено переключение промежутков статистики">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/composables/useTimestamp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useTimestamp.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/i18n.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +59,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 6
+}]]></component>
   <component name="ProjectId" id="2K2g279g4R2M8dOfsjzN3WQQpsZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -76,7 +85,7 @@
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/home/valentin/Documents/projects/budget/server/node_modules/prettier",
     "settings.editor.selected.configurable": "settings.nodejs",
-    "ts.external.directory.path": "C:\\Users\\Valentin\\Documents\\projects\\budget\\server\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -96,7 +105,7 @@
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\components\Header" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.start:dev">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -282,7 +291,8 @@
       <workItem from="1697641250634" duration="11198000" />
       <workItem from="1697699216617" duration="10000" />
       <workItem from="1697969433919" duration="1408000" />
-      <workItem from="1698850211405" duration="4491000" />
+      <workItem from="1698850211405" duration="6079000" />
+      <workItem from="1699633608824" duration="4278000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -388,14 +398,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00068" summary="Добавлен кеш для записей">
-      <option name="closed" value="true" />
-      <created>1694794262988</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1694794262988</updated>
     </task>
     <task id="LOCAL-00069" summary="Добавлен кеш для записей">
       <option name="closed" value="true" />
@@ -661,7 +663,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698857934595</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="Добавлены новые диапазоны в стату">
+      <option name="closed" value="true" />
+      <created>1698858039620</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1698858039620</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -679,7 +689,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ускорен рефреш токенов и добавлены статусы соединения с сервером" />
     <MESSAGE value="Добавлено сообщение и запуске сервере в телеге" />
     <MESSAGE value="Фиксы" />
     <MESSAGE value="Добавлен кеш для записей" />
@@ -704,7 +713,8 @@
     <MESSAGE value="Удален индекс" />
     <MESSAGE value="Добавлен useYup обновлен nuxt" />
     <MESSAGE value="Добавлены новые диапазоны в стату" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены новые диапазоны в стату" />
+    <MESSAGE value="Добавлено переключение промежутков статистики" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлено переключение промежутков статистики" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />
