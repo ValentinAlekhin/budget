@@ -30,6 +30,8 @@ export function useTimestamp() {
   const startOfCurrentYear = computed(() => now.value.startOf('year'))
   const endOfCurrentYear = computed(() => now.value.endOf('year'))
 
+  watch(locale, (value) => dayjs.locale(value))
+
   return {
     now,
     startOfCurrentDay,
