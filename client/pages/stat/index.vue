@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!--    <ui-tailwind-color-picker v-model:model-value="color" />-->
     <UTabs :items="tabs" v-model:model-value="currentTab" class="w-full" />
     <UTabs
       :items="ranges"
@@ -7,7 +8,7 @@
       class="w-full"
     />
 
-    <div class="mb-2 flex items-center justify-between">
+    <div class="mb-4 flex items-center justify-between">
       <UButton
         icon="i-heroicons-chevron-left"
         :padded="false"
@@ -29,19 +30,19 @@
       />
     </div>
 
-    <UCard class="mb-4" :ui="cardUi">
-      <div class="flex items-center justify-between">
-        <span class="font-bold text-gray-900 dark:text-white">
-          {{ t('common.totalSum') }}
-        </span>
-        <span class="text-xl font-bold text-gray-900 dark:text-white">
-          {{ numberWithSpaces(totalSum) }}
-        </span>
-      </div>
-    </UCard>
-
     <div v-auto-animate>
       <template v-if="list.length">
+        <div class="relative">
+          <ClientOnly>
+            <Doughnut class="mb-4" :data="chartData" :options="chartOptions" />
+          </ClientOnly>
+          <span
+            class="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] text-3xl font-bold text-gray-900 dark:text-white"
+          >
+            {{ numberWithSpaces(totalSum) }}
+          </span>
+        </div>
+
         <UCard v-for="item of list" :key="item.id" class="mb-2" :ui="cardUi">
           <div class="grid grid-cols-6 items-center">
             <span class="col-span-3 text-sm text-gray-500 dark:text-gray-400">
@@ -84,6 +85,14 @@ import { useRecordStore } from '~/store/record'
 import { useRecord } from '~/composables/useRecord'
 import { useCategoryTabs } from '~/composables/useCategoryTabs'
 import { useLocalStorage } from '@vueuse/core/index'
+import { Doughnut } from 'vue-chartjs'
+import type {
+  ChartData,
+  ChartOptions,
+  DoughnutControllerChartOptions,
+  DoughnutControllerDatasetOptions,
+} from 'chart.js'
+import { useTailwindColors } from '#imports'
 
 const categoryStore = useCategoryStore()
 const { costs, incoming } = storeToRefs(categoryStore)
@@ -104,6 +113,10 @@ const {
   startOfCurrentQuarter,
   endOfCurrentQuarter,
 } = useTimestamp()
+const { backgroundColor } = useTheme()
+const { colors } = useTailwindColors()
+
+const color = ref('#fff')
 
 const startEndDates = ref({
   start: startOfCurrentDay.value,
@@ -138,7 +151,7 @@ const ranges = computed(() => [
     end: endOfCurrentWeek.value,
     step: 'week',
     rangeView: ({ start, end }: { start: Dayjs; end?: Dayjs }) =>
-      `${start.format('D MMMM')} - ${end.format('D MMM, YYYY')}`,
+      `${start.format('D MMMM')} - ${end.format('D MMMM, YYYY')}`,
   },
   {
     label: capitalize(t('common.month')),
@@ -222,6 +235,26 @@ const nextDate = () => {
     start: startEndDates.value.start.add(1, step),
     end: startEndDates.value.end.add(1, step),
   }
+}
+
+const chartData = computed<ChartData<DoughnutControllerDatasetOptions>>(() => ({
+  labels: list.value.map((item) => item.name),
+  datasets: [
+    {
+      backgroundColor: colors.cyan['500'],
+      borderColor: backgroundColor.value,
+      data: list.value.map((item) => item.percentage),
+    },
+  ],
+}))
+
+const chartOptions: ChartOptions<DoughnutControllerChartOptions> = {
+  cutout: '80%',
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
 }
 
 onMounted(() => {

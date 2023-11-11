@@ -31,7 +31,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@formkit/auto-animate": "^0.8.0",
+    "@formkit/auto-animate": "^0.8.1",
     "@nuxt/ui": "^2.10.0",
     "@optimize-lodash/rollup-plugin": "^4.0.4",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.2",

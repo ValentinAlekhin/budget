@@ -17,6 +17,6 @@ export default defineNuxtPlugin(() => {
     Title,
     Tooltip,
     Legend,
-    ArcElement
+    ArcElement,
   )
 })
