@@ -32,9 +32,13 @@
 
     <div v-auto-animate>
       <template v-if="list.length">
-        <div class="relative">
+        <div class="relative mb-4 w-full">
           <ClientOnly>
-            <Doughnut class="mb-4" :data="chartData" :options="chartOptions" />
+            <Doughnut
+              class="w-full"
+              :data="chartData"
+              :options="chartOptions"
+            />
           </ClientOnly>
           <span
             class="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] text-3xl font-bold text-gray-900 dark:text-white"
