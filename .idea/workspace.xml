@@ -288,7 +288,7 @@
       <workItem from="1697699216617" duration="10000" />
       <workItem from="1697969433919" duration="1408000" />
       <workItem from="1698850211405" duration="6079000" />
-      <workItem from="1699633608824" duration="12903000" />
+      <workItem from="1699633608824" duration="13217000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -394,14 +394,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00073" summary="Добавлена простая статистика">
-      <option name="closed" value="true" />
-      <created>1695055602839</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1695055602839</updated>
     </task>
     <task id="LOCAL-00074" summary="Добавлена простая статистика">
       <option name="closed" value="true" />
@@ -667,7 +659,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699699122667</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="Добавлен график в стату">
+      <option name="closed" value="true" />
+      <created>1699699496898</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1699699496898</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

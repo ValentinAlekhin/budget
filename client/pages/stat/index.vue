@@ -254,6 +254,8 @@ const chartData = computed<ChartData<DoughnutControllerDatasetOptions>>(() => ({
 
 const chartOptions: ChartOptions<DoughnutControllerChartOptions> = {
   cutout: '80%',
+  maintainAspectRatio: false,
+  responsive: false,
   plugins: {
     legend: {
       display: false,
