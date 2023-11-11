@@ -36,21 +36,14 @@
         </template>
 
         <template #trailing>
-          <span class="text-xs text-gray-500 dark:text-gray-400">
+          <span
+            class="text-xs text-gray-500 dark:text-gray-400"
+            :style="{ color: inp.color }"
+          >
             {{ i + 1 }}
           </span>
         </template>
       </UInput>
-
-      <div v-if="inp.focused">
-        <UButton
-          v-for="mathHelper of []"
-          :key="mathHelper"
-          @click="inp.addHelper(mathHelper)"
-        >
-          {{ mathHelper }}
-        </UButton>
-      </div>
 
       <UInput
         v-if="inp.showCommentInp"
@@ -108,7 +101,7 @@ const focusedId = ref<string | null>(null)
 
 const computedInputs = computed(() =>
   props.list.map(
-    ({ id, name, balance, formattedBalance, colorClass, icon }) => {
+    ({ id, name, balance, formattedBalance, colorClass, icon, color }) => {
       const scope = {
         $1: 100,
       }
@@ -133,6 +126,7 @@ const computedInputs = computed(() =>
         evaluatedValue,
         focused,
         valid,
+        color,
         leadingClass: icon ? 'w-24' : 'w-36',
         padding: icon ? 'ps-32' : 'ps-40',
         inputValue: focused ? value : evaluatedValue,
@@ -170,7 +164,6 @@ const save = async () => {
       categoryId: id,
       timestamp: dayjs().toISOString(),
       comment,
-      type: props.type,
     }))
 
   await recordStore.addRecords(payload)

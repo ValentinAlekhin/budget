@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--    <ui-tailwind-color-picker v-model:model-value="color" />-->
     <UTabs :items="tabs" v-model:model-value="currentTab" class="w-full" />
     <UTabs
       :items="ranges"
@@ -49,9 +48,24 @@
 
         <UCard v-for="item of list" :key="item.id" class="mb-2" :ui="cardUi">
           <div class="grid grid-cols-6 items-center">
-            <span class="col-span-3 text-sm text-gray-500 dark:text-gray-400">
-              {{ item.name }}
-            </span>
+            <div class="col-span-3 flex items-center">
+              <span class="mr-2 text-sm text-gray-500 dark:text-gray-400">
+                {{ item.name }}
+              </span>
+
+              <Icon
+                v-if="item.icon"
+                :color="item.color"
+                :name="item.icon"
+                size="24"
+              />
+
+              <span
+                v-else-if="item.color"
+                :style="{ background: item.color }"
+                class="mt-1 inline-block h-2 w-2 rounded-full"
+              />
+            </div>
 
             <span class="text-sm text-gray-500 dark:text-gray-400">
               {{ item.percentage }}%
@@ -119,8 +133,6 @@ const {
 } = useTimestamp()
 const { backgroundColor } = useTheme()
 const { colors } = useTailwindColors()
-
-const color = ref('#fff')
 
 const startEndDates = ref({
   start: startOfCurrentDay.value,
@@ -213,6 +225,8 @@ const list = computed(() =>
         id: c.id,
         sum,
         percentage,
+        color: c.color,
+        icon: c.icon,
       }
     })
     .filter((c) => c.sum),
@@ -245,7 +259,9 @@ const chartData = computed<ChartData<DoughnutControllerDatasetOptions>>(() => ({
   labels: list.value.map((item) => item.name),
   datasets: [
     {
-      backgroundColor: colors.cyan['500'],
+      backgroundColor: list.value.map(
+        (item) => item.color || colors.cyan['500'],
+      ),
       borderColor: backgroundColor.value,
       data: list.value.map((item) => item.percentage),
     },

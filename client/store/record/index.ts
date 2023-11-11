@@ -49,7 +49,6 @@ export const useRecordStore = defineStore('record', {
         amount: number
         comment?: string
         categoryId: string
-        type: string
         timestamp: string
       }>,
     ) {

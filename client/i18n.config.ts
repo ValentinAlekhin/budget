@@ -39,6 +39,8 @@ interface Locale {
     week: string
     year: string
     month: string
+    selectColor: string
+    color: string
   }
   range: {
     currentYear: string
@@ -103,6 +105,8 @@ const messages: Record<string, Locale> = {
       week: 'неделя',
       year: 'год',
       month: 'месяц',
+      selectColor: 'Выберите цвет',
+      color: 'Цвет',
     },
     range: {
       currentYear: 'Текущий год',
@@ -166,6 +170,8 @@ const messages: Record<string, Locale> = {
       week: 'week',
       year: 'year',
       month: 'month',
+      selectColor: 'Select color',
+      color: 'Color',
     },
     range: {
       currentYear: 'Current Year',

@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлен график в стату">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлены цвета категорий">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/category/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/List.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/TailwindColorPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/TailwindColorPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/i18n.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,7 +293,7 @@
       <workItem from="1697699216617" duration="10000" />
       <workItem from="1697969433919" duration="1408000" />
       <workItem from="1698850211405" duration="6079000" />
-      <workItem from="1699633608824" duration="13217000" />
+      <workItem from="1699633608824" duration="16809000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -394,14 +399,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00074" summary="Добавлена простая статистика">
-      <option name="closed" value="true" />
-      <created>1695055797844</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1695055797844</updated>
     </task>
     <task id="LOCAL-00075" summary="Удалены лишние логи">
       <option name="closed" value="true" />
@@ -667,7 +664,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699699496898</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="Добавлен график в стату">
+      <option name="closed" value="true" />
+      <created>1699699811830</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1699699811830</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,7 +690,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Фиксы" />
     <MESSAGE value="Добавлен кеш для записей" />
     <MESSAGE value="Добавлена простая статистика" />
     <MESSAGE value="Удалены лишние логи" />
@@ -710,7 +714,8 @@
     <MESSAGE value="Добавлены новые диапазоны в стату" />
     <MESSAGE value="Добавлено переключение промежутков статистики" />
     <MESSAGE value="Добавлен график в стату" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен график в стату" />
+    <MESSAGE value="Добавлены цвета категорий" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены цвета категорий" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />

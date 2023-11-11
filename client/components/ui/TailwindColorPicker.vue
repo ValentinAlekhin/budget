@@ -1,10 +1,10 @@
 <template>
   <UPopover class="inline-block">
     <div class="flex items-center">
-      <span class="mr-2">Select a color</span>
+      <span class="mr-2">{{ $t('common.color') }}</span>
 
       <span
-        class="block h-5 w-10 rounded"
+        class="block h-5 w-10 rounded border-2 border-gray-500"
         :style="{ background: props.modelValue }"
       />
     </div>

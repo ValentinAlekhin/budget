@@ -36,7 +36,18 @@
 
             <div class="flex items-center">
               <span class="mr-2"> {{ element.name }}</span>
-              <Icon v-if="element.icon" :name="element.icon" size="24" />
+              <Icon
+                v-if="element.icon"
+                :color="element.color"
+                :name="element.icon"
+                size="24"
+              />
+
+              <span
+                v-else-if="element.color"
+                :style="{ background: element.color }"
+                class="inline-block h-2 w-2 rounded-full"
+              />
             </div>
 
             <UButton
@@ -58,7 +69,7 @@
       </template>
     </Draggable>
 
-    <UModal v-model="modalOpen">
+    <UModal v-model="modalOpen" @close="modalClose">
       <UCard>
         <template #header>
           <span class="text-xl font-medium dark:text-white">
@@ -79,7 +90,7 @@
             <UInput v-model="state.comment" />
           </UFormGroup>
 
-          <UFormGroup :label="$t('common.icon')" name="icon">
+          <UFormGroup :label="$t('common.icon')" name="icon" class="mb-2">
             <UInput v-model="state.icon" class="mb-1">
               <template v-if="state.icon" #trailing>
                 <Icon :name="state.icon" size="24" />
@@ -90,6 +101,10 @@
               class="text-sm text-neutral-400"
               v-html="$t('icon.resource')"
             />
+          </UFormGroup>
+
+          <UFormGroup name="color">
+            <UiTailwindColorPicker v-model="state.color" />
           </UFormGroup>
         </UForm>
 
@@ -159,6 +174,7 @@ const formState = reactive<Record<string, CategoryState>>(
       icon: c.icon,
       comment: c.comment,
       plan: c.plan,
+      color: c.color,
     }
 
     return acc
@@ -174,6 +190,7 @@ const schema = object({
   icon: string().nullable(),
   comment: string().nullable(),
   plan: string().min(0).nullable().optional(),
+  color: string().optional().nullable(),
 })
 
 const defaultState = {
@@ -181,6 +198,7 @@ const defaultState = {
   icon: '',
   comment: '',
   plan: null,
+  color: null,
 }
 const state = ref<CategoryStateWithoutOrder>(cloneDeep(defaultState))
 const clearState = () => (state.value = cloneDeep(defaultState))
@@ -201,20 +219,24 @@ const computedInputs = computed({
         const namePath = `${id}.name`
         const orderPath = `${id}.order`
         const iconPath = `${id}.icon`
+        const colorPath = `${id}.color`
         const name = get(formState, namePath, '')
         const order = get(formState, orderPath, i + 1)
         const icon = get(formState, iconPath, '')
+        const color = get(formState, colorPath)
 
         return {
           id,
           name,
           order,
           icon,
+          color,
           comment: get(formState, `${id}.comment`),
           plan: get(formState, `${id}.plan`),
           setName: (e) => set(formState, namePath, e.target.value),
           setOrder: (order) => set(formState, orderPath, order),
           setIcon: (e) => set(formState, iconPath, e.target.value),
+          setColor: (e) => set(formState, colorPath, e),
         }
       })
       .sort((a, b) => a.order - b.order),
@@ -228,19 +250,21 @@ const startEditCategory = (categoryId: string) => {
     icon: targetCategory.icon,
     comment: targetCategory.comment,
     plan: targetCategory.plan,
+    color: targetCategory.color,
   }
   editCategoryId.value = categoryId
   modalOpen.value = true
 }
 const save = async (redirect = true) => {
   const payload = computedInputs.value.map(
-    ({ id, order, name, icon, comment, plan }) => ({
+    ({ id, order, name, icon, comment, plan, color }) => ({
       id,
       order,
       name,
       icon,
       comment,
       plan: plan || null,
+      color: color || null,
       type: props.type,
     }),
   )
@@ -270,6 +294,7 @@ const submitModal = async () => {
       icon: state.value.icon,
       comment: state.value.comment,
       plan: +state.value.plan,
+      color: state.value.color,
       type: props.type,
       order: (last(categories.value)?.order || 0) + 1,
     }
@@ -284,6 +309,11 @@ const submitModal = async () => {
 const removeItem = async (id: string) => {
   await categoryStore.delete(id)
   itemToDelete.value = null
+}
+
+const modalClose = () => {
+  editCategoryId.value = null
+  clearState()
 }
 
 const cardUi = {
