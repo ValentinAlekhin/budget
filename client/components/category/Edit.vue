@@ -35,19 +35,25 @@
             />
 
             <div class="flex items-center">
-              <span class="mr-2"> {{ element.name }}</span>
-              <Icon
-                v-if="element.icon"
-                :color="element.color"
-                :name="element.icon"
-                size="24"
-              />
+              <div
+                v-if="element.color || element.icon"
+                class="mr-2 flex w-6 justify-center"
+              >
+                <Icon
+                  v-if="element.icon"
+                  :color="element.color"
+                  :name="element.icon"
+                  size="24"
+                />
 
-              <span
-                v-else-if="element.color"
-                :style="{ background: element.color }"
-                class="inline-block h-2 w-2 rounded-full"
-              />
+                <span
+                  v-else-if="element.color"
+                  :style="{ background: element.color }"
+                  class="inline-block h-2 w-2 rounded-full"
+                />
+              </div>
+
+              <span> {{ element.name }}</span>
             </div>
 
             <UButton

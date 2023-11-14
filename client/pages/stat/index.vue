@@ -49,22 +49,27 @@
         <UCard v-for="item of list" :key="item.id" class="mb-2" :ui="cardUi">
           <div class="grid grid-cols-6 items-center">
             <div class="col-span-3 flex items-center">
+              <div
+                v-if="item.color || item.icon"
+                class="mr-2 flex w-6 justify-center"
+              >
+                <Icon
+                  v-if="item.icon"
+                  :color="item.color"
+                  :name="item.icon"
+                  size="24"
+                />
+
+                <span
+                  v-else-if="item.color"
+                  :style="{ background: item.color }"
+                  class="mt-1 inline-block h-2 w-2 rounded-full"
+                />
+              </div>
+
               <span class="mr-2 text-sm text-gray-500 dark:text-gray-400">
                 {{ item.name }}
               </span>
-
-              <Icon
-                v-if="item.icon"
-                :color="item.color"
-                :name="item.icon"
-                size="24"
-              />
-
-              <span
-                v-else-if="item.color"
-                :style="{ background: item.color }"
-                class="mt-1 inline-block h-2 w-2 rounded-full"
-              />
             </div>
 
             <span class="text-sm text-gray-500 dark:text-gray-400">
