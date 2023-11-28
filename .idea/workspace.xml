@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлены цвета категорий">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлено месте для цвета и иконки">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +291,8 @@
       <workItem from="1698850211405" duration="6079000" />
       <workItem from="1699633608824" duration="17511000" />
       <workItem from="1699859218135" duration="47000" />
-      <workItem from="1699972580563" duration="824000" />
+      <workItem from="1699972580563" duration="2216000" />
+      <workItem from="1701185509102" duration="411000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -397,14 +398,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00076" summary="Добавлены проценты в статистике">
-      <option name="closed" value="true" />
-      <created>1695061422544</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1695061422545</updated>
     </task>
     <task id="LOCAL-00077" summary="Обновлена БД для телефонов">
       <option name="closed" value="true" />
@@ -670,7 +663,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699708358366</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="Обновлено месте для цвета и иконки">
+      <option name="closed" value="true" />
+      <created>1699985085582</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1699985085582</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -688,7 +689,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлен кеш для записей" />
     <MESSAGE value="Добавлена простая статистика" />
     <MESSAGE value="Удалены лишние логи" />
     <MESSAGE value="Добавлены проценты в статистике" />
@@ -713,7 +713,8 @@
     <MESSAGE value="Добавлено переключение промежутков статистики" />
     <MESSAGE value="Добавлен график в стату" />
     <MESSAGE value="Добавлены цвета категорий" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены цвета категорий" />
+    <MESSAGE value="Обновлено месте для цвета и иконки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновлено месте для цвета и иконки" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />
