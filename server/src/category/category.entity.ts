@@ -10,7 +10,7 @@ import {
 } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
 import { UserEntity } from 'src/user/user.entity'
-import { CategoryTypeEnum } from '@app/common/enum'
+import { CategoryPlanPeriodEnum, CategoryTypeEnum } from '@app/common/enum'
 import { RecordEntity } from '../record/record.entity'
 import { AbstractEntity } from '../common/abstract-entity'
 
@@ -40,6 +40,15 @@ export class CategoryEntity extends AbstractEntity {
   @IsNumber()
   @IsOptional()
   plan: number | null
+
+  @Column({
+    type: 'enum',
+    enum: CategoryPlanPeriodEnum,
+    default: CategoryPlanPeriodEnum.Month,
+  })
+  @IsEnum(CategoryPlanPeriodEnum)
+  @IsOptional()
+  planPeriod: CategoryPlanPeriodEnum
 
   @Column({ nullable: true })
   @IsHexColor()

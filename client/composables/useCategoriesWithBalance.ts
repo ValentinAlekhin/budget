@@ -6,7 +6,7 @@ import { useRecordStore } from '~/store/record'
 export function useCategoriesWithBalance() {
   const categoryStore = useCategoryStore()
   const recordStore = useRecordStore()
-  const { startOfCurrentMonth, endOfCurrentMonth } = useTimestamp()
+  const { now } = useTimestamp()
   const { filterRecordsByRange } = useRecord()
   const { costs: categoryCosts, incoming: categoryIncoming } =
     storeToRefs(categoryStore)
@@ -16,12 +16,10 @@ export function useCategoriesWithBalance() {
     categoryCosts.value.map((c) => {
       if (!c.plan) return c
 
+      const start = now.value.startOf(c.planPeriod)
+      const end = now.value.endOf(c.planPeriod)
       const allCostList = costs.value.filter((r) => r.categoryId === c.id)
-      const rangedCostList = filterRecordsByRange(
-        allCostList,
-        startOfCurrentMonth.value,
-        endOfCurrentMonth.value,
-      )
+      const rangedCostList = filterRecordsByRange(allCostList, start, end)
       const allCostSum = sumBy(rangedCostList, 'amount')
 
       const balance = c.plan - allCostSum

@@ -1,11 +1,11 @@
 <template>
   <div class="pb-40">
     <ClientOnly>
-      <MobileOnly>
+      <UiMobileOnly>
         <Teleport to="#headerTeleport">
-          <BackButton class="mr-2" @click="emit('cancel')" />
+          <UiBackButton class="mr-2" @click="emit('cancel')" />
         </Teleport>
-      </MobileOnly>
+      </UiMobileOnly>
     </ClientOnly>
 
     <Draggable
@@ -92,6 +92,19 @@
             <UInput v-model.number="state.plan" />
           </UFormGroup>
 
+          <UFormGroup
+            v-if="state.plan"
+            :label="$t('common.planPeriod')"
+            name="planPeriod"
+            class="mb-2"
+          >
+            <USelect
+              v-model="state.planPeriod"
+              :options="planPeriodList"
+              option-attribute="name"
+            />
+          </UFormGroup>
+
           <UFormGroup :label="$t('common.comment')" name="comment" class="mb-2">
             <UInput v-model="state.comment" />
           </UFormGroup>
@@ -134,13 +147,11 @@
 <script setup lang="ts">
 import Draggable from 'vuedraggable'
 import { storeToRefs } from 'pinia'
-import { cloneDeep, get, last } from 'lodash-es'
+import { capitalize, cloneDeep, get, last } from 'lodash-es'
 import { set } from 'vue-demi'
 import Omit from 'lodash-es/omit'
 import { useCategoryStore } from '~/store/category'
 import { useActionsStore } from '~/store/actions'
-import BackButton from '~/components/ui/BackButton.vue'
-import MobileOnly from '~/components/ui/MobileOnly.vue'
 import { useYap } from '#imports'
 
 const actionsStore = useActionsStore()
@@ -153,12 +164,20 @@ const { t } = useI18n()
 const props = defineProps<{ type: 'cost' | 'inc' }>()
 const emit = defineEmits(['submit', 'cancel'])
 
+const planPeriodList = computed(() =>
+  ['day', 'week', 'month', 'quarter', 'year'].map((value) => ({
+    value,
+    name: capitalize(t(`common.${value}`)),
+  })),
+)
+
 class CategoryState {
   name: string
   order: number
   comment: string
   icon?: string
   plan?: number | null
+  planPeriod: string
 }
 class CategoryStateWithoutOrder extends Omit<CategoryState, 'order'> {}
 
@@ -180,6 +199,7 @@ const formState = reactive<Record<string, CategoryState>>(
       icon: c.icon,
       comment: c.comment,
       plan: c.plan,
+      planPeriod: c.planPeriod,
       color: c.color,
     }
 
@@ -196,6 +216,7 @@ const schema = object({
   icon: string().nullable(),
   comment: string().nullable(),
   plan: string().min(0).nullable().optional(),
+  planPeriod: string().optional(),
   color: string().optional().nullable(),
 })
 
@@ -205,6 +226,7 @@ const defaultState = {
   comment: '',
   plan: null,
   color: null,
+  planPeriod: 'month',
 }
 const state = ref<CategoryStateWithoutOrder>(cloneDeep(defaultState))
 const clearState = () => (state.value = cloneDeep(defaultState))
@@ -226,10 +248,12 @@ const computedInputs = computed({
         const orderPath = `${id}.order`
         const iconPath = `${id}.icon`
         const colorPath = `${id}.color`
+        const planPeriodPath = `${id}.planPeriod`
         const name = get(formState, namePath, '')
         const order = get(formState, orderPath, i + 1)
         const icon = get(formState, iconPath, '')
         const color = get(formState, colorPath)
+        const planPeriod = get(formState, planPeriodPath)
 
         return {
           id,
@@ -237,12 +261,14 @@ const computedInputs = computed({
           order,
           icon,
           color,
+          planPeriod,
           comment: get(formState, `${id}.comment`),
           plan: get(formState, `${id}.plan`),
           setName: (e) => set(formState, namePath, e.target.value),
           setOrder: (order) => set(formState, orderPath, order),
           setIcon: (e) => set(formState, iconPath, e.target.value),
           setColor: (e) => set(formState, colorPath, e),
+          setPlanPeriod: (e) => set(formState, planPeriodPath, e),
         }
       })
       .sort((a, b) => a.order - b.order),
@@ -256,6 +282,7 @@ const startEditCategory = (categoryId: string) => {
     icon: targetCategory.icon,
     comment: targetCategory.comment,
     plan: targetCategory.plan,
+    planPeriod: targetCategory.planPeriod,
     color: targetCategory.color,
   }
   editCategoryId.value = categoryId
@@ -263,12 +290,13 @@ const startEditCategory = (categoryId: string) => {
 }
 const save = async (redirect = true) => {
   const payload = computedInputs.value.map(
-    ({ id, order, name, icon, comment, plan, color }) => ({
+    ({ id, order, name, icon, comment, plan, color, planPeriod }) => ({
       id,
       order,
       name,
       icon,
       comment,
+      planPeriod,
       plan: plan || null,
       color: color || null,
       type: props.type,
@@ -300,6 +328,7 @@ const submitModal = async () => {
       icon: state.value.icon,
       comment: state.value.comment,
       plan: +state.value.plan,
+      planPeriod: state.value.planPeriod,
       color: state.value.color,
       type: props.type,
       order: (last(categories.value)?.order || 0) + 1,
@@ -338,6 +367,7 @@ watch(categories, (value) =>
           name: c.name,
           icon: c.icon,
           plan: c.plan,
+          planPeriod: c.planPeriod,
           comment: c.comment,
           color: c.color,
         }),
