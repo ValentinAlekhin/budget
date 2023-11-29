@@ -98,11 +98,16 @@
             name="planPeriod"
             class="mb-2"
           >
-            <USelect
-              v-model="state.planPeriod"
+            <USelectMenu
+              :model-value="state.planPeriod"
               :options="planPeriodList"
               option-attribute="name"
-            />
+              @change="state.planPeriod = $event.value"
+            >
+              <template #label>
+                {{ selectedPlanPeriodName }}
+              </template>
+            </USelectMenu>
           </UFormGroup>
 
           <UFormGroup :label="$t('common.comment')" name="comment" class="mb-2">
@@ -239,6 +244,12 @@ const dragOptions = {
   disabled: false,
   ghostClass: 'ghost',
 }
+
+const selectedPlanPeriodName = computed(
+  () =>
+    planPeriodList.value.find((item) => item.value === state.value.planPeriod)
+      ?.name,
+)
 
 const computedInputs = computed({
   get: () =>
