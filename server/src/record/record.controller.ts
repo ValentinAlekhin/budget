@@ -11,7 +11,6 @@ import {
 } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard'
-import { RecordEntity } from '@app/record/record.entity'
 import { AdjustmentDto } from '@app/record/dto/adjustmentDto'
 import { RecordService } from './record.service'
 import { RecordResponseDto } from './dto/recordResponse.dto'
@@ -26,7 +25,7 @@ export class RecordController {
   constructor(private readonly recordService: RecordService) {}
 
   @Get()
-  async find(@Req() req): Promise<RecordEntity[]> {
+  async find(@Req() req): Promise<RecordResponseDto[]> {
     return await this.recordService.find(req.user)
   }
 

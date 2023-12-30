@@ -26,7 +26,7 @@ export class RecordService {
     private recordGateway: RecordGateway,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
-  async find(user): Promise<RecordEntity[]> {
+  async find(user): Promise<RecordResponseDto[]> {
     const cache = await this.getCache(user.id)
     if (cache) {
       return cache
@@ -43,7 +43,7 @@ export class RecordService {
 
     this.setCache(user.id, response)
 
-    return records
+    return response
   }
 
   async create(
