@@ -27,14 +27,30 @@ export class RecordService {
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
   async find(user): Promise<RecordResponseDto[]> {
+    console.time('cache')
+    const cache = await this.getCache(user.id)
+    if (cache) {
+      console.timeEnd('cache')
+      return cache
+    }
+
+    console.time('records')
     const records = await this.recordRepository.find({
       where: {
         category: { user: { id: user.id }, deletedAt: IsNull() },
       },
       order: { timestamp: 'desc' },
     })
+    console.timeEnd('records')
 
+
+    console.time('response')
     const response = records.map((r) => this.buildRecordResponse(r))
+    console.timeEnd('response')
+
+    console.time('setCache')
+    await this.setCache(user.id, response)
+    console.timeEnd('setCache')
 
     return response
   }
