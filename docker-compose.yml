@@ -9,7 +9,7 @@ services:
       - "3000:80"
     environment:
       - TZ=Europe/Moscow
-      - BASE_URL=11.5.0.6:3000
+      - BASE_URL=localhost:3000
     networks:
       - net
     depends_on:
@@ -37,6 +37,27 @@ services:
     networks:
       net:
         ipv4_address: 11.5.0.6
+    restart: unless-stopped
+
+  server-go:
+    build:
+      context: ./server-go
+    image: valentinalekhin/budget-server-go
+    environment:
+      - TZ=Europe/Moscow
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - PORT=3000
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - ACCESS_TOKEN_EXPIRATION=${ACCESS_TOKEN_EXPIRATION}
+      - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
+      - REFRESH_TOKEN_EXPIRATION=${REFRESH_TOKEN_EXPIRATION}
+    networks:
+      net:
+        ipv4_address: 11.5.0.7
     restart: unless-stopped
 
 networks:
