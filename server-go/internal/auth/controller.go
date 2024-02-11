@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"budget/internal/user"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -19,7 +18,7 @@ func (c controller) Login(ctx *gin.Context) {
 
 	res, err := Service.Login(&loginDto)
 	if err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -27,12 +26,22 @@ func (c controller) Login(ctx *gin.Context) {
 }
 
 func (c controller) Me(ctx *gin.Context) {
-	targetUser := ctx.MustGet("user").(user.User)
+	targetUser := ctx.MustGet("user").(PureUserDto)
 	ctx.JSON(http.StatusOK, targetUser)
 }
 
 func (c controller) Logout(ctx *gin.Context) {
 
+}
+
+func (c controller) RefreshTokens(ctx *gin.Context) {
+	var refreshTokenDto RefreshTokenDto
+	if err := ctx.ShouldBindJSON(&refreshTokenDto); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, refreshTokenDto)
 }
 
 var Controller = controller{}

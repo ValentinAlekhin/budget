@@ -25,8 +25,8 @@ export class RecordController {
   constructor(private readonly recordService: RecordService) {}
 
   @Get()
-  async find(@Req() req): Promise<RecordResponseDto[]> {
-    return await this.recordService.find(req.user)
+   find(@Req() req): Promise<RecordResponseDto[]> {
+    return this.recordService.find(req.user)
   }
 
   @Post()

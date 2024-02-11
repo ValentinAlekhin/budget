@@ -1,21 +1,7 @@
-FROM node:20-alpine
-
-RUN apk add --no-cache postgresql-client
-
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm ci
-
+FROM oven/bun
 COPY . .
+RUN bun install
 
-ENV NODE_ENV=production
+RUN bun run build
 
-RUN npm run build
-
-RUN touch .env
-
-EXPOSE 443
-
-CMD ["npm", "run", "start:prod"]
+CMD ["bun", "dist/main.js"]

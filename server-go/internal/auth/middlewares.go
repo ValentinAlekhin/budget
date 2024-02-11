@@ -35,13 +35,15 @@ func (m middlewares) AuthRequired(ctx *gin.Context) {
 	}
 
 	targetUser, err := user.Service.GetUserById(claims.User.ID)
-	targetUser.Password = ""
 	if err != nil {
 		ctx.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}
-	ctx.Set("user", targetUser)
-	ctx.Set("userId", targetUser.ID)
+
+	pureUser := PureUserDto{targetUser.ID, targetUser.Username, targetUser.Email}
+
+	ctx.Set("user", pureUser)
+	ctx.Set("userId", pureUser.ID)
 }
 
 var Middlewares = middlewares{}

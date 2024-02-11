@@ -1,6 +1,7 @@
 package record
 
 import (
+	db "budget/database"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -16,14 +17,9 @@ func (c controller) GetAll(ctx *gin.Context) {
 }
 
 func (c controller) CreateOne(ctx *gin.Context) {
-	var record Record
+	var record db.Record
 
 	if err := ctx.ShouldBindJSON(&record); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	if err := Service.CreateOne(&record); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

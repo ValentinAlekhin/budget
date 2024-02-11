@@ -1,6 +1,7 @@
 package user
 
 import (
+	db "budget/database"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -31,7 +32,7 @@ func (c controller) UpdateOne(ctx *gin.Context) {
 
 }
 
-func (c controller) formatResponse(user *User) {
+func (c controller) formatResponse(user *db.User) {
 	user.Password = ""
 }
 

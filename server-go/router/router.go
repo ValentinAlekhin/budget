@@ -14,8 +14,8 @@ func Init() {
 	router := gin.Default()
 	router.Use(cors.Default())
 
-	// userGroup := router.Group("/user")
-	// userGroup.POST("", user.Controller.CreateOne)
+	//userGroup := router.Group("/user")
+	//userGroup.POST("", user.Controller.CreateOne)
 
 	// categoryGroup := router.Group("/category")
 	// categoryGroup.Use(auth.Middlewares.AuthRequired)
@@ -31,9 +31,10 @@ func Init() {
 	// recordGroup.PUT("/:id", record.Controller.UpdateOne)
 	// recordGroup.DELETE("/:id", record.Controller.DeleteOne)
 
-	// authGroup := router.Group("/auth")
-	// authGroup.POST("/login", auth.Controller.Login)
-	// authGroup.GET("/me", auth.Middlewares.AuthRequired, auth.Controller.Me)
+	authGroup := router.Group("/auth")
+	authGroup.POST("/login", auth.Controller.Login)
+	authGroup.GET("/me", auth.Middlewares.AuthRequired, auth.Controller.Me)
+	authGroup.POST("/refresh-tokens", auth.Controller.RefreshTokens)
 	// authGroup.GET("/logout", auth.Middlewares.AuthRequired, auth.Controller.Logout)
 
 	if err := router.Run(fmt.Sprintf(":%s", config.Server.Port)); err != nil {

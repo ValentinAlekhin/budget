@@ -2,7 +2,9 @@ package auth
 
 import (
 	"budget/config"
+	db "budget/database"
 	"budget/internal/user"
+	"budget/utils/argon"
 	"errors"
 	"time"
 
@@ -14,25 +16,27 @@ type service struct {
 
 type CustomClaims struct {
 	jwt.RegisteredClaims
-	user.User
+	User PureUserDto
 }
 
 func (s service) Login(dto *LoginRequestDto) (LoginResponseDto, error) {
-	targetUser, err := user.Service.GetUserByEmailAndPass(dto.Email, dto.Password)
+	targetUser, err := user.Service.GetUserByEmailAndPass(dto.Username, dto.Password)
 	if err != nil {
 		return LoginResponseDto{}, err
 	}
 
-	token, err := s.getToken(targetUser)
+	pureUser := PureUserDto{targetUser.ID, targetUser.Username, targetUser.Email}
+
+	accessToken, refreshToken, err := s.getTokens(pureUser)
 	if err != nil {
 		return LoginResponseDto{}, err
 	}
 
-	return LoginResponseDto{AccessToken: token}, nil
+	return LoginResponseDto{pureUser, accessToken, refreshToken}, nil
 }
 
-func (s service) getToken(user user.User) (string, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, CustomClaims{
+func (s service) getTokens(user PureUserDto) (string, string, error) {
+	accessToken := jwt.NewWithClaims(jwt.SigningMethodHS256, CustomClaims{
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 24)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
@@ -40,12 +44,48 @@ func (s service) getToken(user user.User) (string, error) {
 		User: user,
 	})
 
-	tokenSrt, err := token.SignedString([]byte(config.JWT.AccessTokenSecret))
+	refreshToken := jwt.NewWithClaims(jwt.SigningMethodHS256, CustomClaims{
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 24 * 7)),
+			IssuedAt:  jwt.NewNumericDate(time.Now()),
+		},
+		User: user,
+	})
+
+	accessTokenSrt, err := accessToken.SignedString([]byte(config.JWT.AccessTokenSecret))
 	if err != nil {
-		return "", err
+		return "", "", err
 	}
 
-	return tokenSrt, nil
+	refreshTokenSrt, err := refreshToken.SignedString([]byte(config.JWT.RefreshTokenSecret))
+	if err != nil {
+		return "", "", err
+	}
+
+	if err := s.saveRefreshToken(refreshTokenSrt, user.ID); err != nil {
+		return "", "", err
+	}
+
+	return accessTokenSrt, refreshTokenSrt, nil
+}
+
+func (s service) saveRefreshToken(token string, userId string) error {
+	tokenHash, err := argon.NewArgon2ID().Hash(token)
+	if err != nil {
+		return err
+	}
+
+	tokenEntity := db.RefreshToken{
+		RefreshToken: tokenHash,
+		ExpiresAt:    time.Time{},
+		UserId:       userId,
+	}
+
+	if res := db.Instance.Create(&tokenEntity); res.Error != nil {
+		return errors.New("save token error")
+	}
+
+	return nil
 }
 
 func (s service) ParseToken(tokenString string) (*CustomClaims, error) {
