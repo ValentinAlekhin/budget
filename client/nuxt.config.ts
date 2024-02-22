@@ -101,7 +101,7 @@ export default defineNuxtConfig({
   ],
 
   pwa: {
-    // registerType: 'autoUpdate',
+    registerType: 'autoUpdate',
     manifest: {
       name: 'Budget',
       short_name: 'Budget',
@@ -140,14 +140,14 @@ export default defineNuxtConfig({
         },
       ],
     },
-    // client: {
-    //   installPrompt: true,
-    //   periodicSyncForUpdates: 3600,
-    // },
-    // workbox: {
-    //   navigateFallback: '/',
-    //   globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
-    // },
+    client: {
+      installPrompt: true,
+      periodicSyncForUpdates: 3600,
+    },
+    workbox: {
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
     devOptions: {
       enabled: true,
       suppressWarnings: true,
