@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Откат">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/client/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -297,7 +296,7 @@
       <workItem from="1701268601043" duration="799000" />
       <workItem from="1703862250645" duration="1267000" />
       <workItem from="1708617853101" duration="1621000" />
-      <workItem from="1708628326041" duration="1122000" />
+      <workItem from="1708628326041" duration="1385000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -403,14 +402,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00088" summary="Обновлены пакеты сервера">
-      <option name="closed" value="true" />
-      <created>1696689339844</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1696689339844</updated>
     </task>
     <task id="LOCAL-00089" summary="Мелкие фиксы">
       <option name="closed" value="true" />
@@ -676,7 +667,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708628960055</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="Откат">
+      <option name="closed" value="true" />
+      <created>1708629467261</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1708629467261</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

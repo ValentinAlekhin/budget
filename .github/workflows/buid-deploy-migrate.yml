@@ -28,8 +28,6 @@ jobs:
           push: true
           context: "{{defaultContext}}:client"
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/budget-client:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client:buildcache,mode=max
 
   deploy-client:
     name: Run client container
