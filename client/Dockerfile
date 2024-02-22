@@ -10,6 +10,7 @@ RUN npm ci
 COPY . .
 
 ENV BASE_URL 11.5.0.6:3000
+ENV SSL true
 
 RUN npm run generate
 
