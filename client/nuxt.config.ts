@@ -93,7 +93,7 @@ export default defineNuxtConfig({
     'nuxt-highcharts',
     '@nuxt/ui',
     'nuxt-icon',
-    '@vite-pwa/nuxt',
+    // '@vite-pwa/nuxt',
     '@formkit/auto-animate/nuxt',
     '@nuxtjs/i18n',
   ],
