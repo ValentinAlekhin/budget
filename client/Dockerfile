@@ -1,16 +1,28 @@
-FROM node:20-alpine
+FROM node:18-alpine as builder
 
 WORKDIR /app
 
 COPY package*.json ./
 COPY *.lock ./
 
-RUN npm i
+RUN npm ci
 
 COPY . .
 
-ENV PORT 80
+ENV BASE_URL 11.5.0.6:3000
 
-RUN npm run build
+RUN npm run generate
 
-CMD ["node", ".output/server/index.mjs"]
+FROM nginx:alpine
+
+WORKDIR /usr/share/nginx/html
+
+RUN rm -rf ./*
+
+COPY --from=builder /app/.output/public .
+
+COPY ./nginx/conf.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
