@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлена нижняя навигация">
-      <change afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Откат">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/BottomTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BottomTabs.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/composables/useMainLinks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useMainLinks.ts" afterDir="false" />
@@ -695,7 +694,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Заменено распределение на план" />
     <MESSAGE value="Добавлен новый ренж" />
     <MESSAGE value="Рефактор категорий и db" />
     <MESSAGE value="Добавлена анимация" />
@@ -720,7 +718,8 @@
     <MESSAGE value="Добавлен период плана" />
     <MESSAGE value="Фиксация изменений" />
     <MESSAGE value="Обновлена нижняя навигация" />
-    <option name="LAST_COMMIT_MESSAGE" value="Обновлена нижняя навигация" />
+    <MESSAGE value="Откат" />
+    <option name="LAST_COMMIT_MESSAGE" value="Откат" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />
