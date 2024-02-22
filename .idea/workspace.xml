@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлена нижняя навигация">
-      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -401,6 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
     </task>
+    <task id="LOCAL-00086" summary="Добавлена анимация">
+      <option name="closed" value="true" />
+      <created>1696174089929</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1696174089929</updated>
+    </task>
     <task id="LOCAL-00087" summary="Обновлены nuxt @nuxt/ui">
       <option name="closed" value="true" />
       <created>1696525090946</created>
@@ -665,15 +673,7 @@
       <option name="project" value="LOCAL" />
       <updated>1708615198203</updated>
     </task>
-    <task id="LOCAL-00120" summary="Обновлена нижняя навигация">
-      <option name="closed" value="true" />
-      <created>1708615653829</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1708615653829</updated>
-    </task>
-    <option name="localTasksCounter" value="121" />
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
