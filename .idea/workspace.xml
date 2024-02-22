@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксация изменений">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/record/record.service.ts" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлена нижняя навигация">
+      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +15,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="nuxt-client" />
+        <entry key="$PROJECT_DIR$" value="new-go-server" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -35,7 +31,7 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1681738454" />
+                    <option name="lastUsedInstant" value="1708611048" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="nuxt-client" />
@@ -106,7 +102,7 @@
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\components\Header" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start:dev">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -405,62 +401,6 @@
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
     </task>
-    <task id="LOCAL-00080" summary="Заменено распределение на план">
-      <option name="closed" value="true" />
-      <created>1695844343587</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1695844343587</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Добавлен новый ренж">
-      <option name="closed" value="true" />
-      <created>1695845234292</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1695845234292</updated>
-    </task>
-    <task id="LOCAL-00082" summary="Добавлен новый ренж">
-      <option name="closed" value="true" />
-      <created>1695846465978</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1695846465978</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Рефактор категорий и db">
-      <option name="closed" value="true" />
-      <created>1696064441414</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1696064441415</updated>
-    </task>
-    <task id="LOCAL-00084" summary="Рефактор категорий и db">
-      <option name="closed" value="true" />
-      <created>1696065243267</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1696065243267</updated>
-    </task>
-    <task id="LOCAL-00085" summary="Рефактор категорий и db">
-      <option name="closed" value="true" />
-      <created>1696066802638</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1696066802638</updated>
-    </task>
-    <task id="LOCAL-00086" summary="Добавлена анимация">
-      <option name="closed" value="true" />
-      <created>1696174089929</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1696174089929</updated>
-    </task>
     <task id="LOCAL-00087" summary="Обновлены nuxt @nuxt/ui">
       <option name="closed" value="true" />
       <created>1696525090946</created>
@@ -677,7 +617,63 @@
       <option name="project" value="LOCAL" />
       <updated>1701188281472</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="Обновлена нижняя навигация">
+      <option name="closed" value="true" />
+      <created>1708612337536</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1708612337536</updated>
+    </task>
+    <task id="LOCAL-00115" summary="Обновлена нижняя навигация">
+      <option name="closed" value="true" />
+      <created>1708612510325</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1708612510325</updated>
+    </task>
+    <task id="LOCAL-00116" summary="Обновлена нижняя навигация">
+      <option name="closed" value="true" />
+      <created>1708613679740</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1708613679740</updated>
+    </task>
+    <task id="LOCAL-00117" summary="Обновлена нижняя навигация">
+      <option name="closed" value="true" />
+      <created>1708614402464</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1708614402464</updated>
+    </task>
+    <task id="LOCAL-00118" summary="Обновлена нижняя навигация">
+      <option name="closed" value="true" />
+      <created>1708614986181</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1708614986181</updated>
+    </task>
+    <task id="LOCAL-00119" summary="Обновлена нижняя навигация">
+      <option name="closed" value="true" />
+      <created>1708615198203</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1708615198203</updated>
+    </task>
+    <task id="LOCAL-00120" summary="Обновлена нижняя навигация">
+      <option name="closed" value="true" />
+      <created>1708615653829</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1708615653829</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -695,8 +691,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлены проценты в статистике" />
-    <MESSAGE value="Обновлена БД для телефонов" />
     <MESSAGE value="Заменено распределение на план" />
     <MESSAGE value="Добавлен новый ренж" />
     <MESSAGE value="Рефактор категорий и db" />
@@ -720,7 +714,9 @@
     <MESSAGE value="Обновлено месте для цвета и иконки" />
     <MESSAGE value="Обновлены пакеты" />
     <MESSAGE value="Добавлен период плана" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен период плана" />
+    <MESSAGE value="Фиксация изменений" />
+    <MESSAGE value="Обновлена нижняя навигация" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновлена нижняя навигация" />
   </component>
   <component name="VueSettings">
     <option name="innerServiceType" value="DISABLED" />
