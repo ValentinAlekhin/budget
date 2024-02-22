@@ -2,6 +2,7 @@
   <UCard class="mb-4">
     <div class="mb-4 flex flex-col">
       <span class="text-sm text-gray-700 dark:text-gray-400">
+        sdfasdf
         {{ $t('common.currentBalance') }}
       </span>
       <div class="flex items-center">
