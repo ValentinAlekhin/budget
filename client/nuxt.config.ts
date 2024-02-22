@@ -1,8 +1,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin'
 
-const { BASE_URL, SSL } = process.env
-const ssl = SSL === 'true'
+const { BASE_URL } = process.env
 
 export default defineNuxtConfig({
   ssr: false,
@@ -10,8 +9,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      ssl,
-      baseUrl: `${ssl ? 'https' : 'http'}://${BASE_URL}`,
+      baseUrl: `http://${BASE_URL}`,
     },
   },
 
