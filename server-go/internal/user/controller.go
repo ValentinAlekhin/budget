@@ -2,6 +2,7 @@ package user
 
 import (
 	db "budget/database"
+	http_error "budget/internal/http-error"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -13,13 +14,14 @@ func (c controller) CreateOne(ctx *gin.Context) {
 	var createUserDto CreateUserDto
 
 	if err := ctx.ShouldBindJSON(&createUserDto); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		err = http_error.NewBadRequestError(err.Error(), "")
+		ctx.Error(err)
 		return
 	}
 
 	user, err := Service.CreateOne(&createUserDto)
 	if err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		ctx.Error(err)
 		return
 	}
 
@@ -36,4 +38,4 @@ func (c controller) formatResponse(user *db.User) {
 	user.Password = ""
 }
 
-var Controller controller = controller{}
+var Controller = controller{}

@@ -82,7 +82,7 @@ func (s service) saveRefreshToken(token string, userId string) error {
 	}
 
 	if res := db.Instance.Create(&tokenEntity); res.Error != nil {
-		return errors.New("save token error")
+		return errors.New("save token http-error")
 	}
 
 	return nil

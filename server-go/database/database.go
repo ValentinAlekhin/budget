@@ -2,6 +2,7 @@ package database
 
 import (
 	"budget/config"
+	"github.com/oklog/ulid/v2"
 	"time"
 
 	"gorm.io/driver/postgres"
@@ -9,14 +10,14 @@ import (
 )
 
 type Model struct {
-	ID        string    `json:"id"`
-	CreatedAt time.Time `json:"createdAt"`
-	UpdatedAt time.Time `json:"updatedAt"`
-	DeletedAt time.Time `json:"deletedAt,omitempty"`
+	ID        string         `json:"id"`
+	CreatedAt time.Time      `json:"createdAt"`
+	UpdatedAt time.Time      `json:"updatedAt"`
+	DeletedAt gorm.DeletedAt `json:"deletedAt,omitempty"`
 }
 
 func (m *Model) BeforeCreate(tx *gorm.DB) (err error) {
-	//m.ID = ulid.Make().String()
+	m.ID = ulid.Make().String()
 
 	return nil
 }

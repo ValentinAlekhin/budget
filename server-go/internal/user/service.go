@@ -2,29 +2,38 @@ package user
 
 import (
 	db "budget/database"
+	"budget/internal/category"
+	http_error "budget/internal/http-error"
 	"budget/utils/argon"
-	"budget/utils/bcrypt"
-	"errors"
 )
 
 type service struct {
 }
 
-func (s service) CreateOne(createUserDto *CreateUserDto) (db.User, error) {
+func (s service) CreateOne(dto *CreateUserDto) (db.User, error) {
 	user := db.User{}
 
-	if res := db.Instance.Where("username = ?", createUserDto.Username).Or("email = ?", createUserDto.Email).First(&user); res.RowsAffected >= 1 {
-		return db.User{}, errors.New("account taken")
+	if res := db.Instance.Where("username = ?", dto.Username).Or("email = ?", dto.Email).First(&user); res.RowsAffected >= 1 {
+		return user, http_error.NewBadRequestError("Account taken", "")
 	}
 
-	hashedPass, err := bcrypt.HashPassword(createUserDto.Password)
+	internalErr := http_error.NewInternalRequestError("Internal error")
+
+	hashedPass, err := argon.NewArgon2ID().Hash(dto.Password)
 	if err != nil {
-		return db.User{}, err
+		return user, internalErr
 	}
 
-	createUserDto.Password = hashedPass
-	if res := db.Instance.Create(&createUserDto); res.Error != nil {
-		return db.User{}, res.Error
+	user.Password = hashedPass
+	user.Username = dto.Username
+	user.Email = dto.Email
+
+	if res := db.Instance.Create(&user); res.Error != nil {
+		return user, internalErr
+	}
+
+	if err, _ := category.Service.CreateAdjustmentCategory(user.ID); err != nil {
+		return user, err
 	}
 
 	return user, nil
@@ -38,7 +47,7 @@ func (s service) GetUserById(id string) (db.User, error) {
 	user := db.User{}
 	res := db.Instance.First(&user, "id = ?", id)
 	if res.RowsAffected == 0 {
-		return db.User{}, errors.New("user not found")
+		return user, http_error.NewNotFoundError("User not found", id)
 	}
 
 	return user, nil
@@ -49,18 +58,40 @@ func (s service) GetUserByEmailAndPass(username string, pass string) (db.User, e
 
 	res := db.Instance.Where("username = ?", username).First(&user)
 	if res.RowsAffected == 0 {
-		return db.User{}, errors.New("user not found")
+		return user, http_error.NewNotFoundError("User not found", "")
 	}
 
 	valid, err := argon.NewArgon2ID().Verify(pass, user.Password)
 	if err != nil {
-		return db.User{}, errors.New("password validation error")
+		return user, http_error.NewInternalRequestError("Pass verify")
 	}
 	if !valid {
-		return db.User{}, errors.New("invalid password")
+		return user, http_error.NewBadRequestError("Invalid credentials", "")
 	}
 
 	return user, nil
+}
+
+func (s service) ValidateEmail(email string) bool {
+	user := db.User{Email: email}
+
+	res := db.Instance.Where("email = ?", email).First(&user)
+	if res.RowsAffected == 0 {
+		return true
+	} else {
+		return false
+	}
+}
+
+func (s service) ValidateUsername(username string) bool {
+	user := db.User{Username: username}
+
+	res := db.Instance.Where("username = ?", username).First(&user)
+	if res.RowsAffected == 0 {
+		return true
+	} else {
+		return false
+	}
 }
 
 var Service = service{}

@@ -3,7 +3,10 @@ package router
 import (
 	"budget/config"
 	"budget/internal/auth"
+	"budget/internal/category"
+	httperror "budget/internal/http-error"
 	"budget/internal/record"
+	"budget/internal/user"
 	"fmt"
 
 	"github.com/gin-contrib/cors"
@@ -13,20 +16,27 @@ import (
 func Init() {
 	router := gin.Default()
 	router.Use(cors.Default())
+	router.Use(httperror.ErrorHandler())
 
-	//userGroup := router.Group("/user")
-	//userGroup.POST("", user.Controller.CreateOne)
+	userGroup := router.Group("/user")
+	userGroup.POST("", user.Controller.CreateOne)
 
-	// categoryGroup := router.Group("/category")
-	// categoryGroup.Use(auth.Middlewares.AuthRequired)
-	// categoryGroup.GET("", category.Controller.GetAll)
-	// categoryGroup.POST("", category.Controller.CreateOne)
+	userValidationGroup := router.Group("/user-field-validation")
+	userValidationGroup.POST("/email", user.FieldValidationController.ValidateEmail)
+	userValidationGroup.POST("/username", user.FieldValidationController.ValidateUsername)
+
+	categoryGroup := router.Group("/category")
+	categoryGroup.Use(auth.Middlewares.AuthRequired)
+	categoryGroup.GET("", category.Controller.GetAll)
+	categoryGroup.POST("", category.Controller.CreateOne)
+	categoryGroup.PUT("/many", category.Controller.UpdateMany)
 	// categoryGroup.PUT("/:id", category.Controller.UpdateOne)
-	// categoryGroup.DELETE("/:id", category.Controller.DeleteOne)
+	categoryGroup.DELETE("/:id", category.Controller.DeleteOne)
 
 	recordGroup := router.Group("/records")
 	recordGroup.Use(auth.Middlewares.AuthRequired)
 	recordGroup.GET("", record.Controller.GetAll)
+	recordGroup.POST("/many", record.Controller.GetAll)
 	// recordGroup.POST("", record.Controller.CreateOne)
 	// recordGroup.PUT("/:id", record.Controller.UpdateOne)
 	// recordGroup.DELETE("/:id", record.Controller.DeleteOne)
