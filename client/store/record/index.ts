@@ -38,7 +38,7 @@ export const useRecordStore = defineStore('record', {
     },
     async init() {
       await this.cudInit()
-      await this.fetchAll()
+      await this.fetchAll({ force: true })
     },
     async addRecord(cost: { name: string; comment: string }) {
       const { api } = useApi()

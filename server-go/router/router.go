@@ -7,8 +7,8 @@ import (
 	httperror "budget/internal/http-error"
 	"budget/internal/record"
 	"budget/internal/user"
+	"budget/internal/ws"
 	"fmt"
-
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -17,6 +17,10 @@ func Init() {
 	router := gin.Default()
 	router.Use(cors.Default())
 	router.Use(httperror.ErrorHandler())
+
+	wsGroup := router.Group("/ws")
+	wsGroup.Use(auth.Middlewares.AuthRequired)
+	wsGroup.GET("", ws.WsHandler)
 
 	userGroup := router.Group("/user")
 	userGroup.POST("", user.Controller.CreateOne)
@@ -36,10 +40,12 @@ func Init() {
 	recordGroup := router.Group("/records")
 	recordGroup.Use(auth.Middlewares.AuthRequired)
 	recordGroup.GET("", record.Controller.GetAll)
-	recordGroup.POST("/many", record.Controller.GetAll)
-	// recordGroup.POST("", record.Controller.CreateOne)
-	// recordGroup.PUT("/:id", record.Controller.UpdateOne)
-	// recordGroup.DELETE("/:id", record.Controller.DeleteOne)
+	recordGroup.POST("/adjustment", record.Controller.Adjustment)
+	recordGroup.GET("/:id", record.Controller.GetOne)
+	recordGroup.POST("", record.Controller.CreateOne)
+	recordGroup.POST("/many", record.Controller.CreateMany)
+	recordGroup.PUT("/:id", record.Controller.UpdateOne)
+	recordGroup.DELETE("/:id", record.Controller.DeleteOne)
 
 	authGroup := router.Group("/auth")
 	authGroup.POST("/login", auth.Controller.Login)

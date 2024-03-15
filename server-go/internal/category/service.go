@@ -3,6 +3,9 @@ package category
 import (
 	db "budget/database"
 	http_error "budget/internal/http-error"
+	"budget/internal/ws"
+	"encoding/json"
+	"time"
 )
 
 type service struct {
@@ -19,7 +22,10 @@ func (s service) FindOne(userId string, id string) (error, db.Category) {
 
 	err := http_error.NewNotFoundError("Category not found", "")
 
-	if res := db.Instance.Where("user_id = ?", userId).Where("id = ?", id).First(&category); res.Error != nil || res.RowsAffected == 0 {
+	if res := db.Instance.
+		Where("user_id = ?", userId).
+		Where("id = ?", id).
+		First(&category); res.Error != nil || res.RowsAffected == 0 {
 		return err, category
 	} else {
 		return nil, category
@@ -40,6 +46,8 @@ func (s service) CreateOne(dto CreateCategoryRequestDto, userId string) db.Categ
 	}
 
 	db.Instance.Create(&newCategory)
+
+	s.sendCudAction(userId, "create", newCategory)
 
 	return newCategory
 }
@@ -71,6 +79,8 @@ func (s service) UpdateMany(dto UpdateManyCategoryRequestDto, userId string) (er
 
 	tx.Commit()
 
+	s.sendCudActionMany(userId, "update", categories)
+
 	return nil, categories
 }
 
@@ -79,6 +89,7 @@ func (s service) DeleteOne(id string, userId string) (error, db.Category) {
 		return err, category
 	} else {
 		db.Instance.Delete(&category)
+		s.sendCudAction(userId, "delete", category)
 		return nil, category
 	}
 }
@@ -94,6 +105,7 @@ func (s service) CreateAdjustmentCategory(userId string) (error, db.Category) {
 	if res := db.Instance.Save(&category); res.Error != nil {
 		return http_error.NewInternalRequestError("Error while creating Adjustment"), category
 	}
+
 	return nil, category
 }
 
@@ -103,6 +115,26 @@ func (s service) GetAdjustmentCategory(userId string) (error, db.Category) {
 		return s.CreateAdjustmentCategory(userId)
 	}
 	return nil, category
+}
+
+func (s service) GetCategoriesByIds(userId string, ids []string) []db.Category {
+	var categories []db.Category
+	db.Instance.Where("user_id = ?", userId).Where("id IN ?", ids).Find(&categories)
+	return categories
+}
+
+func (s service) sendCudAction(userId string, action string, item db.Category) {
+	list := make([]db.Category, 0)
+	list = append(list, item)
+	s.sendCudActionMany(userId, action, list)
+}
+
+func (s service) sendCudActionMany(userId string, action string, list []db.Category) {
+	jsonMsg, _ := json.Marshal(SocketCategoryCudActionDto{
+		BaseSocketActionDto: ws.BaseSocketActionDto{Type: "cud", Timestamp: time.Now()},
+		Payload:             SocketSocketCategoryCudActionPayloadDto{action, list},
+	})
+	ws.Manager.SendToUser(userId, jsonMsg)
 }
 
 var Service = service{}
