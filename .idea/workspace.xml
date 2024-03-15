@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксация изменений">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/category/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/category/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/record/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/record/controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/record/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/record/dto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/record/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/record/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/router/router.go" afterDir="false" />
-    </list>
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксация изменений" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

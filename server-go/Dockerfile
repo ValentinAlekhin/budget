@@ -8,7 +8,7 @@ COPY . .
 
 RUN go build -o main main.go
 
-FROM alpine
+FROM scratch
 
 WORKDIR /
 
