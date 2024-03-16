@@ -55,7 +55,7 @@ import dayjs from 'dayjs'
 import { useCategoryStore } from '~/store/category'
 import { useRecordStore } from '~/store/record'
 
-const recordStore = useRecordStore()
+const { recordStore } = useRecordStore()
 const categoriesStore = useCategoryStore()
 
 const props = defineProps({

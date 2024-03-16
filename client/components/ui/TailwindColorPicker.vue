@@ -29,8 +29,6 @@ import { useTailwindColors } from '#imports'
 const { colorsList } = useTailwindColors()
 const open = ref(false)
 
-console.log(colorsList)
-
 const props = defineProps<{ modelValue: string }>()
 const emit = defineEmits(['update:modelValue'])
 </script>

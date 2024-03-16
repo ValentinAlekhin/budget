@@ -76,6 +76,7 @@ const page = ref(1)
 const dataToShow = computed(() =>
   props.rows.filter((_, i) => i <= pageSize * page.value),
 )
+
 const load = async ($state) => {
   if (pageSize * page.value >= props.rows.length) $state.complete()
   else {

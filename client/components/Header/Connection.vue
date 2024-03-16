@@ -36,11 +36,11 @@
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia'
 import { useNetwork } from '@vueuse/core'
 import { useSocketStore } from '~/store/socket'
 
-const socketStore = useSocketStore()
-const { connected } = storeToRefs(socketStore)
+const {
+  socketStoreRef: { connected },
+} = useSocketStore()
 const { isOnline } = useNetwork()
 </script>

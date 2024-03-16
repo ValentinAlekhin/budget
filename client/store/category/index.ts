@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { CategoryDto } from '../../../common/dto/category'
+import type { CategoryDto } from '../../../common/dto/category'
 import { useNotify } from '~/composables/useNotify'
 import { cudController } from '~/common/cud'
 import { generatePiniaLocalStorageKey } from '~/utils'
@@ -26,7 +26,7 @@ export const useCategoryStore = defineStore('category', {
 
         const { api } = useApi()
         const { data } = await api.get<CategoryDto[]>('/category')
-        this.data = data
+        this.data = data || []
       } catch (e) {
         const notify = useNotify()
         notify.error('Ошибка при загрузке категорий')
@@ -37,7 +37,7 @@ export const useCategoryStore = defineStore('category', {
     },
     async init() {
       await this.cudInit()
-      await this.fetchAll()
+      await this.fetchAll({ force: true })
     },
     async addCategory(category: { name: string; type: string; order: number }) {
       const { api } = useApi()
@@ -66,7 +66,7 @@ export const useCategoryStore = defineStore('category', {
         notify.error('Ошибка при удалении')
       }
     },
-    ...cudController({ action: 'category' }),
+    ...cudController({ entity: 'category' }),
   },
   getters: {
     costs: (state) =>

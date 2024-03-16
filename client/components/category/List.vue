@@ -67,7 +67,7 @@ import { useActionsStore } from '~/store/actions'
 
 const parser = new Parser()
 
-const recordStore = useRecordStore()
+const { recordStore } = useRecordStore()
 const toast = useToast()
 const router = useRouter()
 const actionsStore = useActionsStore()

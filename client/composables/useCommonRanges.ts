@@ -1,4 +1,4 @@
-import { ComputedRef } from 'vue'
+import type { ComputedRef } from 'vue'
 import { Dayjs } from 'dayjs'
 import { useLocalStorage } from '@vueuse/core'
 import { useTimestamp } from '~/composables/useTimestamp'

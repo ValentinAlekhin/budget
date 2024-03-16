@@ -1,19 +1,20 @@
 import { useLocalStorage } from '@vueuse/core'
-import axios, { AxiosResponse } from 'axios'
+import axios, { type AxiosResponse } from 'axios'
 
 const api = axios.create()
 
 export function useApi() {
   const {
-    public: { baseUrl },
+    public: { domain, httpProtocol },
   } = useRuntimeConfig()
 
+  const baseUrl = `${httpProtocol}://${domain}`
   api.defaults.baseURL = !process.client ? baseUrl : '/api'
 
   const tokensStore = useLocalStorage(
     'tokens',
     { accessToken: '', refreshToken: '' },
-    { mergeDefaults: true }
+    { mergeDefaults: true },
   )
 
   const resetTokens = () =>
@@ -51,7 +52,7 @@ export function useApi() {
         await router.push('/auth')
         return Promise.reject(e)
       }
-    }
+    },
   )
 
   return { api, baseUrl, tokensStore, resetTokens }

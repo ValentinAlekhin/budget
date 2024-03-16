@@ -19,15 +19,14 @@ const createRecordMapper = (categories: any[]) => (records: any[]) =>
 
 export function useStat() {
   const categoryStore = useCategoryStore()
-  const recordStore = useRecordStore()
+  const { recordStoreRefs } = useRecordStore()
   const categoryRefs = storeToRefs(categoryStore)
-  const recordRefs = storeToRefs(recordStore)
 
   const mapper = createRecordMapper(categoryRefs.data.value)
 
-  const cost = computed(() => mapper(recordRefs.costs.value))
-  const inc = computed(() => mapper(recordRefs.inc.value))
-  const dist = computed(() => mapper(recordRefs.dist.value))
+  const cost = computed(() => mapper(recordStoreRefs.costs.value))
+  const inc = computed(() => mapper(recordStoreRefs.inc.value))
+  const dist = computed(() => mapper(recordStoreRefs.dist.value))
 
   const records = computed(() => [...cost.value, ...inc.value, ...dist.value])
 

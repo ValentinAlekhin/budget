@@ -5,9 +5,9 @@ import { useAuthStore } from '~/store/auth'
 
 export function useGlobalLoading() {
   const authStore = useAuthStore()
-  const socketStore = useSocketStore()
+  const { socketStore } = useSocketStore()
   const categoryStore = useCategoryStore()
-  const recordStore = useRecordStore()
+  const { recordStore } = useRecordStore()
 
   const fetchAll = async () => {
     if (!authStore.user) return

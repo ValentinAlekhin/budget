@@ -4,7 +4,37 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксация изменений" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Откат">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/common/cud.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/common/cud.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Header/Connection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/Connection.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/category/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/List.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/db/EditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/EditModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/db/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/List.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/db/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/stat/charts/costs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/stat/charts/costs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/TailwindColorPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/TailwindColorPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useRecord.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useRecord.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useStat.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useStat.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/category/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/category/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/category/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/category/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/record/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/record/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/record/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/record/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/ws/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/ws/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/router/router.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +141,7 @@
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\components\Header" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start:dev">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -322,6 +352,7 @@
       <workItem from="1707742600083" duration="5138000" />
       <workItem from="1707812753938" duration="2825000" />
       <workItem from="1707923775376" duration="597000" />
+      <workItem from="1710579749668" duration="8784000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>

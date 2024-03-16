@@ -19,7 +19,7 @@ func Init() {
 	router.Use(httperror.ErrorHandler())
 
 	wsGroup := router.Group("/ws")
-	wsGroup.Use(auth.Middlewares.AuthRequired)
+	wsGroup.Use(auth.Middlewares.AuthRequiredCookie)
 	wsGroup.GET("", ws.WsHandler)
 
 	userGroup := router.Group("/user")

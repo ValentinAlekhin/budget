@@ -32,6 +32,16 @@ func (s service) FindOne(userId string, id string) (error, db.Category) {
 	}
 }
 
+func (s service) FindById(id string) db.Category {
+	var category db.Category
+
+	db.Instance.
+		Where("id = ?", id).
+		First(&category)
+
+	return category
+}
+
 func (s service) CreateOne(dto CreateCategoryRequestDto, userId string) db.Category {
 	newCategory := db.Category{
 		Name:       dto.Name,
@@ -56,7 +66,7 @@ func (s service) UpdateMany(dto UpdateManyCategoryRequestDto, userId string) (er
 	tx := db.Instance.Begin()
 
 	categories := make([]db.Category, 0)
-	for _, item := range dto.Items {
+	for _, item := range dto.Data {
 		category := db.Category{
 			Model:      db.Model{ID: item.ID},
 			Name:       item.Name,
@@ -117,9 +127,15 @@ func (s service) GetAdjustmentCategory(userId string) (error, db.Category) {
 	return nil, category
 }
 
-func (s service) GetCategoriesByIds(userId string, ids []string) []db.Category {
+func (s service) GetCategoriesByUserIdAndIds(userId string, ids []string) []db.Category {
 	var categories []db.Category
 	db.Instance.Where("user_id = ?", userId).Where("id IN ?", ids).Find(&categories)
+	return categories
+}
+
+func (s service) GetCategoriesByIds(ids []string) []db.Category {
+	var categories []db.Category
+	db.Instance.Where("id IN ?", ids).Find(&categories)
 	return categories
 }
 
@@ -132,7 +148,7 @@ func (s service) sendCudAction(userId string, action string, item db.Category) {
 func (s service) sendCudActionMany(userId string, action string, list []db.Category) {
 	jsonMsg, _ := json.Marshal(SocketCategoryCudActionDto{
 		BaseSocketActionDto: ws.BaseSocketActionDto{Type: "cud", Timestamp: time.Now()},
-		Payload:             SocketSocketCategoryCudActionPayloadDto{action, list},
+		Payload:             SocketSocketCategoryCudActionPayloadDto{Action: action, List: list, Entity: "category"},
 	})
 	ws.Manager.SendToUser(userId, jsonMsg)
 }

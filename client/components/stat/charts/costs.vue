@@ -20,15 +20,15 @@ const series = computed(() =>
         (month) =>
           sumBy(
             props.records.filter(
-              (r) => r.month === month && r.category?.id === id
+              (r) => r.month === month && r.category?.id === id,
             ),
-            'amount'
-          ) || null
+            'amount',
+          ) || null,
       )
 
       return acc
-    }, {})
-  ).map(([name, data]) => ({ name, data }))
+    }, {}),
+  ).map(([name, data]) => ({ name, data })),
 )
 
 const options = computed(
@@ -82,6 +82,6 @@ const options = computed(
         color: '#fff',
       },
     },
-  })
+  }),
 )
 </script>

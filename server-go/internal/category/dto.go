@@ -29,11 +29,12 @@ type UpdateCategoryRequestDto struct {
 }
 
 type UpdateManyCategoryRequestDto struct {
-	Items []UpdateCategoryRequestDto `json:"items" binding:"dive"`
+	Data []UpdateCategoryRequestDto `json:"data" binding:"dive"`
 }
 
 type SocketSocketCategoryCudActionPayloadDto struct {
 	Action string        `json:"action"`
+	Entity string        `json:"entity"`
 	List   []db.Category `json:"list"`
 }
 

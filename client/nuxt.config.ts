@@ -1,7 +1,9 @@
 import { defineNuxtConfig } from 'nuxt/config'
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin'
 
-const { BASE_URL } = process.env
+const { DOMAIN, HTTP_PROTOCOL } = process.env
+
+console.log(DOMAIN)
 
 export default defineNuxtConfig({
   ssr: false,
@@ -9,7 +11,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      baseUrl: `http://${BASE_URL}`,
+      domain: DOMAIN,
+      httpProtocol: HTTP_PROTOCOL,
     },
   },
 
@@ -49,14 +52,18 @@ export default defineNuxtConfig({
     server: {
       proxy: {
         '/api': {
-          target: `http://${BASE_URL}`,
+          target: `http://${DOMAIN}`,
           changeOrigin: true,
           rewrite: (path) => {
             return path.replace(/^\/api/, '')
           },
         },
         '/socket.io': {
-          target: `ws://${BASE_URL}`,
+          target: `ws://${DOMAIN}`,
+          ws: true,
+        },
+        '/ws': {
+          target: `ws://${DOMAIN}`,
           ws: true,
         },
       },
@@ -74,8 +81,9 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: { gzip: true, brotli: true },
     routeRules: {
-      '/api/**': { proxy: `http://${BASE_URL}/**` },
-      '/socket.io/**': { proxy: `ws://${BASE_URL}/socket.io/**` },
+      '/api/**': { proxy: `http://${DOMAIN}/**` },
+      '/socket.io/**': { proxy: `ws://${DOMAIN}/socket.io/**` },
+      '/ws/**': { proxy: `ws://${DOMAIN}/ws/**` },
     },
   },
 

@@ -3,14 +3,15 @@ import { sumBy } from 'lodash-es'
 import { useCategoryStore } from '~/store/category'
 import { useRecordStore } from '~/store/record'
 
-export function useCategoriesWithBalance() {
+export const useCategoriesWithBalance = createSharedComposable(function () {
   const categoryStore = useCategoryStore()
-  const recordStore = useRecordStore()
+  const {
+    recordStoreRefs: { costs },
+  } = useRecordStore()
   const { now } = useTimestamp()
   const { filterRecordsByRange } = useRecord()
   const { costs: categoryCosts, incoming: categoryIncoming } =
     storeToRefs(categoryStore)
-  const { costs, inc } = storeToRefs(recordStore)
 
   const categoriesWithBalance = computed(() =>
     categoryCosts.value.map((c) => {
@@ -35,4 +36,4 @@ export function useCategoriesWithBalance() {
   )
 
   return { categoriesWithBalance }
-}
+})

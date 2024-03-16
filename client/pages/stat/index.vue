@@ -119,8 +119,7 @@ import { useTailwindColors } from '#imports'
 
 const categoryStore = useCategoryStore()
 const { costs, incoming } = storeToRefs(categoryStore)
-const recordStore = useRecordStore()
-const recordsRefs = storeToRefs(recordStore)
+const { recordStoreRefs } = useRecordStore()
 const { filterRecordsByRange } = useRecord()
 const { t } = useI18n()
 const { currentTab, tabs } = useCategoryTabs()
@@ -147,11 +146,11 @@ const startEndDates = ref({
 const categoryTypes = computed(() => [
   {
     categories: costs.value,
-    records: recordsRefs.costs.value,
+    records: recordStoreRefs.costs.value,
   },
   {
     categories: incoming.value,
-    records: recordsRefs.inc.value,
+    records: recordStoreRefs.inc.value,
   },
 ])
 const selected = computed(() => categoryTypes.value[currentTab.value])

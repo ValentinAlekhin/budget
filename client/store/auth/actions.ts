@@ -1,5 +1,6 @@
 import { useGlobalLoading } from '~/composables/useGlobalLoading'
 import { useNotify } from '~/composables/useNotify'
+import { useSocketStore } from '~/store/socket'
 
 export default {
   async login(credentials: { username: string; password: string }) {
@@ -33,12 +34,14 @@ export default {
   },
   logout() {
     const { resetTokens } = useApi()
+    const { socketStore } = useSocketStore()
 
     this.$reset()
     resetTokens()
 
     const router = useRouter()
     router.push({ path: '/auth' })
+    socketStore.close()
   },
   async register(credentials: {
     username: string

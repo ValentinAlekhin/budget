@@ -100,7 +100,6 @@
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia'
 import { sumBy } from 'lodash-es'
 import { Dayjs } from 'dayjs'
 import { useRecord } from '~/composables/useRecord'
@@ -109,9 +108,11 @@ import { useCommonRanges } from '~/composables/useCommonRanges'
 import { useYap } from '~/composables/useYap'
 import type { InferType } from 'yup'
 
-const recordStore = useRecordStore()
+const {
+  recordStore,
+  recordStoreRefs: { costs, inc, adjustment },
+} = useRecordStore()
 const { t } = useI18n()
-const { costs, inc, adjustment } = storeToRefs(recordStore)
 const { filterRecordsByRange } = useRecord()
 const { handleClick, currentRange } = useCommonRanges('home-range-index')
 const { number, object } = useYap()

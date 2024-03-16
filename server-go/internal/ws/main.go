@@ -2,9 +2,9 @@ package ws
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
+	"net/http"
 )
 
 type ClientManager struct {
@@ -32,7 +32,7 @@ func (manager *ClientManager) Start() {
 		select {
 		case conn := <-manager.register:
 			manager.clients[conn] = true
-			jsonMessage, _ := json.Marshal(&Message{Content: "/A new socket has connected. "})
+			jsonMessage, _ := json.Marshal(&Message{Content: "Connected"})
 			conn.send <- jsonMessage
 		case conn := <-manager.unregister:
 			if _, ok := manager.clients[conn]; ok {
@@ -116,11 +116,13 @@ var upgrader = websocket.Upgrader{
 	ReadBufferSize:    1024,
 	WriteBufferSize:   1024,
 	EnableCompression: true,
+	CheckOrigin: func(r *http.Request) bool {
+		return true
+	},
 }
 
 func WsHandler(ctx *gin.Context) {
 	userId := ctx.MustGet("userId").(string)
-	fmt.Println(userId)
 	conn, err := upgrader.Upgrade(ctx.Writer, ctx.Request, nil)
 	if err != nil {
 		return
