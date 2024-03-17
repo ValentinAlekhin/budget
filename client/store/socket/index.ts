@@ -8,7 +8,7 @@ interface State {
 
 export const useSocketStore = createSharedComposable(function () {
   const {
-    public: { domain, httpProtocol },
+    public: { domain, websocketProtocol },
   } = useRuntimeConfig()
   const notify = useNotify()
   const { tokensStore } = useApi()
@@ -19,9 +19,7 @@ export const useSocketStore = createSharedComposable(function () {
     actions: {
       init() {
         cookieToken.value = tokensStore.value.accessToken
-        this.socket = new WebSocket(
-          `${httpProtocol === 'https' ? 'wss' : 'ws'}://${domain}/ws`,
-        )
+        this.socket = new WebSocket(`${websocketProtocol}://${domain}/ws`)
 
         this.socket.addEventListener('open', () => {
           if (!this.connected)

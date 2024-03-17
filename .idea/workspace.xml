@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс сокетов">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -334,7 +333,7 @@
       <workItem from="1707742600083" duration="5138000" />
       <workItem from="1707812753938" duration="2825000" />
       <workItem from="1707923775376" duration="597000" />
-      <workItem from="1710579749668" duration="23121000" />
+      <workItem from="1710579749668" duration="24005000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -440,14 +439,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00091" summary="Добавлен бесконечный скролл в БД">
-      <option name="closed" value="true" />
-      <created>1696696336653</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1696696336654</updated>
     </task>
     <task id="LOCAL-00092" summary="Добавлены уведомления в телегу">
       <option name="closed" value="true" />
@@ -713,7 +704,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710670973055</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="Обновлены пакеты">
+      <option name="closed" value="true" />
+      <created>1710672193520</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1710672193520</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -750,11 +749,11 @@
     <MESSAGE value="Добавлен график в стату" />
     <MESSAGE value="Добавлены цвета категорий" />
     <MESSAGE value="Обновлено месте для цвета и иконки" />
-    <MESSAGE value="Обновлены пакеты" />
     <MESSAGE value="Добавлен период плана" />
     <MESSAGE value="Претерто api" />
     <MESSAGE value="Добален телеграм бот" />
     <MESSAGE value="Обновлена сборка всего" />
+    <MESSAGE value="Обновлены пакеты" />
     <MESSAGE value="Фикс сокетов" />
     <option name="LAST_COMMIT_MESSAGE" value="Фикс сокетов" />
   </component>
