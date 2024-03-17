@@ -18,4 +18,6 @@ COPY --from=builder /app/main /app/main
 
 LABEL com.centurylinklabs.watchtower.enable="true"
 
+ENV GIN_MODE=release
+
 CMD ["/app/main"]

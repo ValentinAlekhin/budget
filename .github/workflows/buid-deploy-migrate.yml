@@ -90,4 +90,4 @@ jobs:
           message: |
             Repository: ${{ github.repository }}/client
 
-            Client deployed
+            Client built
