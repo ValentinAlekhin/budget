@@ -13,6 +13,7 @@ export const useSocketStore = createSharedComposable(function () {
   const notify = useNotify()
   const { tokensStore } = useApi()
   const cookieToken = useCookie('token')
+  let interval: any
 
   const socketStore = defineStore('socket', {
     state: (): State => ({ socket: null, connected: true }),
@@ -38,10 +39,16 @@ export const useSocketStore = createSharedComposable(function () {
           const data = JSON.parse(msg.data)
           console.log(data)
         })
+
+        interval = setInterval(() => this.ping(), 10000)
+      },
+      ping() {
+        this.socket?.send('ping')
       },
       close() {
         this.connected = false
         this.socket?.close()
+        clearInterval(interval)
       },
     },
   })()
