@@ -6,7 +6,6 @@ import (
 	http_error "budget/internal/http-error"
 	"budget/internal/ws"
 	"encoding/json"
-	"fmt"
 	"github.com/samber/lo"
 	"time"
 )
@@ -31,8 +30,6 @@ func (s service) FindOne(userId string, id string) (error, RecordResponseDto) {
 	var record db.Record
 
 	err := http_error.NewNotFoundError("Record not found", "")
-
-	fmt.Println(id)
 
 	if res := db.Instance.
 		Preload("Category").

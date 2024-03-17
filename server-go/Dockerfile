@@ -8,10 +8,12 @@ COPY . .
 
 RUN go build -o main main.go
 
-FROM scratch
+FROM alpine
 
-WORKDIR /
+RUN apk add --no-cache postgresql16-client
 
-COPY --from=builder /app/main /main
+WORKDIR /app
 
-CMD ["/main"]
+COPY --from=builder /app/main /app/main
+
+CMD ["/app/main"]

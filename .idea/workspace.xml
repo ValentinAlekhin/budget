@@ -4,36 +4,19 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Откат">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добален телеграм бот">
+      <change afterPath="$PROJECT_DIR$/server-go/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server-go/internal/telegram/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server-go/utils/fs/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/common/cud.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/common/cud.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Header/Connection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/Connection.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/List.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/EditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/EditModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/List.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/stat/charts/costs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/stat/charts/costs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/TailwindColorPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/TailwindColorPicker.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useRecord.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useRecord.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useStat.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useStat.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/category/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/category/dto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/category/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/category/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/record/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/record/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server-go/internal/record/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/record/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/ws/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/ws/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,36 +78,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.server/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;new-go-server&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Valentin/Documents/projects/budget/server-go&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\eslint&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:dev.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/valentin/Documents/projects/budget/server/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Valentin\\Documents\\projects\\budget\\server\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.docker-compose.yml.server: Compose Deployment.executor": "Run",
+    "Docker.server/Dockerfile.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "new-go-server",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "js.linters.configure.manually.selectedeslint": "true",
+    "last_opened_file_path": "C:/Users/Valentin/Documents/projects/budget/server-go",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\eslint",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "npm.start:dev.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/home/valentin/Documents/projects/budget/server/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Users\\Valentin\\Documents\\projects\\budget\\server\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\common" />
@@ -141,7 +125,7 @@
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\components\Header" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="Docker.docker-compose.yml.server: Compose Deployment">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -151,6 +135,19 @@
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
       <deployment type="dockerfile">
         <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="server" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
       </deployment>
       <method v="2" />
     </configuration>
@@ -192,16 +189,6 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="postinstall" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="postinstall" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <configuration name="start:dev" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
@@ -223,21 +210,21 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Docker.docker-compose.yml.server: Compose Deployment" />
       <item itemvalue="Docker.server/Dockerfile" />
       <item itemvalue="npm.dev" />
       <item itemvalue="npm.start:dev" />
       <item itemvalue="npm.dev (1)" />
       <item itemvalue="npm.build" />
       <item itemvalue="npm.start:prod" />
-      <item itemvalue="npm.postinstall" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml.server: Compose Deployment" />
         <item itemvalue="Docker.server/Dockerfile" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.dev (1)" />
         <item itemvalue="npm.start:prod" />
-        <item itemvalue="npm.postinstall" />
       </list>
     </recent_temporary>
   </component>
@@ -352,7 +339,7 @@
       <workItem from="1707742600083" duration="5138000" />
       <workItem from="1707812753938" duration="2825000" />
       <workItem from="1707923775376" duration="597000" />
-      <workItem from="1710579749668" duration="8784000" />
+      <workItem from="1710579749668" duration="16449000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -458,14 +445,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00080" summary="Заменено распределение на план">
-      <option name="closed" value="true" />
-      <created>1695844343587</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1695844343587</updated>
     </task>
     <task id="LOCAL-00081" summary="Добавлен новый ренж">
       <option name="closed" value="true" />
@@ -731,7 +710,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701188281472</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="Претерто api">
+      <option name="closed" value="true" />
+      <created>1710589508202</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1710589508203</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -749,8 +736,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлены проценты в статистике" />
-    <MESSAGE value="Обновлена БД для телефонов" />
     <MESSAGE value="Заменено распределение на план" />
     <MESSAGE value="Добавлен новый ренж" />
     <MESSAGE value="Рефактор категорий и db" />
@@ -774,7 +759,9 @@
     <MESSAGE value="Обновлено месте для цвета и иконки" />
     <MESSAGE value="Обновлены пакеты" />
     <MESSAGE value="Добавлен период плана" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен период плана" />
+    <MESSAGE value="Претерто api" />
+    <MESSAGE value="Добален телеграм бот" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добален телеграм бот" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

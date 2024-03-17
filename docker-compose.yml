@@ -18,7 +18,7 @@ services:
 
   server:
     build:
-      context: ./server
+      context: ./server-go
     image: valentinalekhin/budget-server
     environment:
       - TZ=Europe/Moscow
@@ -32,8 +32,8 @@ services:
       - ACCESS_TOKEN_EXPIRATION=${ACCESS_TOKEN_EXPIRATION}
       - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
       - REFRESH_TOKEN_EXPIRATION=${REFRESH_TOKEN_EXPIRATION}
-      - BOT_TOKEN=${BOT_TOKEN}
-      - BOT_ADMIN=${BOT_ADMIN}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_BOT_ADMIN=${TELEGRAM_BOT_ADMIN}
     networks:
       net:
         ipv4_address: 11.5.0.6

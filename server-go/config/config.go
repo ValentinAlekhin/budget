@@ -23,7 +23,7 @@ func (config db) GetDns() string {
 }
 
 func (config db) GetUrl() string {
-	return fmt.Sprintf("postgresql://%s:%s@$%s:%s/%s", config.User, config.Password, config.Host, config.Port, config.Name)
+	return fmt.Sprintf("postgresql://%s:%s@%s:%s/%s", config.User, config.Password, config.Host, config.Port, config.Name)
 }
 
 type jwt struct {
@@ -33,9 +33,15 @@ type jwt struct {
 	RefreshTokenExpiration string `mapstructure:"REFRESH_TOKEN_EXPIRATION"`
 }
 
+type telegram struct {
+	Token   string `mapstructure:"TELEGRAM_BOT_TOKEN"`
+	AdminID int64  `mapstructure:"TELEGRAM_BOT_ADMIN"`
+}
+
 var Server server
 var DB db
 var JWT jwt
+var Telegram telegram
 
 func init() {
 	viper.SetDefault("PORT", "3001")
@@ -50,6 +56,9 @@ func init() {
 	viper.SetDefault("ACCESS_TOKEN_EXPIRATION", "5m")
 	viper.SetDefault("REFRESH_TOKEN_SECRET", "secret")
 	viper.SetDefault("REFRESH_TOKEN_EXPIRATION", "30d")
+
+	viper.SetDefault("TELEGRAM_BOT_TOKEN", "")
+	viper.SetDefault("TELEGRAM_BOT_ADMIN", "")
 
 	viper.SetConfigFile(".env")
 	viper.AutomaticEnv()
@@ -67,6 +76,10 @@ func init() {
 	}
 
 	if err := viper.Unmarshal(&JWT); err != nil {
+		fmt.Printf("Unable to decode into struct, %v\n", err)
+	}
+
+	if err := viper.Unmarshal(&Telegram); err != nil {
 		fmt.Printf("Unable to decode into struct, %v\n", err)
 	}
 }
