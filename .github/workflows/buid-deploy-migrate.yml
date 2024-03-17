@@ -32,10 +32,12 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          context: "{{defaultContext}}:server-go"
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/budget-server-go:${{ steps.extract_branch.outputs.branch }}
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server-go:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server-go:buildcache,mode=max
+          context: "{{defaultContext}}:server-go-${{ steps.extract_branch.outputs.branch }}"
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/budget-server-${{ steps.extract_branch.outputs.branch }}:latest,
+            ${{ secrets.DOCKERHUB_USERNAME }}/budget-server-${{ steps.extract_branch.outputs.branch }}:${{ github.sha }}
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server-${{ steps.extract_branch.outputs.branch }}:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server-${{ steps.extract_branch.outputs.branch }}:buildcache,mode=max
 
       - name: send telegram message on push
         uses: appleboy/telegram-action@master
@@ -73,10 +75,12 @@ jobs:
         with:
           push: true
           build-args: BRANCH=${{ steps.extract_branch.outputs.branch }}
-          context: "{{defaultContext}}:client"
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/budget-client-dev:${{ steps.extract_branch.outputs.branch }}
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client-dev:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client-dev:buildcache,mode=max
+          context: "{{defaultContext}}:client-${{ steps.extract_branch.outputs.branch }}"
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/budget-client-${{ steps.extract_branch.outputs.branch }}:latest,
+            ${{ secrets.DOCKERHUB_USERNAME }}/budget-client-${{ steps.extract_branch.outputs.branch }}:${{ github.sha }}
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client-${{ steps.extract_branch.outputs.branch }}:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client-${{ steps.extract_branch.outputs.branch }}:buildcache,mode=max
 
       - name: send telegram message on push
         uses: appleboy/telegram-action@master

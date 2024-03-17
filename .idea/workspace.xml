@@ -333,7 +333,7 @@
       <workItem from="1707742600083" duration="5138000" />
       <workItem from="1707812753938" duration="2825000" />
       <workItem from="1707923775376" duration="597000" />
-      <workItem from="1710579749668" duration="20343000" />
+      <workItem from="1710579749668" duration="20727000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -439,14 +439,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00086" summary="Добавлена анимация">
-      <option name="closed" value="true" />
-      <created>1696174089929</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1696174089929</updated>
     </task>
     <task id="LOCAL-00087" summary="Обновлены nuxt @nuxt/ui">
       <option name="closed" value="true" />
@@ -712,7 +704,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710668770784</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="Обновлена сборка всего">
+      <option name="closed" value="true" />
+      <created>1710669093259</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1710669093259</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
