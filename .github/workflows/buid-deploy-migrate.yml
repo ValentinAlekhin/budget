@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          context: "{{defaultContext}}:server-go-${{ steps.extract_branch.outputs.branch }}"
+          context: "{{defaultContext}}:server-go"
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/budget-server-${{ steps.extract_branch.outputs.branch }}:latest,
             ${{ secrets.DOCKERHUB_USERNAME }}/budget-server-${{ steps.extract_branch.outputs.branch }}:${{ github.sha }}
@@ -75,7 +75,7 @@ jobs:
         with:
           push: true
           build-args: BRANCH=${{ steps.extract_branch.outputs.branch }}
-          context: "{{defaultContext}}:client-${{ steps.extract_branch.outputs.branch }}"
+          context: "{{defaultContext}}:client"
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/budget-client-${{ steps.extract_branch.outputs.branch }}:latest,
             ${{ secrets.DOCKERHUB_USERNAME }}/budget-client-${{ steps.extract_branch.outputs.branch }}:${{ github.sha }}
