@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс сокетов">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс редактирования категорий">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useCategoryTabs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoryTabs.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,7 +333,7 @@
       <workItem from="1707742600083" duration="5138000" />
       <workItem from="1707812753938" duration="2825000" />
       <workItem from="1707923775376" duration="597000" />
-      <workItem from="1710579749668" duration="26774000" />
+      <workItem from="1710579749668" duration="27255000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -441,14 +439,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00095" summary="Фикс добавления категории">
-      <option name="closed" value="true" />
-      <created>1697281735611</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1697281735611</updated>
     </task>
     <task id="LOCAL-00096" summary="Добавлен перевод на русский">
       <option name="closed" value="true" />
@@ -714,7 +704,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710674127006</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="Фикс редактирования категорий">
+      <option name="closed" value="true" />
+      <created>1710677208325</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1710677208325</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,7 +730,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Рефактор категорий и db" />
     <MESSAGE value="Добавлена анимация" />
     <MESSAGE value="Обновлены nuxt @nuxt/ui" />
     <MESSAGE value="Обновлены пакеты сервера" />
@@ -757,7 +754,8 @@
     <MESSAGE value="Обновлена сборка всего" />
     <MESSAGE value="Обновлены пакеты" />
     <MESSAGE value="Фикс сокетов" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фикс сокетов" />
+    <MESSAGE value="Фикс редактирования категорий" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фикс редактирования категорий" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
