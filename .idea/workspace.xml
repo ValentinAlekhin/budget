@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлена сборка всего">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/docker/dev.env" beforeDir="false" afterPath="$PROJECT_DIR$/client/docker/dev.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/docker/local.env" beforeDir="false" afterPath="$PROJECT_DIR$/client/docker/local.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/docker/prod.env" beforeDir="false" afterPath="$PROJECT_DIR$/client/docker/prod.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -332,7 +337,7 @@
       <workItem from="1707742600083" duration="5138000" />
       <workItem from="1707812753938" duration="2825000" />
       <workItem from="1707923775376" duration="597000" />
-      <workItem from="1710579749668" duration="21272000" />
+      <workItem from="1710579749668" duration="22106000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -438,14 +443,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00089" summary="Мелкие фиксы">
-      <option name="closed" value="true" />
-      <created>1696690135714</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1696690135714</updated>
     </task>
     <task id="LOCAL-00090" summary="Добавлен бесконечный скролл в БД">
       <option name="closed" value="true" />
@@ -711,7 +708,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710669557086</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="Обновлена сборка всего">
+      <option name="closed" value="true" />
+      <created>1710670074590</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1710670074590</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

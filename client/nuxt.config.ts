@@ -1,10 +1,11 @@
 import { defineNuxtConfig } from 'nuxt/config'
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin'
 
-const { DOMAIN, HTTP_PROTOCOL } = process.env
+const { DOMAIN, HTTP_PROTOCOL, WEBSOCKET_PROTOCOL } = process.env
 
 console.log(DOMAIN)
 console.log(HTTP_PROTOCOL)
+console.log(WEBSOCKET_PROTOCOL)
 
 export default defineNuxtConfig({
   ssr: false,
@@ -14,6 +15,7 @@ export default defineNuxtConfig({
     public: {
       domain: DOMAIN,
       httpProtocol: HTTP_PROTOCOL,
+      websocketProtocol: WEBSOCKET_PROTOCOL,
     },
   },
 
