@@ -72,6 +72,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
+          build-args: BRANCH=${{ steps.extract_branch.outputs.branch }}
           context: "{{defaultContext}}:client"
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/budget-client-dev:${{ steps.extract_branch.outputs.branch }}
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client-dev:buildcache
