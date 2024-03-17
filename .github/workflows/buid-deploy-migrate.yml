@@ -17,8 +17,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Branch name
-        run: echo running on branch ${{GITHUB_REF##*/}}
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -31,7 +33,7 @@ jobs:
         with:
           push: true
           context: "{{defaultContext}}:server-go"
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/budget-server-go:${{GITHUB_REF##*/}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/budget-server-go:${{ steps.extract_branch.outputs.branch }}
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server-go:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server-go:buildcache,mode=max
 
@@ -55,8 +57,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Branch name
-        run: echo running on branch ${{GITHUB_REF##*/}}
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -69,7 +73,7 @@ jobs:
         with:
           push: true
           context: "{{defaultContext}}:client"
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/budget-client-dev:${{GITHUB_REF##*/}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/budget-client-dev:${{ steps.extract_branch.outputs.branch }}
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client-dev:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client-dev:buildcache,mode=max
 
