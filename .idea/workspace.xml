@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добален телеграм бот">
-      <change afterPath="$PROJECT_DIR$/client/docker/dev.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/docker/local.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/docker/nginx.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/docker/prod.env" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлена сборка всего">
       <change beforePath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/client/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/nginx/conf.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="nuxt-client" />
+        <entry key="$PROJECT_DIR$" value="new-go-server" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,6 +30,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="dev" />
+                    <option name="lastUsedInstant" value="1710668609" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
                     <option name="lastUsedInstant" value="1681738454" />
@@ -88,7 +81,7 @@
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "new-go-server",
+    "git-widget-placeholder": "dev",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "ignore.virus.scanning.warn.message": "true",
@@ -339,7 +332,7 @@
       <workItem from="1707742600083" duration="5138000" />
       <workItem from="1707812753938" duration="2825000" />
       <workItem from="1707923775376" duration="597000" />
-      <workItem from="1710579749668" duration="19860000" />
+      <workItem from="1710579749668" duration="19894000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -445,14 +438,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00082" summary="Добавлен новый ренж">
-      <option name="closed" value="true" />
-      <created>1695846465978</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1695846465978</updated>
     </task>
     <task id="LOCAL-00083" summary="Рефактор категорий и db">
       <option name="closed" value="true" />
@@ -718,7 +703,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710665084914</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="Обновлена сборка всего">
+      <option name="closed" value="true" />
+      <created>1710668596502</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1710668596502</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -736,7 +729,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Заменено распределение на план" />
     <MESSAGE value="Добавлен новый ренж" />
     <MESSAGE value="Рефактор категорий и db" />
     <MESSAGE value="Добавлена анимация" />
@@ -761,7 +753,8 @@
     <MESSAGE value="Добавлен период плана" />
     <MESSAGE value="Претерто api" />
     <MESSAGE value="Добален телеграм бот" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добален телеграм бот" />
+    <MESSAGE value="Обновлена сборка всего" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновлена сборка всего" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
