@@ -49,7 +49,7 @@
                 <span
                   v-else-if="element.color"
                   :style="{ background: element.color }"
-                  class="inline-block h-2 w-2 rounded-full"
+                  class="inline-block size-2 rounded-full"
                 />
               </div>
 
@@ -166,7 +166,8 @@ const { costs, incoming } = storeToRefs(categoryStore)
 const { object, string } = useYap()
 const { t } = useI18n()
 
-const props = defineProps<{ type: 'cost' | 'inc' }>()
+const props = defineProps<{ type: 'cost' | 'inc'; tab: string }>()
+const { tab } = toRefs(props)
 const emit = defineEmits(['submit', 'cancel'])
 
 const planPeriodList = computed(() =>
@@ -211,6 +212,7 @@ const formState = reactive<Record<string, CategoryState>>(
     return acc
   }, {}),
 )
+
 const drag = ref<boolean>(false)
 const modalOpen = ref<boolean>(false)
 const editCategoryId = ref<string | null>(null)
@@ -385,17 +387,27 @@ watch(categories, (value) =>
     ),
 )
 
-watch(modalOpen, (value) => {
-  if (!value) clearState()
-})
+const setActions = () => {
+  if (props.type !== tab.value) return
 
-onMounted(() =>
   actionsStore.setActions({
     add: () => (modalOpen.value = true),
     submit: save,
     cancel: () => emit('cancel'),
-  }),
-)
+  })
+}
+
+watch(modalOpen, (value) => {
+  if (!value) clearState()
+})
+
+watch(tab, () => {
+  setActions()
+})
+
+onMounted(() => {
+  setActions()
+})
 </script>
 
 <style lang="scss" scoped>
