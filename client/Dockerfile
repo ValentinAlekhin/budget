@@ -9,7 +9,8 @@ RUN npm ci
 
 COPY . .
 
-ENV BASE_URL 11.5.0.6:3000
+ARG BRANCH
+COPY ./docker/${BRANCH}.env .env
 
 RUN npm run generate
 
@@ -21,8 +22,10 @@ RUN rm -rf ./*
 
 COPY --from=builder /app/.output/public .
 
-COPY ./nginx/conf.conf /etc/nginx/conf.d/default.conf
+COPY ./docker/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
+
+LABEL com.centurylinklabs.watchtower.enable="true"
 
 CMD ["nginx", "-g", "daemon off;"]

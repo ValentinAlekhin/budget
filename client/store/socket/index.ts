@@ -18,6 +18,8 @@ export const useSocketStore = createSharedComposable(function () {
     state: (): State => ({ socket: null, connected: true }),
     actions: {
       init() {
+        console.log('domain', domain)
+
         cookieToken.value = tokensStore.value.accessToken
         this.socket = new WebSocket(`ws://${domain}/ws`)
 

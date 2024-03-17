@@ -16,4 +16,6 @@ WORKDIR /app
 
 COPY --from=builder /app/main /app/main
 
+LABEL com.centurylinklabs.watchtower.enable="true"
+
 CMD ["/app/main"]

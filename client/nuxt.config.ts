@@ -4,6 +4,7 @@ import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin'
 const { DOMAIN, HTTP_PROTOCOL } = process.env
 
 console.log(DOMAIN)
+console.log(HTTP_PROTOCOL)
 
 export default defineNuxtConfig({
   ssr: false,
