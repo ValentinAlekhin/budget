@@ -38,7 +38,7 @@ func (s service) Login(dto *LoginRequestDto) (LoginResponseDto, error) {
 func (s service) getTokens(user PureUserDto) (string, string, error) {
 	accessToken := jwt.NewWithClaims(jwt.SigningMethodHS256, CustomClaims{
 		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 24)),
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute * 5)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 		},
 		User: user,
@@ -46,7 +46,7 @@ func (s service) getTokens(user PureUserDto) (string, string, error) {
 
 	refreshToken := jwt.NewWithClaims(jwt.SigningMethodHS256, CustomClaims{
 		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 24 * 7)),
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 24 * 30)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 		},
 		User: user,
@@ -103,7 +103,7 @@ func (s service) ParseToken(tokenString string) (*CustomClaims, error) {
 	return &CustomClaims{}, errors.New("invalid token")
 }
 
-func (s service) Logout(id string) error {
+func (s service) Logout() error {
 	return nil
 }
 
