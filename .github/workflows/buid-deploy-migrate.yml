@@ -47,6 +47,7 @@ jobs:
           script: |
             docker container stop $CONTAINER_NAME
             docker container rm $CONTAINER_NAME
+            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME:latest
             docker container run --name $CONTAINER_NAME -p 3010:80 -e TZ=Europe/Moscow -e BASE_URL=11.6.0.6:3000 --restart unless-stopped -d ${{ secrets.DOCKERHUB_USERNAME }}/$CONTAINER_NAME
             docker network connect budget_app_net $CONTAINER_NAME
 

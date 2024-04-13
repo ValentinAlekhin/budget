@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс редактирования категорий">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс pwa">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +75,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.client/Dockerfile.executor": "Run",
     "Docker.docker-compose.yml.server: Compose Deployment.executor": "Run",
     "Docker.server/Dockerfile.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -121,7 +121,7 @@
       <recent name="C:\Users\Valentin\Documents\projects\budget\client" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="Docker.client/Dockerfile">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -134,10 +134,10 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
+    <configuration name="client/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
         <settings>
-          <option name="sourceFilePath" value="docker-compose.yml" />
+          <option name="sourceFilePath" value="client/Dockerfile" />
         </settings>
       </deployment>
       <method v="2" />
@@ -203,7 +203,7 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="Docker.client/Dockerfile" />
       <item itemvalue="npm.dev" />
       <item itemvalue="npm.start:dev" />
       <item itemvalue="npm.postinstall" />
@@ -213,11 +213,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.client/Dockerfile" />
         <item itemvalue="npm.postinstall" />
         <item itemvalue="npm.start:prod" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.dev (1)" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -438,14 +438,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00096" summary="Добавлен перевод на русский">
-      <option name="closed" value="true" />
-      <created>1697653221841</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1697653221841</updated>
     </task>
     <task id="LOCAL-00097" summary="Добавлен перевод на русский">
       <option name="closed" value="true" />
@@ -711,11 +703,30 @@
       <option name="project" value="LOCAL" />
       <updated>1710677208325</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="Фикс pwa">
+      <option name="closed" value="true" />
+      <created>1713018988470</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1713018988470</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="GitHub.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -729,7 +740,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлена анимация" />
     <MESSAGE value="Обновлены nuxt @nuxt/ui" />
     <MESSAGE value="Обновлены пакеты сервера" />
     <MESSAGE value="Мелкие фиксы" />
@@ -754,7 +764,8 @@
     <MESSAGE value="Обновлены пакеты" />
     <MESSAGE value="Фикс сокетов" />
     <MESSAGE value="Фикс редактирования категорий" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фикс редактирования категорий" />
+    <MESSAGE value="Фикс pwa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фикс pwa" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
