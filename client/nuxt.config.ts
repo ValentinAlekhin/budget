@@ -93,7 +93,7 @@ export default defineNuxtConfig({
     'nuxt-highcharts',
     '@nuxt/ui',
     'nuxt-icon',
-    // '@vite-pwa/nuxt',
+    '@vite-pwa/nuxt',
     '@formkit/auto-animate/nuxt',
     '@nuxtjs/i18n',
   ],
@@ -139,7 +139,7 @@ export default defineNuxtConfig({
     },
     workbox: {
       navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+      globPatterns: ['**/*.{png,svg,ico}'],
     },
     devOptions: {
       enabled: true,
@@ -185,6 +185,4 @@ export default defineNuxtConfig({
       },
     ],
   },
-
-  devtools: true,
 })
