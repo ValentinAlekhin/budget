@@ -5,6 +5,7 @@ import (
 	"budget/internal/category"
 	http_error "budget/internal/http-error"
 	"budget/utils/argon"
+	"fmt"
 )
 
 type service struct {
@@ -57,7 +58,8 @@ func (s service) GetUserByEmailAndPass(username string, pass string) (db.User, e
 	user := db.User{Username: username}
 
 	res := db.Instance.Where("username = ?", username).First(&user)
-	if res.RowsAffected == 0 {
+	fmt.Println("norm")
+	if res.RowsAffected == 0 || res.Error != nil {
 		return user, http_error.NewNotFoundError("User not found", "")
 	}
 

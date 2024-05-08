@@ -18,7 +18,7 @@ func (c controller) Login(ctx *gin.Context) {
 
 	res, err := Service.Login(&loginDto)
 	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"http-error": err.Error()})
+		ctx.Error(err)
 		return
 	}
 

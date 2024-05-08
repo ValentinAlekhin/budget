@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс редактирования категорий">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс pwa">
+      <change afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/BottomTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BottomTabs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useMainLinks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useMainLinks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/user/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/user/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="new-go-server" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,11 +40,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="dev" />
-                    <option name="lastUsedInstant" value="1710668609" />
+                    <option name="lastUsedInstant" value="1715186574" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1681738454" />
+                    <option name="lastUsedInstant" value="1713018646" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="nuxt-client" />
@@ -74,6 +81,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.client/Dockerfile.executor": "Run",
     "Docker.docker-compose.yml.server: Compose Deployment.executor": "Run",
     "Docker.server/Dockerfile.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -99,7 +107,7 @@
     "npm.start:dev.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/home/valentin/Documents/projects/budget/server/node_modules/prettier",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Users\\Valentin\\Documents\\projects\\budget\\server\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -214,11 +222,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yml.server: Compose Deployment" />
-        <item itemvalue="Docker.server/Dockerfile" />
+        <item itemvalue="npm.start:prod" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.dev (1)" />
-        <item itemvalue="npm.start:prod" />
+        <item itemvalue="Docker.server/Dockerfile" />
+        <item itemvalue="Docker.docker-compose.yml.server: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -439,14 +447,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00096" summary="Добавлен перевод на русский">
-      <option name="closed" value="true" />
-      <created>1697653221841</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1697653221841</updated>
     </task>
     <task id="LOCAL-00097" summary="Добавлен перевод на русский">
       <option name="closed" value="true" />
@@ -712,11 +712,30 @@
       <option name="project" value="LOCAL" />
       <updated>1710677208325</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="Фикс pwa">
+      <option name="closed" value="true" />
+      <created>1713018988470</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1713018988470</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="GitHub.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -730,7 +749,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлена анимация" />
     <MESSAGE value="Обновлены nuxt @nuxt/ui" />
     <MESSAGE value="Обновлены пакеты сервера" />
     <MESSAGE value="Мелкие фиксы" />
@@ -755,7 +773,8 @@
     <MESSAGE value="Обновлены пакеты" />
     <MESSAGE value="Фикс сокетов" />
     <MESSAGE value="Фикс редактирования категорий" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фикс редактирования категорий" />
+    <MESSAGE value="Фикс pwa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фикс pwa" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

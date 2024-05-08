@@ -25,14 +25,14 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-tailwindcss": "^3.13.0",
-    "nuxt": "^3.11.0",
+    "nuxt": "^3.11.2",
     "nuxt-icon": "^0.5.0",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.1",
-    "@nuxt/ui": "^2.14.0",
+    "@nuxt/ui": "^2.16.0",
     "@optimize-lodash/rollup-plugin": "^4.0.4",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@pinia/nuxt": "^0.5.1",
@@ -61,5 +61,8 @@
   },
   "overrides": {
     "vue": "latest"
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
   }
 }
