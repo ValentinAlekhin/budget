@@ -47,7 +47,7 @@ jobs:
           message: |
             Repository: ${{ github.repository }}/server-go
 
-            Server built
+            Server build
 
   build-client:
     name: Build and push client image
@@ -90,4 +90,4 @@ jobs:
           message: |
             Repository: ${{ github.repository }}/client
 
-            Client built
+            Client build
