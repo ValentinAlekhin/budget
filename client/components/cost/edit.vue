@@ -1,5 +1,13 @@
 <template>
   <div>
+    <ClientOnly>
+      <UiMobileOnly>
+        <Teleport to="#headerTeleport">
+          <UiBackButton class="mr-2" @click="move" />
+        </Teleport>
+      </UiMobileOnly>
+    </ClientOnly>
+
     <UTabs :items="tabs" v-model:model-value="currentTab" class="w-full">
       <template #cost>
         <CategoryEdit

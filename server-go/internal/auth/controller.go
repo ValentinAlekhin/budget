@@ -1,6 +1,7 @@
 package auth
 
 import (
+	http_error "budget/internal/http-error"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -35,13 +36,20 @@ func (c controller) Logout(ctx *gin.Context) {
 }
 
 func (c controller) RefreshTokens(ctx *gin.Context) {
-	var refreshTokenDto RefreshTokenDto
+	var refreshTokenDto RefreshTokenRequestDto
 	if err := ctx.ShouldBindJSON(&refreshTokenDto); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{"http-error": err.Error()})
+		err = http_error.NewBadRequestError(err.Error(), "")
+		ctx.Error(err)
 		return
 	}
 
-	ctx.JSON(http.StatusOK, refreshTokenDto)
+	response, err := Service.RefreshTokens(refreshTokenDto)
+	if err != nil {
+		ctx.Error(err)
+		return
+	}
+
+	ctx.JSON(http.StatusOK, response)
 }
 
 var Controller = controller{}

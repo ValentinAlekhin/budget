@@ -1,0 +1,26 @@
+meta {
+  name: Refresh Tokens
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{goBaseUrl}}/auth/refresh-tokens
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+      "refreshToken": "{{refreshToken}}"
+  }
+}
+
+vars:post-response {
+  accessToken: res.body.accessToken
+  refreshToken: res.body.refreshToken
+}

@@ -3,9 +3,11 @@ package auth
 import (
 	"budget/config"
 	db "budget/database"
+	http_error "budget/internal/http-error"
 	"budget/internal/user"
 	"budget/utils/argon"
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -105,6 +107,62 @@ func (s service) ParseToken(tokenString string) (*CustomClaims, error) {
 
 func (s service) Logout() error {
 	return nil
+}
+
+func (s service) RefreshTokens(dto RefreshTokenRequestDto) (RefreshTokenResponseDto, error) {
+	claims, err := s.ParseToken(dto.RefreshToken)
+	if err != nil {
+		return RefreshTokenResponseDto{}, http_error.NewBadRequestError("Invalid token", "")
+	}
+
+	tokenEntity, err := s.validateRefreshToken(claims, dto.RefreshToken)
+	if err != nil {
+		return RefreshTokenResponseDto{}, http_error.NewBadRequestError("Invalid token", "")
+	}
+
+	fmt.Println(tokenEntity)
+
+	db.Instance.Unscoped().Delete(&tokenEntity)
+
+	accessToken, refreshToken, err := s.getTokens(claims.User)
+	if err != nil {
+		return RefreshTokenResponseDto{}, http_error.NewInternalRequestError("Get tokens error")
+	}
+
+	return RefreshTokenResponseDto{
+		RefreshToken: refreshToken,
+		AccessToken:  accessToken,
+	}, nil
+}
+
+func (s service) validateRefreshToken(claims *CustomClaims, token string) (db.RefreshToken, error) {
+	var userTokens []db.RefreshToken
+	db.Instance.Where("user_id = ?", claims.User.ID).Find(&userTokens)
+
+	if len(userTokens) == 0 {
+		return db.RefreshToken{}, errors.New("no tokens")
+	}
+
+	var validToken db.RefreshToken
+	valid := false
+	for _, tokenEntity := range userTokens {
+		isValid, err := argon.NewArgon2ID().Verify(token, tokenEntity.RefreshToken)
+		if err != nil {
+			continue
+		}
+		valid = isValid
+
+		if valid == true {
+			validToken = tokenEntity
+			break
+		}
+	}
+
+	if valid == false {
+		return db.RefreshToken{}, errors.New("token not found")
+	}
+
+	return validToken, nil
 }
 
 var Service = service{}

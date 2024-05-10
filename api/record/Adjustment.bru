@@ -1,0 +1,21 @@
+meta {
+  name: Adjustment
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{goBaseUrl}}/records/adjustment
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+     "diff": 100
+  }
+}

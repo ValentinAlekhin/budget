@@ -1,13 +1,5 @@
 <template>
   <div class="pb-40">
-    <ClientOnly>
-      <UiMobileOnly>
-        <Teleport to="#headerTeleport">
-          <UiBackButton class="mr-2" @click="emit('cancel')" />
-        </Teleport>
-      </UiMobileOnly>
-    </ClientOnly>
-
     <Draggable
       v-model="computedInputs"
       class="list-group"

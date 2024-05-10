@@ -4,15 +4,40 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс pwa">
-      <change afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы">
+      <change afterPath="$PROJECT_DIR$/api/auth/Login.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/auth/Me.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/auth/Refresh Tokens.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/bruno.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/category/Create.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/category/DeleteOne.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/category/Get All.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/category/UpdateMany.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/collection.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/environments/local.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/record/Adjustment.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/record/CreateMany.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/record/CreateOne.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/record/Delete One.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/record/Get All.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/record/GetOne.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/record/UpdateOne.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/user/Create User.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/user/Validate Email.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/user/Validate Username.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/BottomTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BottomTabs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useMainLinks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useMainLinks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server-go/internal/auth/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/user/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/user/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/http-error/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/http-error/error.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server-go/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,38 +104,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.client/Dockerfile.executor": "Run",
-    "Docker.docker-compose.yml.server: Compose Deployment.executor": "Run",
-    "Docker.server/Dockerfile.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "js.linters.configure.manually.selectedeslint": "true",
-    "last_opened_file_path": "C:/Users/Valentin/Documents/projects/budget/client/docker",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\eslint",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Run",
-    "npm.start:dev.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/valentin/Documents/projects/budget/server/node_modules/prettier",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.client/Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.server: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.server/Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Valentin/Documents/projects/budget/client/docker&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\eslint&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start:dev.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/valentin/Documents/projects/budget/server/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\docker" />
@@ -230,6 +255,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-WS-241.15989.105" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -342,6 +374,7 @@
       <workItem from="1707812753938" duration="2825000" />
       <workItem from="1707923775376" duration="597000" />
       <workItem from="1710579749668" duration="27255000" />
+      <workItem from="1715335456562" duration="969000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -447,22 +480,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00097" summary="Добавлен перевод на русский">
-      <option name="closed" value="true" />
-      <created>1697653464435</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1697653464435</updated>
-    </task>
-    <task id="LOCAL-00098" summary="Обновлен перевод">
-      <option name="closed" value="true" />
-      <created>1697969980072</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1697969980072</updated>
     </task>
     <task id="LOCAL-00099" summary="Удален индекс">
       <option name="closed" value="true" />
@@ -720,7 +737,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713018988470</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="Фиксы">
+      <option name="closed" value="true" />
+      <created>1715191098494</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1715191098494</updated>
+    </task>
+    <task id="LOCAL-00132" summary="Фиксы">
+      <option name="closed" value="true" />
+      <created>1715191796049</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1715191796049</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -749,7 +782,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Обновлены nuxt @nuxt/ui" />
     <MESSAGE value="Обновлены пакеты сервера" />
     <MESSAGE value="Мелкие фиксы" />
     <MESSAGE value="Добавлен бесконечный скролл в БД" />
@@ -774,7 +806,8 @@
     <MESSAGE value="Фикс сокетов" />
     <MESSAGE value="Фикс редактирования категорий" />
     <MESSAGE value="Фикс pwa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фикс pwa" />
+    <MESSAGE value="Фиксы" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фиксы" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

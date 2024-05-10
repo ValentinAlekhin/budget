@@ -1,0 +1,30 @@
+meta {
+  name: UpdateMany
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{goBaseUrl}}/category/many
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+      "items": [
+          {
+              "id": "01HS1KAEZSVJ3M0N5JAXNJ7T8R",
+              "name": "test sdfsdf",
+              "type": "cost",
+              "order": 10,
+              "planPeriod": "day",
+              "color": "#fff"
+          }
+      ]
+  }
+}

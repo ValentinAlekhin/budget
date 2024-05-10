@@ -1,0 +1,23 @@
+meta {
+  name: Create User
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{goBaseUrl}}/user
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+      "password": "1NNNnnn!",
+      "email": "nika99d@gmail.coma",
+      "username": "Nikaa"
+  }
+}

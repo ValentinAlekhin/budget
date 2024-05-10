@@ -45,3 +45,11 @@ func NewInternalRequestError(metadata string) HttpError {
 		StatusCode:  http.StatusInternalServerError,
 	}
 }
+
+func NewUnauthorizedError(metadata string) HttpError {
+	return HttpError{
+		Description: "Unauthorized",
+		Metadata:    metadata,
+		StatusCode:  http.StatusUnauthorized,
+	}
+}

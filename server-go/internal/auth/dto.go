@@ -12,11 +12,16 @@ type PureUserDto struct {
 }
 
 type LoginResponseDto struct {
-	User         PureUserDto
-	AccessToken  string `json:"accessToken"`
-	RefreshToken string `json:"refreshToken"`
+	User         PureUserDto `json:"user"`
+	AccessToken  string      `json:"accessToken"`
+	RefreshToken string      `json:"refreshToken"`
 }
 
-type RefreshTokenDto struct {
+type RefreshTokenRequestDto struct {
 	RefreshToken string `json:"refreshToken" binding:"required"`
+}
+
+type RefreshTokenResponseDto struct {
+	RefreshToken string `json:"refreshToken"`
+	AccessToken  string `json:"accessToken"`
 }
