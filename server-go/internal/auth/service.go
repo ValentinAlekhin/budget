@@ -48,7 +48,7 @@ func (s service) getTokens(user PureUserDto) (string, string, error) {
 
 	refreshToken := jwt.NewWithClaims(jwt.SigningMethodHS256, CustomClaims{
 		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 24 * 30)),
+			ExpiresAt: jwt.NewNumericDate(carbon.Now().AddDays(30).StdTime()),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 		},
 		User: user,
