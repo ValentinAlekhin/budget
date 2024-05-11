@@ -7,7 +7,6 @@ import (
 	"budget/internal/user"
 	"budget/utils/argon"
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -120,8 +119,6 @@ func (s service) RefreshTokens(dto RefreshTokenRequestDto) (RefreshTokenResponse
 		return RefreshTokenResponseDto{}, http_error.NewBadRequestError("Invalid token", "")
 	}
 
-	fmt.Println(tokenEntity)
-
 	db.Instance.Unscoped().Delete(&tokenEntity)
 
 	accessToken, refreshToken, err := s.getTokens(claims.User)
@@ -143,26 +140,13 @@ func (s service) validateRefreshToken(claims *CustomClaims, token string) (db.Re
 		return db.RefreshToken{}, errors.New("no tokens")
 	}
 
-	var validToken db.RefreshToken
-	valid := false
 	for _, tokenEntity := range userTokens {
-		isValid, err := argon.NewArgon2ID().Verify(token, tokenEntity.RefreshToken)
-		if err != nil {
-			continue
-		}
-		valid = isValid
-
-		if valid == true {
-			validToken = tokenEntity
-			break
+		if isValid, _ := argon.NewArgon2ID().Verify(token, tokenEntity.RefreshToken); isValid {
+			return tokenEntity, nil
 		}
 	}
 
-	if valid == false {
-		return db.RefreshToken{}, errors.New("token not found")
-	}
-
-	return validToken, nil
+	return db.RefreshToken{}, nil
 }
 
 var Service = service{}
