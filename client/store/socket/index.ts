@@ -15,6 +15,10 @@ export const useSocketStore = createSharedComposable(function () {
   const cookieToken = useCookie('token')
   let interval: any
 
+  watch(tokensStore, (value) => {
+    cookieToken.value = value.accessToken
+  })
+
   const socketStore = defineStore('socket', {
     state: (): State => ({ socket: null, connected: true }),
     actions: {

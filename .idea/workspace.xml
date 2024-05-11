@@ -4,41 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы">
-      <change afterPath="$PROJECT_DIR$/api/auth/Login.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/auth/Me.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/auth/Refresh Tokens.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/bruno.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/category/Create.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/category/DeleteOne.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/category/Get All.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/category/UpdateMany.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/collection.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/environments/local.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/record/Adjustment.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/record/CreateMany.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/record/CreateOne.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/record/Delete One.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/record/Get All.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/record/GetOne.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/record/UpdateOne.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/user/Create User.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/user/Validate Email.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/user/Validate Username.bru" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы + добавлен bruno">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslintrc.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintrc.cjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/dto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server-go/internal/auth/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/http-error/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/http-error/error.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -374,7 +347,9 @@
       <workItem from="1707812753938" duration="2825000" />
       <workItem from="1707923775376" duration="597000" />
       <workItem from="1710579749668" duration="27255000" />
-      <workItem from="1715335456562" duration="969000" />
+      <workItem from="1715335456562" duration="1393000" />
+      <workItem from="1715336988890" duration="3099000" />
+      <workItem from="1715431819105" duration="1088000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -480,22 +455,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00099" summary="Удален индекс">
-      <option name="closed" value="true" />
-      <created>1697970259596</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1697970259596</updated>
-    </task>
-    <task id="LOCAL-00100" summary="Добавлен useYup обновлен nuxt">
-      <option name="closed" value="true" />
-      <created>1698852404932</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1698852404932</updated>
     </task>
     <task id="LOCAL-00101" summary="Добавлены новые диапазоны в стату">
       <option name="closed" value="true" />
@@ -753,7 +712,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715191796049</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="Фиксы + добавлен bruno">
+      <option name="closed" value="true" />
+      <created>1715336578888</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1715336578889</updated>
+    </task>
+    <task id="LOCAL-00134" summary="Фиксы + добавлен bruno">
+      <option name="closed" value="true" />
+      <created>1715336997336</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1715336997336</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -782,7 +757,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Обновлены пакеты сервера" />
     <MESSAGE value="Мелкие фиксы" />
     <MESSAGE value="Добавлен бесконечный скролл в БД" />
     <MESSAGE value="Добавлены уведомления в телегу" />
@@ -807,7 +781,8 @@
     <MESSAGE value="Фикс редактирования категорий" />
     <MESSAGE value="Фикс pwa" />
     <MESSAGE value="Фиксы" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фиксы" />
+    <MESSAGE value="Фиксы + добавлен bruno" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фиксы + добавлен bruno" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

@@ -9,7 +9,6 @@ module.exports = {
     parser: '@typescript-eslint/parser',
   },
   extends: [
-    // '@nuxtjs/eslint-config-typescript',
     'plugin:prettier/recommended',
     'plugin:tailwindcss/recommended',
   ],

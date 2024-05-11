@@ -3,9 +3,11 @@ import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin'
 
 const { DOMAIN, HTTP_PROTOCOL, WEBSOCKET_PROTOCOL } = process.env
 
-console.log(DOMAIN)
-console.log(HTTP_PROTOCOL)
-console.log(WEBSOCKET_PROTOCOL)
+console.table({
+  DOMAIN,
+  HTTP_PROTOCOL,
+  WEBSOCKET_PROTOCOL,
+})
 
 export default defineNuxtConfig({
   ssr: false,
@@ -58,7 +60,7 @@ export default defineNuxtConfig({
           target: `http://${DOMAIN}`,
           changeOrigin: true,
           rewrite: (path) => {
-            return path.replace(/^\/api/, '')
+            return path.replace(/^\/api/, '');
           },
         },
         '/socket.io': {
@@ -107,6 +109,7 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@formkit/auto-animate/nuxt',
     '@nuxtjs/i18n',
+    "@nuxt/image"
   ],
 
   pwa: {
@@ -166,7 +169,8 @@ export default defineNuxtConfig({
   i18n: {
     vueI18n: './i18n.config.ts',
     defaultLocale: 'en',
-    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     setLocaleCookie: true,
     getLocaleCookie: 'i18n',
     strategy: 'no_prefix',
@@ -187,5 +191,7 @@ export default defineNuxtConfig({
     ],
   },
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   devtools: true,
 })
