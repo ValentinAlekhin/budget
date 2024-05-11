@@ -146,7 +146,7 @@ func (s service) validateRefreshToken(claims *CustomClaims, token string) (db.Re
 		}
 	}
 
-	return db.RefreshToken{}, nil
+	return db.RefreshToken{}, errors.New("no tokens")
 }
 
 var Service = service{}
