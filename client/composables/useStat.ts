@@ -1,5 +1,4 @@
 import dayjs from 'dayjs'
-import { storeToRefs } from 'pinia'
 import { uniq } from 'lodash-es'
 import { useCategoryStore } from '~/store/category'
 import { useRecordStore } from '~/store/record'
@@ -18,11 +17,10 @@ const createRecordMapper = (categories: any[]) => (records: any[]) =>
   })
 
 export function useStat() {
-  const categoryStore = useCategoryStore()
+  const { categoryStoreRefs } = useCategoryStore()
   const { recordStoreRefs } = useRecordStore()
-  const categoryRefs = storeToRefs(categoryStore)
 
-  const mapper = createRecordMapper(categoryRefs.data.value)
+  const mapper = createRecordMapper(categoryStoreRefs.data.value)
 
   const cost = computed(() => mapper(recordStoreRefs.costs.value))
   const inc = computed(() => mapper(recordStoreRefs.inc.value))

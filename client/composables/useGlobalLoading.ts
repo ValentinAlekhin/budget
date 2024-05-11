@@ -6,22 +6,16 @@ import { useAuthStore } from '~/store/auth'
 export function useGlobalLoading() {
   const authStore = useAuthStore()
   const { socketStore } = useSocketStore()
-  const categoryStore = useCategoryStore()
+  const { categoryStore } = useCategoryStore()
   const { recordStore } = useRecordStore()
+
+  const initSocket = () => socketStore.init()
 
   const fetchAll = async () => {
     if (!authStore.user) return
 
-    await Promise.all([
-      categoryStore.fetchAll({ force: true }),
-      recordStore.fetchAll({ force: true }),
-    ])
+    await Promise.all([categoryStore.init(), recordStore.init()])
   }
-
-  const initSocket = () =>
-    [socketStore.init, categoryStore.cudInit, recordStore.cudInit].forEach(
-      (fn) => fn(),
-    )
 
   const loading = computed(() => categoryStore.loading || recordStore.loading)
   const dataExists = computed(

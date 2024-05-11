@@ -29,8 +29,9 @@ import { useCategoryTabs } from '~/composables/useCategoryTabs'
 
 const router = useRouter()
 const { categoriesWithBalance } = useCategoriesWithBalance()
-const categoryStore = useCategoryStore()
-const { incoming } = storeToRefs(categoryStore)
+const {
+  categoryStoreRefs: { incoming },
+} = useCategoryStore()
 const { currentTab, tabs } = useCategoryTabs()
 
 const costFormState = ref<Record<string, { value: string; comment: string }>>(

@@ -143,7 +143,6 @@
 
 <script setup lang="ts">
 import Draggable from 'vuedraggable'
-import { storeToRefs } from 'pinia'
 import { capitalize, cloneDeep, get, last } from 'lodash-es'
 import { set } from 'vue-demi'
 import Omit from 'lodash-es/omit'
@@ -152,9 +151,11 @@ import { useActionsStore } from '~/store/actions'
 import { useYap } from '#imports'
 
 const actionsStore = useActionsStore()
-const categoryStore = useCategoryStore()
+const {
+  categoryStore,
+  categoryStoreRefs: { costs, incoming },
+} = useCategoryStore()
 const toast = useToast()
-const { costs, incoming } = storeToRefs(categoryStore)
 const { object, string } = useYap()
 const { t } = useI18n()
 

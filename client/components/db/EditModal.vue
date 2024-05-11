@@ -56,7 +56,7 @@ import { useCategoryStore } from '~/store/category'
 import { useRecordStore } from '~/store/record'
 
 const { recordStore } = useRecordStore()
-const categoriesStore = useCategoryStore()
+const { categoryStoreRefs } = useCategoryStore()
 
 const props = defineProps({
   isOpen: { type: Boolean },
@@ -70,7 +70,7 @@ const isOpen = computed({
 })
 
 const categoryOptions = computed(() =>
-  categoriesStore.data.map((c) => ({ id: c.id, label: c.name })),
+  categoryStoreRefs.data.value.map((c) => ({ id: c.id, label: c.name })),
 )
 
 const schema = object({

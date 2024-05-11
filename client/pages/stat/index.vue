@@ -63,7 +63,7 @@
                 <span
                   v-else-if="item.color"
                   :style="{ background: item.color }"
-                  class="mt-1 inline-block h-2 w-2 rounded-full"
+                  class="mt-1 inline-block size-2 rounded-full"
                 />
               </div>
 
@@ -99,7 +99,6 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
 import { Dayjs, ManipulateType } from 'dayjs'
 import { capitalize, sumBy } from 'lodash-es'
 import type { RecordDto } from '../../../common/dto/record'
@@ -117,8 +116,10 @@ import type {
 } from 'chart.js'
 import { useTailwindColors } from '#imports'
 
-const categoryStore = useCategoryStore()
-const { costs, incoming } = storeToRefs(categoryStore)
+const {
+  categoryStore,
+  categoryStoreRefs: { costs, incoming },
+} = useCategoryStore()
 const { recordStoreRefs } = useRecordStore()
 const { filterRecordsByRange } = useRecord()
 const { t } = useI18n()

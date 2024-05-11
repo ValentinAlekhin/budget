@@ -4,14 +4,23 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы + добавлен bruno">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы отвала сокетов">
+      <change afterPath="$PROJECT_DIR$/client/composables/useCud.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.eslintrc.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintrc.cjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/common/cud.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/db/EditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/EditModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCategory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useStat.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useStat.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -349,7 +358,7 @@
       <workItem from="1710579749668" duration="27255000" />
       <workItem from="1715335456562" duration="1393000" />
       <workItem from="1715336988890" duration="3099000" />
-      <workItem from="1715431819105" duration="1088000" />
+      <workItem from="1715431819105" duration="7644000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -455,14 +464,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00101" summary="Добавлены новые диапазоны в стату">
-      <option name="closed" value="true" />
-      <created>1698857934595</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1698857934595</updated>
     </task>
     <task id="LOCAL-00102" summary="Добавлены новые диапазоны в стату">
       <option name="closed" value="true" />
@@ -728,7 +729,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715336997336</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="Фиксы отвала сокетов">
+      <option name="closed" value="true" />
+      <created>1715433026208</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1715433026208</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -757,7 +766,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Мелкие фиксы" />
     <MESSAGE value="Добавлен бесконечный скролл в БД" />
     <MESSAGE value="Добавлены уведомления в телегу" />
     <MESSAGE value="Добавлен индекс для колонки" />
@@ -782,7 +790,8 @@
     <MESSAGE value="Фикс pwa" />
     <MESSAGE value="Фиксы" />
     <MESSAGE value="Фиксы + добавлен bruno" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фиксы + добавлен bruno" />
+    <MESSAGE value="Фиксы отвала сокетов" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фиксы отвала сокетов" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

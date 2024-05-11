@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import type { RecordDto } from '../../../common/dto/record'
-import { cudController } from '~/common/cud'
 import { useNotify } from '~/composables/useNotify'
 import { generatePiniaLocalStorageKey } from '~/utils'
 
@@ -38,8 +37,10 @@ export const useRecordStore = createSharedComposable(function () {
         }
       },
       async init() {
-        await this.cudInit()
         await this.fetchAll({ force: true })
+      },
+      setData(data: RecordDto[]) {
+        this.data = data
       },
       async addRecord(cost: { name: string; comment: string }) {
         await api.post('/records', { ...cost, type: 'cost' })
@@ -64,14 +65,12 @@ export const useRecordStore = createSharedComposable(function () {
       async adjustmentBalance(diff: number) {
         await api.post('/records/adjustment', { diff })
       },
-      ...cudController({ entity: 'record' }),
     },
     getters: {
-      costs: (state: State) => state.data.filter((r) => r.type === 'cost'),
-      dist: (state: State) => state.data.filter((r) => r.type === 'dist'),
-      inc: (state: State) => state.data.filter((r) => r.type === 'inc'),
-      adjustment: (state: State) =>
-        state.data.filter((r) => r.type === 'adjustment'),
+      costs: (state) => state.data.filter((r) => r.type === 'cost'),
+      dist: (state) => state.data.filter((r) => r.type === 'dist'),
+      inc: (state) => state.data.filter((r) => r.type === 'inc'),
+      adjustment: (state) => state.data.filter((r) => r.type === 'adjustment'),
     },
     persist: {
       storage: persistedState.localStorage,
@@ -80,6 +79,12 @@ export const useRecordStore = createSharedComposable(function () {
   })()
 
   const recordStoreRefs = storeToRefs(recordStore)
+
+  useCud({
+    items: recordStoreRefs.data,
+    entity: 'record',
+    setter: recordStore.setData,
+  })
 
   return { recordStore, recordStoreRefs }
 })

@@ -16,6 +16,7 @@ export function useApi() {
     { accessToken: '', refreshToken: '' },
     { mergeDefaults: true },
   )
+  const cookieToken = useCookie('token')
 
   const resetTokens = () =>
     (tokensStore.value = { accessToken: '', refreshToken: '' })
@@ -45,6 +46,7 @@ export function useApi() {
         const authHeader = `Bearer ${data.accessToken}`
         api.defaults.headers.common.Authorization = authHeader
         originalConfig.headers.Authorization = authHeader
+        cookieToken.value = data.accessToken
 
         return api(originalConfig)
       } catch (e) {
