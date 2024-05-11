@@ -7,6 +7,7 @@ import (
 	"budget/internal/user"
 	"budget/utils/argon"
 	"errors"
+	"github.com/golang-module/carbon/v2"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -78,7 +79,7 @@ func (s service) saveRefreshToken(token string, userId string) error {
 
 	tokenEntity := db.RefreshToken{
 		RefreshToken: tokenHash,
-		ExpiresAt:    time.Time{},
+		ExpiresAt:    carbon.Now().AddDays(30).StdTime(),
 		UserId:       userId,
 	}
 
