@@ -4,183 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фиксы отвала сокетов">
-      <change afterPath="$PROJECT_DIR$/client/shared/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/BaseLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BaseLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/BottomTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BottomTabs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Header/Connection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/Connection.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Header/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/List.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/List.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/Table.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/Table.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/stat/charts/costs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/stat/charts/costs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/stat/charts/delta.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/stat/charts/delta.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/stat/tables/costs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/stat/tables/costs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/Actions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/ui/Actions.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/BackButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/ui/BackButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/CategoryInput.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/Loader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/ui/loaders/Sisyphus.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/Loaders/Puls.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/ui/loaders/Puls.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/MobileOnly.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/ui/MobileOnly.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/Numpad/button.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/Numpad/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/TailwindColorPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/ui/TailwindColorPicker.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/ThemeSwitch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/ui/ThemeSwitch.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/hooks/useApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useCud.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/hooks/useCud.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useMainLinks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/hooks/useMainLinks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useNotify.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/hooks/useNotify.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useRenderEnv.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useScreenSize.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/hooks/useScreenSize.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useTailwindColors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/hooks/useTailwindColors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useTheme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/hooks/useTheme.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useTimestamp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/hooks/useTimestamp.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useYap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/hooks/useYap.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/constants/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/layouts/auth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/layouts/auth.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/layouts/desktop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/layouts/desktop.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/layouts/mobile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/layouts/mobile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/middleware/auth.global.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/middleware/reset-actions.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/middleware/reset-actions.global.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/auth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/routes/auth.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/db.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/routes/db.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/routes/index/edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/routes/index/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/settings.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/routes/settings.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/stat/category/[id].vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/routes/stat/category/[id].vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/routes/stat/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/plugins/chartjs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/plugins/chartjs.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/plugins/draggable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/plugins/draggable.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/plugins/infinite-loading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/plugins/infinite-loading.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/android/android-launchericon-144-144.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/android/android-launchericon-144-144.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/android/android-launchericon-192-192.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/android/android-launchericon-192-192.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/android/android-launchericon-48-48.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/android/android-launchericon-48-48.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/android/android-launchericon-512-512.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/android/android-launchericon-512-512.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/android/android-launchericon-72-72.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/android/android-launchericon-72-72.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/android/android-launchericon-96-96.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/android/android-launchericon-96-96.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/100.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/1024.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/1024.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/114.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/114.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/120.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/120.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/128.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/128.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/144.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/144.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/152.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/152.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/16.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/167.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/167.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/180.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/180.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/192.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/192.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/20.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/20.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/256.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/256.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/29.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/29.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/32.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/32.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/40.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/40.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/50.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/50.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/512.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/512.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/57.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/57.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/58.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/58.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/60.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/64.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/64.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/72.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/72.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/76.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/76.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/80.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/80.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/ios/87.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/ios/87.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/LargeTile.scale-100.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/LargeTile.scale-100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/LargeTile.scale-125.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/LargeTile.scale-125.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/LargeTile.scale-150.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/LargeTile.scale-150.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/LargeTile.scale-200.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/LargeTile.scale-200.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/LargeTile.scale-400.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/LargeTile.scale-400.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/SmallTile.scale-100.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/SmallTile.scale-100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/SmallTile.scale-125.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/SmallTile.scale-125.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/SmallTile.scale-150.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/SmallTile.scale-150.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/SmallTile.scale-200.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/SmallTile.scale-200.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/SmallTile.scale-400.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/SmallTile.scale-400.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/SplashScreen.scale-100.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/SplashScreen.scale-100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/SplashScreen.scale-125.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/SplashScreen.scale-125.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/SplashScreen.scale-150.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/SplashScreen.scale-150.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/SplashScreen.scale-200.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/SplashScreen.scale-200.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/SplashScreen.scale-400.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/SplashScreen.scale-400.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square150x150Logo.scale-100.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square150x150Logo.scale-100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square150x150Logo.scale-125.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square150x150Logo.scale-125.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square150x150Logo.scale-150.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square150x150Logo.scale-150.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square150x150Logo.scale-200.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square150x150Logo.scale-200.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square150x150Logo.scale-400.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square150x150Logo.scale-400.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-16.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-20.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-20.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-24.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-24.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-256.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-256.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-30.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-30.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-32.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-32.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-36.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-36.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-40.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-40.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-44.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-44.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-48.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-48.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-60.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-64.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-64.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-72.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-72.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-80.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-80.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-96.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-lightunplated_targetsize-96.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-16.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-20.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-20.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-24.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-24.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-256.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-256.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-30.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-30.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-32.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-32.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-36.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-36.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-40.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-40.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-44.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-44.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-48.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-48.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-60.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-64.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-64.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-72.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-72.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-80.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-80.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-96.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.altform-unplated_targetsize-96.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.scale-100.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.scale-100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.scale-125.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.scale-125.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.scale-150.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.scale-150.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.scale-200.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.scale-200.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.scale-400.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.scale-400.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-16.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-20.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-20.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-24.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-24.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-256.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-256.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-30.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-30.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-32.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-32.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-36.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-36.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-40.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-40.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-44.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-44.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-48.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-48.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-60.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-64.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-64.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-72.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-72.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-80.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-80.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Square44x44Logo.targetsize-96.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Square44x44Logo.targetsize-96.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/StoreLogo.scale-100.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/StoreLogo.scale-100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/StoreLogo.scale-125.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/StoreLogo.scale-125.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/StoreLogo.scale-150.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/StoreLogo.scale-150.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/StoreLogo.scale-200.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/StoreLogo.scale-200.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/StoreLogo.scale-400.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/StoreLogo.scale-400.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Wide310x150Logo.scale-100.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Wide310x150Logo.scale-100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Wide310x150Logo.scale-125.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Wide310x150Logo.scale-125.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Wide310x150Logo.scale-150.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Wide310x150Logo.scale-150.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Wide310x150Logo.scale-200.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Wide310x150Logo.scale-200.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/pwa/windows11/Wide310x150Logo.scale-400.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/public/pwa/windows11/Wide310x150Logo.scale-400.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/utils/index.ts" afterDir="false" />
-    </list>
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Начало внедрения FSD архитектуры на фронт" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -519,7 +343,7 @@
       <workItem from="1715336988890" duration="3099000" />
       <workItem from="1715431819105" duration="8474000" />
       <workItem from="1715605953707" duration="9000" />
-      <workItem from="1715610523156" duration="5424000" />
+      <workItem from="1715610523156" duration="5642000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -625,14 +449,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00103" summary="Добавлено переключение промежутков статистики">
-      <option name="closed" value="true" />
-      <created>1699645073138</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1699645073138</updated>
     </task>
     <task id="LOCAL-00104" summary="Добавлено переключение промежутков статистики">
       <option name="closed" value="true" />
@@ -898,7 +714,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715441047620</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <task id="LOCAL-00137" summary="Начало внедрения FSD архитектуры на фронт">
+      <option name="closed" value="true" />
+      <created>1715621974452</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1715621974453</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -927,7 +751,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлен бесконечный скролл в БД" />
     <MESSAGE value="Добавлены уведомления в телегу" />
     <MESSAGE value="Добавлен индекс для колонки" />
     <MESSAGE value="Добавлено кеширование категорий и записей" />
@@ -952,7 +775,8 @@
     <MESSAGE value="Фиксы" />
     <MESSAGE value="Фиксы + добавлен bruno" />
     <MESSAGE value="Фиксы отвала сокетов" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фиксы отвала сокетов" />
+    <MESSAGE value="Начало внедрения FSD архитектуры на фронт" />
+    <option name="LAST_COMMIT_MESSAGE" value="Начало внедрения FSD архитектуры на фронт" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
