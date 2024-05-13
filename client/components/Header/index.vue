@@ -15,7 +15,7 @@
           {{ $t('common.updating') }}
         </span>
         <div class="w-8">
-          <ui-loaders-puls v-if="loading" />
+          <LoadersPuls v-if="loading" />
           <Icon class="ml-1" v-else name="heroicons:check-20-solid" />
         </div>
       </div>
@@ -23,7 +23,7 @@
       <div class="flex w-28 items-center justify-between">
         <header-connection />
 
-        <ui-theme-switch />
+        <ThemeSwitch />
 
         <header-dropdown />
       </div>
@@ -32,8 +32,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useGlobalLoading } from '~/composables/useGlobalLoading'
-
 const ready = ref(true)
 const { loading } = useGlobalLoading()
 

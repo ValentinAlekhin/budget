@@ -38,7 +38,6 @@
 
 <script lang="ts" setup>
 import { useRecordStore } from '~/store/record'
-import { useScreenSize } from '~/composables/useScreenSize'
 
 const {
   recordStoreRefs: { data: list },

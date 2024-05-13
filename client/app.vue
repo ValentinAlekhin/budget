@@ -19,7 +19,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useScreenSize } from '~/composables/useScreenSize'
 const colorMode = useColorMode()
 const route = useRoute()
 

@@ -1,11 +1,11 @@
 <template>
   <div>
     <ClientOnly>
-      <UiMobileOnly>
+      <MobileOnly>
         <Teleport to="#headerTeleport">
-          <UiBackButton class="mr-2" @click="move" />
+          <BackButton class="mr-2" @click="move" />
         </Teleport>
-      </UiMobileOnly>
+      </MobileOnly>
     </ClientOnly>
 
     <UTabs :items="tabs" v-model:model-value="currentTab" class="w-full">
@@ -30,12 +30,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useCategoryTabs } from '~/composables/useCategoryTabs'
-import { usePlan } from '~/composables/usePlan'
-
 const { currentTab, tabs, currentTabName } = useCategoryTabs()
 
 const router = useRouter()
-
 const move = () => router.push('/')
 </script>

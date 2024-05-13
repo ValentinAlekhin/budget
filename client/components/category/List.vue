@@ -59,7 +59,6 @@
 
 <script lang="ts" setup>
 import { cloneDeep, get, set } from 'lodash-es'
-import { useCategoriesWithBalance } from '~/composables/useCategoriesWithBalance'
 import { Parser } from 'expr-eval'
 import dayjs from 'dayjs'
 import { useRecordStore } from '~/store/record'

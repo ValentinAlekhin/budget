@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import type { RecordDto } from '../../../common/dto/record'
-import { useNotify } from '~/composables/useNotify'
-import { generatePiniaLocalStorageKey } from '~/utils'
+
+import { generatePiniaLocalStorageKey } from '~/shared'
 
 interface State {
   data: RecordDto[]

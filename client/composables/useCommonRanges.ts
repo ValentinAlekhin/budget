@@ -1,7 +1,6 @@
 import type { ComputedRef } from 'vue'
 import { Dayjs } from 'dayjs'
 import { useLocalStorage } from '@vueuse/core'
-import { useTimestamp } from '~/composables/useTimestamp'
 export interface Range {
   name: string
   start: Dayjs

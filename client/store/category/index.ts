@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import type { CategoryDto } from '../../../common/dto/category'
-import { useNotify } from '~/composables/useNotify'
-import { generatePiniaLocalStorageKey } from '~/utils'
+
+import { generatePiniaLocalStorageKey } from '~/shared'
 
 export interface CategoryState {
   data: CategoryDto[]

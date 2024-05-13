@@ -2,11 +2,11 @@
   <UPopover>
     <span class="relative">
       <span
-        class="absolute left-[15px] top-[8px] block h-1 w-1 rounded"
+        class="absolute left-[15px] top-[8px] block size-1 rounded"
         :class="isOnline ? 'bg-green-600' : 'bg-red-600'"
       />
       <span
-        class="absolute left-[15px] top-[16px] block h-1 w-1 rounded"
+        class="absolute left-[15px] top-[16px] block size-1 rounded"
         :class="connected ? 'bg-green-600' : 'bg-red-600'"
       />
 
@@ -36,7 +36,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useNetwork } from '@vueuse/core'
 import { useSocketStore } from '~/store/socket'
 
 const {

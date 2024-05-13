@@ -33,7 +33,7 @@
 </template>
 <script lang="ts" setup>
 import dayjs from 'dayjs'
-import { numberWithSpaces } from '~/utils'
+import { numberWithSpaces } from '~/shared'
 import { useCategory } from '~/composables/useCategory'
 import { useRecord } from '~/composables/useRecord'
 

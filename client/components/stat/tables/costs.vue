@@ -23,9 +23,9 @@ import { storeToRefs } from 'pinia'
 import dayjs from 'dayjs'
 import { useRouteQuery } from '@vueuse/router'
 import { round, sum, sumBy } from 'lodash-es'
-import { AVAILABLE_MONTH, MONTH_LIST_RU } from '~/constants'
+import { AVAILABLE_MONTH, MONTH_LIST_RU } from '~/shared'
 import { useCategoryStore } from '~/store/category'
-import { median } from '~/utils'
+import { median } from '~/shared'
 const categoryStore = useCategoryStore()
 
 const { costs: categories } = storeToRefs(categoryStore)
@@ -95,10 +95,10 @@ const data = computed(() => {
       (month) =>
         sumBy(
           props.records.filter(
-            (r) => r.month === month && r.category?.id === c.id
+            (r) => r.month === month && r.category?.id === c.id,
           ),
-          'amount'
-        ) || null
+          'amount',
+        ) || null,
     )
 
     const preparedSumByMonth = sumByMonth.reduce((acc, sum, i) => {
@@ -124,7 +124,7 @@ const data = computed(() => {
 
       return acc
     },
-    {}
+    {},
   )
 
   const mainDataWithPercent = mainData.map((item, i) => ({

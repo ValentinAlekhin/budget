@@ -38,9 +38,18 @@ export default defineNuxtConfig({
     },
   },
 
-  imports: {
-    dirs: ['store'],
+  dir: {
+    pages: 'app/routes',
+    layouts: 'app/layouts',
+    public: 'app/public',
+    middleware: 'app/middleware',
   },
+
+  imports: {
+    dirs: ['store', 'shared/*'],
+  },
+
+  components: ['~/shared/ui', '~/components'],
 
   typescript: {
     strict: true,
@@ -48,9 +57,9 @@ export default defineNuxtConfig({
   },
 
   plugins: [
-    '@/plugins/draggable',
-    '@/plugins/chartjs',
-    '@/plugins/infinite-loading',
+    '@/app/plugins/draggable',
+    '@/app/plugins/chartjs',
+    '@/app/plugins/infinite-loading',
   ],
 
   vite: {
@@ -60,7 +69,7 @@ export default defineNuxtConfig({
           target: `http://${DOMAIN}`,
           changeOrigin: true,
           rewrite: (path) => {
-            return path.replace(/^\/api/, '');
+            return path.replace(/^\/api/, '')
           },
         },
         '/socket.io': {
@@ -109,7 +118,7 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@formkit/auto-animate/nuxt',
     '@nuxtjs/i18n',
-    "@nuxt/image"
+    '@nuxt/image',
   ],
 
   pwa: {
@@ -155,11 +164,6 @@ export default defineNuxtConfig({
 
   ui: {
     icons: ['heroicons'],
-  },
-
-  components: {
-    global: true,
-    dirs: ['~/components'],
   },
 
   vueuse: {

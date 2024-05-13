@@ -12,9 +12,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useVibrate } from '@vueuse/core'
-import { useMainLinks } from '~/composables/useMainLinks'
-
 const router = useRouter()
 
 const { links } = useMainLinks()

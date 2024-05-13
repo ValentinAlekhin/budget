@@ -1,5 +1,4 @@
 import { defineStore, storeToRefs } from 'pinia'
-import { useNotify } from '~/composables/useNotify'
 
 interface State {
   socket: null | WebSocket

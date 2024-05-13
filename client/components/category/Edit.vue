@@ -148,7 +148,6 @@ import { set } from 'vue-demi'
 import Omit from 'lodash-es/omit'
 import { useCategoryStore } from '~/store/category'
 import { useActionsStore } from '~/store/actions'
-import { useYap } from '#imports'
 
 const actionsStore = useActionsStore()
 const {

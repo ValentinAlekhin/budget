@@ -1,5 +1,3 @@
-import { useGlobalLoading } from '~/composables/useGlobalLoading'
-import { useNotify } from '~/composables/useNotify'
 import { useSocketStore } from '~/store/socket'
 
 export default {

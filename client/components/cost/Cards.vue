@@ -57,7 +57,7 @@
     <UCard v-for="card of miniCards" :key="card.icon">
       <div class="mb-4 flex items-center">
         <span
-          class="mr-2 h-8 w-8 rounded-full"
+          class="mr-2 size-8 rounded-full"
           :class="`bg-${card.color}-300/25`"
         >
           <Icon
@@ -104,8 +104,6 @@ import { sumBy } from 'lodash-es'
 import { Dayjs } from 'dayjs'
 import { useRecord } from '~/composables/useRecord'
 import { useRecordStore } from '~/store/record'
-import { useCommonRanges } from '~/composables/useCommonRanges'
-import { useYap } from '~/composables/useYap'
 import type { InferType } from 'yup'
 
 const {

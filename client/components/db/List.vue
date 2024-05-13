@@ -10,7 +10,7 @@
     >
       <div class="mt-1 grid grid-cols-12 items-center">
         <span
-          class="col-span-1 mr-2 flex h-3 w-3 rounded-full"
+          class="col-span-1 mr-2 flex size-3 rounded-full"
           :class="getTypeBackgroundClasses(row.type)"
         />
 
@@ -62,8 +62,6 @@
 import InfiniteLoading from 'v3-infinite-loading'
 import 'v3-infinite-loading/lib/style.css'
 import dayjs from 'dayjs'
-import { useCategory } from '~/composables/useCategory'
-import { useRecord } from '~/composables/useRecord'
 
 const props = defineProps<{ rows: any[] }>()
 const emit = defineEmits(['edit', 'delete'])

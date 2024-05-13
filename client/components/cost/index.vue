@@ -22,10 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { useCategoriesWithBalance } from '~/composables/useCategoriesWithBalance'
 import { useCategoryStore } from '~/store/category'
-import { storeToRefs } from 'pinia'
-import { useCategoryTabs } from '~/composables/useCategoryTabs'
 
 const router = useRouter()
 const { categoriesWithBalance } = useCategoriesWithBalance()
