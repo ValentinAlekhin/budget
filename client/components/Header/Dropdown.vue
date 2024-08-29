@@ -1,10 +1,12 @@
 <template>
   <UDropdown
+    v-model:open="isDropDownOpen"
     :items="items"
-    :ui="{ item: { disabled: 'cursor-text select-text' } }"
     :popper="{ placement: 'bottom-start' }"
   >
-    <UAvatar :alt="usernameFirstLetter" />
+    <button @touchstart.stop.prevent="isDropDownOpen = !isDropDownOpen">
+      <UAvatar :alt="usernameFirstLetter" />
+    </button>
 
     <template #account="{ item }">
       <div>
@@ -19,27 +21,29 @@
 
       <UIcon
         :name="item.icon"
-        class="ms-auto h-4 w-4 shrink-0 text-gray-400 dark:text-gray-500"
+        class="ms-auto size-4 shrink-0 text-gray-400 dark:text-gray-500"
       />
     </template>
-
-    <UModal v-model="isOpen" class="w-80">
-      <UCard>
-        <template #header>
-          <span class="text-lg font-medium dark:text-white">
-            {{ $t('common.confirmLogout') }}
-          </span>
-        </template>
-
-        <div class="flex justify-between">
-          <UButton color="red" @click="authStore.logout">
-            {{ $t('common.logout') }}
-          </UButton>
-          <UButton @click="isOpen = false">{{ $t('common.cancel') }}</UButton>
-        </div>
-      </UCard>
-    </UModal>
   </UDropdown>
+
+  <UModal v-model="isExitModalOpen" class="w-80">
+    <UCard>
+      <template #header>
+        <span class="text-lg font-medium dark:text-white">
+          {{ $t('common.confirmLogout') }}
+        </span>
+      </template>
+
+      <div class="flex justify-between">
+        <UButton color="red" @click="authStore.logout">
+          {{ $t('common.logout') }}
+        </UButton>
+        <UButton @click="isExitModalOpen = false">
+          {{ $t('common.cancel') }}
+        </UButton>
+      </div>
+    </UCard>
+  </UModal>
 </template>
 
 <script lang="ts" setup>
@@ -48,11 +52,12 @@ import { useAuthStore } from '~/store/auth'
 
 const authStore = useAuthStore()
 const { user } = storeToRefs(authStore)
-const isOpen = ref(false)
 const { t } = useI18n()
+const isDropDownOpen = ref(false)
+const isExitModalOpen = ref(false)
 
-const usernameFirstLetter = computed(
-  () => user.value?.username[0].toUpperCase(),
+const usernameFirstLetter = computed(() =>
+  user.value?.username[0].toUpperCase(),
 )
 
 const items = computed(() => [
@@ -74,7 +79,7 @@ const items = computed(() => [
     {
       label: t('common.logout'),
       icon: 'i-heroicons-arrow-left-on-rectangle',
-      click: () => (isOpen.value = true),
+      click: () => (isExitModalOpen.value = true),
     },
   ],
 ])

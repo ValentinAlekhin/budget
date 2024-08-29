@@ -26,14 +26,14 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-tailwindcss": "^3.13.0",
-    "nuxt": "^3.11.2",
+    "nuxt": "^3.13.0",
     "nuxt-icon": "^0.6.10",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",
-    "@nuxt/ui": "^2.14.2",
+    "@nuxt/ui": "^2.18.4",
     "@optimize-lodash/rollup-plugin": "^4.0.4",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@pinia/nuxt": "^0.5.1",

@@ -198,4 +198,6 @@ export default defineNuxtConfig({
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   devtools: true,
+
+  compatibilityDate: '2024-08-29',
 })
