@@ -1,53 +1,51 @@
 package category
 
 import (
-	db "budget/database"
+	"budget/internal/db/sqlc/budget"
 	http_error "budget/internal/http-error"
 	"budget/internal/ws"
-	"encoding/json"
-	"time"
+	"budget/pkg/utils/convert"
+	"context"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-type service struct {
+type Service struct {
+	categoryRepo *Repo
+	cud          *ws.CudService[ResponseDto]
 }
 
-func (s service) GetAll(userId string) []db.Category {
-	var categories []db.Category
-	db.Instance.Where("user_id = ?", userId).Find(&categories)
+func NewService(db *pgxpool.Pool) *Service {
+	categoryRepo := NewCategoryRepo(db)
+	cudService := ws.NewCudService[ResponseDto]("category")
+	return &Service{categoryRepo: categoryRepo, cud: cudService}
+}
+
+func (s Service) GetAll(userId int32) []ResponseDto {
+	ctx := context.Background()
+	categories, err := s.categoryRepo.ListByUser(ctx, userId)
+	if err != nil {
+		return []ResponseDto{}
+	}
+
 	return categories
 }
 
-func (s service) FindOne(userId string, id string) (error, db.Category) {
-	var category db.Category
-
-	err := http_error.NewNotFoundError("Category not found", "")
-
-	if res := db.Instance.
-		Where("user_id = ?", userId).
-		Where("id = ?", id).
-		First(&category); res.Error != nil || res.RowsAffected == 0 {
-		return err, category
-	} else {
-		return nil, category
+func (s Service) FindOne(userId int32, id int64) (ResponseDto, error) {
+	ctx := context.Background()
+	category, err := s.categoryRepo.GetByIDAndUserID(ctx, id, userId)
+	if err != nil {
+		return ResponseDto{}, http_error.NewNotFoundError("Category not found", "")
 	}
+
+	return category, nil
 }
 
-func (s service) FindById(id string) db.Category {
-	var category db.Category
-
-	db.Instance.
-		Where("id = ?", id).
-		First(&category)
-
-	return category
-}
-
-func (s service) CreateOne(dto CreateCategoryRequestDto, userId string) db.Category {
-	newCategory := db.Category{
+func (s Service) CreateOne(dto CreateCategoryRequestDto, userId int32) (ResponseDto, error) {
+	newCategory := budget.CreateCategoryParams{
 		Name:       dto.Name,
 		Type:       dto.Type,
 		Order:      dto.Order,
-		Plan:       dto.Plan,
+		Plan:       convert.Float64ToNumeric(dto.Plan, 2),
 		PlanPeriod: dto.PlanPeriod,
 		Color:      dto.Color,
 		Icon:       dto.Icon,
@@ -55,102 +53,61 @@ func (s service) CreateOne(dto CreateCategoryRequestDto, userId string) db.Categ
 		UserID:     userId,
 	}
 
-	db.Instance.Create(&newCategory)
+	ctx := context.Background()
+	category, err := s.categoryRepo.Create(ctx, newCategory)
+	if err != nil {
+		return ResponseDto{}, http_error.NewInternalRequestError("")
+	}
 
-	s.sendCudAction(userId, "create", newCategory)
+	s.cud.SendOne(userId, "create", category)
 
-	return newCategory
+	return category, nil
 }
 
-func (s service) UpdateMany(dto UpdateManyCategoryRequestDto, userId string) (error, []db.Category) {
-	tx := db.Instance.Begin()
+func (s Service) UpdateMany(dto UpdateManyCategoryRequestDto, userId int32) ([]ResponseDto, error) {
 
-	categories := make([]db.Category, 0)
-	for _, item := range dto.Data {
-		category := db.Category{
-			Model:      db.Model{ID: item.ID},
+	categories := make([]budget.UpdateCategoryParams, len(dto.Data))
+	for i, item := range dto.Data {
+		category := budget.UpdateCategoryParams{
+			ID:         item.ID,
 			Name:       item.Name,
 			Type:       item.Type,
 			Order:      item.Order,
-			Plan:       item.Plan,
+			Plan:       convert.Float64ToNumeric(item.Plan, 2),
 			PlanPeriod: item.PlanPeriod,
 			Color:      item.Color,
 			Icon:       item.Icon,
 			Comment:    item.Comment,
+			UserID:     userId,
 		}
-
-		if res := tx.Model(&category).Where("user_id = ?", userId).Updates(&category); res.Error != nil || res.RowsAffected == 0 {
-			tx.Rollback()
-			return http_error.NewBadRequestError("Invalid category", item.ID), categories
-		}
-
-		categories = append(categories, category)
+		categories[i] = category
 	}
 
-	tx.Commit()
-
-	s.sendCudActionMany(userId, "update", categories)
-
-	return nil, categories
-}
-
-func (s service) DeleteOne(id string, userId string) (error, db.Category) {
-	if err, category := s.FindOne(userId, id); err != nil {
-		return err, category
-	} else {
-		db.Instance.Delete(&category)
-		s.sendCudAction(userId, "delete", category)
-		return nil, category
-	}
-}
-
-func (s service) CreateAdjustmentCategory(userId string) (error, db.Category) {
-	category := db.Category{
-		Name:       "Adjustment",
-		Type:       db.CategoryTypeAdjustment,
-		PlanPeriod: db.PlanPeriodDay,
-		Comment:    "Service category",
-		UserID:     userId,
-	}
-	if res := db.Instance.Save(&category); res.Error != nil {
-		return http_error.NewInternalRequestError("Error while creating Adjustment"), category
+	ctx := context.Background()
+	many, err := s.categoryRepo.UpdateMany(ctx, categories)
+	if err != nil {
+		return many, http_error.NewInternalRequestError("")
 	}
 
-	return nil, category
+	s.cud.SendMany(userId, "update", many)
+
+	return many, nil
 }
 
-func (s service) GetAdjustmentCategory(userId string) (error, db.Category) {
-	category := db.Category{}
-	if err := db.Instance.Where("type = ?", db.CategoryTypeAdjustment).Where("user_id = ?", userId).First(&category); err.Error != nil || err.RowsAffected == 0 {
-		return s.CreateAdjustmentCategory(userId)
+func (s Service) DeleteOne(id int64, userId int32) (ResponseDto, error) {
+	ctx := context.Background()
+
+	category, err := s.categoryRepo.GetByIDAndUserID(ctx, id, userId)
+	if err != nil {
+		return category, http_error.NewNotFoundError("Category not found", "")
 	}
-	return nil, category
-}
 
-func (s service) GetCategoriesByUserIdAndIds(userId string, ids []string) []db.Category {
-	var categories []db.Category
-	db.Instance.Where("user_id = ?", userId).Where("id IN ?", ids).Find(&categories)
-	return categories
-}
+	_, err = s.categoryRepo.SoftDelete(ctx, id, userId)
+	if err != nil {
+		return category, http_error.NewInternalRequestError("")
+	}
 
-func (s service) GetCategoriesByIds(ids []string) []db.Category {
-	var categories []db.Category
-	db.Instance.Where("id IN ?", ids).Find(&categories)
-	return categories
-}
+	s.cud.SendOne(userId, "delete", category)
 
-func (s service) sendCudAction(userId string, action string, item db.Category) {
-	list := make([]db.Category, 0)
-	list = append(list, item)
-	s.sendCudActionMany(userId, action, list)
+	return category, nil
 }
-
-func (s service) sendCudActionMany(userId string, action string, list []db.Category) {
-	jsonMsg, _ := json.Marshal(SocketCategoryCudActionDto{
-		BaseSocketActionDto: ws.BaseSocketActionDto{Type: "cud", Timestamp: time.Now()},
-		Payload:             SocketSocketCategoryCudActionPayloadDto{Action: action, List: list, Entity: "category"},
-	})
-	ws.Manager.SendToUser(userId, jsonMsg)
-}
-
-var Service = service{}

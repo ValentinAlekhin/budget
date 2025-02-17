@@ -2,26 +2,37 @@ package record
 
 import (
 	http_error "budget/internal/http-error"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
-type controller struct {
+type Controller struct {
+	recordService *Service
 }
 
-func (c controller) GetAll(ctx *gin.Context) {
-	userId := ctx.MustGet("userId").(string)
-
-	ctx.JSON(http.StatusOK, Service.GetAll(userId))
+func NewController(db *pgxpool.Pool) *Controller {
+	recordService := NewService(db)
+	return &Controller{recordService: recordService}
 }
 
-func (c controller) GetOne(ctx *gin.Context) {
-	id := ctx.Param("id")
-	userId := ctx.MustGet("userId").(string)
+func (c Controller) GetAll(ctx *gin.Context) {
+	userId := ctx.MustGet("userId").(int32)
 
-	err, record := Service.FindOne(userId, id)
+	ctx.JSON(http.StatusOK, c.recordService.GetAll(userId))
+}
 
+func (c Controller) GetOne(ctx *gin.Context) {
+	id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
+	if err != nil {
+		ctx.Error(http_error.NewBadRequestError("Invalid id", ""))
+		return
+	}
+	userId := ctx.MustGet("userId").(int32)
+
+	record, err := c.recordService.FindOne(userId, id)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -30,7 +41,7 @@ func (c controller) GetOne(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, record)
 }
 
-func (c controller) CreateOne(ctx *gin.Context) {
+func (c Controller) CreateOne(ctx *gin.Context) {
 	var dto CreateOneRecordRequestDto
 
 	if err := ctx.ShouldBindJSON(&dto); err != nil {
@@ -39,9 +50,8 @@ func (c controller) CreateOne(ctx *gin.Context) {
 		return
 	}
 
-	userId := ctx.MustGet("userId").(string)
-	err, record := Service.CreateOne(userId, dto)
-
+	userId := ctx.MustGet("userId").(int32)
+	record, err := c.recordService.CreateOne(userId, dto)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -50,7 +60,7 @@ func (c controller) CreateOne(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, record)
 }
 
-func (c controller) CreateMany(ctx *gin.Context) {
+func (c Controller) CreateMany(ctx *gin.Context) {
 	var dto CreateManyRecordsRequestDto
 
 	if err := ctx.ShouldBindJSON(&dto); err != nil {
@@ -59,9 +69,8 @@ func (c controller) CreateMany(ctx *gin.Context) {
 		return
 	}
 
-	userId := ctx.MustGet("userId").(string)
-	err, records := Service.CreateMany(userId, dto)
-
+	userId := ctx.MustGet("userId").(int32)
+	records, err := c.recordService.CreateMany(userId, dto)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -70,7 +79,7 @@ func (c controller) CreateMany(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, records)
 }
 
-func (c controller) UpdateOne(ctx *gin.Context) {
+func (c Controller) UpdateOne(ctx *gin.Context) {
 	var dto UpdateOneRecordRequestDto
 
 	if err := ctx.ShouldBindJSON(&dto); err != nil {
@@ -79,9 +88,8 @@ func (c controller) UpdateOne(ctx *gin.Context) {
 		return
 	}
 
-	userId := ctx.MustGet("userId").(string)
-	err, record := Service.UpdateOne(userId, dto)
-
+	userId := ctx.MustGet("userId").(int32)
+	record, err := c.recordService.UpdateOne(userId, dto)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -90,12 +98,15 @@ func (c controller) UpdateOne(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, record)
 }
 
-func (c controller) DeleteOne(ctx *gin.Context) {
-	userId := ctx.MustGet("userId").(string)
-	id := ctx.Param("id")
+func (c Controller) DeleteOne(ctx *gin.Context) {
+	id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
+	if err != nil {
+		ctx.Error(http_error.NewBadRequestError("Invalid id", ""))
+		return
+	}
+	userId := ctx.MustGet("userId").(int32)
 
-	err, record := Service.DeleteOne(userId, id)
-
+	record, err := c.recordService.DeleteOne(userId, id)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -104,7 +115,7 @@ func (c controller) DeleteOne(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, record)
 }
 
-func (c controller) Adjustment(ctx *gin.Context) {
+func (c Controller) Adjustment(ctx *gin.Context) {
 	var dto AdjustmentRequestDto
 
 	if err := ctx.ShouldBindJSON(&dto); err != nil {
@@ -113,9 +124,8 @@ func (c controller) Adjustment(ctx *gin.Context) {
 		return
 	}
 
-	userId := ctx.MustGet("userId").(string)
-	err, record := Service.Adjustment(userId, dto)
-
+	userId := ctx.MustGet("userId").(int32)
+	record, err := c.recordService.Adjustment(userId, dto)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -123,5 +133,3 @@ func (c controller) Adjustment(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, record)
 }
-
-var Controller = controller{}

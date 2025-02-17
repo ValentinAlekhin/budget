@@ -1,24 +1,23 @@
 package record
 
 import (
-	db "budget/database"
-	"budget/internal/ws"
-	"gorm.io/gorm"
+	"budget/internal/db/sqlc/budget"
+	"github.com/jackc/pgx/v5/pgtype"
 	"time"
 )
 
 type CreateOneRecordRequestDto struct {
-	Amount     int       `json:"amount" binding:"required"`
-	Comment    string    `json:"comment" binding:"omitempty"`
-	CategoryID string    `json:"categoryId" binding:"required"`
+	Amount     float64   `json:"amount" binding:"required,gte=0,lte=100000000"`
+	Comment    string    `json:"comment" binding:"omitempty,max=100"`
+	CategoryID int64     `json:"categoryId" binding:"required"`
 	Timestamp  time.Time `json:"timestamp" binding:"required"`
 }
 
 type UpdateOneRecordRequestDto struct {
-	ID         string    `json:"id" binding:"required"`
-	Amount     int       `json:"amount" binding:"required"`
-	Comment    string    `json:"comment" binding:"omitempty"`
-	CategoryID string    `json:"categoryId" binding:"required"`
+	ID         int64     `json:"id" binding:"required"`
+	Amount     float64   `json:"amount" binding:"required,gte=0,lte=100000000"`
+	Comment    string    `json:"comment" binding:"omitempty,max=100"`
+	CategoryID int64     `json:"categoryId" binding:"required"`
 	Timestamp  time.Time `json:"timestamp" binding:"required"`
 }
 
@@ -27,28 +26,17 @@ type CreateManyRecordsRequestDto struct {
 }
 
 type AdjustmentRequestDto struct {
-	Diff int `json:"diff" binding:"required"`
+	Diff float64 `json:"diff" binding:"required,gte=-100000000,lte=100000000"`
 }
 
-type SocketSocketRecordCudActionPayloadDto struct {
-	Action string              `json:"action"`
-	Entity string              `json:"entity"`
-	List   []RecordResponseDto `json:"list"`
-}
-
-type SocketRecordCudActionDto struct {
-	ws.BaseSocketActionDto
-	Payload SocketSocketRecordCudActionPayloadDto `json:"payload"`
-}
-
-type RecordResponseDto struct {
-	ID         string          `json:"id"`
-	CreatedAt  time.Time       `json:"createdAt"`
-	UpdatedAt  time.Time       `json:"updatedAt"`
-	DeletedAt  gorm.DeletedAt  `json:"deletedAt,omitempty"`
-	Amount     int             `json:"amount"`
-	Comment    string          `json:"comment,omitempty"`
-	CategoryID string          `json:"categoryId"`
-	Timestamp  time.Time       `json:"timestamp"`
-	Type       db.CategoryType `json:"type"`
+type ResponseDto struct {
+	ID         int64                     `json:"id"`
+	CreatedAt  pgtype.Timestamp          `json:"createdAt"`
+	UpdatedAt  pgtype.Timestamp          `json:"updatedAt"`
+	Amount     pgtype.Numeric            `json:"amount"`
+	Comment    string                    `json:"comment"`
+	Timestamp  pgtype.Timestamp          `json:"timestamp"`
+	CategoryID int64                     `json:"categoryId"`
+	DeletedAt  pgtype.Timestamp          `json:"deletedAt"`
+	Type       budget.CategoriesTypeEnum `json:"type"`
 }

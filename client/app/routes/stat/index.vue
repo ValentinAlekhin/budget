@@ -114,7 +114,6 @@ import type {
   DoughnutControllerChartOptions,
   DoughnutControllerDatasetOptions,
 } from 'chart.js'
-import { useTailwindColors } from '#imports'
 
 const {
   categoryStore,

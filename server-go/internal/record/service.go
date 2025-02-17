@@ -1,227 +1,193 @@
 package record
 
 import (
-	db "budget/database"
 	"budget/internal/category"
+	"budget/internal/db/sqlc/budget"
 	http_error "budget/internal/http-error"
 	"budget/internal/ws"
-	"encoding/json"
+	"budget/pkg/utils/convert"
+	"context"
+	"github.com/jackc/pgx/v5/pgtype"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/samber/lo"
 	"time"
 )
 
-type service struct {
+type Service struct {
+	recordRepo   *Repo
+	categoryRepo *category.Repo
+	cud          *ws.CudService[ResponseDto]
 }
 
-func (s service) GetAll(id string) []RecordResponseDto {
-	var records []db.Record
-	if res := db.Instance.
-		Preload("Category").
-		Joins("INNER JOIN categories ON categories.id = records.category_id").
-		Where("categories.user_id = ? and records.deleted_at IS NULL", id).
-		Order("timestamp desc").Find(&records); res.RowsAffected == 0 {
-		records = make([]db.Record, 0)
-	}
-
-	return s.makeManyResponse(records)
+func NewService(db *pgxpool.Pool) *Service {
+	recordRepo := NewRecordsRepo(db)
+	categoryRepo := category.NewCategoryRepo(db)
+	cudService := ws.NewCudService[ResponseDto]("record")
+	return &Service{recordRepo, categoryRepo, cudService}
 }
 
-func (s service) FindOne(userId string, id string) (error, RecordResponseDto) {
-	var record db.Record
+func (s Service) GetAll(userId int32) []ResponseDto {
+	ctx := context.Background()
+	list, err := s.recordRepo.List(ctx, userId)
 
-	err := http_error.NewNotFoundError("Record not found", "")
-
-	if res := db.Instance.
-		Preload("Category").
-		Joins("INNER JOIN categories ON categories.id = records.category_id").
-		Where("categories.user_id = ?", userId).
-		Where("records.id = ?", id).
-		First(&record); res.Error != nil || res.RowsAffected == 0 {
-		return err, RecordResponseDto{}
-	} else {
-		return nil, s.makeResponse(record)
-	}
-}
-
-func (s service) CreateOne(userId string, dto CreateOneRecordRequestDto) (error, RecordResponseDto) {
-	err, categoryEntity := category.Service.FindOne(userId, dto.CategoryID)
 	if err != nil {
-		return err, RecordResponseDto{}
+		return []ResponseDto{}
 	}
 
-	newRecord := db.Record{
-		Amount:    dto.Amount,
-		Comment:   dto.Comment,
-		Category:  categoryEntity,
-		Timestamp: dto.Timestamp,
-	}
-
-	db.Instance.Create(&newRecord)
-
-	response := s.makeResponse(newRecord)
-	s.sendCudAction(userId, "create", response)
-
-	return nil, response
+	return list
 }
 
-func (s service) CreateMany(userId string, dto CreateManyRecordsRequestDto) (error, []RecordResponseDto) {
-	categoryIds := lo.Map(dto.Data, func(item CreateOneRecordRequestDto, _ int) string {
-		return item.CategoryID
-	})
-	categoryIds = lo.Uniq(categoryIds)
-
-	categories := category.Service.GetCategoriesByUserIdAndIds(userId, categoryIds)
-	if len(categories) != len(categoryIds) {
-		return http_error.NewBadRequestError("Invalid category ids", ""), []RecordResponseDto{}
-	}
-
-	categoriesMap := make(map[string]db.Category)
-	for _, categoryEntity := range categories {
-		categoriesMap[categoryEntity.ID] = categoryEntity
-	}
-
-	var records []db.Record
-
-	for _, item := range dto.Data {
-		record := db.Record{
-			Amount:     item.Amount,
-			Comment:    item.Comment,
-			CategoryID: item.CategoryID,
-			Timestamp:  item.Timestamp,
-		}
-		records = append(records, record)
-	}
-
-	db.Instance.Create(&records)
-
-	response := s.makeManyResponse(records)
-	s.sendCudActionMany(userId, "create", response)
-
-	return nil, response
-}
-
-func (s service) UpdateOne(userId string, dto UpdateOneRecordRequestDto) (error, RecordResponseDto) {
-	if err, _ := Service.FindOne(userId, dto.ID); err != nil {
-		return err, RecordResponseDto{}
-	}
-
-	err, categoryEntity := category.Service.FindOne(userId, dto.CategoryID)
+func (s Service) FindOne(userId int32, id int64) (ResponseDto, error) {
+	ctx := context.Background()
+	record, err := s.recordRepo.GetByIDAndUserID(ctx, id, userId)
 	if err != nil {
-		return err, RecordResponseDto{}
+		return record, http_error.NewNotFoundError("Record not found", "")
 	}
 
-	record := db.Record{
-		Model:      db.Model{ID: dto.ID},
-		Amount:     dto.Amount,
+	return record, nil
+}
+
+func (s Service) CreateOne(userId int32, dto CreateOneRecordRequestDto) (ResponseDto, error) {
+	ctx := context.Background()
+	_, err := s.categoryRepo.GetByIDAndUserID(ctx, dto.CategoryID, userId)
+	if err != nil {
+		return ResponseDto{}, http_error.NewBadRequestError("Category not found", "")
+	}
+
+	newRecord, err := s.recordRepo.Create(ctx, budget.CreateRecordParams{
+		Amount:     convert.Float64ToNumeric(dto.Amount, 2),
 		Comment:    dto.Comment,
-		CategoryID: categoryEntity.ID,
-		Timestamp:  dto.Timestamp,
-	}
-
-	if res := db.Instance.Model(&record).Updates(&record); res.Error != nil || res.RowsAffected == 0 {
-		return http_error.NewBadRequestError("Server error", record.ID), RecordResponseDto{}
-	}
-
-	response := s.makeResponse(record)
-	s.sendCudAction(userId, "update", response)
-
-	return nil, response
-}
-
-func (s service) DeleteOne(userId string, id string) (error, RecordResponseDto) {
-	if err, recordDto := s.FindOne(userId, id); err != nil {
-		return err, recordDto
-	} else {
-		record := db.Record{Model: db.Model{ID: id}}
-		if res := db.Instance.Delete(&record); res.Error != nil {
-			return http_error.NewInternalRequestError(id), RecordResponseDto{}
-		}
-
-		s.sendCudAction(userId, "delete", recordDto)
-		return nil, recordDto
-	}
-}
-
-func (s service) Adjustment(userId string, dto AdjustmentRequestDto) (error, RecordResponseDto) {
-	err, adjustmentCategory := category.Service.GetAdjustmentCategory(userId)
-	if err != nil {
-		return err, RecordResponseDto{}
-	}
-
-	newRecord := db.Record{
-		Amount:    dto.Diff,
-		Category:  adjustmentCategory,
-		Timestamp: time.Now(),
-	}
-
-	db.Instance.Create(&newRecord)
-
-	response := s.makeResponse(newRecord)
-	s.sendCudAction(userId, "create", response)
-
-	return nil, response
-}
-
-func (s service) sendCudAction(userId string, action string, item RecordResponseDto) {
-	list := make([]RecordResponseDto, 0)
-	list = append(list, item)
-	s.sendCudActionMany(userId, action, list)
-}
-
-func (s service) sendCudActionMany(userId string, action string, list []RecordResponseDto) {
-	jsonMsg, _ := json.Marshal(SocketRecordCudActionDto{
-		BaseSocketActionDto: ws.BaseSocketActionDto{Type: "cud", Timestamp: time.Now()},
-		Payload:             SocketSocketRecordCudActionPayloadDto{Action: action, List: list, Entity: "record"},
+		Timestamp:  pgtype.Timestamp{Time: dto.Timestamp, Valid: true},
+		CategoryID: dto.CategoryID,
 	})
-	ws.Manager.SendToUser(userId, jsonMsg)
-}
-
-func (s service) makeResponse(record db.Record) RecordResponseDto {
-	categoryEntity := category.Service.FindById(record.CategoryID)
-
-	return RecordResponseDto{
-		ID:         record.ID,
-		CreatedAt:  record.CreatedAt,
-		UpdatedAt:  record.UpdatedAt,
-		DeletedAt:  record.DeletedAt,
-		Amount:     record.Amount,
-		Comment:    record.Comment,
-		CategoryID: record.CategoryID,
-		Timestamp:  record.Timestamp,
-		Type:       categoryEntity.Type,
+	if err != nil {
+		return newRecord, http_error.NewInternalRequestError("")
 	}
+
+	s.cud.SendOne(userId, "create", newRecord)
+
+	return newRecord, nil
 }
 
-func (s service) makeManyResponse(list []db.Record) []RecordResponseDto {
-	categoryIds := lo.Map(list, func(item db.Record, _ int) string {
+func (s Service) CreateMany(userId int32, dto CreateManyRecordsRequestDto) ([]ResponseDto, error) {
+	categoryIds := lo.Map[CreateOneRecordRequestDto, int64](dto.Data, func(item CreateOneRecordRequestDto, _ int) int64 {
 		return item.CategoryID
 	})
 	categoryIds = lo.Uniq(categoryIds)
-	categories := category.Service.GetCategoriesByIds(categoryIds)
-	categoriesMap := make(map[string]db.Category)
+
+	ctx := context.Background()
+	categories, err := s.categoryRepo.GetByIDAndUserIDs(ctx, categoryIds, userId)
+	if err != nil {
+		return nil, http_error.NewInternalRequestError("")
+	}
+	if len(categories) != len(categoryIds) {
+		return nil, http_error.NewBadRequestError("Invalid category ids", "")
+	}
+
+	categoriesMap := make(map[int64]category.ResponseDto)
 	for _, categoryEntity := range categories {
 		categoriesMap[categoryEntity.ID] = categoryEntity
 	}
 
-	response := make([]RecordResponseDto, 0)
-	for _, item := range list {
-		targetCategory := categoriesMap[item.CategoryID]
-
-		recordResponse := RecordResponseDto{
-			ID:         item.ID,
-			CreatedAt:  item.CreatedAt,
-			UpdatedAt:  item.UpdatedAt,
-			DeletedAt:  item.DeletedAt,
-			Amount:     item.Amount,
+	newRecords := make([]budget.CreateRecordParams, len(dto.Data))
+	for i, item := range dto.Data {
+		record := budget.CreateRecordParams{
+			Amount:     convert.Float64ToNumeric(item.Amount, 2),
 			Comment:    item.Comment,
 			CategoryID: item.CategoryID,
-			Timestamp:  item.Timestamp,
-			Type:       targetCategory.Type,
+			Timestamp: pgtype.Timestamp{
+				Time:  item.Timestamp,
+				Valid: true,
+			},
 		}
-		response = append(response, recordResponse)
+		newRecords[i] = record
 	}
 
-	return response
+	many, err := s.recordRepo.CreateMany(ctx, newRecords)
+	if err != nil {
+		return nil, http_error.NewInternalRequestError("")
+	}
+
+	s.cud.SendMany(userId, "create", many)
+
+	return many, nil
 }
 
-var Service = service{}
+func (s Service) UpdateOne(userId int32, dto UpdateOneRecordRequestDto) (ResponseDto, error) {
+	ctx := context.Background()
+
+	_, err := s.FindOne(userId, dto.ID)
+	if err != nil {
+		return ResponseDto{}, err
+	}
+
+	_, err = s.categoryRepo.GetByIDAndUserID(ctx, dto.CategoryID, userId)
+	if err != nil {
+		return ResponseDto{}, http_error.NewBadRequestError("Category not found", "")
+	}
+
+	record := budget.UpdateRecordParams{
+		ID:         dto.ID,
+		Amount:     convert.Float64ToNumeric(dto.Amount, 2),
+		Comment:    dto.Comment,
+		CategoryID: dto.CategoryID,
+		Timestamp: pgtype.Timestamp{
+			Time:  dto.Timestamp,
+			Valid: true,
+		},
+	}
+
+	updated, err := s.recordRepo.Update(ctx, record)
+	if err != nil {
+		return ResponseDto{}, http_error.NewInternalRequestError("")
+	}
+
+	s.cud.SendOne(userId, "update", updated)
+
+	return updated, nil
+}
+
+func (s Service) DeleteOne(userId int32, id int64) (ResponseDto, error) {
+
+	_, err := s.FindOne(userId, id)
+	if err != nil {
+		return ResponseDto{}, err
+	}
+
+	ctx := context.Background()
+
+	deleted, err := s.recordRepo.SoftDelete(ctx, id, userId)
+	if err != nil {
+		return ResponseDto{}, http_error.NewInternalRequestError("")
+	}
+
+	s.cud.SendOne(userId, "delete", deleted)
+
+	return deleted, nil
+}
+
+func (s Service) Adjustment(userId int32, dto AdjustmentRequestDto) (ResponseDto, error) {
+	ctx := context.Background()
+	adjustmentCategory, err := s.categoryRepo.GetAdjustmentUserID(ctx, userId)
+	if err != nil {
+		return ResponseDto{}, http_error.NewInternalRequestError("")
+	}
+
+	record := budget.CreateRecordParams{
+		Amount:     convert.Float64ToNumeric(dto.Diff, 2),
+		CategoryID: adjustmentCategory.ID,
+		Timestamp: pgtype.Timestamp{
+			Time:  time.Now(),
+			Valid: true,
+		},
+	}
+
+	newRecord, err := s.recordRepo.Create(ctx, record)
+	if err != nil {
+		return ResponseDto{}, http_error.NewInternalRequestError("")
+	}
+
+	s.cud.SendOne(userId, "create", newRecord)
+
+	return newRecord, nil
+}

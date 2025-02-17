@@ -1,15 +1,23 @@
 package auth
 
 import (
+	"budget/internal/config"
 	http_error "budget/internal/http-error"
 	"github.com/gin-gonic/gin"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"net/http"
 )
 
-type controller struct {
+type Controller struct {
+	authServie *Service
 }
 
-func (c controller) Login(ctx *gin.Context) {
+func NewController(db *pgxpool.Pool, jwtConfig *config.JWT) *Controller {
+	authService := NewService(db, jwtConfig)
+	return &Controller{authService}
+}
+
+func (c Controller) Login(ctx *gin.Context) {
 	var loginDto LoginRequestDto
 
 	if err := ctx.ShouldBindJSON(&loginDto); err != nil {
@@ -17,7 +25,7 @@ func (c controller) Login(ctx *gin.Context) {
 		return
 	}
 
-	res, err := Service.Login(&loginDto)
+	res, err := c.authServie.Login(&loginDto)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -26,16 +34,16 @@ func (c controller) Login(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, res)
 }
 
-func (c controller) Me(ctx *gin.Context) {
+func (c Controller) Me(ctx *gin.Context) {
 	targetUser := ctx.MustGet("user").(PureUserDto)
 	ctx.JSON(http.StatusOK, targetUser)
 }
 
-func (c controller) Logout(ctx *gin.Context) {
+func (c Controller) Logout(ctx *gin.Context) {
 
 }
 
-func (c controller) RefreshTokens(ctx *gin.Context) {
+func (c Controller) RefreshTokens(ctx *gin.Context) {
 	var refreshTokenDto RefreshTokenRequestDto
 	if err := ctx.ShouldBindJSON(&refreshTokenDto); err != nil {
 		err = http_error.NewBadRequestError(err.Error(), "")
@@ -43,7 +51,7 @@ func (c controller) RefreshTokens(ctx *gin.Context) {
 		return
 	}
 
-	response, err := Service.RefreshTokens(refreshTokenDto)
+	response, err := c.authServie.RefreshTokens(refreshTokenDto)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -51,5 +59,3 @@ func (c controller) RefreshTokens(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, response)
 }
-
-var Controller = controller{}

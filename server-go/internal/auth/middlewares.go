@@ -1,16 +1,26 @@
 package auth
 
 import (
+	"budget/internal/config"
 	http_error "budget/internal/http-error"
 	"budget/internal/user"
 	"github.com/gin-gonic/gin"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"strings"
 )
 
-type middlewares struct {
+type Middlewares struct {
+	userService *user.Service
+	authService *Service
 }
 
-func (m middlewares) AuthRequired(ctx *gin.Context) {
+func NewMiddlewares(db *pgxpool.Pool, jwtConfig *config.JWT) *Middlewares {
+	userService := user.NewService(db)
+	authService := NewService(db, jwtConfig)
+	return &Middlewares{userService, authService}
+}
+
+func (m Middlewares) AuthRequired(ctx *gin.Context) {
 	authHeader := ctx.GetHeader("Authorization")
 
 	headerError := http_error.NewUnauthorizedError("No authorization header")
@@ -34,14 +44,14 @@ func (m middlewares) AuthRequired(ctx *gin.Context) {
 		return
 	}
 
-	claims, err := Service.ParseToken(headerParts[1])
+	claims, err := m.authService.ParseToken(headerParts[1])
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("Token expired"))
 		ctx.Abort()
 		return
 	}
 
-	targetUser, err := user.Service.GetUserById(claims.User.ID)
+	targetUser, err := m.userService.GetUserById(claims.User.ID)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("User not found"))
 		ctx.Abort()
@@ -54,7 +64,7 @@ func (m middlewares) AuthRequired(ctx *gin.Context) {
 	ctx.Set("userId", pureUser.ID)
 }
 
-func (m middlewares) AuthRequiredCookie(ctx *gin.Context) {
+func (m Middlewares) AuthRequiredCookie(ctx *gin.Context) {
 	cookie, err := ctx.Cookie("token")
 
 	cookieError := http_error.NewUnauthorizedError("No authorization header")
@@ -68,13 +78,13 @@ func (m middlewares) AuthRequiredCookie(ctx *gin.Context) {
 		return
 	}
 
-	claims, err := Service.ParseToken(cookie)
+	claims, err := m.authService.ParseToken(cookie)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("Token expired"))
 		return
 	}
 
-	targetUser, err := user.Service.GetUserById(claims.User.ID)
+	targetUser, err := m.userService.GetUserById(claims.User.ID)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("User not found"))
 		return
@@ -85,5 +95,3 @@ func (m middlewares) AuthRequiredCookie(ctx *gin.Context) {
 	ctx.Set("user", pureUser)
 	ctx.Set("userId", pureUser.ID)
 }
-
-var Middlewares = middlewares{}

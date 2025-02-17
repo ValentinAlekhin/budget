@@ -3,19 +3,27 @@ package category
 import (
 	http_error "budget/internal/http-error"
 	"github.com/gin-gonic/gin"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"net/http"
+	"strconv"
 )
 
-type controller struct {
+type Controller struct {
+	categoryService *Service
 }
 
-func (c controller) GetAll(ctx *gin.Context) {
-	userId := ctx.MustGet("userId").(string)
-	categories := Service.GetAll(userId)
+func NewController(db *pgxpool.Pool) *Controller {
+	categoryService := NewService(db)
+	return &Controller{categoryService: categoryService}
+}
+
+func (c Controller) GetAll(ctx *gin.Context) {
+	userId := ctx.MustGet("userId").(int32)
+	categories := c.categoryService.GetAll(userId)
 	ctx.JSON(http.StatusOK, categories)
 }
 
-func (c controller) CreateOne(ctx *gin.Context) {
+func (c Controller) CreateOne(ctx *gin.Context) {
 	var dto CreateCategoryRequestDto
 
 	if err := ctx.ShouldBindJSON(&dto); err != nil {
@@ -24,13 +32,17 @@ func (c controller) CreateOne(ctx *gin.Context) {
 		return
 	}
 
-	userId := ctx.MustGet("userId").(string)
-	category := Service.CreateOne(dto, userId)
+	userId := ctx.MustGet("userId").(int32)
+	category, err := c.categoryService.CreateOne(dto, userId)
+	if err != nil {
+		ctx.Error(err)
+		return
+	}
 
 	ctx.JSON(http.StatusOK, category)
 }
 
-func (c controller) UpdateMany(ctx *gin.Context) {
+func (c Controller) UpdateMany(ctx *gin.Context) {
 	var dto UpdateManyCategoryRequestDto
 
 	if err := ctx.ShouldBindJSON(&dto); err != nil {
@@ -39,9 +51,8 @@ func (c controller) UpdateMany(ctx *gin.Context) {
 		return
 	}
 
-	userId := ctx.MustGet("userId").(string)
-	err, categories := Service.UpdateMany(dto, userId)
-
+	userId := ctx.MustGet("userId").(int32)
+	categories, err := c.categoryService.UpdateMany(dto, userId)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -50,11 +61,15 @@ func (c controller) UpdateMany(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, categories)
 }
 
-func (c controller) DeleteOne(ctx *gin.Context) {
-	id := ctx.Param("id")
-	userId := ctx.MustGet("userId").(string)
-	err, category := Service.DeleteOne(id, userId)
+func (c Controller) DeleteOne(ctx *gin.Context) {
+	id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
+	if err != nil {
+		ctx.Error(http_error.NewBadRequestError("Invalid id", ""))
+		return
+	}
 
+	userId := ctx.MustGet("userId").(int32)
+	category, err := c.categoryService.DeleteOne(id, userId)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -62,5 +77,3 @@ func (c controller) DeleteOne(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, category)
 }
-
-var Controller = controller{}

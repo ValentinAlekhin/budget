@@ -46,7 +46,7 @@ export default defineNuxtConfig({
   },
 
   imports: {
-    dirs: ['store', 'shared/*'],
+    dirs: ['store', 'shared/*', 'shared/hooks'],
   },
 
   components: ['~/shared/ui', '~/components'],

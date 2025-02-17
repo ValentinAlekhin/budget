@@ -1,7 +1,7 @@
 package telegram
 
 import (
-	"budget/config"
+	"budget/internal/config"
 	"fmt"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/golang-module/carbon/v2"
@@ -61,7 +61,6 @@ func (tgBot telegramBot) backup() {
 
 	directory, err := os.Getwd()
 	if err != nil {
-		fmt.Println(err)
 		msg := tgbotapi.NewMessage(chatId, err.Error())
 		_, _ = tgBot.api.Send(msg)
 		return

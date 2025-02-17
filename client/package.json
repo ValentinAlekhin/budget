@@ -44,6 +44,7 @@
     "chart.js": "^4.4.2",
     "dayjs": "^1.11.11",
     "expr-eval": "^2.0.2",
+    "highcharts": "^12.1.2",
     "lodash-es": "^4.17.21",
     "nuxt-highcharts": "^3.1.1",
     "nuxt-typed-router": "^3.6.3",

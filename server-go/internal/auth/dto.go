@@ -6,7 +6,7 @@ type LoginRequestDto struct {
 }
 
 type PureUserDto struct {
-	ID       string `json:"id"`
+	ID       int32  `json:"id"`
 	Username string `json:"username"`
 	Email    string `json:"email"`
 }

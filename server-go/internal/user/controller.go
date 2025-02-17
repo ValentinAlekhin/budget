@@ -1,16 +1,22 @@
 package user
 
 import (
-	db "budget/database"
 	http_error "budget/internal/http-error"
 	"github.com/gin-gonic/gin"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"net/http"
 )
 
-type controller struct {
+type Controller struct {
+	userService *Service
 }
 
-func (c controller) CreateOne(ctx *gin.Context) {
+func NewController(db *pgxpool.Pool) *Controller {
+	userService := NewService(db)
+	return &Controller{userService: userService}
+}
+
+func (c Controller) CreateOne(ctx *gin.Context) {
 	var createUserDto CreateUserDto
 
 	if err := ctx.ShouldBindJSON(&createUserDto); err != nil {
@@ -19,7 +25,7 @@ func (c controller) CreateOne(ctx *gin.Context) {
 		return
 	}
 
-	user, err := Service.CreateOne(&createUserDto)
+	user, err := c.userService.CreateOne(&createUserDto)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -30,12 +36,10 @@ func (c controller) CreateOne(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, user)
 }
 
-func (c controller) UpdateOne(ctx *gin.Context) {
+func (c Controller) UpdateOne(ctx *gin.Context) {
 
 }
 
-func (c controller) formatResponse(user *db.User) {
+func (c Controller) formatResponse(user *ResponseDto) {
 	user.Password = ""
 }
-
-var Controller = controller{}

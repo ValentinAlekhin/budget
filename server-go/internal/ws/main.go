@@ -15,13 +15,13 @@ type ClientManager struct {
 }
 
 type Client struct {
-	id     string
+	id     int32
 	socket *websocket.Conn
 	send   chan []byte
 }
 
 type Message struct {
-	Sender    string `json:"sender,omitempty"`
+	Sender    int32  `json:"sender,omitempty"`
 	Recipient string `json:"recipient,omitempty"`
 	Content   any    `json:"content,omitempty"`
 	Type      string `json:"type"`
@@ -60,7 +60,7 @@ func (manager *ClientManager) send(message []byte, ignore *Client) {
 	}
 }
 
-func (m ClientManager) SendToUser(userId string, message []byte) {
+func (m ClientManager) SendToUser(userId int32, message []byte) {
 	for conn := range Manager.clients {
 		if conn.id != userId {
 			continue
@@ -122,7 +122,7 @@ var upgrader = websocket.Upgrader{
 }
 
 func WsHandler(ctx *gin.Context) {
-	userId := ctx.MustGet("userId").(string)
+	userId := ctx.MustGet("userId").(int32)
 	conn, err := upgrader.Upgrade(ctx.Writer, ctx.Request, nil)
 	if err != nil {
 		return

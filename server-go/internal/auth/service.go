@@ -1,19 +1,32 @@
 package auth
 
 import (
-	"budget/config"
-	db "budget/database"
+	"budget/internal/config"
+	"budget/internal/db/sqlc/budget"
 	http_error "budget/internal/http-error"
+	refresh_token "budget/internal/refresh-token"
 	"budget/internal/user"
-	"budget/utils/argon"
+	"budget/pkg/utils/argon"
+	"context"
 	"errors"
 	"github.com/golang-module/carbon/v2"
+	"github.com/jackc/pgx/v5/pgtype"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
 )
 
-type service struct {
+type Service struct {
+	userService *user.Service
+	tokenRepo   *refresh_token.Repo
+	jwtConfig   *config.JWT
+}
+
+func NewService(db *pgxpool.Pool, jwtConfig *config.JWT) *Service {
+	userService := user.NewService(db)
+	tokenRepo := refresh_token.NewRepo(db)
+	return &Service{userService: userService, tokenRepo: tokenRepo, jwtConfig: jwtConfig}
 }
 
 type CustomClaims struct {
@@ -21,8 +34,8 @@ type CustomClaims struct {
 	User PureUserDto
 }
 
-func (s service) Login(dto *LoginRequestDto) (LoginResponseDto, error) {
-	targetUser, err := user.Service.GetUserByEmailAndPass(dto.Username, dto.Password)
+func (s Service) Login(dto *LoginRequestDto) (LoginResponseDto, error) {
+	targetUser, err := s.userService.GetUserByEmailAndPass(dto.Username, dto.Password)
 	if err != nil {
 		return LoginResponseDto{}, err
 	}
@@ -37,10 +50,10 @@ func (s service) Login(dto *LoginRequestDto) (LoginResponseDto, error) {
 	return LoginResponseDto{pureUser, accessToken, refreshToken}, nil
 }
 
-func (s service) getTokens(user PureUserDto) (string, string, error) {
+func (s Service) getTokens(user PureUserDto) (string, string, error) {
 	accessToken := jwt.NewWithClaims(jwt.SigningMethodHS256, CustomClaims{
 		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute * 5)),
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute * 60)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 		},
 		User: user,
@@ -54,12 +67,12 @@ func (s service) getTokens(user PureUserDto) (string, string, error) {
 		User: user,
 	})
 
-	accessTokenSrt, err := accessToken.SignedString([]byte(config.JWT.AccessTokenSecret))
+	accessTokenSrt, err := accessToken.SignedString([]byte(s.jwtConfig.AccessTokenSecret))
 	if err != nil {
 		return "", "", err
 	}
 
-	refreshTokenSrt, err := refreshToken.SignedString([]byte(config.JWT.RefreshTokenSecret))
+	refreshTokenSrt, err := refreshToken.SignedString([]byte(s.jwtConfig.RefreshTokenSecret))
 	if err != nil {
 		return "", "", err
 	}
@@ -71,28 +84,33 @@ func (s service) getTokens(user PureUserDto) (string, string, error) {
 	return accessTokenSrt, refreshTokenSrt, nil
 }
 
-func (s service) saveRefreshToken(token string, userId string) error {
+func (s Service) saveRefreshToken(token string, userId int32) error {
 	tokenHash, err := argon.NewArgon2ID().Hash(token)
 	if err != nil {
 		return err
 	}
 
-	tokenEntity := db.RefreshToken{
+	tokenEntity := budget.CreateRefreshTokenParams{
 		RefreshToken: tokenHash,
-		ExpiresAt:    carbon.Now().AddDays(30).StdTime(),
-		UserId:       userId,
+		ExpiresAt: pgtype.Timestamp{
+			Time:  carbon.Now().AddDays(30).StdTime(),
+			Valid: true,
+		},
+		UserID: userId,
 	}
 
-	if res := db.Instance.Create(&tokenEntity); res.Error != nil {
+	ctx := context.Background()
+	_, err = s.tokenRepo.Create(ctx, tokenEntity)
+	if err != nil {
 		return errors.New("save token http-error")
 	}
 
 	return nil
 }
 
-func (s service) ParseToken(tokenString string) (*CustomClaims, error) {
+func (s Service) ParseToken(tokenString string) (*CustomClaims, error) {
 	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
-		return []byte(config.JWT.AccessTokenSecret), nil
+		return []byte(s.jwtConfig.AccessTokenSecret), nil
 	})
 	if err != nil {
 		return &CustomClaims{}, err
@@ -105,11 +123,11 @@ func (s service) ParseToken(tokenString string) (*CustomClaims, error) {
 	return &CustomClaims{}, errors.New("invalid token")
 }
 
-func (s service) Logout() error {
+func (s Service) Logout() error {
 	return nil
 }
 
-func (s service) RefreshTokens(dto RefreshTokenRequestDto) (RefreshTokenResponseDto, error) {
+func (s Service) RefreshTokens(dto RefreshTokenRequestDto) (RefreshTokenResponseDto, error) {
 	claims, err := s.ParseToken(dto.RefreshToken)
 	if err != nil {
 		return RefreshTokenResponseDto{}, http_error.NewBadRequestError("Invalid token", "")
@@ -120,7 +138,11 @@ func (s service) RefreshTokens(dto RefreshTokenRequestDto) (RefreshTokenResponse
 		return RefreshTokenResponseDto{}, http_error.NewBadRequestError("Invalid token", "")
 	}
 
-	db.Instance.Unscoped().Delete(&tokenEntity)
+	ctx := context.Background()
+	err = s.tokenRepo.Delete(ctx, tokenEntity.ID)
+	if err != nil {
+		return RefreshTokenResponseDto{}, http_error.NewInternalRequestError("Remove token error")
+	}
 
 	accessToken, refreshToken, err := s.getTokens(claims.User)
 	if err != nil {
@@ -133,21 +155,18 @@ func (s service) RefreshTokens(dto RefreshTokenRequestDto) (RefreshTokenResponse
 	}, nil
 }
 
-func (s service) validateRefreshToken(claims *CustomClaims, token string) (db.RefreshToken, error) {
-	var userTokens []db.RefreshToken
-	db.Instance.Where("user_id = ?", claims.User.ID).Find(&userTokens)
-
-	if len(userTokens) == 0 {
-		return db.RefreshToken{}, errors.New("no tokens")
+func (s Service) validateRefreshToken(claims *CustomClaims, token string) (refresh_token.ResponseDto, error) {
+	ctx := context.Background()
+	tokens, err := s.tokenRepo.ListByUser(ctx, claims.User.ID)
+	if err != nil {
+		return refresh_token.ResponseDto{}, errors.New("no tokens")
 	}
 
-	for _, tokenEntity := range userTokens {
+	for _, tokenEntity := range tokens {
 		if isValid, _ := argon.NewArgon2ID().Verify(token, tokenEntity.RefreshToken); isValid {
 			return tokenEntity, nil
 		}
 	}
 
-	return db.RefreshToken{}, errors.New("no tokens")
+	return refresh_token.ResponseDto{}, errors.New("no tokens")
 }
-
-var Service = service{}

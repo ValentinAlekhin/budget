@@ -1,20 +1,33 @@
 package user
 
 import (
-	db "budget/database"
-	"budget/internal/category"
+	"budget/internal/db/sqlc/budget"
 	http_error "budget/internal/http-error"
-	"budget/utils/argon"
-	"fmt"
+	"budget/pkg/utils/argon"
+	"context"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-type service struct {
+type Service struct {
+	userRepo *Repo
 }
 
-func (s service) CreateOne(dto *CreateUserDto) (db.User, error) {
-	user := db.User{}
+func NewService(db *pgxpool.Pool) *Service {
+	userRepo := NewUserRepo(db)
 
-	if res := db.Instance.Where("username = ?", dto.Username).Or("email = ?", dto.Email).First(&user); res.RowsAffected >= 1 {
+	return &Service{userRepo: userRepo}
+}
+
+func (s Service) CreateOne(dto *CreateUserDto) (ResponseDto, error) {
+	user := ResponseDto{}
+
+	ctx := context.Background()
+
+	_, err := s.userRepo.GetByEmailOrUsername(ctx, budget.GetUserByEmailOrUsernameParams{
+		Email:    dto.Email,
+		Username: dto.Username,
+	})
+	if err != nil {
 		return user, http_error.NewBadRequestError("Account taken", "")
 	}
 
@@ -25,42 +38,43 @@ func (s service) CreateOne(dto *CreateUserDto) (db.User, error) {
 		return user, internalErr
 	}
 
-	user.Password = hashedPass
-	user.Username = dto.Username
-	user.Email = dto.Email
-
-	if res := db.Instance.Create(&user); res.Error != nil {
+	newUser, err := s.userRepo.Create(ctx, budget.CreateUserParams{
+		Username: dto.Username,
+		Email:    dto.Email,
+		Password: hashedPass,
+	})
+	if err != nil {
 		return user, internalErr
 	}
 
-	if err, _ := category.Service.CreateAdjustmentCategory(user.ID); err != nil {
-		return user, err
+	//if err, _ := category.Service.CreateAdjustmentCategory(user.ID); err != nil {
+	//	return user, err
+	//}
+
+	return newUser, nil
+}
+
+func (s Service) UpdateOne() (ResponseDto, error) {
+	return ResponseDto{}, nil
+}
+
+func (s Service) GetUserById(id int32) (ResponseDto, error) {
+	user := ResponseDto{}
+	ctx := context.Background()
+	user, err := s.userRepo.GetByID(ctx, id)
+	if err != nil {
+		return user, http_error.NewNotFoundError("User not found", string(id))
 	}
 
 	return user, nil
 }
 
-func (s service) UpdateOne() (db.User, error) {
-	return db.User{}, nil
-}
+func (s Service) GetUserByEmailAndPass(username string, pass string) (ResponseDto, error) {
+	ctx := context.Background()
 
-func (s service) GetUserById(id string) (db.User, error) {
-	user := db.User{}
-	res := db.Instance.First(&user, "id = ?", id)
-	if res.RowsAffected == 0 {
-		return user, http_error.NewNotFoundError("User not found", id)
-	}
-
-	return user, nil
-}
-
-func (s service) GetUserByEmailAndPass(username string, pass string) (db.User, error) {
-	user := db.User{Username: username}
-
-	res := db.Instance.Where("username = ?", username).First(&user)
-	fmt.Println("norm")
-	if res.RowsAffected == 0 || res.Error != nil {
-		return user, http_error.NewNotFoundError("User not found", "")
+	user, err := s.userRepo.GetByUsername(ctx, username)
+	if err != nil {
+		return ResponseDto{}, http_error.NewNotFoundError("User not found", "")
 	}
 
 	valid, err := argon.NewArgon2ID().Verify(pass, user.Password)
@@ -74,26 +88,22 @@ func (s service) GetUserByEmailAndPass(username string, pass string) (db.User, e
 	return user, nil
 }
 
-func (s service) ValidateEmail(email string) bool {
-	user := db.User{Email: email}
-
-	res := db.Instance.Where("email = ?", email).First(&user)
-	if res.RowsAffected == 0 {
+func (s Service) ValidateEmail(email string) bool {
+	ctx := context.Background()
+	_, err := s.userRepo.GetByEmail(ctx, email)
+	if err != nil {
 		return true
 	} else {
 		return false
 	}
 }
 
-func (s service) ValidateUsername(username string) bool {
-	user := db.User{Username: username}
-
-	res := db.Instance.Where("username = ?", username).First(&user)
-	if res.RowsAffected == 0 {
+func (s Service) ValidateUsername(username string) bool {
+	ctx := context.Background()
+	_, err := s.userRepo.GetByUsername(ctx, username)
+	if err != nil {
 		return true
 	} else {
 		return false
 	}
 }
-
-var Service = service{}

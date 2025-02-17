@@ -29,6 +29,10 @@
 </template>
 
 <script setup lang="ts">
+import {onMounted} from "@vue/runtime-core";
+import {useScreenSize} from "#shared/hooks/useScreenSize";
+import {useGlobalLoading} from "~/composables/useGlobalLoading";
+
 const { fetchAll, loading, error, initSocket, dataExists } = useGlobalLoading()
 const { smallerThanLg } = useScreenSize()
 
