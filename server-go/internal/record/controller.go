@@ -1,6 +1,7 @@
 package record
 
 import (
+	"budget/internal/cache"
 	http_error "budget/internal/http-error"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"net/http"
@@ -11,17 +12,25 @@ import (
 
 type Controller struct {
 	recordService *Service
+	cacheService  cache.Cache
 }
 
 func NewController(db *pgxpool.Pool) *Controller {
-	recordService := NewService(db)
-	return &Controller{recordService: recordService}
+	cacheService, _ := cache.NewService()
+	recordService := NewService(db, cacheService)
+	return &Controller{recordService: recordService, cacheService: cacheService}
 }
 
 func (c Controller) GetAll(ctx *gin.Context) {
 	userId := ctx.MustGet("userId").(int32)
 
-	ctx.JSON(http.StatusOK, c.recordService.GetAll(userId))
+	_, response, err := c.recordService.GetAll(userId)
+	if err != nil {
+		ctx.Error(err)
+		return
+	}
+
+	ctx.String(http.StatusOK, response)
 }
 
 func (c Controller) GetOne(ctx *gin.Context) {

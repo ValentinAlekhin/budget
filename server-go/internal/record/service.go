@@ -1,12 +1,15 @@
 package record
 
 import (
+	"budget/internal/cache"
 	"budget/internal/category"
 	"budget/internal/db/sqlc/budget"
 	http_error "budget/internal/http-error"
 	"budget/internal/ws"
 	"budget/pkg/utils/convert"
 	"context"
+	"encoding/json"
+	"fmt"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/samber/lo"
@@ -17,24 +20,42 @@ type Service struct {
 	recordRepo   *Repo
 	categoryRepo *category.Repo
 	cud          *ws.CudService[ResponseDto]
+	cache        cache.Cache
 }
 
-func NewService(db *pgxpool.Pool) *Service {
+func NewService(db *pgxpool.Pool, c cache.Cache) *Service {
 	recordRepo := NewRecordsRepo(db)
 	categoryRepo := category.NewCategoryRepo(db)
 	cudService := ws.NewCudService[ResponseDto]("record")
-	return &Service{recordRepo, categoryRepo, cudService}
+	return &Service{
+		recordRepo,
+		categoryRepo,
+		cudService,
+		c,
+	}
 }
 
-func (s Service) GetAll(userId int32) []ResponseDto {
-	ctx := context.Background()
-	list, err := s.recordRepo.List(ctx, userId)
-
-	if err != nil {
-		return []ResponseDto{}
+func (s Service) GetAll(userId int32) (response []ResponseDto, cache string, err error) {
+	cacheKey := s.getCacheKey(userId)
+	if data, found := s.cache.Get(cacheKey); found {
+		return nil, data, nil
 	}
 
-	return list
+	ctx := context.Background()
+	list, err := s.recordRepo.List(ctx, userId)
+	if err != nil {
+		return []ResponseDto{}, "", http_error.NewInternalRequestError("")
+	}
+
+	marshal, err := json.Marshal(list)
+	if err != nil {
+		return nil, "", http_error.NewInternalRequestError("failed to marshal list")
+	}
+	jsonString := string(marshal)
+
+	s.cache.Set(cacheKey, jsonString)
+
+	return list, jsonString, nil
 }
 
 func (s Service) FindOne(userId int32, id int64) (ResponseDto, error) {
@@ -48,6 +69,8 @@ func (s Service) FindOne(userId int32, id int64) (ResponseDto, error) {
 }
 
 func (s Service) CreateOne(userId int32, dto CreateOneRecordRequestDto) (ResponseDto, error) {
+	s.dropCache(userId)
+
 	ctx := context.Background()
 	_, err := s.categoryRepo.GetByIDAndUserID(ctx, dto.CategoryID, userId)
 	if err != nil {
@@ -70,6 +93,8 @@ func (s Service) CreateOne(userId int32, dto CreateOneRecordRequestDto) (Respons
 }
 
 func (s Service) CreateMany(userId int32, dto CreateManyRecordsRequestDto) ([]ResponseDto, error) {
+	s.dropCache(userId)
+
 	categoryIds := lo.Map[CreateOneRecordRequestDto, int64](dto.Data, func(item CreateOneRecordRequestDto, _ int) int64 {
 		return item.CategoryID
 	})
@@ -114,6 +139,8 @@ func (s Service) CreateMany(userId int32, dto CreateManyRecordsRequestDto) ([]Re
 }
 
 func (s Service) UpdateOne(userId int32, dto UpdateOneRecordRequestDto) (ResponseDto, error) {
+	s.dropCache(userId)
+
 	ctx := context.Background()
 
 	_, err := s.FindOne(userId, dto.ID)
@@ -148,6 +175,7 @@ func (s Service) UpdateOne(userId int32, dto UpdateOneRecordRequestDto) (Respons
 }
 
 func (s Service) DeleteOne(userId int32, id int64) (ResponseDto, error) {
+	s.dropCache(userId)
 
 	_, err := s.FindOne(userId, id)
 	if err != nil {
@@ -167,6 +195,8 @@ func (s Service) DeleteOne(userId int32, id int64) (ResponseDto, error) {
 }
 
 func (s Service) Adjustment(userId int32, dto AdjustmentRequestDto) (ResponseDto, error) {
+	s.dropCache(userId)
+
 	ctx := context.Background()
 	adjustmentCategory, err := s.categoryRepo.GetAdjustmentUserID(ctx, userId)
 	if err != nil {
@@ -190,4 +220,13 @@ func (s Service) Adjustment(userId int32, dto AdjustmentRequestDto) (ResponseDto
 	s.cud.SendOne(userId, "create", newRecord)
 
 	return newRecord, nil
+}
+
+func (s Service) getCacheKey(id int32) string {
+	return fmt.Sprintf("user:%d:records", id)
+}
+
+func (s Service) dropCache(userId int32) {
+	key := s.getCacheKey(userId)
+	s.cache.Del(key)
 }
