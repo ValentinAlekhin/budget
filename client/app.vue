@@ -19,6 +19,11 @@
 </template>
 
 <script lang="ts" setup>
+import {useColorMode} from "@vueuse/core";
+import {useRoute} from "#app";
+import {computed} from "@vue/reactivity";
+import {useScreenSize} from "#shared/hooks/useScreenSize";
+
 const colorMode = useColorMode()
 const route = useRoute()
 

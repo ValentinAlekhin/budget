@@ -51,17 +51,19 @@ func (s Service) Login(dto *LoginRequestDto) (LoginResponseDto, error) {
 }
 
 func (s Service) getTokens(user PureUserDto) (string, string, error) {
+	accessTokenExpiresAt := time.Now().Add(time.Minute * time.Duration(s.jwtConfig.AccessTokenExpiration))
 	accessToken := jwt.NewWithClaims(jwt.SigningMethodHS256, CustomClaims{
 		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute * 60)),
+			ExpiresAt: jwt.NewNumericDate(accessTokenExpiresAt),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 		},
 		User: user,
 	})
 
+	refreshTokenExpiresAt := time.Now().Add(time.Minute * time.Duration(s.jwtConfig.RefreshTokenExpiration))
 	refreshToken := jwt.NewWithClaims(jwt.SigningMethodHS256, CustomClaims{
 		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(carbon.Now().AddDays(30).StdTime()),
+			ExpiresAt: jwt.NewNumericDate(refreshTokenExpiresAt),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 		},
 		User: user,

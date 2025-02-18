@@ -7,9 +7,9 @@ import (
 
 type JWT struct {
 	AccessTokenSecret      string `mapstructure:"ACCESS_TOKEN_SECRET"`
-	AccessTokenExpiration  string `mapstructure:"ACCESS_TOKEN_EXPIRATION"`
+	AccessTokenExpiration  int    `mapstructure:"ACCESS_TOKEN_EXPIRATION"`
 	RefreshTokenSecret     string `mapstructure:"REFRESH_TOKEN_SECRET"`
-	RefreshTokenExpiration string `mapstructure:"REFRESH_TOKEN_EXPIRATION"`
+	RefreshTokenExpiration int    `mapstructure:"REFRESH_TOKEN_EXPIRATION"`
 }
 
 func NewJWT() (*JWT, error) {
