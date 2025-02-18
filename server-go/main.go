@@ -12,19 +12,27 @@ import (
 func main() {
 	dbConfig, serverConfig, jwtConfig, _, err := config.GetAll()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("failed to load configurations: %v", err)
 	}
 
-	db.RunMigrations(dbConfig)
+	err = db.RunMigrations(dbConfig)
+	if err != nil {
+		log.Fatalf("failed to run database migrations: %v", err)
+	}
 
 	go ws.Manager.Start()
+
 	//go telegram.Bot.Init()
+
 	connection, err := db.CreateConnection(context.Background(), dbConfig.GetConnectionString())
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("failed to establish database connection: %v", err)
 	}
+
 	err = router.Init(connection, jwtConfig, serverConfig)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("failed to initialize router: %v", err)
 	}
+
+	log.Println("Application started successfully")
 }
