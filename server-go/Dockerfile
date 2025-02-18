@@ -20,4 +20,6 @@ LABEL com.centurylinklabs.watchtower.enable="true"
 
 ENV GIN_MODE=release
 
+RUN touch .env
+
 CMD ["/app/main"]
