@@ -41,5 +41,5 @@ func (config DB) GetConnectionString() string {
 }
 
 func (config DB) GetUrl() string {
-	return fmt.Sprintf("postgresql://%s:%s@%s:%s/%s", config.User, config.Password, config.Host, config.Port, config.Name)
+	return fmt.Sprintf("postgresql://%s:%s@%s:%s/%s?sslmode=disable", config.User, config.Password, config.Host, config.Port, config.Name)
 }

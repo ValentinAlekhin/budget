@@ -2,7 +2,7 @@ package main
 
 import (
 	"budget/internal/config"
-	"budget/internal/db/db"
+	db "budget/internal/db"
 	"budget/internal/router"
 	"budget/internal/ws"
 	"context"
@@ -14,6 +14,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	db.RunMigrations(dbConfig)
 
 	go ws.Manager.Start()
 	//go telegram.Bot.Init()
