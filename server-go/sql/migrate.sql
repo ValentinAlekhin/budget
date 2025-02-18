@@ -1,4 +1,4 @@
-ROLLBACK;
+-- ROLLBACK;
 
 CREATE EXTENSION if not exists postgres_fdw;
 
@@ -84,11 +84,20 @@ select id,
        name,
        type,
        "order",
-       coalesce(comment, '') as comment,
+       CASE
+           WHEN comment IS NULL OR comment = '' THEN ''
+           ELSE comment
+           END               AS comment,
        deleted_at,
-       coalesce(comment, '') as icon,
+       CASE
+           WHEN icon IS NULL OR icon = '' THEN ''
+           ELSE icon
+           END               AS icon,
        plan,
-       coalesce(comment, '') as color,
+       CASE
+           WHEN color IS NULL OR color = '' THEN ''
+           ELSE color
+           END               AS color,
        plan_period,
        user_id
 from r_categories;
@@ -99,39 +108,42 @@ select id,
        created_at,
        updated_at,
        amount,
-       coalesce(comment, '') as comment,
-    timestamp,
-    category_id,
-    deleted_at
+       CASE
+           WHEN comment IS NULL OR comment = '' THEN ''
+           ELSE comment
+           END               AS comment,
+       timestamp,
+       category_id,
+       deleted_at
 from r_records;
 
 update categories as c
 set user_id = u.id
-    from users as u
+from users as u
 where c.old_user_id = u.old_id;
 
 update records as r
 set category_id = c.id
-    from categories as c
+from categories as c
 where c.old_id = r.old_category_id;
 
 commit;
 
 
 alter table users
-drop column old_id;
+    drop column old_id;
 
 alter table categories
-drop column old_id;
+    drop column old_id;
 alter table categories
-drop column old_user_id;
+    drop column old_user_id;
 alter table categories
     alter column user_id set not null;
 
 alter table records
-drop column old_id;
+    drop column old_id;
 alter table records
-drop column old_category_id;
+    drop column old_category_id;
 alter table records
     alter column category_id set not null;
 

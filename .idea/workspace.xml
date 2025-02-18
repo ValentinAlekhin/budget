@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлен nuxt &amp; nuxt ui">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/BaseLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BaseLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/category/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/category/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/record/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/record/dto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/record/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/record/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/ws/cud.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/ws/cud.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/ws/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/ws/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/sql/migrate.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/sql/migrate.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -402,7 +395,7 @@
       <workItem from="1725435039979" duration="11000" />
       <workItem from="1730550020872" duration="273000" />
       <workItem from="1737904195329" duration="872000" />
-      <workItem from="1739810903429" duration="5687000" />
+      <workItem from="1739810903429" duration="6479000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
