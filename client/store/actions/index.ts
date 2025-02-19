@@ -1,4 +1,4 @@
-import { acceptHMRUpdate, defineStore } from 'pinia'
+import { defineStore } from 'pinia'
 
 interface State {
   edit?: null | Function
@@ -17,7 +17,8 @@ export const useActionsStore = defineStore('actions', {
     }) as State,
   actions: {
     setActions(actions: State, reset = true) {
-      if (reset) this.$reset()
+      if (reset)
+        this.$reset()
 
       this.submit = actions.submit
       this.edit = actions.edit
@@ -27,7 +28,3 @@ export const useActionsStore = defineStore('actions', {
   },
   getters: {},
 })
-
-if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useActionsStore, import.meta.hot))
-}

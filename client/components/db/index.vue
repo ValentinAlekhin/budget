@@ -1,11 +1,36 @@
+<script lang="ts" setup>
+const {
+  recordStoreRefs: { data: list },
+  recordStore,
+} = useRecordStore()
+
+const editRecord = ref<any>(null)
+const deleteId = ref('')
+
+const page = ref(1)
+const pageCount = 20
+
+const { smallerThanLg } = useScreenSize()
+
+const rows = computed(() =>
+  list.value.slice((page.value - 1) * pageCount, page.value * pageCount),
+)
+
+function removeRecord(id: string) {
+  deleteId.value = ''
+  recordStore.delete(id)
+}
+</script>
+
 <template>
   <div>
     <DbList
       v-if="smallerThanLg"
-      :rows="recordStore.data"
+      :rows="list"
       @edit="editRecord = $event"
       @delete="deleteId = $event.id"
     />
+
     <template v-else>
       <DbTable
         :rows="rows"
@@ -16,7 +41,7 @@
         <UPagination
           v-model="page"
           :page-count="pageCount"
-          :total="recordStore.data.length"
+          :total="list.length"
         />
       </div>
     </template>
@@ -34,27 +59,3 @@
     />
   </div>
 </template>
-
-<script lang="ts" setup>
-import { useRecordStore } from '~/store/record'
-import { useScreenSize } from '~/composables/useScreenSize'
-
-const recordStore = useRecordStore()
-
-const editRecord = ref<any>(null)
-const deleteId = ref('')
-
-const page = ref(1)
-const pageCount = 20
-
-const { smallerThanLg } = useScreenSize()
-
-const rows = computed(() =>
-  recordStore.data.slice((page.value - 1) * pageCount, page.value * pageCount),
-)
-
-const removeRecord = (id: string) => {
-  deleteId.value = ''
-  recordStore.delete(id)
-}
-</script>

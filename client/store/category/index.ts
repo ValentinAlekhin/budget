@@ -1,91 +1,99 @@
-import { acceptHMRUpdate, defineStore } from 'pinia'
-import { CategoryDto } from '../../../common/dto/category'
-import { useNotify } from '~/composables/useNotify'
-import { cudController } from '~/common/cud'
-import { generatePiniaLocalStorageKey } from '~/utils'
+import { defineStore } from 'pinia'
 
 export interface CategoryState {
-  data: CategoryDto[]
+  data: CategoryResponseDto[]
   loading: boolean
   error: any
 }
 
-export const useCategoryStore = defineStore('category', {
-  state: (): CategoryState => ({
-    data: [],
-    loading: false,
-    error: null,
-  }),
-  actions: {
-    async fetchAll({ force = false }) {
-      this.loading = true
-      this.error = null
+export const useCategoryStore = createSharedComposable(() => {
+  const { api } = useApi()
+  const notify = useNotify()
 
-      try {
-        if (!force && this.data?.length) return
+  const categoryStore = defineStore('category', {
+    state: (): CategoryState => ({
+      data: [],
+      loading: false,
+      error: null,
+    }),
+    actions: {
+      async fetchAll({ force = false }) {
+        this.loading = true
+        this.error = null
 
-        const { api } = useApi()
-        const { data } = await api.get<CategoryDto[]>('/category')
+        try {
+          if (!force && this.data?.length)
+            return
+
+          const { data } = await api.get<CategoryResponseDto[]>('/category')
+          this.data = data || []
+        }
+        catch (e) {
+          notify.error('Ошибка при загрузке категорий')
+          this.error = e
+        }
+        finally {
+          this.loading = false
+        }
+      },
+      async init() {
+        await this.fetchAll({ force: true })
+      },
+      setData(data: CategoryResponseDto[]) {
         this.data = data
-      } catch (e) {
-        const notify = useNotify()
-        notify.error('Ошибка при загрузке категорий')
-        this.error = e
-      } finally {
-        this.loading = false
-      }
+      },
+      async addCategory(category: {
+        name: string
+        type: string
+        order: number
+      }) {
+        try {
+          await api.post('/category', category)
+        }
+        catch (e) {
+          notify.error('Ошибка при сохранении')
+        }
+      },
+      async updateMany(data: UpdateCategoryRequestDto[]) {
+        try {
+          await api.put('/category/many', { data })
+        }
+        catch (e) {
+          notify.error('Ошибка при обновлении категорий')
+        }
+      },
+      async delete(id: number) {
+        try {
+          await api.delete(`/category/${id}`)
+        }
+        catch (e) {
+          notify.error('Ошибка при удалении')
+        }
+      },
     },
-    async init() {
-      await this.cudInit()
-      await this.fetchAll()
+    getters: {
+      costs: state =>
+        state.data
+          .filter(c => c.type === 'cost')
+          .sort((a, b) => a.order - b.order),
+      incoming: state =>
+        state.data
+          .filter(c => c.type === 'inc')
+          .sort((a, b) => a.order - b.order),
+      getById: state => (id: number) => state.data.find(c => c.id === id),
     },
-    async addCategory(category: { name: string; type: string; order: number }) {
-      const { api } = useApi()
-      try {
-        await api.post('/category', category)
-      } catch (e) {
-        const notify = useNotify()
-        notify.error('Ошибка при сохранении')
-      }
+    persist: {
+      storage: piniaPluginPersistedstate.localStorage(),
     },
-    async updateMany(data: CategoryDto[]) {
-      const { api } = useApi()
-      try {
-        await api.put('/category/many', { data })
-      } catch (e) {
-        const notify = useNotify()
-        notify.error('Ошибка при обновлении категорий')
-      }
-    },
-    async delete(id: string) {
-      const { api } = useApi()
-      try {
-        await api.delete(`/category/${id}`)
-      } catch (e) {
-        const notify = useNotify()
-        notify.error('Ошибка при удалении')
-      }
-    },
-    ...cudController({ action: 'category' }),
-  },
-  getters: {
-    costs: (state) =>
-      state.data
-        .filter((c) => c.type === 'cost')
-        .sort((a, b) => a.order - b.order),
-    incoming: (state) =>
-      state.data
-        .filter((c) => c.type === 'inc')
-        .sort((a, b) => a.order - b.order),
-    getById: (state) => (id: string) =>
-      state.data.find((c) => c.id === id) as CategoryDto,
-  },
-  persist: {
-    storage: persistedState.localStorage,
-    key: generatePiniaLocalStorageKey,
-  },
-})
+  })()
 
-if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useCategoryStore, import.meta.hot))
-}
+  const categoryStoreRefs = storeToRefs(categoryStore)
+
+  useCud<CategoryResponseDto>({
+    items: categoryStoreRefs.data,
+    entity: 'category',
+    setter: categoryStore.setData,
+  })
+
+  return { categoryStore, categoryStoreRefs }
+})

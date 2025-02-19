@@ -1,8 +1,9 @@
-import { ComputedRef } from 'vue'
-import { Dayjs } from 'dayjs'
+import type { Dayjs } from 'dayjs'
+import type { ComputedRef } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
-import { useTimestamp } from '~/composables/useTimestamp'
+
 export interface Range {
+
   name: string
   start: Dayjs
   end: Dayjs
@@ -12,11 +13,13 @@ export function useCommonRanges(name: string) {
   const { t } = useI18n()
   const {
     startOfCurrentMonth,
+    startOfCurrentQuarter,
     startOfCurrentDay,
+    startOfCurrentYear,
     endOfCurrentMonth,
+    endOfCurrentQuarter,
     endOfCurrentDay,
     endOfCurrentYear,
-    startOfCurrentYear,
   } = useTimestamp()
 
   const rangeValues: ComputedRef<Range[]> = computed(() => [
@@ -29,6 +32,11 @@ export function useCommonRanges(name: string) {
       name: t('range.currentMonth'),
       start: startOfCurrentMonth.value,
       end: endOfCurrentMonth.value,
+    },
+    {
+      name: t('range.currentQuarter'),
+      start: startOfCurrentQuarter.value,
+      end: endOfCurrentQuarter.value,
     },
     {
       name: t('range.last30days'),
@@ -49,7 +57,7 @@ export function useCommonRanges(name: string) {
 
   const handleClick = () => {
     const currentIndex = rangeValues.value.findIndex(
-      (item) => item.name === currentRange.value?.name,
+      item => item.name === currentRange.value?.name,
     )
     const lastIndex = rangeValues.value.length - 1
     currentRangeIndex.value = currentIndex === lastIndex ? 0 : currentIndex + 1

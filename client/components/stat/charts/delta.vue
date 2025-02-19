@@ -1,10 +1,5 @@
-<template>
-  <highchart :options="options" />
-</template>
-
 <script lang="ts" setup>
 import { sumBy } from 'lodash-es'
-import { AVAILABLE_MONTH, MONTH_LIST_RU } from '~/constants'
 
 const props = defineProps(['inc', 'cost'])
 
@@ -14,11 +9,11 @@ const series = computed(() => {
     { name: 'Расходы', data: props.cost, color: '#d4380d' },
   ].map(({ name, data, color }) => {
     const newData = AVAILABLE_MONTH.map(
-      (month) =>
+      month =>
         sumBy(
-          data.filter((r) => r.month === month),
-          'amount'
-        ) || null
+          data.filter(r => r.month === month),
+          'amount',
+        ) || null,
     )
     return { color, name, data: newData }
   })
@@ -31,8 +26,8 @@ const series = computed(() => {
       name: 'Дельта',
       color: '#1d39c4',
       data: AVAILABLE_MONTH.map(
-        (month) =>
-          (incStat.data[month] || 0) - (costStat.data[month] || 0) || null
+        month =>
+          (incStat.data[month] || 0) - (costStat.data[month] || 0) || null,
       ),
     },
   ]
@@ -80,3 +75,7 @@ const options = computed(() => ({
   series: series.value,
 }))
 </script>
+
+<template>
+  <highchart :options="options" />
+</template>

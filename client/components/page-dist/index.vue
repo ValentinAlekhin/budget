@@ -1,42 +1,23 @@
-<template>
-  <div>
-    <page-dist-list
-      v-if="incomingList.length"
-      :items="incomingList"
-      :model-value="incoming"
-      @update:model-value="inputIncoming"
-    />
-
-    <UButton v-else block class="mt-4" @click="edit">
-      Add incoming category
-    </UButton>
-  </div>
-</template>
-
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia'
 import dayjs from 'dayjs'
-import { useCategoryStore } from '~/store/category'
-import { useRecordStore } from '~/store/record'
-import { useActionsStore } from '~/store/actions'
 
 const router = useRouter()
 const categoryStore = useCategoryStore()
-const recordStore = useRecordStore()
+const { recordStore } = useRecordStore()
 const actionsStore = useActionsStore()
 
-const { incoming: incomingList } = storeToRefs(categoryStore)
+const { incoming: incomingList } = categoryStore.categoryStoreRefs
 
 const incoming = reactive<Record<string, number>>({})
-const hasValue = computed(() => !!Object.values(incoming).find((v) => v))
+const hasValue = computed(() => !!Object.values(incoming).find(v => v))
 
-const inputIncoming = (e) => (incoming[e.id] = e.value)
+const inputIncoming = e => (incoming[e.id] = e.value)
 
-const resetAll = () => {
+function resetAll() {
   clearObject(incoming)
 }
 
-const save = async () => {
+async function save() {
   const payload = Object.entries(incoming).map(([categoryId, amount]) => ({
     categoryId,
     amount,
@@ -44,7 +25,8 @@ const save = async () => {
     type: 'inc',
   }))
 
-  if (!payload.length) return
+  if (!payload.length)
+    return
 
   await recordStore.addRecords(payload)
 
@@ -60,7 +42,8 @@ watch(hasValue, (value) => {
       cancel: resetAll,
       submit: save,
     })
-  } else {
+  }
+  else {
     actionsStore.setActions({
       edit,
     })
@@ -69,3 +52,18 @@ watch(hasValue, (value) => {
 
 onMounted(() => actionsStore.setActions({ edit }))
 </script>
+
+<template>
+  <div>
+    <page-dist-list
+      v-if="incomingList.length"
+      :items="incomingList"
+      :model-value="incoming"
+      @update:model-value="inputIncoming"
+    />
+
+    <UButton v-else block class="mt-4" @click="edit">
+      Add incoming category
+    </UButton>
+  </div>
+</template>

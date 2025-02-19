@@ -1,13 +1,3 @@
-<template>
-  <UButton
-    icon="i-heroicons-arrow-small-left"
-    class="rounded-md"
-    size="xs"
-    :to="to"
-    @click="$emit('click')"
-  />
-</template>
-
 <script lang="ts">
 export default {
   props: {
@@ -19,3 +9,13 @@ export default {
   emits: ['click'],
 }
 </script>
+
+<template>
+  <UButton
+    icon="i-heroicons-arrow-small-left"
+    class="rounded-md"
+    size="xs"
+    :to="to"
+    @click="$emit('click')"
+  />
+</template>

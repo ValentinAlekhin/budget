@@ -1,7 +1,13 @@
-import { defineNuxtConfig } from 'nuxt/config'
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin'
+import { defineNuxtConfig } from 'nuxt/config'
 
-const { BASE_URL } = process.env
+const { DOMAIN, HTTP_PROTOCOL, WEBSOCKET_PROTOCOL } = process.env
+
+console.table({
+  DOMAIN,
+  HTTP_PROTOCOL,
+  WEBSOCKET_PROTOCOL,
+})
 
 export default defineNuxtConfig({
   ssr: false,
@@ -9,7 +15,9 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      baseUrl: `http://${BASE_URL}`,
+      domain: DOMAIN,
+      httpProtocol: HTTP_PROTOCOL,
+      websocketProtocol: WEBSOCKET_PROTOCOL,
     },
   },
 
@@ -31,7 +39,7 @@ export default defineNuxtConfig({
   },
 
   imports: {
-    dirs: ['store'],
+    dirs: ['store/*', 'dto', 'constants/*'],
   },
 
   typescript: {
@@ -49,14 +57,18 @@ export default defineNuxtConfig({
     server: {
       proxy: {
         '/api': {
-          target: `http://${BASE_URL}`,
+          target: `http://${DOMAIN}`,
           changeOrigin: true,
           rewrite: (path) => {
             return path.replace(/^\/api/, '')
           },
         },
         '/socket.io': {
-          target: `ws://${BASE_URL}`,
+          target: `ws://${DOMAIN}`,
+          ws: true,
+        },
+        '/ws': {
+          target: `ws://${DOMAIN}`,
           ws: true,
         },
       },
@@ -74,8 +86,9 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: { gzip: true, brotli: true },
     routeRules: {
-      '/api/**': { proxy: `http://${BASE_URL}/**` },
-      '/socket.io/**': { proxy: `ws://${BASE_URL}/socket.io/**` },
+      '/api/**': { proxy: `http://${DOMAIN}/**` },
+      '/socket.io/**': { proxy: `ws://${DOMAIN}/socket.io/**` },
+      '/ws/**': { proxy: `ws://${DOMAIN}/ws/**` },
     },
   },
 
@@ -87,7 +100,7 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
     'nuxt-typed-router',
     '@nuxtjs/color-mode',
     'nuxt-highcharts',
@@ -96,9 +109,39 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@formkit/auto-animate/nuxt',
     '@nuxtjs/i18n',
+    '@nuxt/image',
   ],
 
   pwa: {
+    mode: 'development',
+    strategies: 'generateSW',
+    registerType: 'autoUpdate',
+
+    workbox: {
+      navigateFallback: '/',
+      maximumFileSizeToCacheInBytes: 30000000,
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
+
+    injectManifest: {
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
+
+    pwaAssets: {
+      config: true,
+    },
+
+    client: {
+      installPrompt: true,
+    },
+
+    devOptions: {
+      enabled: true,
+      suppressWarnings: true,
+      navigateFallback: '/',
+      navigateFallbackAllowlist: [/^\/$/],
+    },
+
     manifest: {
       name: 'Budget',
       short_name: 'Budget',
@@ -137,31 +180,25 @@ export default defineNuxtConfig({
         },
       ],
     },
-    devOptions: {
-      enabled: true,
-      suppressWarnings: true,
-      navigateFallbackAllowlist: [/^\/$/],
-      type: 'module',
-    },
   },
 
   ui: {
+    // @ts-ignore
     icons: ['heroicons'],
-  },
-
-  components: {
-    global: true,
-    dirs: ['~/components'],
   },
 
   vueuse: {
     ssrHandlers: true,
   },
 
+  piniaPluginPersistedstate: {
+    key: 'pinia_%id',
+  },
+
   i18n: {
     vueI18n: './i18n.config.ts',
     defaultLocale: 'en',
-    // @ts-ignore
+    // @ts-expect-error
     setLocaleCookie: true,
     getLocaleCookie: 'i18n',
     strategy: 'no_prefix',
@@ -181,4 +218,9 @@ export default defineNuxtConfig({
       },
     ],
   },
+
+  // @ts-expect-error
+  devtools: true,
+
+  compatibilityDate: '2024-08-29',
 })

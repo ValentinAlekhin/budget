@@ -1,12 +1,12 @@
 import {
-  Chart,
-  Title,
-  Tooltip,
-  Legend,
+  ArcElement,
   BarElement,
   CategoryScale,
+  Chart,
+  Legend,
   LinearScale,
-  ArcElement,
+  Title,
+  Tooltip,
 } from 'chart.js'
 
 export default defineNuxtPlugin(() => {

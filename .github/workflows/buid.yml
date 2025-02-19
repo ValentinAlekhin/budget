@@ -1,0 +1,93 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'dev'
+
+jobs:
+  build-server:
+    name: Build and push server image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push server
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          context: "{{defaultContext}}:server"
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/budget-server-${{ steps.extract_branch.outputs.branch }}:latest,
+            ${{ secrets.DOCKERHUB_USERNAME }}/budget-server-${{ steps.extract_branch.outputs.branch }}:${{ github.sha }}
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server-${{ steps.extract_branch.outputs.branch }}:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-server-${{ steps.extract_branch.outputs.branch }}:buildcache,mode=max
+
+      - name: send telegram message on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            Repository: ${{ github.repository }}/server
+
+            Server build
+
+  build-client:
+    name: Build and push client image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push client
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          build-args: BRANCH=${{ steps.extract_branch.outputs.branch }}
+          context: "{{defaultContext}}:client"
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/budget-client-${{ steps.extract_branch.outputs.branch }}:latest,
+            ${{ secrets.DOCKERHUB_USERNAME }}/budget-client-${{ steps.extract_branch.outputs.branch }}:${{ github.sha }}
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client-${{ steps.extract_branch.outputs.branch }}:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/budget-client-${{ steps.extract_branch.outputs.branch }}:buildcache,mode=max
+
+      - name: send telegram message on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            Repository: ${{ github.repository }}/client
+
+            Client build

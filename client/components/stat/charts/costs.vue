@@ -1,34 +1,27 @@
-<template>
-  <highchart :options="options" />
-</template>
-
 <script lang="ts" setup>
-import { Options } from 'highcharts'
-import { storeToRefs } from 'pinia'
+import type { Options } from 'highcharts'
 import { sumBy } from 'lodash-es'
-import { AVAILABLE_MONTH, MONTH_LIST_RU } from '~/constants'
-import { useCategoryStore } from '~/store/category'
-const categoryStore = useCategoryStore()
 
-const { costs: categories } = storeToRefs(categoryStore)
 const props = defineProps(['records'])
+
+const { categoryStoreRefs: { costs: categories } } = useCategoryStore()
 
 const series = computed(() =>
   Object.entries(
     categories.value.reduce((acc, { id, name }) => {
       acc[name] = AVAILABLE_MONTH.map(
-        (month) =>
+        month =>
           sumBy(
             props.records.filter(
-              (r) => r.month === month && r.category?.id === id
+              r => r.month === month && r.category?.id === id,
             ),
-            'amount'
-          ) || null
+            'amount',
+          ) || null,
       )
 
       return acc
-    }, {})
-  ).map(([name, data]) => ({ name, data }))
+    }, {}),
+  ).map(([name, data]) => ({ name, data })),
 )
 
 const options = computed(
@@ -82,6 +75,10 @@ const options = computed(
         color: '#fff',
       },
     },
-  })
+  }),
 )
 </script>
+
+<template>
+  <highchart :options="options" />
+</template>

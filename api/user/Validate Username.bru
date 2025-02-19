@@ -1,0 +1,21 @@
+meta {
+  name: Validate Username
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{goBaseUrl}}/user-field-validation/username
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "username": "AlekhinVV"
+  }
+}

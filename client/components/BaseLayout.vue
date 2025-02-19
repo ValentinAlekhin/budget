@@ -1,8 +1,15 @@
+<script setup lang="ts">
+const { fetchAll, loading, error, initSocket, dataExists } = useGlobalLoading()
+const { smallerThanLg } = useScreenSize()
+
+onMounted(initSocket)
+</script>
+
 <template>
   <div class="h-full overflow-y-auto pb-40 pt-14 lg:pb-0">
     <Header />
 
-    <UiLoader v-if="!dataExists && loading" />
+    <UiLoadersSisyphus v-if="!dataExists && loading" />
 
     <UCard
       v-else-if="error"
@@ -13,7 +20,9 @@
           Error loading data from the server
         </span>
 
-        <UButton @click="fetchAll">Reload</UButton>
+        <UButton @click="fetchAll">
+          Reload
+        </UButton>
       </div>
     </UCard>
 
@@ -27,15 +36,3 @@
     </template>
   </div>
 </template>
-
-<script setup lang="ts">
-import { onMounted } from 'vue'
-import { useGlobalLoading } from '~/composables/useGlobalLoading'
-import { useScreenSize } from '~/composables/useScreenSize'
-
-const { fetchAll, loading, error, initSocket, dataExists } = useGlobalLoading()
-
-const { smallerThanLg } = useScreenSize()
-
-onMounted(() => initSocket())
-</script>

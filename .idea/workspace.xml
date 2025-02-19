@@ -4,21 +4,32 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс pwa">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/buid-deploy-migrate.yml" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Небольшой рефактор">
+      <change afterPath="$PROJECT_DIR$/client/components/ui/StatCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCategory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/i18n.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="GOROOT" url="file://$USER_HOME$/go/go1.21.6" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://$USER_HOME$/sdk/go1.23.3" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,12 +44,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1713018646" />
+                    <option name="branchName" value="dev" />
+                    <option name="lastUsedInstant" value="1715186574" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="dev" />
-                    <option name="lastUsedInstant" value="1710668609" />
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1713018646" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="nuxt-client" />
@@ -61,8 +72,15 @@
     <setting file="file://$PROJECT_DIR$/client/node_modules/highcharts/highcharts.d.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/node_modules/highcharts/package.json" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -75,53 +93,78 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
     "Docker.client/Dockerfile.executor": "Run",
     "Docker.docker-compose.yml.server: Compose Deployment.executor": "Run",
     "Docker.server/Dockerfile.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "Shell Script.air.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "dev",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "ignore.virus.scanning.warn.message": "true",
-    "js.linters.configure.manually.selectedeslint": "true",
-    "last_opened_file_path": "C:/Users/Valentin/Documents/projects/budget/client/docker",
+    "last_opened_file_path": "C:/Users/headb/Documents/projects/budget/server-go",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\eslint",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.build (1).executor": "Run",
     "npm.dev.executor": "Run",
+    "npm.lintfix.executor": "Run",
+    "npm.start.executor": "Run",
     "npm.start:dev.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "/home/valentin/Documents/projects/budget/server/node_modules/prettier",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "ts.external.directory.path": "C:\\Users\\headb\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Valentin\Documents\projects\budget\client" />
+      <recent name="C:\Users\Valentin\Documents\projects\budget\client\components" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\docker" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\common" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\public\pwa" />
-      <recent name="C:\Users\Valentin\Documents\projects\budget\client\public" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Valentin\Documents\projects\budget\client\docker" />
-      <recent name="C:\Users\Valentin\Documents\projects\budget\server\src\migrations" />
-      <recent name="C:\Users\Valentin\Documents\projects\budget\client\pages\dist" />
-      <recent name="C:\Users\Valentin\Documents\projects\budget\client\composables" />
-      <recent name="C:\Users\Valentin\Documents\projects\budget\client" />
+      <recent name="C:\Users\headb\Documents\projects\budget\client\components" />
+      <recent name="C:\Users\headb\Documents\projects\budget\client" />
+      <recent name="C:\Users\headb\Documents\projects\budget\client\composables" />
+      <recent name="C:\Users\headb\Documents\projects\budget\server-go\sqlc" />
+      <recent name="C:\Users\Valentin\Documents\projects\budget\client\app\public" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.client/Dockerfile">
+  <component name="RunManager" selected="npm.dev">
+    <configuration name="air" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="air" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="false" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/server-go" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="powershell.exe" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="false" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -134,16 +177,8 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="client/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
-        <settings>
-          <option name="sourceFilePath" value="client/Dockerfile" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/server/package.json" />
+    <configuration name="build (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
       <scripts>
         <script value="build" />
@@ -152,11 +187,11 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="dev (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
       <scripts>
-        <script value="dev" />
+        <script value="build" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -172,11 +207,21 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="postinstall" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="lintfix" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
       <scripts>
-        <script value="postinstall" />
+        <script value="lintfix" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -203,23 +248,31 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.client/Dockerfile" />
       <item itemvalue="npm.dev" />
       <item itemvalue="npm.start:dev" />
-      <item itemvalue="npm.postinstall" />
-      <item itemvalue="npm.dev (1)" />
+      <item itemvalue="npm.lintfix" />
+      <item itemvalue="npm.build (1)" />
+      <item itemvalue="npm.start" />
       <item itemvalue="npm.build" />
       <item itemvalue="npm.start:prod" />
+      <item itemvalue="Shell Script.air" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.client/Dockerfile" />
-        <item itemvalue="npm.postinstall" />
+        <item itemvalue="npm.lintfix" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.build (1)" />
         <item itemvalue="npm.start:prod" />
         <item itemvalue="npm.build" />
-        <item itemvalue="npm.dev (1)" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.157" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -333,6 +386,20 @@
       <workItem from="1707812753938" duration="2825000" />
       <workItem from="1707923775376" duration="597000" />
       <workItem from="1710579749668" duration="27255000" />
+      <workItem from="1715335456562" duration="1393000" />
+      <workItem from="1715336988890" duration="3099000" />
+      <workItem from="1715431819105" duration="8474000" />
+      <workItem from="1715605953707" duration="9000" />
+      <workItem from="1715610523156" duration="5642000" />
+      <workItem from="1724923806524" duration="176000" />
+      <workItem from="1724924107350" duration="4694000" />
+      <workItem from="1725262181087" duration="10000" />
+      <workItem from="1725269536106" duration="423000" />
+      <workItem from="1725435039979" duration="11000" />
+      <workItem from="1730550020872" duration="273000" />
+      <workItem from="1737904195329" duration="872000" />
+      <workItem from="1739810903429" duration="9578000" />
+      <workItem from="1739952943118" duration="20155000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -439,182 +506,6 @@
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
     </task>
-    <task id="LOCAL-00097" summary="Добавлен перевод на русский">
-      <option name="closed" value="true" />
-      <created>1697653464435</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1697653464435</updated>
-    </task>
-    <task id="LOCAL-00098" summary="Обновлен перевод">
-      <option name="closed" value="true" />
-      <created>1697969980072</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1697969980072</updated>
-    </task>
-    <task id="LOCAL-00099" summary="Удален индекс">
-      <option name="closed" value="true" />
-      <created>1697970259596</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1697970259596</updated>
-    </task>
-    <task id="LOCAL-00100" summary="Добавлен useYup обновлен nuxt">
-      <option name="closed" value="true" />
-      <created>1698852404932</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1698852404932</updated>
-    </task>
-    <task id="LOCAL-00101" summary="Добавлены новые диапазоны в стату">
-      <option name="closed" value="true" />
-      <created>1698857934595</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1698857934595</updated>
-    </task>
-    <task id="LOCAL-00102" summary="Добавлены новые диапазоны в стату">
-      <option name="closed" value="true" />
-      <created>1698858039620</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1698858039620</updated>
-    </task>
-    <task id="LOCAL-00103" summary="Добавлено переключение промежутков статистики">
-      <option name="closed" value="true" />
-      <created>1699645073138</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1699645073138</updated>
-    </task>
-    <task id="LOCAL-00104" summary="Добавлено переключение промежутков статистики">
-      <option name="closed" value="true" />
-      <created>1699645377004</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1699645377004</updated>
-    </task>
-    <task id="LOCAL-00105" summary="Добавлено переключение промежутков статистики">
-      <option name="closed" value="true" />
-      <created>1699645916899</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1699645916899</updated>
-    </task>
-    <task id="LOCAL-00106" summary="Добавлен график в стату">
-      <option name="closed" value="true" />
-      <created>1699699122667</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1699699122667</updated>
-    </task>
-    <task id="LOCAL-00107" summary="Добавлен график в стату">
-      <option name="closed" value="true" />
-      <created>1699699496898</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1699699496898</updated>
-    </task>
-    <task id="LOCAL-00108" summary="Добавлен график в стату">
-      <option name="closed" value="true" />
-      <created>1699699811830</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1699699811830</updated>
-    </task>
-    <task id="LOCAL-00109" summary="Добавлены цвета категорий">
-      <option name="closed" value="true" />
-      <created>1699708358366</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1699708358366</updated>
-    </task>
-    <task id="LOCAL-00110" summary="Обновлено месте для цвета и иконки">
-      <option name="closed" value="true" />
-      <created>1699985085582</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1699985085582</updated>
-    </task>
-    <task id="LOCAL-00111" summary="Обновлены пакеты">
-      <option name="closed" value="true" />
-      <created>1701186135113</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1701186135114</updated>
-    </task>
-    <task id="LOCAL-00112" summary="Добавлен период плана">
-      <option name="closed" value="true" />
-      <created>1701188208674</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1701188208674</updated>
-    </task>
-    <task id="LOCAL-00113" summary="Добавлен период плана">
-      <option name="closed" value="true" />
-      <created>1701188281472</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1701188281472</updated>
-    </task>
-    <task id="LOCAL-00114" summary="Претерто api">
-      <option name="closed" value="true" />
-      <created>1710589508202</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1710589508203</updated>
-    </task>
-    <task id="LOCAL-00115" summary="Добален телеграм бот">
-      <option name="closed" value="true" />
-      <created>1710665084914</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1710665084914</updated>
-    </task>
-    <task id="LOCAL-00116" summary="Обновлена сборка всего">
-      <option name="closed" value="true" />
-      <created>1710668596502</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1710668596502</updated>
-    </task>
-    <task id="LOCAL-00117" summary="Обновлена сборка всего">
-      <option name="closed" value="true" />
-      <created>1710668621770</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1710668621771</updated>
-    </task>
-    <task id="LOCAL-00118" summary="Обновлена сборка всего">
-      <option name="closed" value="true" />
-      <created>1710668701218</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1710668701218</updated>
-    </task>
     <task id="LOCAL-00119" summary="Обновлена сборка всего">
       <option name="closed" value="true" />
       <created>1710668770784</created>
@@ -711,7 +602,183 @@
       <option name="project" value="LOCAL" />
       <updated>1713018988470</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="Фиксы">
+      <option name="closed" value="true" />
+      <created>1715191098494</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1715191098494</updated>
+    </task>
+    <task id="LOCAL-00132" summary="Фиксы">
+      <option name="closed" value="true" />
+      <created>1715191796049</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1715191796049</updated>
+    </task>
+    <task id="LOCAL-00133" summary="Фиксы + добавлен bruno">
+      <option name="closed" value="true" />
+      <created>1715336578888</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1715336578889</updated>
+    </task>
+    <task id="LOCAL-00134" summary="Фиксы + добавлен bruno">
+      <option name="closed" value="true" />
+      <created>1715336997336</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1715336997336</updated>
+    </task>
+    <task id="LOCAL-00135" summary="Фиксы отвала сокетов">
+      <option name="closed" value="true" />
+      <created>1715433026208</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1715433026208</updated>
+    </task>
+    <task id="LOCAL-00136" summary="Фиксы отвала сокетов">
+      <option name="closed" value="true" />
+      <created>1715441047620</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1715441047620</updated>
+    </task>
+    <task id="LOCAL-00137" summary="Начало внедрения FSD архитектуры на фронт">
+      <option name="closed" value="true" />
+      <created>1715621974452</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1715621974453</updated>
+    </task>
+    <task id="LOCAL-00138" summary="Обновлен nuxt &amp; nuxt ui">
+      <option name="closed" value="true" />
+      <created>1724943655046</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1724943655046</updated>
+    </task>
+    <task id="LOCAL-00139" summary="Обновлен nuxt &amp; nuxt ui">
+      <option name="closed" value="true" />
+      <created>1739954637360</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1739954637360</updated>
+    </task>
+    <task id="LOCAL-00140" summary="Возврат к дефолтной структуре Nuxt">
+      <option name="closed" value="true" />
+      <created>1739955562895</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1739955562895</updated>
+    </task>
+    <task id="LOCAL-00141" summary="Обновлены зависимости">
+      <option name="closed" value="true" />
+      <created>1739956168717</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1739956168717</updated>
+    </task>
+    <task id="LOCAL-00142" summary="Переход на pnpm">
+      <option name="closed" value="true" />
+      <created>1739957884820</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1739957884820</updated>
+    </task>
+    <task id="LOCAL-00143" summary="Переход на pnpm">
+      <option name="closed" value="true" />
+      <created>1739958272336</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1739958272336</updated>
+    </task>
+    <task id="LOCAL-00144" summary="Удален сервер nodejs">
+      <option name="closed" value="true" />
+      <created>1739959998777</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1739959998777</updated>
+    </task>
+    <task id="LOCAL-00145" summary="Добавлен pwa">
+      <option name="closed" value="true" />
+      <created>1739960450167</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1739960450167</updated>
+    </task>
+    <task id="LOCAL-00146" summary="Добавлен pwa">
+      <option name="closed" value="true" />
+      <created>1739961177761</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1739961177761</updated>
+    </task>
+    <task id="LOCAL-00147" summary="Фикс piniaPluginPersistedstate">
+      <option name="closed" value="true" />
+      <created>1739961722492</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1739961722492</updated>
+    </task>
+    <task id="LOCAL-00148" summary="Добавлены dto ts">
+      <option name="closed" value="true" />
+      <created>1739966427232</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1739966427232</updated>
+    </task>
+    <task id="LOCAL-00149" summary="Обновлен eslint">
+      <option name="closed" value="true" />
+      <created>1739969370228</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1739969370228</updated>
+    </task>
+    <task id="LOCAL-00150" summary="Обновлен eslint">
+      <option name="closed" value="true" />
+      <created>1739969381262</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1739969381262</updated>
+    </task>
+    <task id="LOCAL-00151" summary="Переименование server-go &gt; server">
+      <option name="closed" value="true" />
+      <created>1739972372426</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1739972372427</updated>
+    </task>
+    <task id="LOCAL-00152" summary="Фикс actions">
+      <option name="closed" value="true" />
+      <created>1739974259449</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1739974259449</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -740,22 +807,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Обновлены nuxt @nuxt/ui" />
-    <MESSAGE value="Обновлены пакеты сервера" />
-    <MESSAGE value="Мелкие фиксы" />
-    <MESSAGE value="Добавлен бесконечный скролл в БД" />
-    <MESSAGE value="Добавлены уведомления в телегу" />
-    <MESSAGE value="Добавлен индекс для колонки" />
-    <MESSAGE value="Добавлено кеширование категорий и записей" />
-    <MESSAGE value="Фикс добавления категории" />
-    <MESSAGE value="Добавлен перевод на русский" />
-    <MESSAGE value="Обновлен перевод" />
-    <MESSAGE value="Удален индекс" />
-    <MESSAGE value="Добавлен useYup обновлен nuxt" />
-    <MESSAGE value="Добавлены новые диапазоны в стату" />
-    <MESSAGE value="Добавлено переключение промежутков статистики" />
-    <MESSAGE value="Добавлен график в стату" />
-    <MESSAGE value="Добавлены цвета категорий" />
     <MESSAGE value="Обновлено месте для цвета и иконки" />
     <MESSAGE value="Добавлен период плана" />
     <MESSAGE value="Претерто api" />
@@ -765,7 +816,23 @@
     <MESSAGE value="Фикс сокетов" />
     <MESSAGE value="Фикс редактирования категорий" />
     <MESSAGE value="Фикс pwa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фикс pwa" />
+    <MESSAGE value="Фиксы" />
+    <MESSAGE value="Фиксы + добавлен bruno" />
+    <MESSAGE value="Фиксы отвала сокетов" />
+    <MESSAGE value="Начало внедрения FSD архитектуры на фронт" />
+    <MESSAGE value="Обновлен nuxt &amp; nuxt ui" />
+    <MESSAGE value="Возврат к дефолтной структуре Nuxt" />
+    <MESSAGE value="Обновлены зависимости" />
+    <MESSAGE value="Переход на pnpm" />
+    <MESSAGE value="Удален сервер nodejs" />
+    <MESSAGE value="Добавлен pwa" />
+    <MESSAGE value="Фикс piniaPluginPersistedstate" />
+    <MESSAGE value="Добавлены dto ts" />
+    <MESSAGE value="Обновлен eslint" />
+    <MESSAGE value="Переименование server-go &gt; server" />
+    <MESSAGE value="Фикс actions" />
+    <MESSAGE value="Небольшой рефактор" />
+    <option name="LAST_COMMIT_MESSAGE" value="Небольшой рефактор" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

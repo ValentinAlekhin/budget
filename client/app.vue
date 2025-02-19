@@ -19,19 +19,20 @@
 </template>
 
 <script lang="ts" setup>
-import { useScreenSize } from '~/composables/useScreenSize'
-const colorMode = useColorMode()
-const route = useRoute()
+import { useColorMode } from "@vueuse/core";
 
-const color = computed(() => (colorMode.value === 'dark' ? '#030712' : '#fff'))
+const colorMode = useColorMode();
+const route = useRoute();
 
-const { smallerThanLg } = useScreenSize()
+const color = computed(() => (colorMode.value === "dark" ? "#030712" : "#fff"));
+
+const { smallerThanLg } = useScreenSize();
 
 const layout = computed(() => {
-  if (route.path.includes('auth')) return 'auth'
+  if (route.path.includes("auth")) return "auth";
 
-  return smallerThanLg.value ? 'mobile' : 'desktop'
-})
+  return smallerThanLg.value ? "mobile" : "desktop";
+});
 </script>
 
 <style></style>

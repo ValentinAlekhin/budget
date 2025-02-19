@@ -1,21 +1,25 @@
-FROM node:18-alpine
-
-RUN apk add --no-cache postgresql-client
+FROM golang:alpine AS builder
 
 WORKDIR /app
 
-COPY package*.json ./
-
-RUN npm ci
+ADD go.mod .
 
 COPY . .
 
-ENV NODE_ENV=production
+RUN go build -o main main.go
 
-RUN npm run build
+FROM alpine
+
+RUN apk add --no-cache postgresql16-client
+
+WORKDIR /app
+
+COPY --from=builder /app/main /app/main
+
+LABEL com.centurylinklabs.watchtower.enable="true"
+
+ENV GIN_MODE=release
 
 RUN touch .env
 
-EXPOSE 443
-
-CMD ["npm", "run", "start:prod"]
+CMD ["/app/main"]

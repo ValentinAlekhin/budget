@@ -1,18 +1,10 @@
-<template>
-  <UDropdown :items="items">
-    <UButton
-      color="gray"
-      variant="ghost"
-      icon="i-heroicons-ellipsis-horizontal-20-solid"
-    />
-  </UDropdown>
-</template>
-
 <script lang="ts" setup>
 const props = defineProps<{ record: any }>()
 const emit = defineEmits(['edit', 'delete'])
 
 const { t } = useI18n()
+
+const isDropDownOpen = ref(false)
 
 const items = computed(() => [
   [
@@ -31,3 +23,14 @@ const items = computed(() => [
   ],
 ])
 </script>
+
+<template>
+  <UDropdown v-model:open="isDropDownOpen" :items="items">
+    <UButton
+      color="gray"
+      variant="ghost"
+      icon="i-heroicons-ellipsis-horizontal-20-solid"
+      @touchstart.stop.prevent="isDropDownOpen = !isDropDownOpen"
+    />
+  </UDropdown>
+</template>

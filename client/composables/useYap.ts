@@ -1,9 +1,9 @@
 import { createSharedComposable } from '@vueuse/core'
-import * as yapLocales from 'yup-locales'
 import { evaluateStringTemplate } from 'string-template-parser'
 import * as yup from 'yup'
+import * as yapLocales from 'yup-locales'
 
-export const useYap = createSharedComposable(function () {
+export const useYap = createSharedComposable(() => {
   const { locale, t } = useI18n()
   let mounted = false
   const setYupLocale = (value: string) => {
@@ -12,12 +12,14 @@ export const useYap = createSharedComposable(function () {
       en: yup.defaultLocale,
     }
     const newLocale = locales[value]
-    if (!newLocale) return
+    if (!newLocale)
+      return
     yup.setLocale(newLocale)
   }
 
   const init = (force = false) => {
-    if (!force && mounted) return
+    if (!force && mounted)
+      return
 
     setYupLocale(locale.value)
 
@@ -30,7 +32,8 @@ export const useYap = createSharedComposable(function () {
         return evaluateStringTemplate(message, params)
       }
 
-      if (typeof message === 'function') return message(params)
+      if (typeof message === 'function')
+        return message(params)
 
       return message
     }

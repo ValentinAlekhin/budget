@@ -1,4 +1,4 @@
-export const numberWithSpaces = (x: number) => {
+export function numberWithSpaces(x: number) {
   const parts = x.toString().split('.')
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
   return parts.join('.')
@@ -6,10 +6,11 @@ export const numberWithSpaces = (x: number) => {
 
 export const isSingleDigit = (str: string) => /^\d$/.test(str)
 
-export const clearObject = (obj: Record<string, any>): void =>
-  Object.keys(obj).forEach((key) => delete obj[key])
+export function clearObject(obj: Record<string, any>): void {
+  return Object.keys(obj).forEach(key => delete obj[key])
+}
 
-export const median = (numbers: number[]): number => {
+export function median(numbers: number[]): number {
   const sorted = Array.from(numbers).sort((a, b) => a - b)
   const middle = Math.floor(sorted.length / 2)
 
@@ -20,5 +21,6 @@ export const median = (numbers: number[]): number => {
   return sorted[middle]
 }
 
-export const generatePiniaLocalStorageKey = (id: string) =>
-  `${id}-pinia-storage`
+export function generatePiniaLocalStorageKey(id: string) {
+  return `${id}-pinia-storage`
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Delete One
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{goBaseUrl}}/records/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 7379
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}

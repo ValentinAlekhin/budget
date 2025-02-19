@@ -1,88 +1,91 @@
-import { acceptHMRUpdate, defineStore } from 'pinia'
-import { RecordDto } from '../../../common/dto/record'
-import { cudController } from '~/common/cud'
-import { useNotify } from '~/composables/useNotify'
-import { generatePiniaLocalStorageKey } from '~/utils'
+import { defineStore } from 'pinia'
 
 interface State {
-  data: RecordDto[]
+  data: RecordResponseDto[]
   loading: boolean
   error: Error | null | unknown
 }
 
-export const useRecordStore = defineStore('record', {
-  state: (): State => ({
-    data: [],
-    loading: false,
-    error: null,
-  }),
-  actions: {
-    async fetchAll({ force = false }) {
-      if (!force && this.data?.length) return
+export const useRecordStore = createSharedComposable(() => {
+  const { api } = useApi()
+  const notify = useNotify()
 
-      const { api } = useApi()
-      const notify = useNotify()
+  const recordStore = defineStore('record', {
+    state: (): State => ({
+      data: [],
+      loading: false,
+      error: null,
+    }),
+    actions: {
+      async fetchAll({ force = false }) {
+        if (!force && this.data?.length)
+          return
 
-      this.loading = true
-      this.error = null
+        this.loading = true
+        this.error = null
 
-      try {
-        const { data } = await api.get('/records')
+        try {
+          const { data } = await api.get('/records')
+          this.data = data
+        }
+        catch (e) {
+          notify.error('Ошибка при загрузке записей')
+          this.error = e
+        }
+        finally {
+          this.loading = false
+        }
+      },
+      async init() {
+        await this.fetchAll({ force: true })
+      },
+      setData(data: RecordResponseDto[]) {
         this.data = data
-      } catch (e) {
-        notify.error('Ошибка при загрузке записей')
-        this.error = e
-      } finally {
-        this.loading = false
-      }
-    },
-    async init() {
-      await this.cudInit()
-      await this.fetchAll()
-    },
-    async addRecord(cost: { name: string; comment: string }) {
-      const { api } = useApi()
-      await api.post('/records', { ...cost, type: 'cost' })
-    },
-    async addRecords(
-      data: Array<{
-        amount: number
-        comment?: string
-        categoryId: string
-        timestamp: string
-      }>,
-    ) {
-      const { api } = useApi()
-      await api.post('/records/many', { data })
-    },
-    async delete(id: string) {
-      const { api } = useApi()
-      await api.delete(`/records/${id}`)
-    },
+      },
+      async addRecord(cost: { name: string, comment: string }) {
+        await api.post('/records', { ...cost, type: 'cost' })
+      },
+      async addRecords(
+        data: Array<{
+          amount: number
+          comment?: string
+          categoryId: string
+          timestamp: string
+        }>,
+      ) {
+        await api.post('/records/many', { data })
+      },
+      async delete(id: string) {
+        await api.delete(`/records/${id}`)
+      },
 
-    async update(body: any) {
-      const { api } = useApi()
-      await api.put(`/records/${body.id}`, body)
+      async update(body: any) {
+        await api.put(`/records/${body.id}`, body)
+      },
+      async adjustmentBalance(diff: number) {
+        await api.post('/records/adjustment', { diff })
+      },
     },
-    async adjustmentBalance(diff: number) {
-      const { api } = useApi()
-      await api.post('/records/adjustment', { diff })
+    getters: {
+      costs: state =>
+        state.data.filter(r => r.type === CategoriesTypeEnum.COST),
+      inc: state =>
+        state.data.filter(r => r.type === CategoriesTypeEnum.INC),
+      adjustment: state =>
+        state.data.filter(r => r.type === CategoriesTypeEnum.ADJUSTMENT),
     },
-    ...cudController({ action: 'records' }),
-  },
-  getters: {
-    costs: (state: State) => state.data.filter((r) => r.type === 'cost'),
-    dist: (state: State) => state.data.filter((r) => r.type === 'dist'),
-    inc: (state: State) => state.data.filter((r) => r.type === 'inc'),
-    adjustment: (state: State) =>
-      state.data.filter((r) => r.type === 'adjustment'),
-  },
-  persist: {
-    storage: persistedState.localStorage,
-    key: generatePiniaLocalStorageKey,
-  },
+    persist: {
+      storage: piniaPluginPersistedstate.localStorage(),
+    },
+  })()
+
+  const recordStoreRefs = storeToRefs(recordStore)
+
+  useCud<RecordResponseDto>({
+    items: recordStoreRefs.data,
+    entity: 'record',
+    setter: recordStore.setData,
+  })
+
+  return { recordStore, recordStoreRefs }
 })
-
-if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useRecordStore, import.meta.hot))
-}

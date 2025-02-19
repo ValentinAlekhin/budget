@@ -15,5 +15,7 @@ export function useCategoryTabs() {
     },
   ])
 
-  return { tabs, currentTab }
+  const currentTabName = computed(() => tabs.value[currentTab.value].slot)
+
+  return { tabs, currentTab, currentTabName }
 }

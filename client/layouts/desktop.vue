@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+const components = ['cost', 'dist', 'db', 'stat'].map(name =>
+  resolveComponent(name),
+)
+</script>
+
 <template>
   <BaseLayout>
     <ul class="cardList grid gap-2">
@@ -11,12 +17,6 @@
     </ul>
   </BaseLayout>
 </template>
-
-<script lang="ts" setup>
-const components = ['cost', 'dist', 'db', 'stat'].map((name) =>
-  resolveComponent(name)
-)
-</script>
 
 <style lang="scss" scoped>
 .cardList {

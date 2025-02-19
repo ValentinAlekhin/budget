@@ -1,9 +1,9 @@
-declare module "nuxt/schema" {
+declare module 'nuxt/schema' {
   interface RuntimeConfig {
     public: {
-      baseUrl: string;
-    };
+      baseUrl: string
+    }
   }
 }
 // It is always important to ensure you import/export something when augmenting a type
-export {};
+export {}

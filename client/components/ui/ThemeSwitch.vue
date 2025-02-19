@@ -1,3 +1,7 @@
+<script setup>
+const { toggleTheme, isDark } = useTheme()
+</script>
+
 <template>
   <ClientOnly>
     <UButton
@@ -9,11 +13,7 @@
     />
 
     <template #fallback>
-      <div class="h-8 w-8" />
+      <div class="size-8" />
     </template>
   </ClientOnly>
 </template>
-
-<script setup>
-const { toggleTheme, isDark } = useTheme()
-</script>
