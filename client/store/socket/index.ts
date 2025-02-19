@@ -19,7 +19,12 @@ export const useSocketStore = createSharedComposable(function () {
     actions: {
       connect() {
         return new Promise<WebSocket>((resolve, reject) => {
-          cookieToken.value = tokensStore.value.accessToken
+          const token = tokensStore.value.accessToken
+          if (!token) {
+            throw Error('No access token')
+          }
+
+          cookieToken.value = token
           const socket = new WebSocket(`${websocketProtocol}://${domain}/ws`)
           this.socket = socket
 
@@ -57,9 +62,13 @@ export const useSocketStore = createSharedComposable(function () {
         interval = setInterval(() => this.socket?.send('ping'), 10000)
       },
       async init() {
-        await this.connect()
-        this.subscribe()
-        this.setInterval()
+        try {
+          await this.connect()
+          this.subscribe()
+          this.setInterval()
+        } catch (e) {
+          notify.error('Произошла ошибка при подключени WS')
+        }
       },
       tryReconnect() {
         let reconnectTries = 0

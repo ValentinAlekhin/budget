@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлен nuxt &amp; nuxt ui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/config/telegram.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/config/telegram.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/ws/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/ws/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -403,7 +397,7 @@
       <workItem from="1730550020872" duration="273000" />
       <workItem from="1737904195329" duration="872000" />
       <workItem from="1739810903429" duration="9578000" />
-      <workItem from="1739952943118" duration="627000" />
+      <workItem from="1739952943118" duration="1279000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
