@@ -19,14 +19,14 @@ import (
 type Service struct {
 	recordRepo   *Repo
 	categoryRepo *category.Repo
-	cud          *ws.CudService[ResponseDto]
+	cud          *ws.CudService[RecordResponseDto]
 	cache        cache.Cache
 }
 
 func NewService(db *pgxpool.Pool, c cache.Cache) *Service {
 	recordRepo := NewRecordsRepo(db)
 	categoryRepo := category.NewCategoryRepo(db)
-	cudService := ws.NewCudService[ResponseDto]("record")
+	cudService := ws.NewCudService[RecordResponseDto]("record")
 	return &Service{
 		recordRepo,
 		categoryRepo,
@@ -35,7 +35,7 @@ func NewService(db *pgxpool.Pool, c cache.Cache) *Service {
 	}
 }
 
-func (s Service) GetAll(userId int32) (response []ResponseDto, cache string, err error) {
+func (s Service) GetAll(userId int32) (response []RecordResponseDto, cache string, err error) {
 	cacheKey := s.getCacheKey(userId)
 	if data, found := s.cache.Get(cacheKey); found {
 		return nil, data, nil
@@ -44,7 +44,7 @@ func (s Service) GetAll(userId int32) (response []ResponseDto, cache string, err
 	ctx := context.Background()
 	list, err := s.recordRepo.List(ctx, userId)
 	if err != nil {
-		return []ResponseDto{}, "", http_error.NewInternalRequestError("")
+		return []RecordResponseDto{}, "", http_error.NewInternalRequestError("")
 	}
 
 	marshal, err := json.Marshal(list)
@@ -58,7 +58,7 @@ func (s Service) GetAll(userId int32) (response []ResponseDto, cache string, err
 	return list, jsonString, nil
 }
 
-func (s Service) FindOne(userId int32, id int64) (ResponseDto, error) {
+func (s Service) FindOne(userId int32, id int64) (RecordResponseDto, error) {
 	ctx := context.Background()
 	record, err := s.recordRepo.GetByIDAndUserID(ctx, id, userId)
 	if err != nil {
@@ -68,13 +68,13 @@ func (s Service) FindOne(userId int32, id int64) (ResponseDto, error) {
 	return record, nil
 }
 
-func (s Service) CreateOne(userId int32, dto CreateOneRecordRequestDto) (ResponseDto, error) {
+func (s Service) CreateOne(userId int32, dto CreateOneRecordRequestDto) (RecordResponseDto, error) {
 	s.dropCache(userId)
 
 	ctx := context.Background()
 	_, err := s.categoryRepo.GetByIDAndUserID(ctx, dto.CategoryID, userId)
 	if err != nil {
-		return ResponseDto{}, http_error.NewBadRequestError("Category not found", "")
+		return RecordResponseDto{}, http_error.NewBadRequestError("Category not found", "")
 	}
 
 	newRecord, err := s.recordRepo.Create(ctx, budget.CreateRecordParams{
@@ -92,7 +92,7 @@ func (s Service) CreateOne(userId int32, dto CreateOneRecordRequestDto) (Respons
 	return newRecord, nil
 }
 
-func (s Service) CreateMany(userId int32, dto CreateManyRecordsRequestDto) ([]ResponseDto, error) {
+func (s Service) CreateMany(userId int32, dto CreateManyRecordsRequestDto) ([]RecordResponseDto, error) {
 	s.dropCache(userId)
 
 	categoryIds := lo.Map[CreateOneRecordRequestDto, int64](dto.Data, func(item CreateOneRecordRequestDto, _ int) int64 {
@@ -109,7 +109,7 @@ func (s Service) CreateMany(userId int32, dto CreateManyRecordsRequestDto) ([]Re
 		return nil, http_error.NewBadRequestError("Invalid category ids", "")
 	}
 
-	categoriesMap := make(map[int64]category.ResponseDto)
+	categoriesMap := make(map[int64]category.CategoryResponseDto)
 	for _, categoryEntity := range categories {
 		categoriesMap[categoryEntity.ID] = categoryEntity
 	}
@@ -138,19 +138,19 @@ func (s Service) CreateMany(userId int32, dto CreateManyRecordsRequestDto) ([]Re
 	return many, nil
 }
 
-func (s Service) UpdateOne(userId int32, dto UpdateOneRecordRequestDto) (ResponseDto, error) {
+func (s Service) UpdateOne(userId int32, dto UpdateOneRecordRequestDto) (RecordResponseDto, error) {
 	s.dropCache(userId)
 
 	ctx := context.Background()
 
 	_, err := s.FindOne(userId, dto.ID)
 	if err != nil {
-		return ResponseDto{}, err
+		return RecordResponseDto{}, err
 	}
 
 	_, err = s.categoryRepo.GetByIDAndUserID(ctx, dto.CategoryID, userId)
 	if err != nil {
-		return ResponseDto{}, http_error.NewBadRequestError("Category not found", "")
+		return RecordResponseDto{}, http_error.NewBadRequestError("Category not found", "")
 	}
 
 	record := budget.UpdateRecordParams{
@@ -166,7 +166,7 @@ func (s Service) UpdateOne(userId int32, dto UpdateOneRecordRequestDto) (Respons
 
 	updated, err := s.recordRepo.Update(ctx, record)
 	if err != nil {
-		return ResponseDto{}, http_error.NewInternalRequestError("")
+		return RecordResponseDto{}, http_error.NewInternalRequestError("")
 	}
 
 	s.cud.SendOne(userId, "update", updated)
@@ -174,19 +174,19 @@ func (s Service) UpdateOne(userId int32, dto UpdateOneRecordRequestDto) (Respons
 	return updated, nil
 }
 
-func (s Service) DeleteOne(userId int32, id int64) (ResponseDto, error) {
+func (s Service) DeleteOne(userId int32, id int64) (RecordResponseDto, error) {
 	s.dropCache(userId)
 
 	_, err := s.FindOne(userId, id)
 	if err != nil {
-		return ResponseDto{}, err
+		return RecordResponseDto{}, err
 	}
 
 	ctx := context.Background()
 
 	deleted, err := s.recordRepo.SoftDelete(ctx, id, userId)
 	if err != nil {
-		return ResponseDto{}, http_error.NewInternalRequestError("")
+		return RecordResponseDto{}, http_error.NewInternalRequestError("")
 	}
 
 	s.cud.SendOne(userId, "delete", deleted)
@@ -194,13 +194,13 @@ func (s Service) DeleteOne(userId int32, id int64) (ResponseDto, error) {
 	return deleted, nil
 }
 
-func (s Service) Adjustment(userId int32, dto AdjustmentRequestDto) (ResponseDto, error) {
+func (s Service) Adjustment(userId int32, dto AdjustmentRequestDto) (RecordResponseDto, error) {
 	s.dropCache(userId)
 
 	ctx := context.Background()
 	adjustmentCategory, err := s.categoryRepo.GetAdjustmentUserID(ctx, userId)
 	if err != nil {
-		return ResponseDto{}, http_error.NewInternalRequestError("")
+		return RecordResponseDto{}, http_error.NewInternalRequestError("")
 	}
 
 	record := budget.CreateRecordParams{
@@ -214,7 +214,7 @@ func (s Service) Adjustment(userId int32, dto AdjustmentRequestDto) (ResponseDto
 
 	newRecord, err := s.recordRepo.Create(ctx, record)
 	if err != nil {
-		return ResponseDto{}, http_error.NewInternalRequestError("")
+		return RecordResponseDto{}, http_error.NewInternalRequestError("")
 	}
 
 	s.cud.SendOne(userId, "create", newRecord)

@@ -11,36 +11,36 @@ import (
 
 type Service struct {
 	categoryRepo *Repo
-	cud          *ws.CudService[ResponseDto]
+	cud          *ws.CudService[CategoryResponseDto]
 }
 
 func NewService(db *pgxpool.Pool) *Service {
 	categoryRepo := NewCategoryRepo(db)
-	cudService := ws.NewCudService[ResponseDto]("category")
+	cudService := ws.NewCudService[CategoryResponseDto]("category")
 	return &Service{categoryRepo: categoryRepo, cud: cudService}
 }
 
-func (s Service) GetAll(userId int32) []ResponseDto {
+func (s Service) GetAll(userId int32) []CategoryResponseDto {
 	ctx := context.Background()
 	categories, err := s.categoryRepo.ListByUser(ctx, userId)
 	if err != nil {
-		return []ResponseDto{}
+		return []CategoryResponseDto{}
 	}
 
 	return categories
 }
 
-func (s Service) FindOne(userId int32, id int64) (ResponseDto, error) {
+func (s Service) FindOne(userId int32, id int64) (CategoryResponseDto, error) {
 	ctx := context.Background()
 	category, err := s.categoryRepo.GetByIDAndUserID(ctx, id, userId)
 	if err != nil {
-		return ResponseDto{}, http_error.NewNotFoundError("Category not found", "")
+		return CategoryResponseDto{}, http_error.NewNotFoundError("Category not found", "")
 	}
 
 	return category, nil
 }
 
-func (s Service) CreateOne(dto CreateCategoryRequestDto, userId int32) (ResponseDto, error) {
+func (s Service) CreateOne(dto CreateCategoryRequestDto, userId int32) (CategoryResponseDto, error) {
 	newCategory := budget.CreateCategoryParams{
 		Name:       dto.Name,
 		Type:       dto.Type,
@@ -56,7 +56,7 @@ func (s Service) CreateOne(dto CreateCategoryRequestDto, userId int32) (Response
 	ctx := context.Background()
 	category, err := s.categoryRepo.Create(ctx, newCategory)
 	if err != nil {
-		return ResponseDto{}, http_error.NewInternalRequestError("")
+		return CategoryResponseDto{}, http_error.NewInternalRequestError("")
 	}
 
 	s.cud.SendOne(userId, "create", category)
@@ -64,7 +64,7 @@ func (s Service) CreateOne(dto CreateCategoryRequestDto, userId int32) (Response
 	return category, nil
 }
 
-func (s Service) UpdateMany(dto UpdateManyCategoryRequestDto, userId int32) ([]ResponseDto, error) {
+func (s Service) UpdateMany(dto UpdateManyCategoryRequestDto, userId int32) ([]CategoryResponseDto, error) {
 
 	categories := make([]budget.UpdateCategoryParams, len(dto.Data))
 	for i, item := range dto.Data {
@@ -94,7 +94,7 @@ func (s Service) UpdateMany(dto UpdateManyCategoryRequestDto, userId int32) ([]R
 	return many, nil
 }
 
-func (s Service) DeleteOne(id int64, userId int32) (ResponseDto, error) {
+func (s Service) DeleteOne(id int64, userId int32) (CategoryResponseDto, error) {
 	ctx := context.Background()
 
 	category, err := s.categoryRepo.GetByIDAndUserID(ctx, id, userId)

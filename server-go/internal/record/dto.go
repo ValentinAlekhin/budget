@@ -29,7 +29,7 @@ type AdjustmentRequestDto struct {
 	Diff float64 `json:"diff" binding:"required,gte=-100000000,lte=100000000"`
 }
 
-type ResponseDto struct {
+type RecordResponseDto struct {
 	ID         int64                     `json:"id"`
 	CreatedAt  pgtype.Timestamp          `json:"createdAt"`
 	UpdatedAt  pgtype.Timestamp          `json:"updatedAt"`

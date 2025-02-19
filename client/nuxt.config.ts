@@ -39,7 +39,7 @@ export default defineNuxtConfig({
   },
 
   imports: {
-    dirs: ['store'],
+    dirs: ['store/*', 'dto'],
   },
 
   typescript: {

@@ -1,34 +1,31 @@
-import { useSocketStore } from '~/store/socket'
-import type { RecordDto } from '../../common/dto/record'
-import type { CategoryDto } from '../../common/dto/category'
 
-type Item = RecordDto | CategoryDto
+type Item = RecordResponseDto | CategoryResponseDto
 
-interface CudAction {
+interface CudAction<T extends Item> {
   type: 'cud'
   timestamp: string
   payload: {
     action: 'create' | 'update' | 'delete'
     entity: 'record' | 'category'
-    list: Item[]
+    list: T[]
   }
 }
 
-interface Parameters {
-  items: Ref<Item[]>
-  setter: (items: any[]) => any
+interface Parameters<T extends Item> {
+  items: Ref<T[]>
+  setter: (items: T[]) => void
   entity: 'record' | 'category'
 }
 
-export function useCud({ items, entity, setter }: Parameters) {
+export function useCud<T extends Item>({ items, entity, setter }: Parameters<T>) {
   const { socketStoreRef } = useSocketStore()
 
   const actions = {
-    create(payload: Item[]) {
+    create(payload: T[]) {
       const newData = [...payload, ...items.value]
       setter(newData)
     },
-    update(payload: Item[]) {
+    update(payload: T[]) {
       const newData = items.value.map((item) => {
         const newItem = payload.find(({ id }) => item.id === id)
 
@@ -36,7 +33,7 @@ export function useCud({ items, entity, setter }: Parameters) {
       })
       setter(newData)
     },
-    delete(payload: Item[]) {
+    delete(payload: T[]) {
       const ids = payload.map(({ id }) => id)
       const newData = items.value.filter((item) => !ids.includes(item.id))
       setter(newData)
@@ -44,9 +41,8 @@ export function useCud({ items, entity, setter }: Parameters) {
   }
 
   const init = () => {
-    console.log('cud init', entity)
     socketStoreRef.socket.value?.addEventListener('message', (msg) => {
-      const data = JSON.parse(msg.data) as CudAction
+      const data = JSON.parse(msg.data) as CudAction<T>
 
       if (data.type !== 'cud') return
       if (data.payload.entity !== entity) return

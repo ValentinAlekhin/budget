@@ -101,12 +101,7 @@
 <script setup lang="ts">
 import { Dayjs, ManipulateType } from 'dayjs'
 import { capitalize, sumBy } from 'lodash-es'
-import type { RecordDto } from '../../../common/dto/record'
-import { useCategoryStore } from '~/store/category'
-import { useRecordStore } from '~/store/record'
-import { useRecord } from '~/composables/useRecord'
-import { useCategoryTabs } from '~/composables/useCategoryTabs'
-import { useLocalStorage } from '@vueuse/core/index'
+import { useLocalStorage } from '@vueuse/core'
 import { Doughnut } from 'vue-chartjs'
 import type {
   ChartData,
@@ -116,7 +111,6 @@ import type {
 } from 'chart.js'
 
 const {
-  categoryStore,
   categoryStoreRefs: { costs, incoming },
 } = useCategoryStore()
 const { recordStoreRefs } = useRecordStore()
@@ -203,7 +197,7 @@ const currentRange = computed(() => ranges.value[currentRangeIndex.value])
 
 const filteredRecords = computed(() =>
   filterRecordsByRange(
-    selected.value.records as RecordDto[],
+    selected.value.records,
     startEndDates.value.start as Dayjs,
     startEndDates.value.end as Dayjs,
   ),
@@ -211,7 +205,7 @@ const filteredRecords = computed(() =>
 
 const totalSum = computed(() => sumBy(filteredRecords.value, 'amount'))
 
-const getSum = (id: string, list: RecordDto[]) =>
+const getSum = (id: number, list: RecordResponseDto[]) =>
   sumBy(
     list.filter((r) => r.categoryId === id),
     'amount',

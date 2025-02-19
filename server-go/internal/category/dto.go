@@ -32,7 +32,7 @@ type UpdateManyCategoryRequestDto struct {
 	Data []UpdateCategoryRequestDto `json:"data" binding:"dive,required"`
 }
 
-type ResponseDto struct {
+type CategoryResponseDto struct {
 	ID         int64                           `json:"id"`
 	CreatedAt  pgtype.Timestamp                `json:"createdAt"`
 	UpdatedAt  pgtype.Timestamp                `json:"updatedAt"`

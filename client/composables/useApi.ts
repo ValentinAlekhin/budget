@@ -34,9 +34,10 @@ export function useApi() {
       const router = useRouter()
 
       try {
-        const { data } = await api.post('/auth/refresh-tokens', {
-          refreshToken: tokensStore.value.refreshToken,
-        })
+        const payload: RefreshTokenRequestDto = {
+            refreshToken: tokensStore.value.refreshToken,
+        }
+        const { data } = await api.post<RefreshTokenResponseDto>('/auth/refresh-tokens', payload)
 
         tokensStore.value = {
           refreshToken: data.refreshToken,

@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia'
-import type { CategoryDto } from '../../../common/dto/category'
 
 export interface CategoryState {
-  data: CategoryDto[]
+  data: CategoryResponseDto[]
   loading: boolean
   error: any
 }
@@ -25,7 +24,7 @@ export const useCategoryStore = createSharedComposable(function () {
         try {
           if (!force && this.data?.length) return
 
-          const { data } = await api.get<CategoryDto[]>('/category')
+          const { data } = await api.get<CategoryResponseDto[]>('/category')
           this.data = data || []
         } catch (e) {
           notify.error('Ошибка при загрузке категорий')
@@ -37,7 +36,7 @@ export const useCategoryStore = createSharedComposable(function () {
       async init() {
         await this.fetchAll({ force: true })
       },
-      setData(data: CategoryDto[]) {
+      setData(data: CategoryResponseDto[]) {
         this.data = data
       },
       async addCategory(category: {
@@ -51,14 +50,14 @@ export const useCategoryStore = createSharedComposable(function () {
           notify.error('Ошибка при сохранении')
         }
       },
-      async updateMany(data: CategoryDto[]) {
+      async updateMany(data: UpdateCategoryRequestDto[]) {
         try {
           await api.put('/category/many', { data })
         } catch (e) {
           notify.error('Ошибка при обновлении категорий')
         }
       },
-      async delete(id: string) {
+      async delete(id: number) {
         try {
           await api.delete(`/category/${id}`)
         } catch (e) {
@@ -75,18 +74,17 @@ export const useCategoryStore = createSharedComposable(function () {
         state.data
           .filter((c) => c.type === 'inc')
           .sort((a, b) => a.order - b.order),
-      getById: (state) => (id: string) =>
-        state.data.find((c) => c.id === id) as CategoryDto,
+      getById: (state) => (id: number) =>
+        state.data.find((c) => c.id === id),
     },
     persist: {
-      persist: true,
       storage: piniaPluginPersistedstate.localStorage(),
     },
   })()
 
   const categoryStoreRefs = storeToRefs(categoryStore)
 
-  useCud({
+  useCud<CategoryResponseDto>({
     items: categoryStoreRefs.data,
     entity: 'category',
     setter: categoryStore.setData,

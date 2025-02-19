@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia'
-import type { RecordDto } from '../../../common/dto/record'
 
 interface State {
-  data: RecordDto[]
+  data: RecordResponseDto[]
   loading: boolean
   error: Error | null | unknown
 }
@@ -37,7 +36,7 @@ export const useRecordStore = createSharedComposable(function () {
       async init() {
         await this.fetchAll({ force: true })
       },
-      setData(data: RecordDto[]) {
+      setData(data: RecordResponseDto[]) {
         this.data = data
       },
       async addRecord(cost: { name: string; comment: string }) {
@@ -65,20 +64,18 @@ export const useRecordStore = createSharedComposable(function () {
       },
     },
     getters: {
-      costs: (state) => state.data.filter((r) => r.type === 'cost'),
-      dist: (state) => state.data.filter((r) => r.type === 'dist'),
-      inc: (state) => state.data.filter((r) => r.type === 'inc'),
-      adjustment: (state) => state.data.filter((r) => r.type === 'adjustment'),
+      costs: (state) => state.data.filter((r) => r.type === CategoriesTypeEnum.COST),
+      inc: (state) => state.data.filter((r) => r.type === CategoriesTypeEnum.INC),
+      adjustment: (state) => state.data.filter((r) => r.type === CategoriesTypeEnum.ADJUSTMENT),
     },
     persist: {
-      persist: true,
       storage: piniaPluginPersistedstate.localStorage(),
     },
   })()
 
   const recordStoreRefs = storeToRefs(recordStore)
 
-  useCud({
+  useCud<RecordResponseDto>({
     items: recordStoreRefs.data,
     entity: 'record',
     setter: recordStore.setData,

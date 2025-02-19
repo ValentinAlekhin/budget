@@ -1,13 +1,79 @@
-import { acceptHMRUpdate, defineStore } from 'pinia'
-import state from '~/store/auth/state'
-import actions from '~/store/auth/actions'
+import {  defineStore } from 'pinia'
+import {useSocketStore} from "../socket";
+
+interface State {
+  user: null | PureUserDto
+  token: string | any
+}
 
 export const useAuthStore = defineStore('auth', {
-  state,
-  actions,
+  state: (): State => ({
+    user: null,
+    token: null,
+  }),
+  actions: {
+    async login(credentials: LoginRequestDto) {
+      const notify = useNotify()
+
+      try {
+        const { api, tokensStore } = useApi()
+
+        const { data } = await api.post<LoginResponseDto>('/auth/login', credentials, {
+          withCredentials: true,
+        })
+
+        tokensStore.value = {
+          accessToken: data.accessToken,
+          refreshToken: data.refreshToken,
+        }
+
+        api.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`
+
+        this.token = data.accessToken
+        await this.getMe()
+
+        const router = useRouter()
+        await router.push({ path: '/' })
+
+        const { fetchAll } = useGlobalLoading()
+        await fetchAll()
+      } catch (e) {
+        notify.error('Невалидные данные')
+      }
+    },
+    logout() {
+      const { resetTokens } = useApi()
+      const { socketStore } = useSocketStore()
+
+      this.$reset()
+      resetTokens()
+
+      const router = useRouter()
+      router.push({ path: '/auth' })
+      socketStore.close()
+    },
+    async register(credentials: {
+      username: string
+      password: string
+      email: string
+    }) {
+      const { api } = useApi()
+      const notify = useNotify()
+
+      try {
+        await api.post('/user', credentials)
+        await this.login(credentials)
+      } catch (e) {
+        notify.error('Ошибка при регистарции')
+      }
+    },
+    async getMe() {
+      const { api } = useApi()
+      const { data } = await api.get('/auth/me')
+
+      this.user = data
+    },
+  },
   getters: {},
 })
 
-if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useAuthStore, import.meta.hot))
-}

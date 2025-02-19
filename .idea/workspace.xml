@@ -4,13 +4,35 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлен pwa">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс piniaPluginPersistedstate">
+      <change afterPath="$PROJECT_DIR$/client/store/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server-go/cmd/gents/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server-go/internal/gents/gents.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCud.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCud.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useRecord.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useRecord.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/auth/actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/auth/state.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/dto/category.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/dto/record.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/category/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/category/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/category/repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/category/repo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/category/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/category/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/record/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/record/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/record/repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/record/repo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/record/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/record/service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -397,7 +419,7 @@
       <workItem from="1730550020872" duration="273000" />
       <workItem from="1737904195329" duration="872000" />
       <workItem from="1739810903429" duration="9578000" />
-      <workItem from="1739952943118" duration="8271000" />
+      <workItem from="1739952943118" duration="11735000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -503,14 +525,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00113" summary="Добавлен период плана">
-      <option name="closed" value="true" />
-      <created>1701188281472</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1701188281472</updated>
     </task>
     <task id="LOCAL-00114" summary="Претерто api">
       <option name="closed" value="true" />
@@ -776,7 +790,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739961177761</updated>
     </task>
-    <option name="localTasksCounter" value="147" />
+    <task id="LOCAL-00147" summary="Фикс piniaPluginPersistedstate">
+      <option name="closed" value="true" />
+      <created>1739961722492</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1739961722492</updated>
+    </task>
+    <option name="localTasksCounter" value="148" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -805,7 +827,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Удален индекс" />
     <MESSAGE value="Добавлен useYup обновлен nuxt" />
     <MESSAGE value="Добавлены новые диапазоны в стату" />
     <MESSAGE value="Добавлено переключение промежутков статистики" />
@@ -830,7 +851,8 @@
     <MESSAGE value="Переход на pnpm" />
     <MESSAGE value="Удален сервер nodejs" />
     <MESSAGE value="Добавлен pwa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен pwa" />
+    <MESSAGE value="Фикс piniaPluginPersistedstate" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фикс piniaPluginPersistedstate" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
