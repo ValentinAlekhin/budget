@@ -113,6 +113,34 @@ export default defineNuxtConfig({
   ],
 
   pwa: {
+    mode: 'development',
+    strategies: 'generateSW',
+    registerType: 'autoUpdate',
+
+    workbox: {
+      maximumFileSizeToCacheInBytes: 30000000,
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
+
+    injectManifest: {
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
+
+    pwaAssets: {
+      config: true,
+    },
+
+    client: {
+      installPrompt: true,
+    },
+
+    devOptions: {
+      enabled: false,
+      suppressWarnings: true,
+      navigateFallback: '/',
+      navigateFallbackAllowlist: [/^\/$/],
+    },
+
     manifest: {
       name: 'Budget',
       short_name: 'Budget',
@@ -152,6 +180,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+
 
   ui: {
     // @ts-ignore
