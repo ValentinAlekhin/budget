@@ -86,6 +86,36 @@ func (s Service) GetUserByEmailAndPass(username string, pass string) (ResponseDt
 	return user, nil
 }
 
+func (s Service) ChangePassword(dto ChangePasswordRequestDto, userId int32) error {
+	ctx := context.Background()
+	user, err := s.userRepo.GetByID(ctx, userId)
+	if err != nil {
+		return http_error.NewNotFoundError("User not found", string(userId))
+	}
+
+	internalErr := http_error.NewInternalRequestError("")
+
+	valid, err := argon.NewArgon2ID().Verify(dto.OldPassword, user.Password)
+	if err != nil {
+		return internalErr
+	}
+	if !valid {
+		return http_error.NewBadRequestError("Invalid credentials", "")
+	}
+
+	hashedPass, err := argon.NewArgon2ID().Hash(dto.NewPassword)
+	if err != nil {
+		return internalErr
+	}
+
+	err = s.userRepo.UpdatePassword(ctx, budget.UpdateUserPasswordParams{ID: userId, Password: hashedPass})
+	if err != nil {
+		return internalErr
+	}
+
+	return nil
+}
+
 func (s Service) ValidateEmail(email string) bool {
 	ctx := context.Background()
 	_, err := s.userRepo.GetByEmail(ctx, email)

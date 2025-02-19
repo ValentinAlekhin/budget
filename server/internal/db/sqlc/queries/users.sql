@@ -36,6 +36,12 @@ SET username   = $2,
     updated_at = now()
 WHERE id = $1;
 
+-- name: UpdateUserPassword :exec
+UPDATE users
+SET password   = $1,
+    updated_at = now()
+WHERE id = $2;
+
 -- name: SoftDeleteUser :exec
 UPDATE users
 SET deleted_at = now(),
