@@ -1,6 +1,4 @@
 export function useMainLinks() {
-  const route = useRoute()
-
   const links = computed(() => [
     { label: 'Costs', icon: 'i-heroicons-banknotes', to: '/' },
     { label: 'Data', icon: 'i-heroicons-circle-stack', to: '/db' },
