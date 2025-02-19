@@ -26,9 +26,11 @@ func main() {
 		log.Fatalf("failed to establish database connection: %v", err)
 	}
 
-	err = telegram.NewBot(telegramConfig, dbConfig)
-	if err != nil {
-		log.Fatalf("failed to start telegram bot: %v", err)
+	if telegramConfig.Enable {
+		err = telegram.NewBot(telegramConfig, dbConfig)
+		if err != nil {
+			log.Fatalf("failed to start telegram bot: %v", err)
+		}
 	}
 
 	go ws.Manager.Start()

@@ -121,7 +121,7 @@ var upgrader = websocket.Upgrader{
 	},
 }
 
-func WsHandler(ctx *gin.Context) {
+func Handler(ctx *gin.Context) {
 	userId := ctx.MustGet("userId").(int32)
 	conn, err := upgrader.Upgrade(ctx.Writer, ctx.Request, nil)
 	if err != nil {

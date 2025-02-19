@@ -6,11 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлен nuxt &amp; nuxt ui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/record/CreateOne.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/record/CreateOne.bru" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/shared/hooks/useApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/shared/hooks/useApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-go/internal/config/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/config/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/auth/middlewares.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/config/telegram.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/config/telegram.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/internal/ws/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/internal/ws/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-go/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server-go/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,48 +95,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "Docker.client/Dockerfile.executor": "Run",
-    "Docker.docker-compose.yml.server: Compose Deployment.executor": "Run",
-    "Docker.server/Dockerfile.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "Shell Script.air.executor": "Run",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "js.linters.configure.manually.selectedeslint": "true",
-    "last_opened_file_path": "C:/Users/headb/Documents/projects/budget/server-go",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\eslint",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.build (1).executor": "Run",
-    "npm.dev.executor": "Run",
-    "npm.start.executor": "Run",
-    "npm.start:dev.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/valentin/Documents/projects/budget/server/node_modules/prettier",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Users\\headb\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Docker.client/Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.server: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.server/Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;Shell Script.air.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/headb/Documents/projects/budget/server-go&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\eslint&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build (1).executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start:dev.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/valentin/Documents/projects/budget/server/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\headb\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Valentin\Documents\projects\budget\client" />
@@ -400,7 +402,8 @@
       <workItem from="1725435039979" duration="11000" />
       <workItem from="1730550020872" duration="273000" />
       <workItem from="1737904195329" duration="872000" />
-      <workItem from="1739810903429" duration="8916000" />
+      <workItem from="1739810903429" duration="9578000" />
+      <workItem from="1739952943118" duration="627000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>

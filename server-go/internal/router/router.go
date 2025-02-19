@@ -28,7 +28,7 @@ func Init(db *pgxpool.Pool, jwtConfig *config.JWT, serverConfig *config.Server) 
 
 	wsGroup := router.Group("/ws")
 	wsGroup.Use(authMiddlewares.AuthRequiredCookie)
-	wsGroup.GET("", ws.WsHandler)
+	wsGroup.GET("", ws.Handler)
 
 	userGroup := router.Group("/user")
 	userGroup.POST("", userController.CreateOne)

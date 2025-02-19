@@ -4,6 +4,7 @@ import (
 	"budget/internal/config"
 	http_error "budget/internal/http-error"
 	"budget/internal/user"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"strings"
@@ -67,26 +68,32 @@ func (m Middlewares) AuthRequired(ctx *gin.Context) {
 func (m Middlewares) AuthRequiredCookie(ctx *gin.Context) {
 	cookie, err := ctx.Cookie("token")
 
-	cookieError := http_error.NewUnauthorizedError("No authorization header")
+	fmt.Println(cookie)
+
+	cookieError := http_error.NewUnauthorizedError("No authorization cookie")
 	if err != nil {
 		ctx.Error(cookieError)
+		ctx.Abort()
 		return
 	}
 
 	if cookie == "" {
 		ctx.Error(cookieError)
+		ctx.Abort()
 		return
 	}
 
 	claims, err := m.authService.ParseToken(cookie)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("Token expired"))
+		ctx.Abort()
 		return
 	}
 
 	targetUser, err := m.userService.GetUserById(claims.User.ID)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("User not found"))
+		ctx.Abort()
 		return
 	}
 
