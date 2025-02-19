@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Удален сервер nodejs">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлен pwa">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +144,7 @@
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\app\public" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="air" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="air" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
@@ -393,7 +394,7 @@
       <workItem from="1730550020872" duration="273000" />
       <workItem from="1737904195329" duration="872000" />
       <workItem from="1739810903429" duration="9578000" />
-      <workItem from="1739952943118" duration="7138000" />
+      <workItem from="1739952943118" duration="7846000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -499,14 +500,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00111" summary="Обновлены пакеты">
-      <option name="closed" value="true" />
-      <created>1701186135113</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1701186135114</updated>
     </task>
     <task id="LOCAL-00112" summary="Добавлен период плана">
       <option name="closed" value="true" />
@@ -772,7 +765,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739959998777</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="Добавлен pwa">
+      <option name="closed" value="true" />
+      <created>1739960450167</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1739960450167</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -801,7 +802,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Обновлен перевод" />
     <MESSAGE value="Удален индекс" />
     <MESSAGE value="Добавлен useYup обновлен nuxt" />
     <MESSAGE value="Добавлены новые диапазоны в стату" />
@@ -826,7 +826,8 @@
     <MESSAGE value="Обновлены зависимости" />
     <MESSAGE value="Переход на pnpm" />
     <MESSAGE value="Удален сервер nodejs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Удален сервер nodejs" />
+    <MESSAGE value="Добавлен pwa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлен pwa" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
