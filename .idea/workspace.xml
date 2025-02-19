@@ -4,93 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Переход на pnpm">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Удален сервер nodejs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.eslintrc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.prettierrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/docker-compose.dev.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/nest-cli.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/auth.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/dto/loginUser.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/dto/refreshToken.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/guards/jwt-auth.guard.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/guards/local-auth.guard.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/guards/refreshToken.guard.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/strategies/accessToken.strategy.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/strategies/local.strategy.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/strategies/refreshToken.strategy.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/token.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/types/AuthUser.type.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/auth/types/JwtTokens.type.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/backup/backup.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/backup/backup.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/backup/backup.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.gateway.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/category.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/dto/createCategory.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/dto/updateManyCategories.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/category/exceptions/category-not-found.exception.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/common/abstract-entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/common/enum/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/common/socket/socket.types.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/common/time.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/common/utils/hash.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/config/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/migrations/1681374911869-Init.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/migrations/1681576921036-AddDeletedAt.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/migrations/1694188175138-AddIcon.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/migrations/1695837850028-UpdateCategory.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/migrations/1696527774848-UpdateRecord.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/migrations/1696529275963-CreateAdjustmentCategory.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/migrations/1697034619387-AddRecordIndex.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/migrations/1697970134642-RemoveIndex.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/migrations/1701187645122-AddPlanPeriod.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/ormconfig.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/dto/adjustmentDto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/dto/createManyRecords.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/dto/createRecord.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/dto/recordResponse.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/dto/updateRecord.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/exceptions/record-not-found.exception.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.gateway.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/record/record.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/socket/authenticated-socket.adapter.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/socket/sockets.gateway.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/telegram/guards/admin.guard.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/telegram/telegram.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/telegram/telegram.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/telegram/telegram.update.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/dto/createUser.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/dto/filedValidations.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/types/user.type.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/user-filed-validation.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/user.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/user.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/user.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/user/user.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/test/app.e2e-spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/test/jest-e2e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/tsconfig.build.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/tsconfig.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -477,7 +393,7 @@
       <workItem from="1730550020872" duration="273000" />
       <workItem from="1737904195329" duration="872000" />
       <workItem from="1739810903429" duration="9578000" />
-      <workItem from="1739952943118" duration="6507000" />
+      <workItem from="1739952943118" duration="7138000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -583,14 +499,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00110" summary="Обновлено месте для цвета и иконки">
-      <option name="closed" value="true" />
-      <created>1699985085582</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1699985085582</updated>
     </task>
     <task id="LOCAL-00111" summary="Обновлены пакеты">
       <option name="closed" value="true" />
@@ -856,7 +764,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739958272336</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="Удален сервер nodejs">
+      <option name="closed" value="true" />
+      <created>1739959998777</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1739959998777</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -885,7 +801,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлен перевод на русский" />
     <MESSAGE value="Обновлен перевод" />
     <MESSAGE value="Удален индекс" />
     <MESSAGE value="Добавлен useYup обновлен nuxt" />
@@ -910,7 +825,8 @@
     <MESSAGE value="Возврат к дефолтной структуре Nuxt" />
     <MESSAGE value="Обновлены зависимости" />
     <MESSAGE value="Переход на pnpm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Переход на pnpm" />
+    <MESSAGE value="Удален сервер nodejs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Удален сервер nodejs" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
