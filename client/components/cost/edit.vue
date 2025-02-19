@@ -3,7 +3,7 @@
     <ClientOnly>
       <MobileOnly>
         <Teleport to="#headerTeleport">
-          <BackButton class="mr-2" @click="move" />
+          <UiBackButton class="mr-2" @click="move" />
         </Teleport>
       </MobileOnly>
     </ClientOnly>

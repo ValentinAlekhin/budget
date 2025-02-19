@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import type { RecordDto } from '../../../common/dto/record'
 
-import { generatePiniaLocalStorageKey } from '~/shared'
 
 interface State {
   data: RecordDto[]

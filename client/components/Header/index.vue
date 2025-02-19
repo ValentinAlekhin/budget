@@ -15,7 +15,7 @@
           {{ $t('common.updating') }}
         </span>
         <div class="w-8">
-          <LoadersPuls v-if="loading" />
+          <UiLoadersPuls v-if="loading" />
           <Icon class="ml-1" v-else name="heroicons:check-20-solid" />
         </div>
       </div>
@@ -23,7 +23,7 @@
       <div class="flex w-28 items-center justify-between">
         <header-connection />
 
-        <ThemeSwitch />
+        <UiThemeSwitch />
 
         <header-dropdown />
       </div>

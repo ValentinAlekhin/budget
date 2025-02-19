@@ -1,6 +1,6 @@
 import { useSocketStore } from '~/store/socket'
-import type { RecordDto } from '../../../common/dto/record'
-import type { CategoryDto } from '../../../common/dto/category'
+import type { RecordDto } from '../../common/dto/record'
+import type { CategoryDto } from '../../common/dto/category'
 
 type Item = RecordDto | CategoryDto
 

@@ -38,18 +38,10 @@ export default defineNuxtConfig({
     },
   },
 
-  dir: {
-    pages: 'app/routes',
-    layouts: 'app/layouts',
-    public: 'app/public',
-    middleware: 'app/middleware',
-  },
 
   imports: {
-    dirs: ['store', 'shared/*', 'shared/hooks'],
+    dirs: ['store'],
   },
-
-  components: ['~/shared/ui', '~/components'],
 
   typescript: {
     strict: true,
@@ -57,9 +49,9 @@ export default defineNuxtConfig({
   },
 
   plugins: [
-    '@/app/plugins/draggable',
-    '@/app/plugins/chartjs',
-    '@/app/plugins/infinite-loading',
+    '@/plugins/draggable',
+    '@/plugins/chartjs',
+    '@/plugins/infinite-loading',
   ],
 
   vite: {

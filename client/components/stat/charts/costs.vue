@@ -6,8 +6,8 @@
 import { Options } from 'highcharts'
 import { storeToRefs } from 'pinia'
 import { sumBy } from 'lodash-es'
-import { AVAILABLE_MONTH, MONTH_LIST_RU } from '~/shared'
 import { useCategoryStore } from '~/store/category'
+import {AVAILABLE_MONTH} from "~/constants";
 const categoryStore = useCategoryStore()
 
 const { costs: categories } = storeToRefs(categoryStore)

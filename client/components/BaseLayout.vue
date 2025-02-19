@@ -2,7 +2,7 @@
   <div class="h-full overflow-y-auto pb-40 pt-14 lg:pb-0">
     <Header />
 
-    <LoadersSisyphus v-if="!dataExists && loading" />
+    <UiLoadersSisyphus v-if="!dataExists && loading" />
 
     <UCard
       v-else-if="error"
@@ -23,14 +23,14 @@
 
     <template v-if="smallerThanLg">
       <BottomTabs />
-      <Actions />
+      <UiActions />
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import {onMounted} from "@vue/runtime-core";
-import {useScreenSize} from "#shared/hooks/useScreenSize";
+import {useScreenSize} from "~/composables/useScreenSize";
 import {useGlobalLoading} from "~/composables/useGlobalLoading";
 
 const { fetchAll, loading, error, initSocket, dataExists } = useGlobalLoading()

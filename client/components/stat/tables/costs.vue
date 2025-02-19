@@ -23,9 +23,8 @@ import { storeToRefs } from 'pinia'
 import dayjs from 'dayjs'
 import { useRouteQuery } from '@vueuse/router'
 import { round, sum, sumBy } from 'lodash-es'
-import { AVAILABLE_MONTH, MONTH_LIST_RU } from '~/shared'
 import { useCategoryStore } from '~/store/category'
-import { median } from '~/shared'
+import {AVAILABLE_MONTH, MONTH_LIST_RU} from "~/constants";
 const categoryStore = useCategoryStore()
 
 const { costs: categories } = storeToRefs(categoryStore)

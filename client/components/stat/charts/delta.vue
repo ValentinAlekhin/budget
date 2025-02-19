@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import { sumBy } from 'lodash-es'
-import { AVAILABLE_MONTH, MONTH_LIST_RU } from '~/shared'
+import {AVAILABLE_MONTH} from "~/constants";
 
 const props = defineProps(['inc', 'cost'])
 

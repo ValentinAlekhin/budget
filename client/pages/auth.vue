@@ -1,6 +1,6 @@
 <template>
   <div class="flex size-full flex-col items-center justify-center">
-    <ThemeSwitch />
+    <UiThemeSwitch />
 
     <UCard class="mt-8 w-80">
       <UTabs :items="items" class="w-full">
