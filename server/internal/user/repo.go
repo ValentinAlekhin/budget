@@ -21,10 +21,34 @@ func NewUserRepo(db *pgxpool.Pool) *Repo {
 
 // Create создает нового пользователя
 func (r *Repo) Create(ctx context.Context, params budget.CreateUserParams) (ResponseDto, error) {
-	user, err := r.q.CreateUser(ctx, params)
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return ResponseDto{}, fmt.Errorf("unable to begin transaction: %w", err)
+	}
+	qtx := r.q.WithTx(tx)
+	user, err := qtx.CreateUser(ctx, params)
 	if err != nil {
 		return ResponseDto{}, fmt.Errorf("failed to create user: %w", err)
 	}
+
+	newAdj := budget.CreateCategoryParams{
+		Name:       "Adjustment",
+		Type:       budget.CategoriesTypeEnumAdjustment,
+		Comment:    "Service category",
+		PlanPeriod: budget.CategoriesPlanPeriodEnumYear,
+		UserID:     user.ID,
+	}
+	_, err = qtx.CreateCategory(ctx, newAdj)
+	if err != nil {
+		_ = tx.Rollback(ctx)
+		return ResponseDto{}, fmt.Errorf("transaction failed: %w", err)
+	}
+
+	err = tx.Commit(ctx)
+	if err != nil {
+		return ResponseDto{}, fmt.Errorf("unable to commit transaction: %w", err)
+	}
+
 	return convertToResponseDto(user), nil
 }
 
@@ -37,13 +61,13 @@ func (r *Repo) GetByEmail(ctx context.Context, email string) (ResponseDto, error
 	return convertToResponseDto(user), nil
 }
 
-// GetByEmailOrUsername получает пользователя по email или имени пользователя
-func (r *Repo) GetByEmailOrUsername(ctx context.Context, arg budget.GetUserByEmailOrUsernameParams) (ResponseDto, error) {
-	user, err := r.q.GetUserByEmailOrUsername(ctx, arg)
+// CountByEmailOrUsername получает пользователя по email или имени пользователя
+func (r *Repo) CountByEmailOrUsername(ctx context.Context, arg budget.CountUserByEmailOrUsernameParams) (int64, error) {
+	count, err := r.q.CountUserByEmailOrUsername(ctx, arg)
 	if err != nil {
-		return ResponseDto{}, fmt.Errorf("failed to get user by email or username: %w", err)
+		return 0, fmt.Errorf("failed to get users count by email or username: %w", err)
 	}
-	return convertToResponseDto(user), nil
+	return count, nil
 }
 
 // GetByUsername получает пользователя по имени пользователя

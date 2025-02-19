@@ -20,14 +20,16 @@ func NewService(db *pgxpool.Pool) *Service {
 
 func (s Service) CreateOne(dto *CreateUserDto) (ResponseDto, error) {
 	user := ResponseDto{}
-
 	ctx := context.Background()
 
-	_, err := s.userRepo.GetByEmailOrUsername(ctx, budget.GetUserByEmailOrUsernameParams{
+	count, err := s.userRepo.CountByEmailOrUsername(ctx, budget.CountUserByEmailOrUsernameParams{
 		Email:    dto.Email,
 		Username: dto.Username,
 	})
 	if err != nil {
+		return user, http_error.NewInternalRequestError("")
+	}
+	if count > 0 {
 		return user, http_error.NewBadRequestError("Account taken", "")
 	}
 
@@ -46,10 +48,6 @@ func (s Service) CreateOne(dto *CreateUserDto) (ResponseDto, error) {
 	if err != nil {
 		return user, internalErr
 	}
-
-	//if err, _ := category.Service.CreateAdjustmentCategory(user.ID); err != nil {
-	//	return user, err
-	//}
 
 	return newUser, nil
 }

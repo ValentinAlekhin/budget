@@ -9,6 +9,25 @@ import (
 	"context"
 )
 
+const countUserByEmailOrUsername = `-- name: CountUserByEmailOrUsername :one
+SELECT count(*)
+FROM users
+WHERE email = $1
+   or username = $2
+`
+
+type CountUserByEmailOrUsernameParams struct {
+	Email    string `json:"email"`
+	Username string `json:"username"`
+}
+
+func (q *Queries) CountUserByEmailOrUsername(ctx context.Context, arg CountUserByEmailOrUsernameParams) (int64, error) {
+	row := q.db.QueryRow(ctx, countUserByEmailOrUsername, arg.Email, arg.Username)
+	var count int64
+	err := row.Scan(&count)
+	return count, err
+}
+
 const createUser = `-- name: CreateUser :one
 INSERT INTO users (username, email, password)
 VALUES ($1, $2, $3)
@@ -55,34 +74,6 @@ WHERE email = $1
 
 func (q *Queries) GetUserByEmail(ctx context.Context, email string) (User, error) {
 	row := q.db.QueryRow(ctx, getUserByEmail, email)
-	var i User
-	err := row.Scan(
-		&i.ID,
-		&i.CreatedAt,
-		&i.UpdatedAt,
-		&i.Username,
-		&i.Email,
-		&i.Password,
-		&i.DeletedAt,
-	)
-	return i, err
-}
-
-const getUserByEmailOrUsername = `-- name: GetUserByEmailOrUsername :one
-SELECT id, created_at, updated_at, username, email, password, deleted_at
-FROM users
-WHERE email = $1
-   or username = $2
-limit 1
-`
-
-type GetUserByEmailOrUsernameParams struct {
-	Email    string `json:"email"`
-	Username string `json:"username"`
-}
-
-func (q *Queries) GetUserByEmailOrUsername(ctx context.Context, arg GetUserByEmailOrUsernameParams) (User, error) {
-	row := q.db.QueryRow(ctx, getUserByEmailOrUsername, arg.Email, arg.Username)
 	var i User
 	err := row.Scan(
 		&i.ID,

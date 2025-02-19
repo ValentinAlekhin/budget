@@ -8,12 +8,11 @@ SELECT *
 FROM users
 WHERE id = $1;
 
--- name: GetUserByEmailOrUsername :one
-SELECT *
+-- name: CountUserByEmailOrUsername :one
+SELECT count(*)
 FROM users
 WHERE email = $1
-   or username = $2
-limit 1;
+   or username = $2;
 
 -- name: GetUserByEmail :one
 SELECT *
