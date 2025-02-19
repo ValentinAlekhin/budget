@@ -4,7 +4,6 @@ import (
 	"budget/internal/config"
 	http_error "budget/internal/http-error"
 	"budget/internal/user"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"strings"
@@ -67,8 +66,6 @@ func (m Middlewares) AuthRequired(ctx *gin.Context) {
 
 func (m Middlewares) AuthRequiredCookie(ctx *gin.Context) {
 	cookie, err := ctx.Cookie("token")
-
-	fmt.Println(cookie)
 
 	cookieError := http_error.NewUnauthorizedError("No authorization cookie")
 	if err != nil {
