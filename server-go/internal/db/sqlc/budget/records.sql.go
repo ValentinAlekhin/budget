@@ -144,6 +144,7 @@ FROM records as r
          join categories as c on r.category_id = c.id
 WHERE r.id = $1
   and r.deleted_at is null
+  and c.deleted_at is null
   and c.user_id = $2
 `
 
@@ -187,6 +188,7 @@ FROM records as r
          join categories as c on r.category_id = c.id
 WHERE c.user_id = $1
   and r.deleted_at is null
+  and c.deleted_at is null
 order by timestamp desc
 `
 
@@ -237,6 +239,7 @@ SELECT r.id, r.created_at, r.updated_at, r.amount, r.comment, r.timestamp, r.cat
 FROM records as r
          join categories as c on r.category_id = c.id
 WHERE r.category_id = $1
+  and c.deleted_at is null
 `
 
 type ListRecordsByCategoryRow struct {

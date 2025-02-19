@@ -20,6 +20,7 @@ FROM records as r
          join categories as c on r.category_id = c.id
 WHERE r.id = $1
   and r.deleted_at is null
+  and c.deleted_at is null
   and c.user_id = $2;
 
 -- name: ListRecordByUserID :many
@@ -28,13 +29,15 @@ FROM records as r
          join categories as c on r.category_id = c.id
 WHERE c.user_id = $1
   and r.deleted_at is null
+  and c.deleted_at is null
 order by timestamp desc;
 
 -- name: ListRecordsByCategory :many
 SELECT r.*, c.type as type
 FROM records as r
          join categories as c on r.category_id = c.id
-WHERE r.category_id = $1;
+WHERE r.category_id = $1
+  and c.deleted_at is null;
 
 -- name: UpdateRecord :one
 WITH updated AS (
