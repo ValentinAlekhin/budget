@@ -2,7 +2,7 @@
   <UCard class="mb-4">
     <div class="mb-4 flex flex-col">
       <span class="text-sm text-gray-700 dark:text-gray-400">
-        {{ $t('common.currentBalance') }} Текущий баланс
+        {{ $t('common.currentBalance') }}
       </span>
       <div class="flex items-center">
         <span class="text-2xl font-bold">

@@ -20,6 +20,7 @@ export function useGlobalLoading() {
   const dataExists = computed(
     () => categoryStore.data.length && recordStore.data.length,
   )
+  console.log(dataExists.value, 'dataExists')
   const error = computed(() => categoryStore.error || recordStore.error)
 
   return { fetchAll, initSocket, loading, error, dataExists }

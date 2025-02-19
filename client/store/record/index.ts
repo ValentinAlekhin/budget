@@ -72,6 +72,7 @@ export const useRecordStore = createSharedComposable(function () {
     },
     persist: {
       persist: true,
+      storage: piniaPluginPersistedstate.localStorage(),
     },
   })()
 

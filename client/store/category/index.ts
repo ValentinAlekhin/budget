@@ -80,6 +80,7 @@ export const useCategoryStore = createSharedComposable(function () {
     },
     persist: {
       persist: true,
+      storage: piniaPluginPersistedstate.localStorage(),
     },
   })()
 

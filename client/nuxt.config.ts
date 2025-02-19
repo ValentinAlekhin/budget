@@ -182,7 +182,6 @@ export default defineNuxtConfig({
     },
   },
 
-
   ui: {
     // @ts-ignore
     icons: ['heroicons'],
@@ -190,6 +189,10 @@ export default defineNuxtConfig({
 
   vueuse: {
     ssrHandlers: true,
+  },
+
+  piniaPluginPersistedstate: {
+    key: 'pinia_%id',
   },
 
   i18n: {
