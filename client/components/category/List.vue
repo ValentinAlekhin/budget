@@ -2,7 +2,7 @@
   <div v-auto-animate>
     <template v-for="(inp, i) of computedInputs" :key="inp.id">
       <UInput
-        :id="inp.id"
+        :id="String(inp.id)"
         :model-value="inp.inputValue"
         :placeholder="inp.icon ? inp.name : ''"
         size="md"

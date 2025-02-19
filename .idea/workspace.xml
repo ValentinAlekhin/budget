@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлены зависимости">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/client/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Переход на pnpm">
+      <change beforePath="$PROJECT_DIR$/client/components/category/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/List.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -401,7 +395,7 @@
       <workItem from="1730550020872" duration="273000" />
       <workItem from="1737904195329" duration="872000" />
       <workItem from="1739810903429" duration="9578000" />
-      <workItem from="1739952943118" duration="4526000" />
+      <workItem from="1739952943118" duration="4906000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -507,14 +501,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00108" summary="Добавлен график в стату">
-      <option name="closed" value="true" />
-      <created>1699699811830</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1699699811830</updated>
     </task>
     <task id="LOCAL-00109" summary="Добавлены цвета категорий">
       <option name="closed" value="true" />
@@ -780,7 +766,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739956168717</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="Переход на pnpm">
+      <option name="closed" value="true" />
+      <created>1739957884820</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1739957884820</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -809,7 +803,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Фикс добавления категории" />
     <MESSAGE value="Добавлен перевод на русский" />
     <MESSAGE value="Обновлен перевод" />
     <MESSAGE value="Удален индекс" />
@@ -834,7 +827,8 @@
     <MESSAGE value="Обновлен nuxt &amp; nuxt ui" />
     <MESSAGE value="Возврат к дефолтной структуре Nuxt" />
     <MESSAGE value="Обновлены зависимости" />
-    <option name="LAST_COMMIT_MESSAGE" value="Обновлены зависимости" />
+    <MESSAGE value="Переход на pnpm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Переход на pnpm" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
