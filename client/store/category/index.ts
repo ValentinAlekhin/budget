@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import type { CategoryDto } from '../../../common/dto/category'
 
-
 export interface CategoryState {
   data: CategoryDto[]
   loading: boolean
@@ -80,8 +79,7 @@ export const useCategoryStore = createSharedComposable(function () {
         state.data.find((c) => c.id === id) as CategoryDto,
     },
     persist: {
-      storage: persistedState.localStorage,
-      key: generatePiniaLocalStorageKey,
+      persist: true,
     },
   })()
 

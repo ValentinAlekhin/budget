@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import type { RecordDto } from '../../../common/dto/record'
 
-
 interface State {
   data: RecordDto[]
   loading: boolean
@@ -72,8 +71,7 @@ export const useRecordStore = createSharedComposable(function () {
       adjustment: (state) => state.data.filter((r) => r.type === 'adjustment'),
     },
     persist: {
-      storage: persistedState.localStorage,
-      key: generatePiniaLocalStorageKey,
+      persist: true,
     },
   })()
 

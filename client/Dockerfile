@@ -1,18 +1,19 @@
-FROM node:20-alpine as builder
+FROM node:22-alpine as builder
 
 WORKDIR /app
 
 COPY package*.json ./
-COPY *.lock ./
+COPY pnpm-lock.yaml ./
 
-RUN npm ci
+RUN npm i -g pnpm
+RUN pnpm install
 
 COPY . .
 
 ARG BRANCH
 COPY ./docker/${BRANCH}.env .env
 
-RUN npm run generate
+RUN pnpm generate
 
 FROM nginx:alpine
 

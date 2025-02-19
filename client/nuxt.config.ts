@@ -38,7 +38,6 @@ export default defineNuxtConfig({
     },
   },
 
-
   imports: {
     dirs: ['store'],
   },
@@ -101,7 +100,7 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
     'nuxt-typed-router',
     '@nuxtjs/color-mode',
     'nuxt-highcharts',
@@ -155,6 +154,7 @@ export default defineNuxtConfig({
   },
 
   ui: {
+    // @ts-ignore
     icons: ['heroicons'],
   },
 
@@ -165,7 +165,6 @@ export default defineNuxtConfig({
   i18n: {
     vueI18n: './i18n.config.ts',
     defaultLocale: 'en',
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     setLocaleCookie: true,
     getLocaleCookie: 'i18n',
@@ -187,7 +186,6 @@ export default defineNuxtConfig({
     ],
   },
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   devtools: true,
 
