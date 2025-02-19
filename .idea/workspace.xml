@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлен eslint">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Небольшой рефактор">
+      <change afterPath="$PROJECT_DIR$/client/components/ui/StatCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCategory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/i18n.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -393,7 +399,7 @@
       <workItem from="1730550020872" duration="273000" />
       <workItem from="1737904195329" duration="872000" />
       <workItem from="1739810903429" duration="9578000" />
-      <workItem from="1739952943118" duration="15559000" />
+      <workItem from="1739952943118" duration="20155000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -499,22 +505,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00117" summary="Обновлена сборка всего">
-      <option name="closed" value="true" />
-      <created>1710668621770</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1710668621771</updated>
-    </task>
-    <task id="LOCAL-00118" summary="Обновлена сборка всего">
-      <option name="closed" value="true" />
-      <created>1710668701218</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1710668701218</updated>
     </task>
     <task id="LOCAL-00119" summary="Обновлена сборка всего">
       <option name="closed" value="true" />
@@ -772,7 +762,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739969381262</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="Переименование server-go &gt; server">
+      <option name="closed" value="true" />
+      <created>1739972372426</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1739972372427</updated>
+    </task>
+    <task id="LOCAL-00152" summary="Фикс actions">
+      <option name="closed" value="true" />
+      <created>1739974259449</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1739974259449</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -801,9 +807,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Добавлено переключение промежутков статистики" />
-    <MESSAGE value="Добавлен график в стату" />
-    <MESSAGE value="Добавлены цвета категорий" />
     <MESSAGE value="Обновлено месте для цвета и иконки" />
     <MESSAGE value="Добавлен период плана" />
     <MESSAGE value="Претерто api" />
@@ -826,7 +829,10 @@
     <MESSAGE value="Фикс piniaPluginPersistedstate" />
     <MESSAGE value="Добавлены dto ts" />
     <MESSAGE value="Обновлен eslint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Обновлен eslint" />
+    <MESSAGE value="Переименование server-go &gt; server" />
+    <MESSAGE value="Фикс actions" />
+    <MESSAGE value="Небольшой рефактор" />
+    <option name="LAST_COMMIT_MESSAGE" value="Небольшой рефактор" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

@@ -22,31 +22,39 @@ const currentBalance = computed(
   () => totalIncoming.value - totalCost.value + totalAdjustment.value,
 )
 
+const costsByRange = computed(() => sumBy(
+  filterRecordsByRange(
+    costs.value,
+    currentRange.value?.start as Dayjs,
+    currentRange.value?.end as Dayjs,
+  ),
+  'amount',
+))
+
+const incByRange = computed(() => sumBy(
+  filterRecordsByRange(
+    inc.value,
+    currentRange.value?.start as Dayjs,
+    currentRange.value?.end as Dayjs,
+  ),
+  'amount',
+))
+
 const miniCards = computed(() =>
   [
     {
       color: 'red',
       icon: 'bi:arrow-down-right',
-      categories: costs,
+      value: costsByRange.value,
       name: t('common.costs'),
     },
     {
       color: 'green',
       icon: 'bi:arrow-up-right',
-      categories: inc,
+      value: incByRange.value,
       name: t('common.incoming'),
     },
-  ].map(item => ({
-    ...item,
-    value: sumBy(
-      filterRecordsByRange(
-        item.categories.value,
-        currentRange.value?.start as Dayjs,
-        currentRange.value?.end as Dayjs,
-      ),
-      'amount',
-    ),
-  })),
+  ],
 )
 
 const schema = object({
@@ -71,7 +79,7 @@ async function submitAdjustment() {
 
 <template>
   <UCard class="mb-4">
-    <div class="mb-4 flex flex-col">
+    <div class="mb-2 flex flex-col">
       <span class="text-sm text-gray-700 dark:text-gray-400">
         {{ $t("common.currentBalance") }}
       </span>
@@ -125,30 +133,7 @@ async function submitAdjustment() {
   </p>
 
   <div class="mb-6 grid grid-cols-2 gap-2">
-    <UCard v-for="card of miniCards" :key="card.icon">
-      <div class="mb-4 flex items-center">
-        <span
-          class="mr-2 size-8 rounded-full"
-          :class="`bg-${card.color}-300/25`"
-        >
-          <Icon
-            :name="card.icon"
-            class="ml-[8px] mt-[5px]"
-            :class="`text-${card.color}-500`"
-          />
-        </span>
-        <div class="flex flex-col">
-          <span class="text-xs text-gray-500 dark:text-gray-400">
-            {{ card.name }}
-          </span>
-          <span class="font-bold text-gray-900 dark:text-white">
-            {{ numberWithSpaces(card.value) }}
-          </span>
-        </div>
-      </div>
-
-      <div class="h-0.5 w-full rounded" :class="`bg-${card.color}-500`" />
-    </UCard>
+    <UiStatCard v-for="card of miniCards" :key="card.icon" :icon="card.icon" :color="card.color" :value="card.value" :name="card.name" />
 
     <UModal v-model="adjustmentModal">
       <UCard>

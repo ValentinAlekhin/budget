@@ -25,6 +25,7 @@ interface Locale {
     network: string
     server: string
     currentBalance: string
+    balance: string
     totalSum: string
     noRecords: string
     submit: string
@@ -45,6 +46,7 @@ interface Locale {
   }
   range: {
     currentYear: string
+    currentQuarter: string
     currentMonth: string
     currentDay: string
     last30days: string
@@ -92,6 +94,7 @@ const messages: Record<string, Locale> = {
       network: 'Сеть',
       server: 'Сервер',
       currentBalance: 'Текущий баланс',
+      balance: 'Баланс',
       totalSum: 'Общая сумма',
       noRecords: 'Нет записей',
       submit: 'Подтвердить',
@@ -112,6 +115,7 @@ const messages: Record<string, Locale> = {
     },
     range: {
       currentYear: 'Текущий год',
+      currentQuarter: 'Текущий квартал',
       currentMonth: 'Текущий месяц',
       currentDay: 'Текущий день',
       last30days: 'Последние 30 дней',
@@ -158,6 +162,7 @@ const messages: Record<string, Locale> = {
       network: 'Network',
       server: 'Server',
       currentBalance: 'Current balance',
+      balance: 'Balance',
       totalSum: 'Total sum',
       noRecords: 'No records',
       submit: 'Submit',
@@ -178,6 +183,7 @@ const messages: Record<string, Locale> = {
     },
     range: {
       currentYear: 'Current Year',
+      currentQuarter: 'Current Quarter',
       currentMonth: 'Current Month',
       currentDay: 'Current Day',
       last30days: 'Last 30 Days',

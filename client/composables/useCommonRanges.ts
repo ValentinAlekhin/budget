@@ -13,11 +13,13 @@ export function useCommonRanges(name: string) {
   const { t } = useI18n()
   const {
     startOfCurrentMonth,
+    startOfCurrentQuarter,
     startOfCurrentDay,
+    startOfCurrentYear,
     endOfCurrentMonth,
+    endOfCurrentQuarter,
     endOfCurrentDay,
     endOfCurrentYear,
-    startOfCurrentYear,
   } = useTimestamp()
 
   const rangeValues: ComputedRef<Range[]> = computed(() => [
@@ -30,6 +32,11 @@ export function useCommonRanges(name: string) {
       name: t('range.currentMonth'),
       start: startOfCurrentMonth.value,
       end: endOfCurrentMonth.value,
+    },
+    {
+      name: t('range.currentQuarter'),
+      start: startOfCurrentQuarter.value,
+      end: endOfCurrentQuarter.value,
     },
     {
       name: t('range.last30days'),
