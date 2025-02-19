@@ -1,9 +1,3 @@
-<template>
-  <div>
-    <div class="spinner" :style="style"></div>
-  </div>
-</template>
-
 <script>
 export default {
   props: {
@@ -21,14 +15,20 @@ export default {
     },
   },
   computed: {
-    style: (vm) => ({
+    style: vm => ({
       backgroundColor: vm.color,
-      width: vm.width + 'px',
-      height: vm.height + 'px',
+      width: `${vm.width}px`,
+      height: `${vm.height}px`,
     }),
   },
 }
 </script>
+
+<template>
+  <div>
+    <div class="spinner" :style="style" />
+  </div>
+</template>
 
 <style scoped>
 .spinner {

@@ -19,23 +19,20 @@
 </template>
 
 <script lang="ts" setup>
-import {useColorMode} from "@vueuse/core";
-import {useRoute} from "#app";
-import {computed} from "@vue/reactivity";
-import {useScreenSize} from "~/composables/useScreenSize";
+import { useColorMode } from "@vueuse/core";
 
-const colorMode = useColorMode()
-const route = useRoute()
+const colorMode = useColorMode();
+const route = useRoute();
 
-const color = computed(() => (colorMode.value === 'dark' ? '#030712' : '#fff'))
+const color = computed(() => (colorMode.value === "dark" ? "#030712" : "#fff"));
 
-const { smallerThanLg } = useScreenSize()
+const { smallerThanLg } = useScreenSize();
 
 const layout = computed(() => {
-  if (route.path.includes('auth')) return 'auth'
+  if (route.path.includes("auth")) return "auth";
 
-  return smallerThanLg.value ? 'mobile' : 'desktop'
-})
+  return smallerThanLg.value ? "mobile" : "desktop";
+});
 </script>
 
 <style></style>

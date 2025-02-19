@@ -1,5 +1,6 @@
+import type { AxiosResponse } from 'axios'
 import { useLocalStorage } from '@vueuse/core'
-import axios, { type AxiosResponse } from 'axios'
+import axios from 'axios'
 
 const api = axios.create()
 
@@ -27,7 +28,8 @@ export function useApi() {
       const originalConfig = err.config
       const isAuthErr = err.response.status === 401
 
-      if (!isAuthErr || originalConfig._retry) return Promise.reject(err)
+      if (!isAuthErr || originalConfig._retry)
+        return Promise.reject(err)
 
       originalConfig._retry = true
 
@@ -35,9 +37,12 @@ export function useApi() {
 
       try {
         const payload: RefreshTokenRequestDto = {
-            refreshToken: tokensStore.value.refreshToken,
+          refreshToken: tokensStore.value.refreshToken,
         }
-        const { data } = await api.post<RefreshTokenResponseDto>('/auth/refresh-tokens', payload)
+        const { data } = await api.post<RefreshTokenResponseDto>(
+          '/auth/refresh-tokens',
+          payload,
+        )
 
         tokensStore.value = {
           refreshToken: data.refreshToken,
@@ -50,7 +55,8 @@ export function useApi() {
         cookieToken.value = data.accessToken
 
         return api(originalConfig)
-      } catch (e) {
+      }
+      catch (e) {
         resetTokens()
         await router.push('/auth')
         return Promise.reject(e)

@@ -1,27 +1,4 @@
-<template>
-  <UForm ref="form" :schema="schema" :state="state" @submit="submit">
-    <UFormGroup :label="$t('common.username')" name="username">
-      <UInput v-model="state.username" />
-    </UFormGroup>
-
-    <UFormGroup :label="$t('common.email')" name="email" class="mt-4">
-      <UInput v-model="state.email" />
-    </UFormGroup>
-
-    <UFormGroup :label="$t('common.password')" name="password" class="mt-4">
-      <UInput v-model="state.password" type="password" />
-    </UFormGroup>
-
-    <UButton class="mt-6" type="submit" block>
-      {{ $t('common.register') }}
-    </UButton>
-  </UForm>
-</template>
-
 <script lang="ts" setup>
-import { useAuthStore } from '~/store/auth'
-import { useBackendValidators } from '~/composables/useBackendValidators'
-
 const { object, string } = useYap()
 
 const authStore = useAuthStore()
@@ -41,8 +18,28 @@ const state = ref({
 
 const form = ref()
 
-const submit = async () => {
+async function submit() {
   await form.value!.validate()
   await authStore.register(state.value)
 }
 </script>
+
+<template>
+  <UForm ref="form" :schema="schema" :state="state" @submit="submit">
+    <UFormGroup :label="$t('common.username')" name="username">
+      <UInput v-model="state.username" />
+    </UFormGroup>
+
+    <UFormGroup :label="$t('common.email')" name="email" class="mt-4">
+      <UInput v-model="state.email" />
+    </UFormGroup>
+
+    <UFormGroup :label="$t('common.password')" name="password" class="mt-4">
+      <UInput v-model="state.password" type="password" />
+    </UFormGroup>
+
+    <UButton class="mt-6" type="submit" block>
+      {{ $t("common.register") }}
+    </UButton>
+  </UForm>
+</template>

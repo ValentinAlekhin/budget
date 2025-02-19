@@ -1,6 +1,7 @@
+import type { Dayjs } from 'dayjs'
+import type { UnwrapRef } from 'vue'
+import dayjs from 'dayjs'
 import { twMerge } from 'tailwind-merge'
-import dayjs, { Dayjs } from 'dayjs'
-import type {UnwrapRef} from "vue";
 
 export function useRecord() {
   const getTypeColor = (type: string) => {

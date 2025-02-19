@@ -5,7 +5,7 @@
     "baseUrl": ".",
     "paths": {
       "@dto": ["dto"],
-      "@store": ["dto/*"],
+      "@store": ["dto/*"]
     }
   }
 }

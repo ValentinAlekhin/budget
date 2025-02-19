@@ -6,7 +6,7 @@ interface State {
   error: Error | null | unknown
 }
 
-export const useRecordStore = createSharedComposable(function () {
+export const useRecordStore = createSharedComposable(() => {
   const { api } = useApi()
   const notify = useNotify()
 
@@ -18,7 +18,8 @@ export const useRecordStore = createSharedComposable(function () {
     }),
     actions: {
       async fetchAll({ force = false }) {
-        if (!force && this.data?.length) return
+        if (!force && this.data?.length)
+          return
 
         this.loading = true
         this.error = null
@@ -26,10 +27,12 @@ export const useRecordStore = createSharedComposable(function () {
         try {
           const { data } = await api.get('/records')
           this.data = data
-        } catch (e) {
+        }
+        catch (e) {
           notify.error('Ошибка при загрузке записей')
           this.error = e
-        } finally {
+        }
+        finally {
           this.loading = false
         }
       },
@@ -39,7 +42,7 @@ export const useRecordStore = createSharedComposable(function () {
       setData(data: RecordResponseDto[]) {
         this.data = data
       },
-      async addRecord(cost: { name: string; comment: string }) {
+      async addRecord(cost: { name: string, comment: string }) {
         await api.post('/records', { ...cost, type: 'cost' })
       },
       async addRecords(
@@ -64,9 +67,12 @@ export const useRecordStore = createSharedComposable(function () {
       },
     },
     getters: {
-      costs: (state) => state.data.filter((r) => r.type === CategoriesTypeEnum.COST),
-      inc: (state) => state.data.filter((r) => r.type === CategoriesTypeEnum.INC),
-      adjustment: (state) => state.data.filter((r) => r.type === CategoriesTypeEnum.ADJUSTMENT),
+      costs: state =>
+        state.data.filter(r => r.type === CategoriesTypeEnum.COST),
+      inc: state =>
+        state.data.filter(r => r.type === CategoriesTypeEnum.INC),
+      adjustment: state =>
+        state.data.filter(r => r.type === CategoriesTypeEnum.ADJUSTMENT),
     },
     persist: {
       storage: piniaPluginPersistedstate.localStorage(),

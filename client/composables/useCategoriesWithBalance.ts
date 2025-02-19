@@ -1,9 +1,6 @@
-import { storeToRefs } from 'pinia'
 import { sumBy } from 'lodash-es'
-import { useCategoryStore } from '~/store/category'
-import { useRecordStore } from '~/store/record'
 
-export const useCategoriesWithBalance = createSharedComposable(function () {
+export const useCategoriesWithBalance = createSharedComposable(() => {
   const {
     categoryStoreRefs: { costs: categoryCosts },
   } = useCategoryStore()
@@ -15,11 +12,12 @@ export const useCategoriesWithBalance = createSharedComposable(function () {
 
   const categoriesWithBalance = computed(() =>
     categoryCosts.value.map((c) => {
-      if (!c.plan) return c
+      if (!c.plan)
+        return c
 
       const start = now.value.startOf(c.planPeriod)
       const end = now.value.endOf(c.planPeriod)
-      const allCostList = costs.value.filter((r) => r.categoryId === c.id)
+      const allCostList = costs.value.filter(r => r.categoryId === c.id)
       const rangedCostList = filterRecordsByRange(allCostList, start, end)
       const allCostSum = sumBy(rangedCostList, 'amount')
 

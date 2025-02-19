@@ -1,3 +1,10 @@
+<script setup lang="ts">
+const { fetchAll, loading, error, initSocket, dataExists } = useGlobalLoading()
+const { smallerThanLg } = useScreenSize()
+
+onMounted(initSocket)
+</script>
+
 <template>
   <div class="h-full overflow-y-auto pb-40 pt-14 lg:pb-0">
     <Header />
@@ -13,7 +20,9 @@
           Error loading data from the server
         </span>
 
-        <UButton @click="fetchAll">Reload</UButton>
+        <UButton @click="fetchAll">
+          Reload
+        </UButton>
       </div>
     </UCard>
 
@@ -27,14 +36,3 @@
     </template>
   </div>
 </template>
-
-<script setup lang="ts">
-import {onMounted} from "@vue/runtime-core";
-import {useScreenSize} from "~/composables/useScreenSize";
-import {useGlobalLoading} from "~/composables/useGlobalLoading";
-
-const { fetchAll, loading, error, initSocket, dataExists } = useGlobalLoading()
-const { smallerThanLg } = useScreenSize()
-
-onMounted(initSocket)
-</script>

@@ -1,4 +1,3 @@
-
 type Item = RecordResponseDto | CategoryResponseDto
 
 interface CudAction<T extends Item> {
@@ -17,7 +16,11 @@ interface Parameters<T extends Item> {
   entity: 'record' | 'category'
 }
 
-export function useCud<T extends Item>({ items, entity, setter }: Parameters<T>) {
+export function useCud<T extends Item>({
+  items,
+  entity,
+  setter,
+}: Parameters<T>) {
   const { socketStoreRef } = useSocketStore()
 
   const actions = {
@@ -35,7 +38,7 @@ export function useCud<T extends Item>({ items, entity, setter }: Parameters<T>)
     },
     delete(payload: T[]) {
       const ids = payload.map(({ id }) => id)
-      const newData = items.value.filter((item) => !ids.includes(item.id))
+      const newData = items.value.filter(item => !ids.includes(item.id))
       setter(newData)
     },
   }
@@ -44,11 +47,14 @@ export function useCud<T extends Item>({ items, entity, setter }: Parameters<T>)
     socketStoreRef.socket.value?.addEventListener('message', (msg) => {
       const data = JSON.parse(msg.data) as CudAction<T>
 
-      if (data.type !== 'cud') return
-      if (data.payload.entity !== entity) return
+      if (data.type !== 'cud')
+        return
+      if (data.payload.entity !== entity)
+        return
 
       const fn = actions[data.payload.action]
-      if (typeof fn !== 'function') return
+      if (typeof fn !== 'function')
+        return
 
       fn(data.payload.list)
     })

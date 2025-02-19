@@ -1,3 +1,10 @@
+<script lang="ts" setup>
+const {
+  socketStoreRef: { connected },
+} = useSocketStore()
+const { isOnline } = useNetwork()
+</script>
+
 <template>
   <UPopover>
     <span class="relative">
@@ -34,12 +41,3 @@
     </template>
   </UPopover>
 </template>
-
-<script lang="ts" setup>
-import { useSocketStore } from '~/store/socket'
-
-const {
-  socketStoreRef: { connected },
-} = useSocketStore()
-const { isOnline } = useNetwork()
-</script>

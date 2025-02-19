@@ -1,5 +1,4 @@
-import {  defineStore } from 'pinia'
-import {useSocketStore} from "../socket";
+import { defineStore } from 'pinia'
 
 interface State {
   user: null | PureUserDto
@@ -18,9 +17,13 @@ export const useAuthStore = defineStore('auth', {
       try {
         const { api, tokensStore } = useApi()
 
-        const { data } = await api.post<LoginResponseDto>('/auth/login', credentials, {
-          withCredentials: true,
-        })
+        const { data } = await api.post<LoginResponseDto>(
+          '/auth/login',
+          credentials,
+          {
+            withCredentials: true,
+          },
+        )
 
         tokensStore.value = {
           accessToken: data.accessToken,
@@ -37,7 +40,10 @@ export const useAuthStore = defineStore('auth', {
 
         const { fetchAll } = useGlobalLoading()
         await fetchAll()
-      } catch (e) {
+      }
+
+      // eslint-disable-next-line unused-imports/no-unused-vars
+      catch (e) {
         notify.error('Невалидные данные')
       }
     },
@@ -63,7 +69,10 @@ export const useAuthStore = defineStore('auth', {
       try {
         await api.post('/user', credentials)
         await this.login(credentials)
-      } catch (e) {
+      }
+
+      // eslint-disable-next-line unused-imports/no-unused-vars
+      catch (e) {
         notify.error('Ошибка при регистарции')
       }
     },
@@ -76,4 +85,3 @@ export const useAuthStore = defineStore('auth', {
   },
   getters: {},
 })
-

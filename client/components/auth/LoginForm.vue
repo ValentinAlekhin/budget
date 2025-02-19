@@ -1,22 +1,5 @@
-<template>
-  <UForm ref="form" :schema="schema" :state="state" @submit="submit">
-    <UFormGroup :label="$t('common.username')" name="username">
-      <UInput v-model="state.username" />
-    </UFormGroup>
-
-    <UFormGroup :label="$t('common.password')" name="password" class="mt-4">
-      <UInput v-model="state.password" type="password" />
-    </UFormGroup>
-
-    <UButton class="mt-6" type="submit" block>
-      {{ $t('common.login') }}
-    </UButton>
-  </UForm>
-</template>
-
 <script lang="ts" setup>
-import { useAuthStore } from '~/store/auth'
-
+const authStore = useAuthStore()
 const { object, string } = useYap()
 
 const schema = object({
@@ -35,6 +18,20 @@ async function submit() {
   await form.value!.validate()
   await authStore.login(state.value)
 }
-
-const authStore = useAuthStore()
 </script>
+
+<template>
+  <UForm ref="form" :schema="schema" :state="state" @submit="submit">
+    <UFormGroup :label="$t('common.username')" name="username">
+      <UInput v-model="state.username" />
+    </UFormGroup>
+
+    <UFormGroup :label="$t('common.password')" name="password" class="mt-4">
+      <UInput v-model="state.password" type="password" />
+    </UFormGroup>
+
+    <UButton class="mt-6" type="submit" block>
+      {{ $t("common.login") }}
+    </UButton>
+  </UForm>
+</template>

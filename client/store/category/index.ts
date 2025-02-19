@@ -6,7 +6,7 @@ export interface CategoryState {
   error: any
 }
 
-export const useCategoryStore = createSharedComposable(function () {
+export const useCategoryStore = createSharedComposable(() => {
   const { api } = useApi()
   const notify = useNotify()
 
@@ -22,14 +22,17 @@ export const useCategoryStore = createSharedComposable(function () {
         this.error = null
 
         try {
-          if (!force && this.data?.length) return
+          if (!force && this.data?.length)
+            return
 
           const { data } = await api.get<CategoryResponseDto[]>('/category')
           this.data = data || []
-        } catch (e) {
+        }
+        catch (e) {
           notify.error('Ошибка при загрузке категорий')
           this.error = e
-        } finally {
+        }
+        finally {
           this.loading = false
         }
       },
@@ -46,36 +49,38 @@ export const useCategoryStore = createSharedComposable(function () {
       }) {
         try {
           await api.post('/category', category)
-        } catch (e) {
+        }
+        catch (e) {
           notify.error('Ошибка при сохранении')
         }
       },
       async updateMany(data: UpdateCategoryRequestDto[]) {
         try {
           await api.put('/category/many', { data })
-        } catch (e) {
+        }
+        catch (e) {
           notify.error('Ошибка при обновлении категорий')
         }
       },
       async delete(id: number) {
         try {
           await api.delete(`/category/${id}`)
-        } catch (e) {
+        }
+        catch (e) {
           notify.error('Ошибка при удалении')
         }
       },
     },
     getters: {
-      costs: (state) =>
+      costs: state =>
         state.data
-          .filter((c) => c.type === 'cost')
+          .filter(c => c.type === 'cost')
           .sort((a, b) => a.order - b.order),
-      incoming: (state) =>
+      incoming: state =>
         state.data
-          .filter((c) => c.type === 'inc')
+          .filter(c => c.type === 'inc')
           .sort((a, b) => a.order - b.order),
-      getById: (state) => (id: number) =>
-        state.data.find((c) => c.id === id),
+      getById: state => (id: number) => state.data.find(c => c.id === id),
     },
     persist: {
       storage: piniaPluginPersistedstate.localStorage(),

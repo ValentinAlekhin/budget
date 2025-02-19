@@ -13,6 +13,6 @@ export const MONTH_LIST_RU = [
   'Декабрь',
 ]
 
-export const AVAILABLE_MONTH = Array(12)
+export const AVAILABLE_MONTH = Array.from({ length: 12 })
   .fill('')
   .map((_, i) => i)

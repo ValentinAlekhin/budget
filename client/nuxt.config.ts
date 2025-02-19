@@ -1,5 +1,5 @@
-import { defineNuxtConfig } from 'nuxt/config'
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin'
+import { defineNuxtConfig } from 'nuxt/config'
 
 const { DOMAIN, HTTP_PROTOCOL, WEBSOCKET_PROTOCOL } = process.env
 
@@ -39,7 +39,7 @@ export default defineNuxtConfig({
   },
 
   imports: {
-    dirs: ['store/*', 'dto'],
+    dirs: ['store/*', 'dto', 'constants/*'],
   },
 
   typescript: {

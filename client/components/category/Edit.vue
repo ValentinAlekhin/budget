@@ -1,154 +1,11 @@
-<template>
-  <div class="pb-40">
-    <Draggable
-      v-model="computedInputs"
-      class="list-group"
-      :component-data="{
-        tag: 'ul',
-        type: 'transition-group',
-        name: !drag ? 'flip-list' : null,
-      }"
-      item-key="id"
-      handle=".handle"
-      v-bind="dragOptions"
-      @start="drag = true"
-      @end="drag = false"
-    >
-      <template #item="{ element }">
-        <UCard class="mb-2" :ui="cardUi">
-          <div class="inputContainer grid items-center gap-1">
-            <UButton
-              size="sm"
-              color="rose"
-              icon="i-heroicons-trash"
-              :ui="{ rounded: 'rounded-full' }"
-              variant="ghost"
-              @click="itemToDelete = element"
-            />
-
-            <div class="flex items-center">
-              <div
-                v-if="element.color || element.icon"
-                class="mr-2 flex w-6 justify-center"
-              >
-                <Icon
-                  v-if="element.icon"
-                  :color="element.color"
-                  :name="element.icon"
-                  size="24"
-                />
-
-                <span
-                  v-else-if="element.color"
-                  :style="{ background: element.color }"
-                  class="inline-block size-2 rounded-full"
-                />
-              </div>
-
-              <span> {{ element.name }}</span>
-            </div>
-
-            <UButton
-              size="sm"
-              icon="i-heroicons-pencil-square"
-              variant="ghost"
-              @click="startEditCategory(element.id)"
-            />
-
-            <UButton
-              class="handle"
-              size="sm"
-              :ui="{ rounded: 'rounded-full' }"
-              icon="i-heroicons-arrows-up-down"
-              variant="ghost"
-            />
-          </div>
-        </UCard>
-      </template>
-    </Draggable>
-
-    <UModal v-model="modalOpen" @close="modalClose">
-      <UCard>
-        <template #header>
-          <span class="text-xl font-medium dark:text-white">
-            {{ $t('category.add') }}
-          </span>
-        </template>
-
-        <UForm ref="form" :schema="schema" :state="state">
-          <UFormGroup :label="$t('common.name')" name="name" class="mb-2">
-            <UInput v-model="state.name" />
-          </UFormGroup>
-
-          <UFormGroup :label="$t('common.plan')" name="plan" class="mb-2">
-            <UInput v-model.number="state.plan" />
-          </UFormGroup>
-
-          <UFormGroup
-            v-if="state.plan"
-            :label="$t('common.planPeriod')"
-            name="planPeriod"
-            class="mb-2"
-          >
-            <USelectMenu
-              :model-value="state.planPeriod"
-              :options="planPeriodList"
-              option-attribute="name"
-              @change="state.planPeriod = $event.value"
-            >
-              <template #label>
-                {{ selectedPlanPeriodName }}
-              </template>
-            </USelectMenu>
-          </UFormGroup>
-
-          <UFormGroup :label="$t('common.comment')" name="comment" class="mb-2">
-            <UInput v-model="state.comment" />
-          </UFormGroup>
-
-          <UFormGroup :label="$t('common.icon')" name="icon" class="mb-2">
-            <UInput v-model="state.icon" class="mb-1">
-              <template v-if="state.icon" #trailing>
-                <Icon :name="state.icon" size="24" />
-              </template>
-            </UInput>
-
-            <span
-              class="text-sm text-neutral-400"
-              v-html="$t('icon.resource')"
-            />
-          </UFormGroup>
-
-          <UFormGroup name="color">
-            <UiTailwindColorPicker v-model="state.color" />
-          </UFormGroup>
-        </UForm>
-
-        <template #footer>
-          <UButton block @click="submitModal">
-            {{ $t(`common.${editCategoryId ? 'edit' : 'add'}`) }}
-          </UButton>
-        </template>
-      </UCard>
-    </UModal>
-
-    <common-modal-remove
-      :is-open="!!itemToDelete"
-      :title="`Remove category '${itemToDelete?.name}'?`"
-      @close="itemToDelete = null"
-      @remove="removeItem(itemToDelete?.id)"
-    />
-  </div>
-</template>
-
 <script setup lang="ts">
-import Draggable from 'vuedraggable'
 import { capitalize, cloneDeep, get, last } from 'lodash-es'
-import { set } from 'vue-demi'
 import Omit from 'lodash-es/omit'
-import { useCategoryStore } from '~/store/category'
-import { useActionsStore } from '~/store/actions'
+import { set } from 'vue-demi'
+import Draggable from 'vuedraggable'
 
+const props = defineProps<{ type: 'cost' | 'inc', tab: string }>()
+const emit = defineEmits(['submit', 'cancel'])
 const actionsStore = useActionsStore()
 const {
   categoryStore,
@@ -158,12 +15,9 @@ const toast = useToast()
 const { object, string } = useYap()
 const { t } = useI18n()
 
-const props = defineProps<{ type: 'cost' | 'inc'; tab: string }>()
 const { tab } = toRefs(props)
-const emit = defineEmits(['submit', 'cancel'])
-
 const planPeriodList = computed(() =>
-  ['day', 'week', 'month', 'quarter', 'year'].map((value) => ({
+  ['day', 'week', 'month', 'quarter', 'year'].map(value => ({
     value,
     name: capitalize(t(`common.${value}`)),
   })),
@@ -241,7 +95,7 @@ const dragOptions = {
 
 const selectedPlanPeriodName = computed(
   () =>
-    planPeriodList.value.find((item) => item.value === state.value.planPeriod)
+    planPeriodList.value.find(item => item.value === state.value.planPeriod)
       ?.name,
 )
 
@@ -269,18 +123,18 @@ const computedInputs = computed({
           planPeriod,
           comment: get(formState, `${id}.comment`),
           plan: get(formState, `${id}.plan`),
-          setName: (e) => set(formState, namePath, e.target.value),
-          setOrder: (order) => set(formState, orderPath, order),
-          setIcon: (e) => set(formState, iconPath, e.target.value),
-          setColor: (e) => set(formState, colorPath, e),
-          setPlanPeriod: (e) => set(formState, planPeriodPath, e),
+          setName: e => set(formState, namePath, e.target.value),
+          setOrder: order => set(formState, orderPath, order),
+          setIcon: e => set(formState, iconPath, e.target.value),
+          setColor: e => set(formState, colorPath, e),
+          setPlanPeriod: e => set(formState, planPeriodPath, e),
         }
       })
       .sort((a, b) => a.order - b.order),
-  set: (value) => value.forEach((item, i) => item.setOrder(i + 1)),
+  set: value => value.forEach((item, i) => item.setOrder(i + 1)),
 })
 
-const startEditCategory = (categoryId: string) => {
+function startEditCategory(categoryId: string) {
   const targetCategory = categoryStore.getById(categoryId)
   state.value = {
     name: targetCategory.name,
@@ -293,7 +147,7 @@ const startEditCategory = (categoryId: string) => {
   editCategoryId.value = categoryId
   modalOpen.value = true
 }
-const save = async (redirect = true) => {
+async function save(redirect = true) {
   const payload = computedInputs.value.map(
     ({ id, order, name, icon, comment, plan, color, planPeriod }) => ({
       id,
@@ -310,12 +164,14 @@ const save = async (redirect = true) => {
 
   await categoryStore.updateMany(payload)
 
-  if (redirect) emit('submit')
+  if (redirect)
+    emit('submit')
 }
-const submitModal = async () => {
+async function submitModal() {
   try {
     await form.value?.validate()
-  } catch (e) {
+  }
+  catch (e) {
     return toast.add({ title: 'Invalid form' })
   }
 
@@ -327,7 +183,8 @@ const submitModal = async () => {
     }
 
     await save(false)
-  } else {
+  }
+  else {
     const payload = {
       name: state.value.name,
       icon: state.value.icon,
@@ -346,12 +203,12 @@ const submitModal = async () => {
   editCategoryId.value = null
 }
 
-const removeItem = async (id: string) => {
+async function removeItem(id: string) {
   await categoryStore.delete(id)
   itemToDelete.value = null
 }
 
-const modalClose = () => {
+function modalClose() {
   editCategoryId.value = null
   clearState()
 }
@@ -362,7 +219,7 @@ const cardUi = {
   },
 }
 
-watch(categories, (value) =>
+watch(categories, value =>
   cloneDeep(value)
     .sort((a, b) => a.order - b.order)
     .forEach(
@@ -376,11 +233,11 @@ watch(categories, (value) =>
           comment: c.comment,
           color: c.color,
         }),
-    ),
-)
+    ))
 
-const setActions = () => {
-  if (props.type !== tab.value) return
+function setActions() {
+  if (props.type !== tab.value)
+    return
 
   actionsStore.setActions({
     add: () => (modalOpen.value = true),
@@ -390,7 +247,8 @@ const setActions = () => {
 }
 
 watch(modalOpen, (value) => {
-  if (!value) clearState()
+  if (!value)
+    clearState()
 })
 
 watch(tab, () => {
@@ -401,6 +259,149 @@ onMounted(() => {
   setActions()
 })
 </script>
+
+<template>
+  <div class="pb-40">
+    <Draggable
+      v-model="computedInputs"
+      class="list-group"
+      :component-data="{
+        tag: 'ul',
+        type: 'transition-group',
+        name: !drag ? 'flip-list' : null,
+      }"
+      item-key="id"
+      handle=".handle"
+      v-bind="dragOptions"
+      @start="drag = true"
+      @end="drag = false"
+    >
+      <template #item="{ element }">
+        <UCard class="mb-2" :ui="cardUi">
+          <div class="inputContainer grid items-center gap-1">
+            <UButton
+              size="sm"
+              color="rose"
+              icon="i-heroicons-trash"
+              :ui="{ rounded: 'rounded-full' }"
+              variant="ghost"
+              @click="itemToDelete = element"
+            />
+
+            <div class="flex items-center">
+              <div
+                v-if="element.color || element.icon"
+                class="mr-2 flex w-6 justify-center"
+              >
+                <Icon
+                  v-if="element.icon"
+                  :color="element.color"
+                  :name="element.icon"
+                  size="24"
+                />
+
+                <span
+                  v-else-if="element.color"
+                  :style="{ background: element.color }"
+                  class="inline-block size-2 rounded-full"
+                />
+              </div>
+
+              <span> {{ element.name }}</span>
+            </div>
+
+            <UButton
+              size="sm"
+              icon="i-heroicons-pencil-square"
+              variant="ghost"
+              @click="startEditCategory(element.id)"
+            />
+
+            <UButton
+              class="handle"
+              size="sm"
+              :ui="{ rounded: 'rounded-full' }"
+              icon="i-heroicons-arrows-up-down"
+              variant="ghost"
+            />
+          </div>
+        </UCard>
+      </template>
+    </Draggable>
+
+    <UModal v-model="modalOpen" @close="modalClose">
+      <UCard>
+        <template #header>
+          <span class="text-xl font-medium dark:text-white">
+            {{ $t("category.add") }}
+          </span>
+        </template>
+
+        <UForm ref="form" :schema="schema" :state="state">
+          <UFormGroup :label="$t('common.name')" name="name" class="mb-2">
+            <UInput v-model="state.name" />
+          </UFormGroup>
+
+          <UFormGroup :label="$t('common.plan')" name="plan" class="mb-2">
+            <UInput v-model.number="state.plan" />
+          </UFormGroup>
+
+          <UFormGroup
+            v-if="state.plan"
+            :label="$t('common.planPeriod')"
+            name="planPeriod"
+            class="mb-2"
+          >
+            <USelectMenu
+              :model-value="state.planPeriod"
+              :options="planPeriodList"
+              option-attribute="name"
+              @change="state.planPeriod = $event.value"
+            >
+              <template #label>
+                {{ selectedPlanPeriodName }}
+              </template>
+            </USelectMenu>
+          </UFormGroup>
+
+          <UFormGroup :label="$t('common.comment')" name="comment" class="mb-2">
+            <UInput v-model="state.comment" />
+          </UFormGroup>
+
+          <UFormGroup :label="$t('common.icon')" name="icon" class="mb-2">
+            <UInput v-model="state.icon" class="mb-1">
+              <template v-if="state.icon" #trailing>
+                <Icon :name="state.icon" size="24" />
+              </template>
+            </UInput>
+
+            <span
+              class="text-sm text-neutral-400"
+              v-html="$t('icon.resource')"
+            />
+          </UFormGroup>
+
+          <UFormGroup name="color">
+            <UiTailwindColorPicker v-model="state.color" />
+          </UFormGroup>
+        </UForm>
+
+        <template #footer>
+          <UButton block @click="submitModal">
+            {{ $t(`common.${editCategoryId ? "edit" : "add"}`) }}
+          </UButton>
+        </template>
+      </UCard>
+    </UModal>
+
+    <common-modal-remove
+      :is-open="!!itemToDelete"
+      :title="`Remove category '${itemToDelete?.name}'?`"
+      @close="itemToDelete = null"
+      @remove="removeItem(itemToDelete?.id)"
+    />
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .inputContainer {

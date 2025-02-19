@@ -7,7 +7,8 @@ export function useGlobalLoading() {
   const initSocket = () => socketStore.init()
 
   const fetchAll = async () => {
-    if (!authStore.user) return
+    if (!authStore.user)
+      return
     await Promise.all([categoryStore.init(), recordStore.init()])
   }
 

@@ -1,9 +1,204 @@
+<script setup lang="ts">
+import type {
+  ChartData,
+  ChartOptions,
+  DoughnutControllerChartOptions,
+  DoughnutControllerDatasetOptions,
+} from 'chart.js'
+import type { Dayjs, ManipulateType } from 'dayjs'
+import { useLocalStorage } from '@vueuse/core'
+import { capitalize, sumBy } from 'lodash-es'
+import { Doughnut } from 'vue-chartjs'
+
+const {
+  categoryStoreRefs: { costs, incoming },
+} = useCategoryStore()
+const { recordStoreRefs } = useRecordStore()
+const { filterRecordsByRange } = useRecord()
+const { t } = useI18n()
+const { currentTab, tabs } = useCategoryTabs()
+const {
+  startOfCurrentDay,
+  endOfCurrentDay,
+  startOfCurrentYear,
+  endOfCurrentYear,
+  startOfCurrentMonth,
+  endOfCurrentMonth,
+  startOfCurrentWeek,
+  endOfCurrentWeek,
+  startOfCurrentQuarter,
+  endOfCurrentQuarter,
+} = useTimestamp()
+const { backgroundColor } = useTheme()
+const { colors } = useTailwindColors()
+
+const startEndDates = ref({
+  start: startOfCurrentDay.value,
+  end: endOfCurrentDay.value,
+})
+
+const categoryTypes = computed(() => [
+  {
+    categories: costs.value,
+    records: recordStoreRefs.costs.value,
+  },
+  {
+    categories: incoming.value,
+    records: recordStoreRefs.inc.value,
+  },
+])
+const selected = computed(() => categoryTypes.value[currentTab.value])
+
+const currentRangeIndex = useLocalStorage('stat-range', 0)
+const ranges = computed(() => [
+  {
+    label: capitalize(t('common.day')),
+    start: startOfCurrentDay.value,
+    end: endOfCurrentDay.value,
+    step: 'day',
+    rangeView: ({ start }: { start: Dayjs, end?: Dayjs }) =>
+      start.format('D MMMM, YYYY'),
+  },
+  {
+    label: capitalize(t('common.week')),
+    start: startOfCurrentWeek.value,
+    end: endOfCurrentWeek.value,
+    step: 'week',
+    rangeView: ({ start, end }: { start: Dayjs, end?: Dayjs }) =>
+      `${start.format('D MMMM')} - ${end.format('D MMMM, YYYY')}`,
+  },
+  {
+    label: capitalize(t('common.month')),
+    start: startOfCurrentMonth.value,
+    end: endOfCurrentMonth.value,
+    step: 'month',
+    rangeView: ({ start }: { start: Dayjs, end?: Dayjs }) =>
+      capitalize(`${start.format('MMMM, YYYY')}`),
+  },
+  {
+    label: capitalize(t('common.quarter')),
+    start: startOfCurrentQuarter.value,
+    end: endOfCurrentQuarter.value,
+    step: 'quarter',
+    rangeView: ({ start }: { start: Dayjs, end?: Dayjs }) =>
+      `${start.quarter()} ${t('common.quarter')}, ${start.format('YYYY')}`,
+  },
+  {
+    label: capitalize(t('common.year')),
+    start: startOfCurrentYear.value,
+    end: endOfCurrentYear.value,
+    step: 'year',
+    rangeView: ({ start }: { start: Dayjs, end?: Dayjs }) =>
+      start.format('YYYY'),
+  },
+])
+
+const currentRange = computed(() => ranges.value[currentRangeIndex.value])
+
+const filteredRecords = computed(() =>
+  filterRecordsByRange(
+    selected.value.records,
+    startEndDates.value.start as Dayjs,
+    startEndDates.value.end as Dayjs,
+  ),
+)
+
+const totalSum = computed(() => sumBy(filteredRecords.value, 'amount'))
+
+function getSum(id: number, list: RecordResponseDto[]) {
+  return sumBy(
+    list.filter(r => r.categoryId === id),
+    'amount',
+  )
+}
+
+const list = computed(() =>
+  selected.value.categories
+    .map((c) => {
+      const sum = getSum(c.id, filteredRecords.value)
+      const percentage
+        = Math.round((sum / totalSum.value) * 100 * 100) / 100 || 0
+
+      return {
+        name: c.name,
+        id: c.id,
+        sum,
+        percentage,
+        color: c.color,
+        icon: c.icon,
+      }
+    })
+    .filter(c => c.sum),
+)
+
+const cardUi = {
+  body: {
+    padding: 'px-6 py-3 sm:p-6',
+  },
+}
+
+function prevDate() {
+  const step = currentRange.value.step as ManipulateType
+
+  startEndDates.value = {
+    start: startEndDates.value.start.subtract(1, step),
+    end: startEndDates.value.end.subtract(1, step),
+  }
+}
+function nextDate() {
+  const step = currentRange.value.step as ManipulateType
+
+  startEndDates.value = {
+    start: startEndDates.value.start.add(1, step),
+    end: startEndDates.value.end.add(1, step),
+  }
+}
+
+const chartData = computed<ChartData<DoughnutControllerDatasetOptions>>(() => ({
+  labels: list.value.map(item => item.name),
+  datasets: [
+    {
+      backgroundColor: list.value.map(
+        item => item.color || colors.cyan['500'],
+      ),
+      borderColor: backgroundColor.value,
+      data: list.value.map(item => item.percentage),
+    },
+  ],
+}))
+
+const chartOptions: ChartOptions<DoughnutControllerChartOptions> = {
+  cutout: '80%',
+  maintainAspectRatio: false,
+  responsive: false,
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+}
+
+onMounted(() => {
+  startEndDates.value = {
+    start: currentRange.value.start,
+    end: currentRange.value.end,
+  }
+})
+
+watch(currentRange, (value: any) => {
+  startEndDates.value = {
+    start: value?.start,
+    end: value?.end,
+  }
+})
+</script>
+
 <template>
   <div>
-    <UTabs :items="tabs" v-model:model-value="currentTab" class="w-full" />
+    <UTabs v-model:model-value="currentTab" :items="tabs" class="w-full" />
     <UTabs
-      :items="ranges"
       v-model:model-value="currentRangeIndex"
+      :items="ranges"
       class="w-full"
     />
 
@@ -91,203 +286,9 @@
         <span
           class="text-center text-lg font-semibold text-gray-900 dark:text-white"
         >
-          {{ t('common.noRecords') }}
+          {{ t("common.noRecords") }}
         </span>
       </div>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { Dayjs, ManipulateType } from 'dayjs'
-import { capitalize, sumBy } from 'lodash-es'
-import { useLocalStorage } from '@vueuse/core'
-import { Doughnut } from 'vue-chartjs'
-import type {
-  ChartData,
-  ChartOptions,
-  DoughnutControllerChartOptions,
-  DoughnutControllerDatasetOptions,
-} from 'chart.js'
-
-const {
-  categoryStoreRefs: { costs, incoming },
-} = useCategoryStore()
-const { recordStoreRefs } = useRecordStore()
-const { filterRecordsByRange } = useRecord()
-const { t } = useI18n()
-const { currentTab, tabs } = useCategoryTabs()
-const {
-  startOfCurrentDay,
-  endOfCurrentDay,
-  startOfCurrentYear,
-  endOfCurrentYear,
-  startOfCurrentMonth,
-  endOfCurrentMonth,
-  startOfCurrentWeek,
-  endOfCurrentWeek,
-  startOfCurrentQuarter,
-  endOfCurrentQuarter,
-} = useTimestamp()
-const { backgroundColor } = useTheme()
-const { colors } = useTailwindColors()
-
-const startEndDates = ref({
-  start: startOfCurrentDay.value,
-  end: endOfCurrentDay.value,
-})
-
-const categoryTypes = computed(() => [
-  {
-    categories: costs.value,
-    records: recordStoreRefs.costs.value,
-  },
-  {
-    categories: incoming.value,
-    records: recordStoreRefs.inc.value,
-  },
-])
-const selected = computed(() => categoryTypes.value[currentTab.value])
-
-const currentRangeIndex = useLocalStorage('stat-range', 0)
-const ranges = computed(() => [
-  {
-    label: capitalize(t('common.day')),
-    start: startOfCurrentDay.value,
-    end: endOfCurrentDay.value,
-    step: 'day',
-    rangeView: ({ start }: { start: Dayjs; end?: Dayjs }) =>
-      start.format('D MMMM, YYYY'),
-  },
-  {
-    label: capitalize(t('common.week')),
-    start: startOfCurrentWeek.value,
-    end: endOfCurrentWeek.value,
-    step: 'week',
-    rangeView: ({ start, end }: { start: Dayjs; end?: Dayjs }) =>
-      `${start.format('D MMMM')} - ${end.format('D MMMM, YYYY')}`,
-  },
-  {
-    label: capitalize(t('common.month')),
-    start: startOfCurrentMonth.value,
-    end: endOfCurrentMonth.value,
-    step: 'month',
-    rangeView: ({ start }: { start: Dayjs; end?: Dayjs }) =>
-      capitalize(`${start.format('MMMM, YYYY')}`),
-  },
-  {
-    label: capitalize(t('common.quarter')),
-    start: startOfCurrentQuarter.value,
-    end: endOfCurrentQuarter.value,
-    step: 'quarter',
-    rangeView: ({ start }: { start: Dayjs; end?: Dayjs }) =>
-      `${start.quarter()} ${t('common.quarter')}, ${start.format('YYYY')}`,
-  },
-  {
-    label: capitalize(t('common.year')),
-    start: startOfCurrentYear.value,
-    end: endOfCurrentYear.value,
-    step: 'year',
-    rangeView: ({ start }: { start: Dayjs; end?: Dayjs }) =>
-      start.format('YYYY'),
-  },
-])
-
-const currentRange = computed(() => ranges.value[currentRangeIndex.value])
-
-const filteredRecords = computed(() =>
-  filterRecordsByRange(
-    selected.value.records,
-    startEndDates.value.start as Dayjs,
-    startEndDates.value.end as Dayjs,
-  ),
-)
-
-const totalSum = computed(() => sumBy(filteredRecords.value, 'amount'))
-
-const getSum = (id: number, list: RecordResponseDto[]) =>
-  sumBy(
-    list.filter((r) => r.categoryId === id),
-    'amount',
-  )
-
-const list = computed(() =>
-  selected.value.categories
-    .map((c) => {
-      const sum = getSum(c.id, filteredRecords.value)
-      const percentage =
-        Math.round((sum / totalSum.value) * 100 * 100) / 100 || 0
-
-      return {
-        name: c.name,
-        id: c.id,
-        sum,
-        percentage,
-        color: c.color,
-        icon: c.icon,
-      }
-    })
-    .filter((c) => c.sum),
-)
-
-const cardUi = {
-  body: {
-    padding: 'px-6 py-3 sm:p-6',
-  },
-}
-
-const prevDate = () => {
-  const step = currentRange.value.step as ManipulateType
-
-  startEndDates.value = {
-    start: startEndDates.value.start.subtract(1, step),
-    end: startEndDates.value.end.subtract(1, step),
-  }
-}
-const nextDate = () => {
-  const step = currentRange.value.step as ManipulateType
-
-  startEndDates.value = {
-    start: startEndDates.value.start.add(1, step),
-    end: startEndDates.value.end.add(1, step),
-  }
-}
-
-const chartData = computed<ChartData<DoughnutControllerDatasetOptions>>(() => ({
-  labels: list.value.map((item) => item.name),
-  datasets: [
-    {
-      backgroundColor: list.value.map(
-        (item) => item.color || colors.cyan['500'],
-      ),
-      borderColor: backgroundColor.value,
-      data: list.value.map((item) => item.percentage),
-    },
-  ],
-}))
-
-const chartOptions: ChartOptions<DoughnutControllerChartOptions> = {
-  cutout: '80%',
-  maintainAspectRatio: false,
-  responsive: false,
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-}
-
-onMounted(() => {
-  startEndDates.value = {
-    start: currentRange.value.start,
-    end: currentRange.value.end,
-  }
-})
-
-watch(currentRange, (value: any) => {
-  startEndDates.value = {
-    start: value?.start,
-    end: value?.end,
-  }
-})
-</script>

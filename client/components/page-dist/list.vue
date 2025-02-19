@@ -1,3 +1,14 @@
+<script lang="ts" setup>
+const props = defineProps(['modelValue', 'items'])
+const emit = defineEmits(['update:modelValue'])
+
+const getValue = id => props?.modelValue[id]
+
+function setValue(e, id: string) {
+  emit('update:modelValue', { id, value: +e.target.value })
+}
+</script>
+
 <template>
   <div>
     <UInput
@@ -27,15 +38,3 @@
     </UInput>
   </div>
 </template>
-
-<script lang="ts" setup>
-const props = defineProps(['modelValue', 'items'])
-
-const emit = defineEmits(['update:modelValue'])
-
-const getValue = (id) => props?.modelValue[id]
-
-const setValue = (e, id: string) => {
-  emit('update:modelValue', { id, value: +e.target.value })
-}
-</script>

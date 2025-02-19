@@ -1,8 +1,79 @@
+<script lang="ts" setup>
+import type { Dayjs } from 'dayjs'
+import type { InferType } from 'yup'
+import { sumBy } from 'lodash-es'
+
+const {
+  recordStore,
+  recordStoreRefs: { costs, inc, adjustment },
+} = useRecordStore()
+const { t } = useI18n()
+const { filterRecordsByRange } = useRecord()
+const { handleClick, currentRange } = useCommonRanges('home-range-index')
+const { number, object } = useYap()
+
+const adjustmentModal = ref(false)
+
+const totalIncoming = computed(() => sumBy(inc.value, 'amount'))
+const totalCost = computed(() => sumBy(costs.value, 'amount'))
+const totalAdjustment = computed(() => sumBy(adjustment.value, 'amount'))
+
+const currentBalance = computed(
+  () => totalIncoming.value - totalCost.value + totalAdjustment.value,
+)
+
+const miniCards = computed(() =>
+  [
+    {
+      color: 'red',
+      icon: 'bi:arrow-down-right',
+      categories: costs,
+      name: t('common.costs'),
+    },
+    {
+      color: 'green',
+      icon: 'bi:arrow-up-right',
+      categories: inc,
+      name: t('common.incoming'),
+    },
+  ].map(item => ({
+    ...item,
+    value: sumBy(
+      filterRecordsByRange(
+        item.categories.value,
+        currentRange.value?.start as Dayjs,
+        currentRange.value?.end as Dayjs,
+      ),
+      'amount',
+    ),
+  })),
+)
+
+const schema = object({
+  balance: number().positive(),
+})
+type Schema = InferType<typeof schema>
+const state = ref<Schema>({
+  balance: 0,
+})
+
+function openAdjustmentModal() {
+  adjustmentModal.value = true
+  state.value = { balance: currentBalance.value }
+}
+
+async function submitAdjustment() {
+  const diff = state.value.balance - currentBalance.value
+  await recordStore.adjustmentBalance(diff)
+  adjustmentModal.value = false
+}
+</script>
+
 <template>
   <UCard class="mb-4">
     <div class="mb-4 flex flex-col">
       <span class="text-sm text-gray-700 dark:text-gray-400">
-        {{ $t('common.currentBalance') }}
+        {{ $t("common.currentBalance") }}
       </span>
       <div class="flex items-center">
         <span class="text-2xl font-bold">
@@ -21,7 +92,7 @@
 
     <div>
       <span class="mb-1 block text-sm text-gray-700 dark:text-gray-400">
-        {{ $t('common.sum') }}
+        {{ $t("common.sum") }}
       </span>
       <div class="grid grid-cols-2">
         <div class="flex flex-col">
@@ -30,7 +101,7 @@
               name="ic:round-arrow-drop-down"
               class="scale-200 text-rose-500"
             />
-            {{ $t('common.costs') }}
+            {{ $t("common.costs") }}
           </span>
           <span class="font-bold">-{{ numberWithSpaces(totalCost) }}</span>
         </div>
@@ -41,7 +112,7 @@
               name="ic:round-arrow-drop-up"
               class="scale-200 text-green-500"
             />
-            {{ $t('common.incoming') }}
+            {{ $t("common.incoming") }}
           </span>
           <span class="font-bold">+{{ numberWithSpaces(totalIncoming) }}</span>
         </div>
@@ -92,82 +163,11 @@
           <UFormGroup label="Balance" name="balance">
             <UInput v-model="state.balance" />
           </UFormGroup>
-          <UButton class="mt-4" block type="submit"> Submit </UButton>
+          <UButton class="mt-4" block type="submit">
+            Submit
+          </UButton>
         </UForm>
       </UCard>
     </UModal>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { sumBy } from 'lodash-es'
-import { Dayjs } from 'dayjs'
-import { useRecord } from '~/composables/useRecord'
-import { useRecordStore } from '~/store/record'
-import type { InferType } from 'yup'
-
-const {
-  recordStore,
-  recordStoreRefs: { costs, inc, adjustment },
-} = useRecordStore()
-const { t } = useI18n()
-const { filterRecordsByRange } = useRecord()
-const { handleClick, currentRange } = useCommonRanges('home-range-index')
-const { number, object } = useYap()
-
-const adjustmentModal = ref(false)
-
-const totalIncoming = computed(() => sumBy(inc.value, 'amount'))
-const totalCost = computed(() => sumBy(costs.value, 'amount'))
-const totalAdjustment = computed(() => sumBy(adjustment.value, 'amount'))
-
-const currentBalance = computed(
-  () => totalIncoming.value - totalCost.value + totalAdjustment.value,
-)
-
-const miniCards = computed(() =>
-  [
-    {
-      color: 'red',
-      icon: 'bi:arrow-down-right',
-      categories: costs,
-      name: t('common.costs'),
-    },
-    {
-      color: 'green',
-      icon: 'bi:arrow-up-right',
-      categories: inc,
-      name: t('common.incoming'),
-    },
-  ].map((item) => ({
-    ...item,
-    value: sumBy(
-      filterRecordsByRange(
-        item.categories.value,
-        currentRange.value?.start as Dayjs,
-        currentRange.value?.end as Dayjs,
-      ),
-      'amount',
-    ),
-  })),
-)
-
-const schema = object({
-  balance: number().positive(),
-})
-type Schema = InferType<typeof schema>
-const state = ref<Schema>({
-  balance: 0,
-})
-
-const openAdjustmentModal = () => {
-  adjustmentModal.value = true
-  state.value = { balance: currentBalance.value }
-}
-
-const submitAdjustment = async () => {
-  const diff = state.value.balance - currentBalance.value
-  await recordStore.adjustmentBalance(diff)
-  adjustmentModal.value = false
-}
-</script>

@@ -1,3 +1,31 @@
+<script lang="ts" setup>
+import dayjs from 'dayjs'
+import InfiniteLoading from 'v3-infinite-loading'
+import 'v3-infinite-loading/lib/style.css'
+
+const props = defineProps<{ rows: any[] }>()
+const emit = defineEmits(['edit', 'delete'])
+
+const { getCategoryName } = useCategory()
+const { getTypeBackgroundClasses } = useRecord()
+
+const pageSize = 20
+const page = ref(1)
+const dataToShow = computed(() =>
+  props.rows.filter((_, i) => i <= pageSize * page.value),
+)
+
+async function load($state) {
+  if (pageSize * page.value >= props.rows.length) {
+    $state.complete()
+  }
+  else {
+    $state.loaded()
+  }
+  page.value++
+}
+</script>
+
 <template>
   <ul
     v-auto-animate
@@ -23,7 +51,7 @@
         <span
           class="col-span-3 text-left text-sm text-gray-500 dark:text-gray-400"
         >
-          {{ dayjs(row.timestamp).format('DD.MM.YYYY') }}
+          {{ dayjs(row.timestamp).format("DD.MM.YYYY") }}
         </span>
 
         <span
@@ -57,29 +85,3 @@
 
   <InfiniteLoading @infinite="load" />
 </template>
-
-<script lang="ts" setup>
-import InfiniteLoading from 'v3-infinite-loading'
-import 'v3-infinite-loading/lib/style.css'
-import dayjs from 'dayjs'
-
-const props = defineProps<{ rows: any[] }>()
-const emit = defineEmits(['edit', 'delete'])
-
-const { getCategoryName } = useCategory()
-const { getTypeBackgroundClasses } = useRecord()
-
-const pageSize = 20
-const page = ref(1)
-const dataToShow = computed(() =>
-  props.rows.filter((_, i) => i <= pageSize * page.value),
-)
-
-const load = async ($state) => {
-  if (pageSize * page.value >= props.rows.length) $state.complete()
-  else {
-    $state.loaded()
-  }
-  page.value++
-}
-</script>

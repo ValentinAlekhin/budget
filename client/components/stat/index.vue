@@ -1,3 +1,34 @@
+<script setup lang="ts">
+import { useRouteQuery } from '@vueuse/router'
+import dayjs from 'dayjs'
+
+const isLargeScreen = useMediaQuery('(min-width: 1024px)')
+
+const { years, cost, inc } = useStat()
+
+const yearsOptions = years.value.map(y => y.toString())
+const year = useRouteQuery('year', dayjs().year().toString())
+
+const recordsCostByYear = computed(() =>
+  cost.value.filter(r => r.year === +year.value),
+)
+
+const recordsIncByYear = computed(() =>
+  inc.value.filter(r => r.year === +year.value),
+)
+
+const items = [
+  {
+    label: 'Charts',
+    slot: 'chart',
+  },
+  {
+    label: 'Table',
+    slot: 'table',
+  },
+]
+</script>
+
 <template>
   <div>
     <ClientOnly fallback-tag="span">
@@ -32,38 +63,6 @@
     </ClientOnly>
   </div>
 </template>
-
-<script setup lang="ts">
-import dayjs from 'dayjs'
-import { useRouteQuery } from '@vueuse/router'
-import { useStat } from '~/composables/useStat'
-
-const isLargeScreen = useMediaQuery('(min-width: 1024px)')
-
-const { years, cost, inc } = useStat()
-
-const yearsOptions = years.value.map((y) => y.toString())
-const year = useRouteQuery('year', dayjs().year().toString())
-
-const recordsCostByYear = computed(() =>
-  cost.value.filter((r) => r.year === +year.value)
-)
-
-const recordsIncByYear = computed(() =>
-  inc.value.filter((r) => r.year === +year.value)
-)
-
-const items = [
-  {
-    label: 'Charts',
-    slot: 'chart',
-  },
-  {
-    label: 'Table',
-    slot: 'table',
-  },
-]
-</script>
 
 <style lang="scss" scoped>
 .center {

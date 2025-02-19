@@ -1,7 +1,7 @@
-import dayjs from 'dayjs'
-import weekOfYear from 'dayjs/plugin/weekOfYear'
-import quarterOfYear from 'dayjs/plugin/quarterOfYear'
 import { useIntervalFn } from '@vueuse/core'
+import dayjs from 'dayjs'
+import quarterOfYear from 'dayjs/plugin/quarterOfYear'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
 import 'dayjs/locale/ru'
 
 dayjs.extend(weekOfYear)
@@ -30,7 +30,7 @@ export function useTimestamp() {
   const startOfCurrentYear = computed(() => now.value.startOf('year'))
   const endOfCurrentYear = computed(() => now.value.endOf('year'))
 
-  watch(locale, (value) => dayjs.locale(value))
+  watch(locale, value => dayjs.locale(value))
 
   return {
     now,

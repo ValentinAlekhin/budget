@@ -1,7 +1,9 @@
+import type { Dayjs } from 'dayjs'
 import type { ComputedRef } from 'vue'
-import { Dayjs } from 'dayjs'
 import { useLocalStorage } from '@vueuse/core'
+
 export interface Range {
+
   name: string
   start: Dayjs
   end: Dayjs
@@ -48,7 +50,7 @@ export function useCommonRanges(name: string) {
 
   const handleClick = () => {
     const currentIndex = rangeValues.value.findIndex(
-      (item) => item.name === currentRange.value?.name,
+      item => item.name === currentRange.value?.name,
     )
     const lastIndex = rangeValues.value.length - 1
     currentRangeIndex.value = currentIndex === lastIndex ? 0 : currentIndex + 1

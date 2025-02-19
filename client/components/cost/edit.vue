@@ -1,3 +1,10 @@
+<script lang="ts" setup>
+const { currentTab, tabs, currentTabName } = useCategoryTabs()
+
+const router = useRouter()
+const move = () => router.push('/')
+</script>
+
 <template>
   <div>
     <ClientOnly>
@@ -8,7 +15,7 @@
       </MobileOnly>
     </ClientOnly>
 
-    <UTabs :items="tabs" v-model:model-value="currentTab" class="w-full">
+    <UTabs v-model:model-value="currentTab" :items="tabs" class="w-full">
       <template #cost>
         <CategoryEdit
           type="cost"
@@ -28,10 +35,3 @@
     </UTabs>
   </div>
 </template>
-
-<script lang="ts" setup>
-const { currentTab, tabs, currentTabName } = useCategoryTabs()
-
-const router = useRouter()
-const move = () => router.push('/')
-</script>
