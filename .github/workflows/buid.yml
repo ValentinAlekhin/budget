@@ -28,11 +28,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push server-go
+      - name: Build and push server
         uses: docker/build-push-action@v3
         with:
           push: true
-          context: "{{defaultContext}}:server-go"
+          context: "{{defaultContext}}:server"
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/budget-server-${{ steps.extract_branch.outputs.branch }}:latest,
             ${{ secrets.DOCKERHUB_USERNAME }}/budget-server-${{ steps.extract_branch.outputs.branch }}:${{ github.sha }}
@@ -45,7 +45,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Repository: ${{ github.repository }}/server-go
+            Repository: ${{ github.repository }}/server
 
             Server build
 
