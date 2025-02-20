@@ -1,3 +1,21 @@
+<script lang="ts" setup>
+import { useColorMode } from '@vueuse/core'
+
+const colorMode = useColorMode()
+const route = useRoute()
+
+const color = computed(() => (colorMode.value === 'dark' ? '#030712' : '#fff'))
+
+const { smallerThanLg } = useScreenSize()
+
+const layout = computed(() => {
+  if (route.path.includes('auth'))
+    return 'auth'
+
+  return smallerThanLg.value ? 'mobile' : 'desktop'
+})
+</script>
+
 <template>
   <div class="h-screen overflow-y-auto dark:bg-gray-950">
     <VitePwaManifest />
@@ -17,22 +35,5 @@
     />
   </div>
 </template>
-
-<script lang="ts" setup>
-import { useColorMode } from "@vueuse/core";
-
-const colorMode = useColorMode();
-const route = useRoute();
-
-const color = computed(() => (colorMode.value === "dark" ? "#030712" : "#fff"));
-
-const { smallerThanLg } = useScreenSize();
-
-const layout = computed(() => {
-  if (route.path.includes("auth")) return "auth";
-
-  return smallerThanLg.value ? "mobile" : "desktop";
-});
-</script>
 
 <style></style>

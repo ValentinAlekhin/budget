@@ -1,8 +1,13 @@
 <script setup lang="ts">
+const authStore = useAuthStore()
 const { fetchAll, loading, error, initSocket, dataExists } = useGlobalLoading()
 const { smallerThanLg } = useScreenSize()
 
-onMounted(initSocket)
+onMounted(async () => {
+  await authStore.getMe()
+  await fetchAll()
+  await initSocket()
+})
 </script>
 
 <template>
