@@ -10,6 +10,7 @@ import (
 	"budget/internal/ws"
 	"fmt"
 	"github.com/gin-contrib/cors"
+	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
@@ -24,6 +25,7 @@ func Init(db *pgxpool.Pool, jwtConfig *config.JWT, serverConfig *config.Server) 
 
 	router := gin.Default()
 	router.Use(cors.Default())
+	router.Use(gzip.Gzip(gzip.DefaultCompression))
 	router.Use(httperror.ErrorHandler())
 
 	wsGroup := router.Group("/ws")
