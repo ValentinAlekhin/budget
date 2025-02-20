@@ -45,7 +45,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Repository: ${{ github.repository }}/server
+            Repository: ${{ github.repository }}/server-${{ steps.extract_branch.outputs.branch }}
 
             Server build
 
@@ -88,6 +88,6 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Repository: ${{ github.repository }}/client
+            Repository: ${{ github.repository }}/client-${{ steps.extract_branch.outputs.branch }}
 
             Client build
