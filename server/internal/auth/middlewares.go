@@ -12,12 +12,13 @@ import (
 type Middlewares struct {
 	userService *user.Service
 	authService *Service
+	jwtConfig   *config.JWT
 }
 
 func NewMiddlewares(db *pgxpool.Pool, jwtConfig *config.JWT) *Middlewares {
 	userService := user.NewService(db)
 	authService := NewService(db, jwtConfig)
-	return &Middlewares{userService, authService}
+	return &Middlewares{userService, authService, jwtConfig}
 }
 
 func (m Middlewares) AuthRequired(ctx *gin.Context) {
@@ -44,7 +45,7 @@ func (m Middlewares) AuthRequired(ctx *gin.Context) {
 		return
 	}
 
-	claims, err := m.authService.ParseToken(headerParts[1])
+	claims, err := m.authService.ParseToken(headerParts[1], m.jwtConfig.AccessTokenSecret)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("Token expired"))
 		ctx.Abort()
@@ -80,7 +81,7 @@ func (m Middlewares) AuthRequiredCookie(ctx *gin.Context) {
 		return
 	}
 
-	claims, err := m.authService.ParseToken(cookie)
+	claims, err := m.authService.ParseToken(cookie, m.jwtConfig.AccessTokenSecret)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("Token expired"))
 		ctx.Abort()
