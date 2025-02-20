@@ -19,6 +19,8 @@ export function useApi() {
   )
   const cookieToken = useCookie('token')
 
+  watch(tokensStore, value => cookieToken.value = value.accessToken)
+
   const resetTokens = () =>
     (tokensStore.value = { accessToken: '', refreshToken: '' })
 
@@ -52,7 +54,6 @@ export function useApi() {
         const authHeader = `Bearer ${data.accessToken}`
         api.defaults.headers.common.Authorization = authHeader
         originalConfig.headers.Authorization = authHeader
-        cookieToken.value = data.accessToken
 
         return api(originalConfig)
       }

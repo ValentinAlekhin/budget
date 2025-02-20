@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Небольшой рефактор">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс .env">
+      <change afterPath="$PROJECT_DIR$/api/environments/prod.bru" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/pkg/logger/logger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/pkg/logger/types.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/docker/prod.env" beforeDir="false" afterPath="$PROJECT_DIR$/client/docker/main.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/environments/dev.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/environments/dev.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/BaseLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BaseLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/auth.global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/auth/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/auth/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -86,48 +98,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Docker.client/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.server: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.server/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;Shell Script.air.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/headb/Documents/projects/budget/server-go&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.lintfix.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:dev.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/valentin/Documents/projects/budget/server/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\headb\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Docker.client/Dockerfile.executor": "Run",
+    "Docker.docker-compose.yml.server: Compose Deployment.executor": "Run",
+    "Docker.server/Dockerfile.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "Shell Script.air.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/headb/Documents/projects/budget/server-go",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.build (1).executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.lintfix.executor": "Run",
+    "npm.start.executor": "Run",
+    "npm.start:dev.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/home/valentin/Documents/projects/budget/server/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "ts.external.directory.path": "C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Valentin\Documents\projects\budget\client" />
@@ -265,7 +277,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.157" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.120" />
       </set>
     </attachedChunks>
   </component>
@@ -395,6 +407,7 @@
       <workItem from="1737904195329" duration="872000" />
       <workItem from="1739810903429" duration="9578000" />
       <workItem from="1739952943118" duration="20155000" />
+      <workItem from="1740049701920" duration="3569000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -500,14 +513,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00119" summary="Обновлена сборка всего">
-      <option name="closed" value="true" />
-      <created>1710668770784</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1710668770784</updated>
     </task>
     <task id="LOCAL-00120" summary="Обновлена сборка всего">
       <option name="closed" value="true" />
@@ -773,7 +778,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739974259449</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="Фикс .env">
+      <option name="closed" value="true" />
+      <created>1739978338716</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1739978338716</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -802,7 +815,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Обновлено месте для цвета и иконки" />
     <MESSAGE value="Добавлен период плана" />
     <MESSAGE value="Претерто api" />
     <MESSAGE value="Добален телеграм бот" />
@@ -827,7 +839,8 @@
     <MESSAGE value="Переименование server-go &gt; server" />
     <MESSAGE value="Фикс actions" />
     <MESSAGE value="Небольшой рефактор" />
-    <option name="LAST_COMMIT_MESSAGE" value="Небольшой рефактор" />
+    <MESSAGE value="Фикс .env" />
+    <option name="LAST_COMMIT_MESSAGE" value="Фикс .env" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

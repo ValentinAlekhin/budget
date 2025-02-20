@@ -10,8 +10,6 @@ export const useSocketStore = createSharedComposable(() => {
     public: { domain, websocketProtocol },
   } = useRuntimeConfig()
   const notify = useNotify()
-  const { tokensStore } = useApi()
-  const cookieToken = useCookie('token')
   let interval: NodeJS.Timeout
 
   const socketStore = defineStore('socket', {
@@ -19,12 +17,6 @@ export const useSocketStore = createSharedComposable(() => {
     actions: {
       connect() {
         return new Promise<WebSocket>((resolve, reject) => {
-          const token = tokensStore.value.accessToken
-          if (!token) {
-            throw new Error('No access token')
-          }
-
-          cookieToken.value = token
           const socket = new WebSocket(`${websocketProtocol}://${domain}/ws`)
           this.socket = socket
 
@@ -56,7 +48,7 @@ export const useSocketStore = createSharedComposable(() => {
 
         this.socket?.addEventListener('message', (msg) => {
           const data = JSON.parse(msg.data)
-          console.log(data)
+          console.info(data)
         })
       },
       setInterval() {
@@ -69,6 +61,7 @@ export const useSocketStore = createSharedComposable(() => {
           this.setInterval()
         }
         catch (e) {
+          console.error(e)
           notify.error('Произошла ошибка при подключени WS')
         }
       },
@@ -85,7 +78,7 @@ export const useSocketStore = createSharedComposable(() => {
             clearInterval(reconnectInterval)
           }
           catch (e) {
-            console.log(e)
+            console.error(e)
             reconnectTries++
           }
         }, 5000)
@@ -93,6 +86,7 @@ export const useSocketStore = createSharedComposable(() => {
       close() {
         this.connected = false
         this.socket?.close()
+        this.socket = null
         clearInterval(interval)
       },
     },
