@@ -110,9 +110,9 @@ func (s Service) saveRefreshToken(token string, userId int32) error {
 	return nil
 }
 
-func (s Service) ParseToken(tokenString string) (*CustomClaims, error) {
+func (s Service) ParseToken(tokenString, secret string) (*CustomClaims, error) {
 	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
-		return []byte(s.jwtConfig.AccessTokenSecret), nil
+		return []byte(secret), nil
 	})
 	if err != nil {
 		return &CustomClaims{}, err
@@ -130,7 +130,7 @@ func (s Service) Logout() error {
 }
 
 func (s Service) RefreshTokens(dto RefreshTokenRequestDto) (RefreshTokenResponseDto, error) {
-	claims, err := s.ParseToken(dto.RefreshToken)
+	claims, err := s.ParseToken(dto.RefreshToken, s.jwtConfig.RefreshTokenSecret)
 	if err != nil {
 		return RefreshTokenResponseDto{}, http_error.NewBadRequestError("Invalid token", "")
 	}
