@@ -42,6 +42,7 @@
     "highcharts": "^12.1.2",
     "lodash-es": "^4.17.21",
     "nuxt-highcharts": "^3.1.1",
+    "nuxt-swiper": "^2.0.0",
     "nuxt-typed-router": "^3.7.3",
     "pinia": "^3.0.1",
     "pinia-plugin-persistedstate": "^4.2.0",

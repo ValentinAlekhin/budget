@@ -61,7 +61,7 @@ const formState = reactive<Record<string, CategoryState>>(
 
 const drag = ref<boolean>(false)
 const modalOpen = ref<boolean>(false)
-const editCategoryId = ref<string | null>(null)
+const editCategoryId = ref<number | null>(null)
 const itemToDelete = ref<any>(null)
 
 const schema = object({
@@ -134,7 +134,7 @@ const computedInputs = computed({
   set: value => value.forEach((item, i) => item.setOrder(i + 1)),
 })
 
-function startEditCategory(categoryId: string) {
+function startEditCategory(categoryId: number) {
   const targetCategory = categoryStore.getById(categoryId)
   state.value = {
     name: targetCategory.name,

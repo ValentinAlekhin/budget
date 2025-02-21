@@ -1,18 +1,24 @@
 <script lang="ts" setup>
-import { isPlainObject } from 'lodash-es'
+import { isPlainObject, omit } from 'lodash-es'
 import rawColors from 'tailwindcss/colors'
 
 const props = defineProps<Props>()
 
 const emit = defineEmits(['update:value'])
 
-const palettes = Object.entries(rawColors).reduce((acc, [_, value]) => {
-  if (isPlainObject(value)) {
-    acc.push(value)
+const palettes = Object.entries(rawColors).reduce((acc, [key, value]) => {
+  if (COLORS_TO_EXCLUDE.includes(key)) {
+    return acc
   }
+
+  if (isPlainObject(value)) {
+    acc.push(omit(value, '50'))
+  }
+
   return acc
 }, [])
 
+const swiperRef = ref(null)
 const selectedPalletIndex = ref<null | number>(0)
 const selectedPallet = computed(() => palettes[selectedPalletIndex.value])
 
@@ -29,8 +35,9 @@ function selectColor(color: string) {
 }
 
 onMounted(() => {
+  let index = null
+
   if (props.value) {
-    let index = null
     palettes.forEach((p, i) => {
       if (Number.isInteger(index)) {
         return
@@ -41,7 +48,8 @@ onMounted(() => {
         index = i
       }
     })
-
+  }
+  else if (Number.isInteger(index)) {
     selectPalletIndex(index)
   }
   else {
@@ -56,25 +64,44 @@ interface Props {
 </script>
 
 <template>
-  <div class="w-full p-4">
+  <div class="w-full">
     <span v-if="label" class="block mb-2 text-xl">{{ label }}</span>
 
-    <div class="flex flex-wrap">
-      <div v-for="(pallet, i) of palettes" :key="i">
-        <UiColorPickerColor :color="pallet[600]" :active="selectedPalletIndex === i" class="mr-2 mb-2" @click="selectPalletIndex(i)" />
-      </div>
-    </div>
+    <ClientOnly>
+      <swiper-container
+        ref="swiperRef"
+        free-mode
+        :mousewheel="true"
+        slides-per-view="auto"
+        space-between="8px"
+        direction="horizontal"
+      >
+        <swiper-slide
+          v-for="(pallet, i) of palettes" :key="i" class="size-10"
+        >
+          <UiColorPickerColor :color="pallet[600]" :active="selectedPalletIndex === i" @click="selectPalletIndex(i)" />
+        </swiper-slide>
+      </swiper-container>
+      <UDivider class="mt-2 mb-4" />
 
-    <UDivider class="mt-2 mb-4" />
+      <swiper-container
+        ref="swiperRef"
+        free-mode
+        :mousewheel="true"
+        slides-per-view="auto"
+        space-between="8px"
+        direction="horizontal"
+      >
+        <swiper-slide
+          v-for="(color) of selectedPallet" :key="color" class="size-10"
+        >
+          <UiColorPickerColor :color="color" :active="value === color" class="mr-2 mb-2" @click="selectColor(color)" />
+        </swiper-slide>
+      </swiper-container>
+    </ClientOnly>
 
-    <div v-if="Number.isInteger(selectedPalletIndex)" class="flex flex-wrap mb-2">
-      <div v-for="(color) of selectedPallet" :key="color">
-        <UiColorPickerColor :color="color" :active="value === color" class="mr-2 mb-2" @click="selectColor(color)" />
-      </div>
-    </div>
-
-    <div v-if="value" class="text-center">
-      <span class="text-sm text-gray-700">{{ value }}</span>
+    <div v-if="value" class="flex justify-center items-center h-8 mt-2">
+      <span v-if="value" class="text-sm text-gray-700">{{ value }}</span>
     </div>
   </div>
 </template>

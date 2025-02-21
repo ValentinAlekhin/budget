@@ -54,7 +54,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w-full p-4">
+  <div class="w-full">
     <UInput
       v-model="searchQuery"
       placeholder="Поиск иконок (например, mdi:home)"

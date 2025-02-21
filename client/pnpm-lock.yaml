@@ -50,6 +50,9 @@ importers:
       nuxt-highcharts:
         specifier: ^3.1.1
         version: 3.1.1
+      nuxt-swiper:
+        specifier: ^2.0.0
+        version: 2.0.0(magicast@0.3.5)
       nuxt-typed-router:
         specifier: ^3.7.3
         version: 3.7.3(magicast@0.3.5)(prettier@3.5.1)
@@ -4239,6 +4242,9 @@ packages:
   nuxt-icon@0.6.10:
     resolution: {integrity: sha512-S9zHVA66ox4ZSpMWvCjqKZC4ZogC0s2z3vZs+M4D95YXGPEXwxDZu+insMKvkbe8+k7gvEmtTk0eq3KusKlxiw==}
 
+  nuxt-swiper@2.0.0:
+    resolution: {integrity: sha512-9NJ7ipoo3sBqFOtnYccVjVPuywGqY1vA82R2YinHo/U4Mw8c0Uy/Q+ep7qihLWr/3wZq9BqFOKPuWKw5xKl77Q==}
+
   nuxt-typed-router@3.7.3:
     resolution: {integrity: sha512-x6cxFKGmdjT2/Ii5iZAPFPeJFEy5vvqGTQhNd2hcAG3pu/KCHOGwCq7CDuhqTzfx9oVjyYZam/mwfGhgbgAElQ==}
     peerDependencies:
@@ -5249,6 +5255,10 @@ packages:
     resolution: {integrity: sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
+
+  swiper@11.2.4:
+    resolution: {integrity: sha512-DTtglrsFfMYytid+oNy4QI3t2N2+XhhwSYbnyOhlwBmvY8Bkoj3ombK1/b80w8vDpQ+Lqlnbm+0737+i32MrcA==}
+    engines: {node: '>= 4.7.0'}
 
   synckit@0.6.2:
     resolution: {integrity: sha512-Vhf+bUa//YSTYKseDiiEuQmhGCoIF3CVBhunm3r/DQnYiGT4JssmnKQc44BIyOZRK2pKjXXAgbhfmbeoC9CJpA==}
@@ -11157,6 +11167,14 @@ snapshots:
       - vite
       - vue
 
+  nuxt-swiper@2.0.0(magicast@0.3.5):
+    dependencies:
+      '@nuxt/kit': 3.15.4(magicast@0.3.5)
+      swiper: 11.2.4
+    transitivePeerDependencies:
+      - magicast
+      - supports-color
+
   nuxt-typed-router@3.7.3(magicast@0.3.5)(prettier@3.5.1):
     dependencies:
       '@nuxt/kit': 3.15.4(magicast@0.3.5)
@@ -12381,6 +12399,8 @@ snapshots:
       css-what: 6.1.0
       csso: 5.0.5
       picocolors: 1.1.1
+
+  swiper@11.2.4: {}
 
   synckit@0.6.2:
     dependencies:

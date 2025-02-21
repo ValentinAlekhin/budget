@@ -5,15 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлены ColorPicker и IconPicker">
-      <change afterPath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/ui/ColorPicker/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/ui/IconPicker.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/ui/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/ui/BadgeSelect.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/pages/category/add.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/pages/category/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/List.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/auth.global.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/ColorPicker/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/ColorPicker/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/IconPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/IconPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/constants/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/ui/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/ui/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pnpm-lock.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -404,7 +408,7 @@
       <workItem from="1739810903429" duration="9578000" />
       <workItem from="1739952943118" duration="20155000" />
       <workItem from="1740049701920" duration="3569000" />
-      <workItem from="1740121181948" duration="6329000" />
+      <workItem from="1740121181948" duration="14337000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -510,14 +514,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00121" summary="Обновлена сборка всего">
-      <option name="closed" value="true" />
-      <created>1710669495374</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1710669495374</updated>
     </task>
     <task id="LOCAL-00122" summary="Обновлена сборка всего">
       <option name="closed" value="true" />
@@ -783,7 +779,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740056389487</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="Добавлены ColorPicker и IconPicker">
+      <option name="closed" value="true" />
+      <created>1740127653212</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1740127653212</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -838,6 +842,7 @@
     <MESSAGE value="Фикс авторизации" />
     <MESSAGE value="Добавлены ColorPicker и IconPicker" />
     <option name="LAST_COMMIT_MESSAGE" value="Добавлены ColorPicker и IconPicker" />
+    <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

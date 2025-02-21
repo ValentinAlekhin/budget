@@ -110,6 +110,7 @@ export default defineNuxtConfig({
     '@formkit/auto-animate/nuxt',
     '@nuxtjs/i18n',
     '@nuxt/image',
+    'nuxt-swiper',
   ],
 
   pwa: {
