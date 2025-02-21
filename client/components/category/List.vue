@@ -3,8 +3,13 @@ import dayjs from 'dayjs'
 import { Parser } from 'expr-eval'
 import { cloneDeep, get, set } from 'lodash-es'
 
-const props = defineProps<Props>()
+interface Props {
+  value: Record<string, { value: string, comment: string }>
+  type: 'cost' | 'inc'
+  list: any[]
+}
 
+const props = defineProps<Props>()
 const emit = defineEmits(['update:value'])
 
 const parser = new Parser()
@@ -13,12 +18,6 @@ const { recordStore } = useRecordStore()
 const toast = useToast()
 const router = useRouter()
 const actionsStore = useActionsStore()
-
-interface Props {
-  value: Record<string, { value: string, comment: string }>
-  type: 'cost' | 'inc'
-  list: any[]
-}
 
 function setState(path: string) {
   return (e) => {

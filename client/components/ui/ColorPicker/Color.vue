@@ -1,0 +1,34 @@
+<script lang="ts" setup>
+interface Props {
+  color: string
+  active: boolean
+}
+const props = defineProps<Props>()
+const emit = defineEmits(['click'])
+
+function isDarkColor(hexColor) {
+  hexColor = hexColor.replace(/^#/, '')
+
+  const r = Number.parseInt(hexColor.substring(0, 2), 16) / 255
+  const g = Number.parseInt(hexColor.substring(2, 4), 16) / 255
+  const b = Number.parseInt(hexColor.substring(4, 6), 16) / 255
+
+  const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+  return luminance < 0.5
+}
+
+const className = computed(() => {
+  const name = isDarkColor(props.color) ? 'white' : 'black'
+
+  return `text-${name}`
+})
+</script>
+
+<template>
+  <button class="size-12 rounded" :style="{ background: color }" @click="emit('click')">
+    <transition name="fade">
+      <Icon v-if="active" name="material-symbols:check-rounded" class="size-10" :class="className" />
+    </transition>
+  </button>
+</template>

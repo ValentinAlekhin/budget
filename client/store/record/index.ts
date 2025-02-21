@@ -46,12 +46,7 @@ export const useRecordStore = createSharedComposable(() => {
         await api.post('/records', { ...cost, type: 'cost' })
       },
       async addRecords(
-        data: Array<{
-          amount: number
-          comment?: string
-          categoryId: string
-          timestamp: string
-        }>,
+        data: Array<CreateOneRecordRequestDto>,
       ) {
         await api.post('/records/many', { data })
       },

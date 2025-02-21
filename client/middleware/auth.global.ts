@@ -1,4 +1,8 @@
 export default defineNuxtRouteMiddleware(async (to) => {
+  if (to.path.includes('/ui')) {
+    return
+  }
+
   const { api, tokensStore } = useApi()
   const toAuth = to.path.includes('auth')
 
