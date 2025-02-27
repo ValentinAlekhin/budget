@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлено изменение порядка категорий">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/loaders/Puls.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/loaders/Puls.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -401,7 +401,7 @@
       <workItem from="1740171147911" duration="5723000" />
       <workItem from="1740314569195" duration="6570000" />
       <workItem from="1740654257681" duration="1781000" />
-      <workItem from="1740656071647" duration="7381000" />
+      <workItem from="1740656071647" duration="9135000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -507,14 +507,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00127" summary="Фикс сокетов">
-      <option name="closed" value="true" />
-      <created>1710673848124</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1710673848124</updated>
     </task>
     <task id="LOCAL-00128" summary="Фикс сокетов">
       <option name="closed" value="true" />
@@ -780,7 +772,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740667042079</updated>
     </task>
-    <option name="localTasksCounter" value="161" />
+    <task id="LOCAL-00161" summary="Обновлено изменение порядка категорий">
+      <option name="closed" value="true" />
+      <created>1740667581571</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1740667581571</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

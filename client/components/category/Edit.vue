@@ -168,7 +168,7 @@ onMounted(() => {
             <div>
               <UButton
                 size="sm"
-                color="rose"
+                color="white"
                 icon="i-heroicons-trash"
                 :ui="{ rounded: 'rounded-full' }"
                 variant="ghost"
@@ -177,6 +177,7 @@ onMounted(() => {
 
               <UButton
                 class="handle"
+                color="white"
                 size="sm"
                 :ui="{ rounded: 'rounded-full' }"
                 icon="i-heroicons-arrows-up-down"
