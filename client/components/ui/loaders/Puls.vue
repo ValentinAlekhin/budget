@@ -1,10 +1,6 @@
 <script>
 export default {
   props: {
-    color: {
-      type: String,
-      default: '#fff',
-    },
     width: {
       type: String,
       default: '20',
@@ -16,7 +12,6 @@ export default {
   },
   computed: {
     style: vm => ({
-      backgroundColor: vm.color,
       width: `${vm.width}px`,
       height: `${vm.height}px`,
     }),
@@ -26,7 +21,7 @@ export default {
 
 <template>
   <div>
-    <div class="spinner" :style="style" />
+    <div class="spinner dark:bg-zinc-50" :style="style" />
   </div>
 </template>
 
