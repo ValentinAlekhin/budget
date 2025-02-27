@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Добавлен BadgeSelect">
-      <change afterPath="$PROJECT_DIR$/client/components/category/AddEdit.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/pages/category/edit/[id].vue" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлено редактирование и добавление категорий">
+      <change afterPath="$PROJECT_DIR$/api/category/UpdateManyOrder.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/category/UpdateOne.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/UpdateOne.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/category/AddEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/AddEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/ColorPicker/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/ColorPicker/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/i18n.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/dto/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/dto/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/category/add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/category/add.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/pages/category/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/category/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
@@ -19,7 +18,9 @@
       <change beforePath="$PROJECT_DIR$/server/internal/category/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/dto.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/internal/category/repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/repo.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/internal/category/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/db/sqlc/budget/users.sql.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/sqlc/budget/users.sql.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/db/sqlc/budget/categories.sql.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/sqlc/budget/categories.sql.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/db/sqlc/queries/categories.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/sqlc/queries/categories.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/gents/gents.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/gents/gents.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/internal/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/router/router.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,48 +101,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Docker.client/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.server: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.server/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;Shell Script.air.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Valentin/Documents/projects/wb-vue-dashboard&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.lintfix.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:dev.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/valentin/Documents/projects/budget/server/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\headb\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Docker.client/Dockerfile.executor": "Run",
+    "Docker.docker-compose.yml.server: Compose Deployment.executor": "Run",
+    "Docker.server/Dockerfile.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "Shell Script.air.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "dev",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/headb/Documents/projects/wb-vue-dashboard",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.build (1).executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.lintfix.executor": "Run",
+    "npm.start.executor": "Run",
+    "npm.start:dev.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/home/valentin/Documents/projects/budget/server/node_modules/prettier",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "ts.external.directory.path": "C:\\Users\\headb\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Valentin\Documents\projects\budget\client" />
@@ -415,7 +416,7 @@
       <workItem from="1740171147911" duration="5723000" />
       <workItem from="1740314569195" duration="6570000" />
       <workItem from="1740654257681" duration="1781000" />
-      <workItem from="1740656071647" duration="184000" />
+      <workItem from="1740656071647" duration="3719000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -521,14 +522,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00123" summary="Обновлена сборка всего">
-      <option name="closed" value="true" />
-      <created>1710670074590</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1710670074590</updated>
     </task>
     <task id="LOCAL-00124" summary="Фикс сокетов">
       <option name="closed" value="true" />
@@ -794,7 +787,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740137112046</updated>
     </task>
-    <option name="localTasksCounter" value="157" />
+    <task id="LOCAL-00157" summary="Обновлено редактирование и добавление категорий">
+      <option name="closed" value="true" />
+      <created>1740656386419</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1740656386430</updated>
+    </task>
+    <option name="localTasksCounter" value="158" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -825,7 +826,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Обновлена сборка всего" />
     <MESSAGE value="Обновлены пакеты" />
     <MESSAGE value="Фикс сокетов" />
     <MESSAGE value="Фикс редактирования категорий" />
@@ -850,7 +850,8 @@
     <MESSAGE value="Фикс авторизации" />
     <MESSAGE value="Добавлены ColorPicker и IconPicker" />
     <MESSAGE value="Добавлен BadgeSelect" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен BadgeSelect" />
+    <MESSAGE value="Обновлено редактирование и добавление категорий" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновлено редактирование и добавление категорий" />
     <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
   </component>
   <component name="VgoProject">

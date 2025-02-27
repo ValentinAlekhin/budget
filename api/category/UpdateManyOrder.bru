@@ -1,0 +1,62 @@
+meta {
+  name: UpdateManyOrder
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{goBaseUrl}}/category/many/order
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "data": [
+      {
+        "id": 102,
+        "order": 2
+      },
+      {
+        "id": 85,
+        "order": 3
+      },
+      {
+        "id": 86,
+        "order": 4
+      },
+      {
+        "id": 51,
+        "order": 5
+      },
+      {
+        "id": 71,
+        "order": 6
+      },
+      {
+        "id": 87,
+        "order": 7
+      },
+      {
+        "id": 88,
+        "order": 8
+      },
+      {
+        "id": 89,
+        "order": 9
+      },
+      {
+        "id": 90,
+        "order": 11
+      },
+      {
+        "id": 94,
+        "order": 10
+      }
+    ]
+  }
+}

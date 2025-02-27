@@ -99,6 +99,31 @@ func (r *Repo) UpdateOne(ctx context.Context, param budget.UpdateCategoryParams)
 	return convertToResponseDto(category), nil
 }
 
+func (r *Repo) UpdateManyOrder(ctx context.Context, params []budget.UpdateCategoryOrderParams) ([]CategoryResponseDto, error) {
+	result := make([]budget.Category, len(params))
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("unable to begin transaction: %w", err)
+	}
+	qtx := r.q.WithTx(tx)
+
+	for i, param := range params {
+		category, err := qtx.UpdateCategoryOrder(ctx, param)
+		if err != nil {
+			_ = tx.Rollback(ctx)
+			return nil, fmt.Errorf("transaction failed: %w", err)
+		}
+		result[i] = category
+	}
+
+	err = tx.Commit(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("unable to commit transaction: %w", err)
+	}
+
+	return convertListToResponseDto(result), nil
+}
+
 // UpdateMany обновляет данные нескольких категорий
 func (r *Repo) UpdateMany(ctx context.Context, params []budget.UpdateCategoryParams) ([]CategoryResponseDto, error) {
 	result := make([]budget.Category, len(params))

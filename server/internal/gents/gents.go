@@ -40,6 +40,8 @@ func Run(filename string) error {
 		Add(category.CreateCategoryRequestDto{}).
 		Add(category.UpdateCategoryRequestDto{}).
 		Add(category.UpdateManyCategoryRequestDto{}).
+		Add(category.UpdateCategoryOrderRequestDto{}).
+		Add(category.UpdateManyCategoryOrderRequestDto{}).
 		Add(category.CategoryResponseDto{}).
 		Add(auth.LoginRequestDto{}).
 		Add(auth.PureUserDto{}).

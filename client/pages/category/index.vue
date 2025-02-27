@@ -1,9 +1,20 @@
 <script  lang="ts" setup>
 const router = useRouter()
 const { currentTab, tabs, currentTabName } = useCategoryTabs()
+const {
+  categoryStore,
+} = useCategoryStore()
 
 function back() {
   router.push('/')
+}
+
+async function remove(id: number) {
+  await categoryStore.delete(id)
+}
+
+async function reorder(payload: UpdateCategoryOrderRequestDto[]) {
+  await categoryStore.updateManyOrder(payload)
 }
 </script>
 
@@ -22,12 +33,16 @@ function back() {
         <CategoryEdit
           type="cost"
           :tab="currentTabName"
+          @remove="remove"
+          @reorder="reorder"
         />
       </template>
       <template #inc>
         <CategoryEdit
           type="inc"
           :tab="currentTabName"
+          @remove="remove"
+          @reorder="reorder"
         />
       </template>
     </UTabs>

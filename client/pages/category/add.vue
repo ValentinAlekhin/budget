@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const {
   categoryStore,
+  categoryStoreRefs: { data },
 } = useCategoryStore()
 const router = useRouter()
 
@@ -9,7 +10,7 @@ function back() {
 }
 
 async function add(dto: UpdateCategoryRequestDto) {
-  await categoryStore.addCategory(dto)
+  await categoryStore.addCategory({ ...dto, order: data.value.length })
   back()
 }
 </script>

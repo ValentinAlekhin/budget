@@ -4,9 +4,14 @@ import { set } from 'vue-demi'
 import Draggable from 'vuedraggable'
 
 const props = defineProps<{ type: 'cost' | 'inc', tab: string }>()
+
+const emit = defineEmits<{
+  (e: 'remove', payload: number): void
+  (e: 'reorder', payload: UpdateCategoryOrderRequestDto[]): void
+}>()
+
 const actionsStore = useActionsStore()
 const {
-  categoryStore,
   categoryStoreRefs: { costs, incoming },
 } = useCategoryStore()
 const router = useRouter()
@@ -42,6 +47,19 @@ const dragOptions = {
   ghostClass: 'ghost',
 }
 
+const debouncedReorderEmit = useDebounceFn(() => {
+  const orderPayload: UpdateCategoryOrderRequestDto[] = Object.entries(orderState)
+    .map(([id, order]) => ({ id: +id, order }))
+    .filter((item) => {
+      const category = categories.value.find(c => c.id === item.id)
+      if (!category)
+        return false
+
+      return category.order !== item.order
+    })
+  emit('reorder', orderPayload)
+}, 500)
+
 const computedInputs = computed({
   get: () =>
     categories.value
@@ -56,7 +74,10 @@ const computedInputs = computed({
         }
       })
       .sort((a, b) => a.order - b.order),
-  set: value => value.forEach((item, i) => item.setOrder(i + 1)),
+  set: (value) => {
+    value.forEach((item, i) => item.setOrder(i + 1))
+    debouncedReorderEmit()
+  },
 })
 
 function startEditCategory(categoryId: number) {
@@ -67,7 +88,7 @@ async function removeItem() {
   if (!itemToDelete.value)
     return
 
-  await categoryStore.delete(itemToDelete.value)
+  emit('remove', itemToDelete.value)
   itemToDelete.value = null
 }
 

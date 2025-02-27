@@ -13,7 +13,8 @@ SELECT *
 FROM categories
 WHERE id = $1
   and user_id = $2
-  and deleted_at is null;
+  and deleted_at is null
+order by type, "order";
 
 -- name: GetAdjustmentCategoryUserID :one
 SELECT *
@@ -25,13 +26,15 @@ WHERE user_id = $1
 SELECT *
 FROM categories
 WHERE id = ANY ($1::bigint[])
-  and user_id = $2;
+  and user_id = $2
+order by type, "order";
 
 -- name: ListCategoriesByUser :many
 SELECT *
 FROM categories
 WHERE user_id = $1
-  and deleted_at is null;
+  and deleted_at is null
+order by type, "order";
 
 -- name: UpdateCategory :one
 UPDATE categories
@@ -46,6 +49,14 @@ SET name        = $2,
     updated_at  = now()
 WHERE id = $1
   and user_id = $10
+returning *;
+
+-- name: UpdateCategoryOrder :one
+UPDATE categories
+SET "order"    = $1,
+    updated_at = now()
+WHERE id = $2
+  and user_id = $3
 returning *;
 
 -- name: SoftDeleteCategory :one

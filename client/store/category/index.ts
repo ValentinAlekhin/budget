@@ -58,6 +58,14 @@ export const useCategoryStore = createSharedComposable(() => {
           notify.error('Ошибка при обновлении категории')
         }
       },
+      async updateManyOrder(data: UpdateCategoryOrderRequestDto[]) {
+        try {
+          await api.put('/category/many/order', { data })
+        }
+        catch (e) {
+          notify.error('Ошибка при обновлении порядка категорий')
+        }
+      },
       async updateMany(data: UpdateCategoryRequestDto[]) {
         try {
           await api.put('/category/many', { data })

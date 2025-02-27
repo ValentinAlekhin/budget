@@ -66,6 +66,13 @@ export interface UpdateCategoryRequestDto {
 export interface UpdateManyCategoryRequestDto {
   data: UpdateCategoryRequestDto[]
 }
+export interface UpdateCategoryOrderRequestDto {
+  id: number
+  order: number
+}
+export interface UpdateManyCategoryOrderRequestDto {
+  data: UpdateCategoryOrderRequestDto[]
+}
 export interface CategoryResponseDto {
   id: number
   createdAt: string
@@ -85,7 +92,6 @@ export interface LoginRequestDto {
   username: string
   password: string
 }
-
 export interface PureUserDto {
   id: number
   username: string

@@ -32,6 +32,15 @@ type UpdateManyCategoryRequestDto struct {
 	Data []UpdateCategoryRequestDto `json:"data" binding:"dive,required"`
 }
 
+type UpdateCategoryOrderRequestDto struct {
+	ID    int64 `json:"id"  binding:"required"`
+	Order int32 `json:"order" binding:"required,numeric"`
+}
+
+type UpdateManyCategoryOrderRequestDto struct {
+	Data []UpdateCategoryOrderRequestDto `json:"data" binding:"dive,required"`
+}
+
 type CategoryResponseDto struct {
 	ID         int64                           `json:"id"`
 	CreatedAt  pgtype.Timestamp                `json:"createdAt"`

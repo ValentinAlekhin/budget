@@ -47,6 +47,10 @@ onMounted(() => {
     plan: props.plan,
     planPeriod: props.planPeriod || 'month',
   }
+
+  if (props.type) {
+    categoryType.value = [CategoriesTypeEnum.COST, CategoriesTypeEnum.INC].findIndex(item => item === props.type)
+  }
 })
 
 class CategoryStateWithoutOrder extends Omit<CategoryState, 'order'> {}

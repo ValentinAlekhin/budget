@@ -94,6 +94,28 @@ func (s Service) UpdateOne(dto UpdateCategoryRequestDto, id int64, userId int32)
 	return one, nil
 }
 
+func (s Service) UpdateManyOrder(dto UpdateManyCategoryOrderRequestDto, userId int32) ([]CategoryResponseDto, error) {
+	categories := make([]budget.UpdateCategoryOrderParams, len(dto.Data))
+	for i, item := range dto.Data {
+		category := budget.UpdateCategoryOrderParams{
+			ID:     item.ID,
+			Order:  item.Order,
+			UserID: userId,
+		}
+		categories[i] = category
+	}
+
+	ctx := context.Background()
+	many, err := s.categoryRepo.UpdateManyOrder(ctx, categories)
+	if err != nil {
+		return many, http_error.NewInternalRequestError("")
+	}
+
+	s.cud.SendMany(userId, "update", many)
+
+	return many, nil
+}
+
 func (s Service) UpdateMany(dto UpdateManyCategoryRequestDto, userId int32) ([]CategoryResponseDto, error) {
 
 	categories := make([]budget.UpdateCategoryParams, len(dto.Data))
