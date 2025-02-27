@@ -11,7 +11,7 @@ watch(requestCount, () => {
     clearTimeout(tm)
   tm = setTimeout(() => {
     loading.value = false
-  }, 800)
+  }, 400)
 })
 
 watch(loading, (value) => {
@@ -22,7 +22,7 @@ watch(loading, (value) => {
   const interval = setInterval(() => {
     ready.value = false
     clearInterval(interval)
-  }, 2000)
+  }, 1200)
 })
 </script>
 

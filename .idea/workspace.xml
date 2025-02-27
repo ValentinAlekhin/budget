@@ -7,9 +7,7 @@
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлено изменение порядка категорий">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/Header/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/MobileOnly.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/MobileOnly.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,8 +138,8 @@
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\public\pwa" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Valentin\Documents\projects\budget\client\components\ui\ColorPicker" />
       <recent name="C:\Users\headb\Documents\projects\budget\client\components" />
+      <recent name="C:\Users\Valentin\Documents\projects\budget\client\components\ui\ColorPicker" />
       <recent name="C:\Users\headb\Documents\projects\budget\client" />
       <recent name="C:\Users\headb\Documents\projects\budget\client\composables" />
       <recent name="C:\Users\headb\Documents\projects\budget\server-go\sqlc" />
@@ -404,7 +402,7 @@
       <workItem from="1740171147911" duration="5723000" />
       <workItem from="1740314569195" duration="6570000" />
       <workItem from="1740654257681" duration="1781000" />
-      <workItem from="1740656071647" duration="6283000" />
+      <workItem from="1740656071647" duration="6798000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -510,14 +508,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00125" summary="Обновлены пакеты">
-      <option name="closed" value="true" />
-      <created>1710672193520</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1710672193520</updated>
     </task>
     <task id="LOCAL-00126" summary="Фикс сокетов">
       <option name="closed" value="true" />
@@ -783,7 +773,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740664027032</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="Обновлено изменение порядка категорий">
+      <option name="closed" value="true" />
+      <created>1740666487178</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1740666487178</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
