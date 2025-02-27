@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлено редактирование и добавление категорий">
-      <change afterPath="$PROJECT_DIR$/api/category/UpdateManyOrder.bru" afterDir="false" />
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновлено изменение порядка категорий">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/category/UpdateOne.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/UpdateOne.bru" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/AddEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/AddEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Header/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/dto/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/dto/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/category/add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/category/add.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/category/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/category/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/category/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/category/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/dto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/category/repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/category/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/db/sqlc/budget/categories.sql.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/sqlc/budget/categories.sql.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/db/sqlc/queries/categories.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/sqlc/queries/categories.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/gents/gents.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/gents/gents.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useApi.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,7 +404,7 @@
       <workItem from="1740171147911" duration="5723000" />
       <workItem from="1740314569195" duration="6570000" />
       <workItem from="1740654257681" duration="1781000" />
-      <workItem from="1740656071647" duration="3719000" />
+      <workItem from="1740656071647" duration="6283000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -522,14 +510,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00124" summary="Фикс сокетов">
-      <option name="closed" value="true" />
-      <created>1710670973055</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1710670973055</updated>
     </task>
     <task id="LOCAL-00125" summary="Обновлены пакеты">
       <option name="closed" value="true" />
@@ -795,7 +775,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740656386430</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="Обновлено изменение порядка категорий">
+      <option name="closed" value="true" />
+      <created>1740664027032</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1740664027032</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -826,7 +814,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Обновлены пакеты" />
     <MESSAGE value="Фикс сокетов" />
     <MESSAGE value="Фикс редактирования категорий" />
     <MESSAGE value="Фикс pwa" />
@@ -851,7 +838,8 @@
     <MESSAGE value="Добавлены ColorPicker и IconPicker" />
     <MESSAGE value="Добавлен BadgeSelect" />
     <MESSAGE value="Обновлено редактирование и добавление категорий" />
-    <option name="LAST_COMMIT_MESSAGE" value="Обновлено редактирование и добавление категорий" />
+    <MESSAGE value="Обновлено изменение порядка категорий" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновлено изменение порядка категорий" />
     <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
   </component>
   <component name="VgoProject">

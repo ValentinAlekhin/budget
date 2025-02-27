@@ -4,14 +4,14 @@ import { set } from 'vue-demi'
 import Draggable from 'vuedraggable'
 
 const props = defineProps<{ type: 'cost' | 'inc', tab: string }>()
-
-const emit = defineEmits<{
+defineEmits<{
   (e: 'remove', payload: number): void
   (e: 'reorder', payload: UpdateCategoryOrderRequestDto[]): void
 }>()
 
 const actionsStore = useActionsStore()
 const {
+  categoryStore,
   categoryStoreRefs: { costs, incoming },
 } = useCategoryStore()
 const router = useRouter()
@@ -47,7 +47,7 @@ const dragOptions = {
   ghostClass: 'ghost',
 }
 
-const debouncedReorderEmit = useDebounceFn(() => {
+const debouncedReorderEmit = useDebounceFn(async () => {
   const orderPayload: UpdateCategoryOrderRequestDto[] = Object.entries(orderState)
     .map(([id, order]) => ({ id: +id, order }))
     .filter((item) => {
@@ -57,7 +57,7 @@ const debouncedReorderEmit = useDebounceFn(() => {
 
       return category.order !== item.order
     })
-  emit('reorder', orderPayload)
+  await categoryStore.updateManyOrder(orderPayload)
 }, 500)
 
 const computedInputs = computed({
@@ -88,7 +88,7 @@ async function removeItem() {
   if (!itemToDelete.value)
     return
 
-  emit('remove', itemToDelete.value)
+  await categoryStore.delete(itemToDelete.value)
   itemToDelete.value = null
 }
 
@@ -191,7 +191,7 @@ onMounted(() => {
 
     <common-modal-remove
       :is-open="!!itemToDelete"
-      :title="`Remove category '${itemToDelete?.name}'?`"
+      title="Remove category?"
       @close="itemToDelete = null"
       @remove="removeItem"
     />

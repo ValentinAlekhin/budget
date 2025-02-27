@@ -26,7 +26,7 @@ const className = computed(() => {
 </script>
 
 <template>
-  <span class="flex justify-center items-center size-10 rounded-md" :style="{ background: color }" @click="emit('click')">
+  <span class="flex justify-center items-center size-10 rounded-md cursor-pointer" :style="{ background: color }" @click="emit('click')">
     <transition name="fade">
       <Icon v-if="active" name="material-symbols:check-rounded" class="size-8" :class="className" />
     </transition>

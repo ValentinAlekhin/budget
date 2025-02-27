@@ -1,10 +1,17 @@
 <script lang="ts" setup>
+const { requestCount } = useApi()
 const ready = ref(true)
-const { loading } = useGlobalLoading()
+const loading = ref(false)
 
-onMounted(() => {
-  if (!loading.value)
-    ready.value = false
+let tm: null | number = null
+watch(requestCount, () => {
+  loading.value = true
+
+  if (tm)
+    clearTimeout(tm)
+  tm = setTimeout(() => {
+    loading.value = false
+  }, 800)
 })
 
 watch(loading, (value) => {
@@ -24,17 +31,13 @@ watch(loading, (value) => {
     class="bg-background/75 fixed top-0 z-50 -mb-px w-full border-b border-gray-200 backdrop-blur dark:border-gray-800"
   >
     <header
-      v-auto-animate
       class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-2"
     >
       <div class="flex items-center">
         <div id="headerTeleport" />
       </div>
 
-      <div v-if="ready || loading" class="inset-center flex items-center">
-        <span class="mr-2 text-sm text-slate-300">
-          {{ $t("common.updating") }}
-        </span>
+      <div v-if="ready || loading" v-auto-animate class="inset-center flex items-center">
         <div class="w-8">
           <UiLoadersPuls v-if="loading" />
           <Icon v-else class="ml-1" name="heroicons:check-20-solid" />
