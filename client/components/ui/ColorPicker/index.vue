@@ -3,8 +3,9 @@ import { isPlainObject, omit } from 'lodash-es'
 import rawColors from 'tailwindcss/colors'
 
 const props = defineProps<Props>()
-
 const emit = defineEmits(['update:value'])
+
+const { value: valueRef } = toRefs(props)
 
 const palettes = Object.entries(rawColors).reduce((acc, [key, value]) => {
   if (COLORS_TO_EXCLUDE.includes(key)) {
@@ -34,27 +35,34 @@ function selectColor(color: string) {
   emit('update:value', color)
 }
 
-onMounted(() => {
+function init(value: string) {
   let index = null
 
-  if (props.value) {
+  if (value) {
     palettes.forEach((p, i) => {
       if (Number.isInteger(index)) {
         return
       }
 
-      const find = Object.values(p).find(c => c === props.value)
+      const find = Object.values(p).find(c => c === value)
       if (find) {
         index = i
       }
     })
   }
-  else if (Number.isInteger(index)) {
-    selectPalletIndex(index)
-  }
-  else {
-    selectPalletIndex(0)
-  }
+
+  index = Number.isInteger(index) ? index : 0
+  selectPalletIndex(index)
+}
+
+watch(valueRef, (newValue, oldValue) => {
+  if (newValue === oldValue)
+    return
+  init(newValue)
+})
+
+onMounted(() => {
+  init(props.value)
 })
 
 interface Props {

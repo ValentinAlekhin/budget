@@ -64,6 +64,36 @@ func (s Service) CreateOne(dto CreateCategoryRequestDto, userId int32) (Category
 	return category, nil
 }
 
+func (s Service) UpdateOne(dto UpdateCategoryRequestDto, id int64, userId int32) (CategoryResponseDto, error) {
+	ctx := context.Background()
+	_, err := s.categoryRepo.GetByIDAndUserID(ctx, id, userId)
+	if err != nil {
+		return CategoryResponseDto{}, http_error.NewNotFoundError("Category not found", "")
+	}
+
+	category := budget.UpdateCategoryParams{
+		ID:         id,
+		Name:       dto.Name,
+		Type:       dto.Type,
+		Order:      dto.Order,
+		Plan:       convert.Float64ToNumeric(dto.Plan, 2),
+		PlanPeriod: dto.PlanPeriod,
+		Color:      dto.Color,
+		Icon:       dto.Icon,
+		Comment:    dto.Comment,
+		UserID:     userId,
+	}
+
+	one, err := s.categoryRepo.UpdateOne(ctx, category)
+	if err != nil {
+		return one, http_error.NewInternalRequestError("")
+	}
+
+	s.cud.SendOne(userId, "update", one)
+
+	return one, nil
+}
+
 func (s Service) UpdateMany(dto UpdateManyCategoryRequestDto, userId int32) ([]CategoryResponseDto, error) {
 
 	categories := make([]budget.UpdateCategoryParams, len(dto.Data))

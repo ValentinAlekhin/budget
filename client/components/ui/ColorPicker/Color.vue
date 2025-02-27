@@ -6,7 +6,7 @@ interface Props {
 const props = defineProps<Props>()
 const emit = defineEmits(['click'])
 
-function isDarkColor(hexColor) {
+function isDarkColor(hexColor: string) {
   hexColor = hexColor.replace(/^#/, '')
 
   const r = Number.parseInt(hexColor.substring(0, 2), 16) / 255
@@ -26,7 +26,7 @@ const className = computed(() => {
 </script>
 
 <template>
-  <span class="flex justify-center items-center size-10 rounded" :style="{ background: color }" @click="emit('click')">
+  <span class="flex justify-center items-center size-10 rounded-md" :style="{ background: color }" @click="emit('click')">
     <transition name="fade">
       <Icon v-if="active" name="material-symbols:check-rounded" class="size-8" :class="className" />
     </transition>

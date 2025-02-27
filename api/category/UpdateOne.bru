@@ -1,0 +1,33 @@
+meta {
+  name: UpdateOne
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{goBaseUrl}}/category/:id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 64
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    id: 64,
+    "name": "Работа upda",
+    "type": "inc",
+    "order": 1,
+    "comment": "upd",
+    "icon": "ph:code",
+    "plan": 180000,
+    "color": "#1e3a8a",
+    "planPeriod": "month"
+  }
+}

@@ -56,6 +56,7 @@ interface Locale {
   }
   category: {
     add: string
+    edit: string
   }
   icon: {
     resource: string
@@ -125,6 +126,7 @@ const messages: Record<string, Locale> = {
     },
     category: {
       add: 'Добавить категорию',
+      edit: 'Редактировать категорию',
     },
     icon: {
       resource:
@@ -193,6 +195,7 @@ const messages: Record<string, Locale> = {
     },
     category: {
       add: 'Add category',
+      edit: 'Edit category',
     },
     icon: {
       resource:

@@ -44,7 +44,7 @@ func Init(db *pgxpool.Pool, jwtConfig *config.JWT, serverConfig *config.Server) 
 	categoryGroup.GET("", categoryController.GetAll)
 	categoryGroup.POST("", categoryController.CreateOne)
 	categoryGroup.PUT("/many", categoryController.UpdateMany)
-	// categoryGroup.PUT("/:id", category.Controller.UpdateOne)
+	categoryGroup.PUT("/:id", categoryController.UpdateOne)
 	categoryGroup.DELETE("/:id", categoryController.DeleteOne)
 
 	recordGroup := router.Group("/records")

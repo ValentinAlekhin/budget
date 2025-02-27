@@ -90,6 +90,15 @@ func (r *Repo) Update(ctx context.Context, params budget.UpdateCategoryParams) (
 	return convertToResponseDto(category), nil
 }
 
+func (r *Repo) UpdateOne(ctx context.Context, param budget.UpdateCategoryParams) (CategoryResponseDto, error) {
+	category, err := r.q.UpdateCategory(ctx, param)
+	if err != nil {
+		return CategoryResponseDto{}, fmt.Errorf("failed to update category: %w", err)
+	}
+
+	return convertToResponseDto(category), nil
+}
+
 // UpdateMany обновляет данные нескольких категорий
 func (r *Repo) UpdateMany(ctx context.Context, params []budget.UpdateCategoryParams) ([]CategoryResponseDto, error) {
 	result := make([]budget.Category, len(params))

@@ -42,6 +42,31 @@ func (c Controller) CreateOne(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, category)
 }
 
+func (c Controller) UpdateOne(ctx *gin.Context) {
+	id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
+	if err != nil {
+		ctx.Error(http_error.NewBadRequestError("Invalid id", ""))
+		return
+	}
+
+	var dto UpdateCategoryRequestDto
+
+	if err := ctx.ShouldBindJSON(&dto); err != nil {
+		err = http_error.NewBadRequestError(err.Error(), "")
+		ctx.Error(err)
+		return
+	}
+
+	userId := ctx.MustGet("userId").(int32)
+	category, err := c.categoryService.UpdateOne(dto, id, userId)
+	if err != nil {
+		ctx.Error(err)
+		return
+	}
+
+	ctx.JSON(http.StatusOK, category)
+}
+
 func (c Controller) UpdateMany(ctx *gin.Context) {
 	var dto UpdateManyCategoryRequestDto
 

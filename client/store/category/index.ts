@@ -42,16 +42,20 @@ export const useCategoryStore = createSharedComposable(() => {
       setData(data: CategoryResponseDto[]) {
         this.data = data
       },
-      async addCategory(category: {
-        name: string
-        type: string
-        order: number
-      }) {
+      async addCategory(category: CreateCategoryRequestDto) {
         try {
           await api.post('/category', category)
         }
         catch (e) {
           notify.error('Ошибка при сохранении')
+        }
+      },
+      async updateOne(dto: UpdateCategoryRequestDto) {
+        try {
+          await api.put(`/category/${dto.id}`, dto)
+        }
+        catch (e) {
+          notify.error('Ошибка при обновлении категории')
         }
       },
       async updateMany(data: UpdateCategoryRequestDto[]) {
@@ -80,7 +84,7 @@ export const useCategoryStore = createSharedComposable(() => {
         state.data
           .filter(c => c.type === 'inc')
           .sort((a, b) => a.order - b.order),
-      getById: state => (id: number) => state.data.find(c => c.id === id),
+      getById: state => (id: number): CategoryResponseDto | undefined => state.data.find(c => c.id === id),
     },
     persist: {
       storage: piniaPluginPersistedstate.localStorage(),
