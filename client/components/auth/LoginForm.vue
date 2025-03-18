@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const authStore = useAuthStore()
 const { object, string } = useYap()
+const { t } = useI18n()
 
 const schema = object({
   username: string().required(),
@@ -22,16 +23,16 @@ async function submit() {
 
 <template>
   <UForm ref="form" :schema="schema" :state="state" @submit="submit">
-    <UFormGroup :label="$t('common.username')" name="username">
-      <UInput v-model="state.username" />
-    </UFormGroup>
+    <UFormField :label="t('common.username')" name="username">
+      <UInput v-model="state.username" class="w-full" />
+    </UFormField>
 
-    <UFormGroup :label="$t('common.password')" name="password" class="mt-4">
-      <UInput v-model="state.password" type="password" />
-    </UFormGroup>
+    <UFormField :label="t('common.password')" name="password" class="mt-4">
+      <UInput v-model="state.password" type="password" class="w-full" />
+    </UFormField>
 
     <UButton class="mt-6" type="submit" block>
-      {{ $t("common.login") }}
+      {{ t("common.login") }}
     </UButton>
   </UForm>
 </template>

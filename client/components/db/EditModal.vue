@@ -1,41 +1,32 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs'
-import { date, mixed, number, object, string } from 'yup'
+import { date, number, object, string } from 'yup'
 
 const props = defineProps({
-  isOpen: { type: Boolean },
+  open: { type: Boolean },
   record: { type: Object, default: () => ({}) },
 })
 const emit = defineEmits(['close'])
 const { recordStore } = useRecordStore()
-const { categoryStoreRefs } = useCategoryStore()
-
-const isOpen = computed({
-  get: () => props.isOpen,
-  set: () => emit('close'),
-})
-
-const categoryOptions = computed(() =>
-  categoryStoreRefs.data.value.map(c => ({ id: c.id, label: c.name })),
-)
+const { categoryStoreRefs: { data: categories } } = useCategoryStore()
 
 const schema = object({
   amount: number().required(),
-  categoryId: mixed().required(),
+  categoryId: number().required(),
   timestamp: date().required(),
   comment: string(),
 })
 
 const state = ref({
   amount: 0,
-  categoryId: '',
+  categoryId: 0,
   timestamp: dayjs(),
   comment: '',
 })
 
 const currentCategory = computed(
   () =>
-    categoryOptions.value.find(c => c.id === state.value.categoryId) || ' ',
+    categories.value.find(c => c.id === state.value.categoryId),
 )
 
 const form = ref()
@@ -76,51 +67,52 @@ watch(
 
 <template>
   <template>
-    <UModal v-model="isOpen" @close="close">
-      <UCard :ui="{ divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
-        <template #header>
-          <span class="text-xl font-medium dark:text-white">
-            {{ $t("record.edit", { date: formattedDate }) }}
-          </span>
-        </template>
+    <UModal :open="open" @update:open="close">
+      <template #content>
+        <UCard>
+          <template #header>
+            <span class="text-xl font-medium dark:text-white">
+              {{ $t("record.edit", { date: formattedDate }) }}
+            </span>
+          </template>
 
-        <UForm
-          ref="form"
-          :schema="schema"
-          :state="state"
-          @submit.prevent="submit"
-        >
-          <UFormGroup :label="$t('common.amount')" name="amount">
-            <UInput v-model="state.amount" />
-          </UFormGroup>
-
-          <UFormGroup :label="$t('common.comment')" name="comment" class="mt-2">
-            <UInput v-model="state.comment" />
-          </UFormGroup>
-
-          <UFormGroup
-            :label="$t('common.category')"
-            name="category"
-            class="mt-2"
+          <UForm
+            ref="form"
+            :schema="schema"
+            :state="state"
+            @submit.prevent="submit"
           >
-            <USelectMenu
-              v-model="state.categoryId"
-              :options="categoryOptions"
-              value-attribute="id"
-            >
-              <template #label>
-                {{ currentCategory.label }}
-              </template>
-            </USelectMenu>
-          </UFormGroup>
-        </UForm>
+            <UFormField :label="$t('common.amount')" name="amount">
+              <UInput v-model="state.amount" class="w-full" />
+            </UFormField>
 
-        <template #footer>
-          <UButton type="submit" block @click="submit">
-            {{ $t("common.submit") }}
-          </UButton>
-        </template>
-      </UCard>
+            <UFormField :label="$t('common.comment')" name="comment" class="mt-2">
+              <UInput v-model="state.comment" class="w-full" />
+            </UFormField>
+
+            <UFormField
+              :label="$t('common.category')"
+              name="category"
+              class="mt-2"
+            >
+              <USelectMenu
+                v-model="state.categoryId"
+                :items="categories"
+                :icon="currentCategory?.icon"
+                label-key="name"
+                value-key="id"
+                class="w-full"
+              />
+            </UFormField>
+          </UForm>
+
+          <template #footer>
+            <UButton type="submit" block @click="submit">
+              {{ $t("common.submit") }}
+            </UButton>
+          </template>
+        </UCard>
+      </template>
     </UModal>
   </template>
 </template>

@@ -6,7 +6,6 @@ import type {
   DoughnutControllerDatasetOptions,
 } from 'chart.js'
 import type { Dayjs, ManipulateType } from 'dayjs'
-import { useLocalStorage } from '@vueuse/core'
 import { capitalize, sumBy } from 'lodash-es'
 import { Doughnut } from 'vue-chartjs'
 
@@ -49,7 +48,7 @@ const categoryTypes = computed(() => [
 ])
 const selected = computed(() => categoryTypes.value[currentTab.value])
 
-const currentRangeIndex = useLocalStorage('stat-range', 0)
+const currentRangeIndex = useLocalStorage<string>('stat-range', '0')
 const ranges = computed(() => [
   {
     label: capitalize(t('common.day')),
@@ -195,9 +194,10 @@ watch(currentRange, (value: any) => {
 
 <template>
   <div>
-    <UTabs v-model:model-value="currentTab" :items="tabs" class="w-full" />
+    <UTabs v-model="currentTab" :items="tabs" class="w-full" />
     <UTabs
-      v-model:model-value="currentRangeIndex"
+      v-model="currentRangeIndex"
+      :default-value="currentRangeIndex"
       :items="ranges"
       class="w-full"
     />

@@ -137,15 +137,15 @@ onMounted(() => setActions(formHasAnyValue.value))
 </script>
 
 <template>
-  <div v-auto-animate>
+  <ul v-auto-animate>
     <template v-for="(inp, i) of computedInputs" :key="inp.id">
       <UInput
         :id="String(inp.id)"
         :model-value="inp.inputValue"
         :placeholder="inp.icon ? inp.name : ''"
-        size="md"
-        :ui="{ leading: { padding: { md: inp.padding } } }"
-        class="mb-2"
+        size="xl"
+        :ui="{ leading: 'pl-4', base: 'pl-36' }"
+        class="block mb-2"
         @input="inp.setValue"
         @focus="focusedId = inp.id"
       >
@@ -158,12 +158,10 @@ onMounted(() => setActions(formHasAnyValue.value))
               v-if="inp.icon"
               :name="inp.icon"
               size="28"
-              :class="{ 'text-cyan-400': inp.focused }"
             />
             <span
               v-else
               class="w-20 truncate"
-              :class="{ 'text-cyan-400': inp.focused }"
             >
               {{ inp.name }}
             </span>
@@ -187,10 +185,10 @@ onMounted(() => setActions(formHasAnyValue.value))
         v-if="inp.showCommentInp"
         :model-value="inp.comment"
         placeholder="Комментарий"
-        class="mb-2"
-        size="md"
+        class="mb-2 w-full"
+        size="xl"
         @input="inp.setComment"
       />
     </template>
-  </div>
+  </ul>
 </template>

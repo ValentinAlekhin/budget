@@ -42,6 +42,8 @@ export default defineNuxtConfig({
     dirs: ['store/*', 'dto', 'constants/*'],
   },
 
+  css: ['~/assets/css/main.css'],
+
   typescript: {
     strict: true,
     shim: false,
@@ -184,7 +186,6 @@ export default defineNuxtConfig({
   },
 
   ui: {
-    // @ts-ignore
     icons: ['heroicons'],
   },
 
@@ -196,31 +197,6 @@ export default defineNuxtConfig({
     key: 'pinia_%id',
   },
 
-  i18n: {
-    vueI18n: './i18n.config.ts',
-    defaultLocale: 'en',
-    // @ts-expect-error
-    setLocaleCookie: true,
-    getLocaleCookie: 'i18n',
-    strategy: 'no_prefix',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n',
-      alwaysRedirect: true,
-    },
-    locales: [
-      {
-        code: 'en',
-        name: 'English',
-      },
-      {
-        code: 'ru',
-        name: 'Русский',
-      },
-    ],
-  },
-
-  // @ts-expect-error
   devtools: true,
 
   compatibilityDate: '2024-08-29',

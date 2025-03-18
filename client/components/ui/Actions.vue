@@ -21,13 +21,13 @@ const buttons = computed(() =>
     },
     {
       icon: 'check-20-solid',
-      color: 'green',
+      color: 'success',
       class: 'mb-2 mt-4',
       click: actionsRef.submit?.value,
     },
     {
       icon: 'x-mark-20-solid',
-      color: 'rose',
+      color: 'error',
       click: actionsRef.cancel?.value,
     },
   ]

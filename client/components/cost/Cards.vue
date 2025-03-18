@@ -135,24 +135,26 @@ async function submitAdjustment() {
   <div class="mb-6 grid grid-cols-2 gap-2">
     <UiStatCard v-for="card of miniCards" :key="card.icon" :icon="card.icon" :color="card.color" :value="card.value" :name="card.name" />
 
-    <UModal v-model="adjustmentModal">
-      <UCard>
-        <span class="font-semibold">Adjustment of balance</span>
+    <UModal v-model:open="adjustmentModal">
+      <template #content>
+        <UCard>
+          <span class="font-semibold">Adjustment of balance</span>
 
-        <UForm
-          class="mt-2"
-          :schema="schema"
-          :state="state"
-          @submit="submitAdjustment"
-        >
-          <UFormGroup label="Balance" name="balance">
-            <UInput v-model="state.balance" />
-          </UFormGroup>
-          <UButton class="mt-4" block type="submit">
-            Submit
-          </UButton>
-        </UForm>
-      </UCard>
+          <UForm
+            class="mt-2"
+            :schema="schema"
+            :state="state"
+            @submit="submitAdjustment"
+          >
+            <UFormField label="Balance" name="balance">
+              <UInput v-model="state.balance" class="w-full" />
+            </UFormField>
+            <UButton class="mt-4" block type="submit">
+              Submit
+            </UButton>
+          </UForm>
+        </UCard>
+      </template>
     </UModal>
   </div>
 </template>

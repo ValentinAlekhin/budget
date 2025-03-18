@@ -47,13 +47,13 @@ function removeRecord(id: string) {
     </template>
 
     <db-edit-modal
-      :is-open="!!editRecord"
+      :open="!!editRecord"
       :record="editRecord"
       @close="editRecord = null"
     />
 
     <common-modal-remove
-      :is-open="!!deleteId"
+      :open="!!deleteId"
       @close="deleteId = ''"
       @remove="removeRecord(deleteId)"
     />

@@ -119,28 +119,28 @@ async function saveCategory() {
         <button class="relative inline-flex items-center justify-center flex-shrink-0 bg-gray-100 dark:bg-gray-800 rounded-full h-20 w-20" @click="isIconPickerOpen = true">
           <Icon :name="iconToShow" class="size-12" :color="color" />
         </button>
-        <UFormGroup name="name" class="w-64">
+        <UFormField name="name" class="w-64">
           <UInput
             v-model="state.name"
             :placeholder="t('common.name')"
             size="xl"
           />
-        </UFormGroup>
+        </UFormField>
       </div>
 
       <div class="mb-6">
         <UiColorPicker v-model:value="color" />
       </div>
 
-      <UFormGroup name="comment" class="mb-2">
+      <UFormField name="comment" class="mb-2">
         <UInput v-model.number="state.comment" size="xl" :placeholder="t('common.comment')" />
-      </UFormGroup>
+      </UFormField>
 
-      <UFormGroup name="plan" class="mb-2">
+      <UFormField name="plan" class="mb-2">
         <UInput v-model.number="state.plan" size="xl" :placeholder="t('common.plan')" />
-      </UFormGroup>
+      </UFormField>
 
-      <UFormGroup
+      <UFormField
         v-if="state.plan"
         name="planPeriod"
       >
@@ -156,7 +156,7 @@ async function saveCategory() {
             {{ selectedPlanPeriodName }}
           </template>
         </USelectMenu>
-      </UFormGroup>
+      </UFormField>
 
       <UButton block size="xl" class="mt-8" @click="saveCategory">
         {{ t(`common.submit`) }}

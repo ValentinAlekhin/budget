@@ -11,7 +11,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="h-full overflow-y-auto pb-40 pt-14 lg:pb-0">
+  <div class="h-full overflow-y-auto pb-40 pt-18 lg:pb-0">
     <Header />
 
     <UiLoadersSisyphus v-if="!dataExists && loading" />

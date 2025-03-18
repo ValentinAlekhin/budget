@@ -1,0 +1,73 @@
+import type { DefineLocaleMessage } from 'vue-i18n'
+
+const messages: DefineLocaleMessage = {
+  common: {
+    add: 'Добавить',
+    remove: 'Удалить',
+    register: 'Регистрация',
+    logout: 'Выход',
+    login: 'Вход',
+    update: 'Обновить',
+    updating: 'Обновление',
+    costs: 'Расходы',
+    incoming: 'Доходы',
+    sum: 'Сумма',
+    settings: 'Настройки',
+    edit: 'Редактировать',
+    delete: 'Удалить',
+    amount: 'Сумма',
+    type: 'Тип',
+    comment: 'Комментарий',
+    category: 'Категория',
+    confirmRemove: 'Подтвердить удаление',
+    close: 'Закрыть',
+    name: 'Имя',
+    plan: 'План',
+    icon: 'Иконка',
+    network: 'Сеть',
+    server: 'Сервер',
+    currentBalance: 'Текущий баланс',
+    balance: 'Баланс',
+    totalSum: 'Общая сумма',
+    noRecords: 'Нет записей',
+    submit: 'Подтвердить',
+    language: 'Язык',
+    username: 'Логин',
+    password: 'Пароль',
+    email: 'Почта',
+    cancel: 'Отмена',
+    confirmLogout: 'Подтвердите выход',
+    quarter: 'квартал',
+    day: 'день',
+    week: 'неделя',
+    year: 'год',
+    month: 'месяц',
+    selectColor: 'Выберите цвет',
+    color: 'Цвет',
+    planPeriod: 'Период плана',
+  },
+  range: {
+    currentYear: 'Текущий год',
+    currentQuarter: 'Текущий квартал',
+    currentMonth: 'Текущий месяц',
+    currentDay: 'Текущий день',
+    last30days: 'Последние 30 дней',
+  },
+  record: {
+    edit: 'Редактирование записи от {date}',
+  },
+  category: {
+    add: 'Добавить категорию',
+    edit: 'Редактировать категорию',
+  },
+  icon: {
+    resource:
+            'Поиск иконок <a href="https://icon-sets.iconify.design/" target="_blank" class="text-cyan-500 underline">тут</a>',
+  },
+  validation: {
+    required: 'Обязательно для заполнения',
+    taken: 'Уже занято',
+  },
+}
+
+export default messages

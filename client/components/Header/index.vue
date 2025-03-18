@@ -28,23 +28,27 @@ watch(loading, (value) => {
 
 <template>
   <div
-    class="bg-background/75 fixed top-0 z-50 -mb-px w-full border-b border-gray-200 backdrop-blur dark:border-gray-800"
+    class="fixed top-0 z-50 w-full -mb-px bg-background/75 border-b border-gray-200 backdrop-blur dark:border-gray-800"
   >
     <header
-      class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-2"
+      class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-2"
     >
       <div class="flex items-center">
         <div id="headerTeleport" />
       </div>
 
-      <div v-if="ready || loading" v-auto-animate class="inset-center flex items-center">
+      <div
+        v-if="ready || loading"
+        v-auto-animate
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center"
+      >
         <div class="w-8">
           <UiLoadersPuls v-if="loading" />
           <Icon v-else class="ml-1" name="heroicons:check-20-solid" />
         </div>
       </div>
 
-      <div class="flex w-28 items-center justify-between">
+      <div class="flex items-center justify-between w-28">
         <header-connection />
 
         <UiThemeSwitch />
