@@ -17,7 +17,7 @@ const { isOnline } = useNetwork()
         :class="connected ? 'bg-green-600' : 'bg-red-600'"
       />
 
-      <Icon
+      <UIcon
         name="heroicons-outline:server"
         size="24"
         class="text-slate-500 dark:text-white"

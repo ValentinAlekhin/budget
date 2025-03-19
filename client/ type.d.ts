@@ -59,9 +59,6 @@ declare module 'vue-i18n' {
       add: string
       edit: string
     }
-    icon: {
-      resource: string
-    }
     validation: {
       required: string
       taken: string

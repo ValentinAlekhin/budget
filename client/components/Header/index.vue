@@ -44,7 +44,7 @@ watch(loading, (value) => {
       >
         <div class="w-8">
           <UiLoadersPuls v-if="loading" />
-          <Icon v-else class="ml-1" name="heroicons:check-20-solid" />
+          <UIcon v-else class="ml-1" name="heroicons:check-20-solid" />
         </div>
       </div>
 

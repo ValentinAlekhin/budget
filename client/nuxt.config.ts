@@ -107,7 +107,6 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'nuxt-highcharts',
     '@nuxt/ui',
-    'nuxt-icon',
     '@vite-pwa/nuxt',
     '@formkit/auto-animate/nuxt',
     '@nuxtjs/i18n',

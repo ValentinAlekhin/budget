@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const { links } = useMainLinks()
-const { vibrate } = useVibrate({ pattern: [10] })
 
 const items = computed(() => links.value.map(l => [l]))
 </script>
@@ -13,7 +12,6 @@ const items = computed(() => links.value.map(l => [l]))
       :items="items"
       class="w-full border-b border-gray-200 dark:border-gray-800 px-8"
       color="neutral"
-      @click="vibrate"
     />
   </div>
 </template>

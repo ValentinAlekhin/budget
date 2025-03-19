@@ -59,12 +59,12 @@ onMounted(() => {
       v-model="searchQuery"
       placeholder="Поиск иконок (например, mdi:home)"
       variant="outline"
-      class="mb-4"
+      class="mb-4 w-full"
       size="xl"
       @input="debouncedSearch"
     >
       <template #trailing>
-        <Icon :name="value" class="w-6 h-6" />
+        <UIcon :name="value" class="w-6 h-6" />
       </template>
     </UInput>
 
@@ -78,7 +78,7 @@ onMounted(() => {
           :key="icon.name"
           @click="selectIcon(icon.name)"
         >
-          <Icon :name="icon.name" class="w-8 h-8" :class="{ 'text-primary': icon.name === value }" />
+          <UIcon :name="icon.name" class="w-8 h-8" :class="{ 'text-primary': icon.name === value }" />
         </button>
       </div>
 
@@ -95,7 +95,7 @@ onMounted(() => {
       <p class="text-sm text-gray-700">
         {{ value }}
       </p>
-      <Icon :icon="value" class="w-8 h-8 mx-auto mt-2" />
+      <UIcon :icon="value" class="w-8 h-8 mx-auto mt-2" />
     </div>
   </div>
 </template>

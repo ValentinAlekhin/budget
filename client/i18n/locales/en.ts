@@ -1,6 +1,6 @@
 import type { DefineLocaleMessage } from 'vue-i18n'
 
-const messages: DefineLocaleMessage = {
+export default {
   common: {
     add: 'Add',
     remove: 'Remove',
@@ -60,14 +60,8 @@ const messages: DefineLocaleMessage = {
     add: 'Add category',
     edit: 'Edit category',
   },
-  icon: {
-    resource:
-            'Icons search <a href="https://icon-sets.iconify.design/" target="_blank" class="text-cyan-500 underline">here</a>',
-  },
   validation: {
     required: 'Required',
     taken: 'Already taken',
   },
-}
-
-export default messages
+} satisfies DefineLocaleMessage

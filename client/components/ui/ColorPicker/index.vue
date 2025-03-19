@@ -90,7 +90,7 @@ interface Props {
           <UiColorPickerColor :color="pallet[600]" :active="selectedPalletIndex === i" @click="selectPalletIndex(i)" />
         </swiper-slide>
       </swiper-container>
-      <UDivider class="mt-2 mb-4" />
+      <USeparator class="mt-4 mb-4" />
 
       <swiper-container
         ref="swiperRef"

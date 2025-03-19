@@ -6,16 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновление nuxtui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/BottomTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BottomTabs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/List.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/Cards.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/Actions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/Actions.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useCategoryTabs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoryTabs.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/ i18n/en.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n/locales/en.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/ i18n/i18n.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n/i18n.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/ i18n/ru.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n/locales/ru.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/ type.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/ type.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/category/AddEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/AddEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/db/EditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/EditModal.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,11 +143,11 @@
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\public\pwa" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Valentin\Documents\projects\budget\client\ i18n\locales" />
+      <recent name="C:\Users\Valentin\Documents\projects\budget\client\pages" />
       <recent name="C:\Users\headb\Documents\projects\budget\client\components" />
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\components\ui\ColorPicker" />
       <recent name="C:\Users\headb\Documents\projects\budget\client" />
-      <recent name="C:\Users\headb\Documents\projects\budget\client\composables" />
-      <recent name="C:\Users\headb\Documents\projects\budget\server-go\sqlc" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -413,7 +410,8 @@
       <workItem from="1740656071647" duration="9293000" />
       <workItem from="1740733130940" duration="149000" />
       <workItem from="1742311724242" duration="2582000" />
-      <workItem from="1742314363092" duration="7808000" />
+      <workItem from="1742314363092" duration="8513000" />
+      <workItem from="1742374644392" duration="5270000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -519,30 +517,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00131" summary="Фиксы">
-      <option name="closed" value="true" />
-      <created>1715191098494</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1715191098494</updated>
-    </task>
-    <task id="LOCAL-00132" summary="Фиксы">
-      <option name="closed" value="true" />
-      <created>1715191796049</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1715191796049</updated>
-    </task>
-    <task id="LOCAL-00133" summary="Фиксы + добавлен bruno">
-      <option name="closed" value="true" />
-      <created>1715336578888</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1715336578889</updated>
     </task>
     <task id="LOCAL-00134" summary="Фиксы + добавлен bruno">
       <option name="closed" value="true" />
@@ -792,7 +766,31 @@
       <option name="project" value="LOCAL" />
       <updated>1742318786484</updated>
     </task>
-    <option name="localTasksCounter" value="165" />
+    <task id="LOCAL-00165" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742324394015</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1742324394015</updated>
+    </task>
+    <task id="LOCAL-00166" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742382272481</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1742382272481</updated>
+    </task>
+    <task id="LOCAL-00167" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742383133908</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1742383133908</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

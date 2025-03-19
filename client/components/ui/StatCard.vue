@@ -15,7 +15,7 @@ defineProps<Props>()
         class="mr-2 size-8 rounded-full"
         :class="`bg-${color}-300/25`"
       >
-        <Icon
+        <UIcon
           :name="icon"
           class="ml-[8px] mt-[5px]"
           :class="`text-${color}-500`"

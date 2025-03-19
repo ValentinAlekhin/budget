@@ -114,7 +114,7 @@ async function save() {
   resetForm()
 }
 
-const pushToSettings = () => router.push({ path: '/edit' })
+const pushToSettings = () => navigateTo('/edit')
 
 function setActions(value) {
   if (value) {
@@ -154,7 +154,7 @@ onMounted(() => setActions(formHasAnyValue.value))
             class="flex items-center justify-between text-gray-500 dark:text-gray-400"
             :class="inp.leadingClass"
           >
-            <Icon
+            <UIcon
               v-if="inp.icon"
               :name="inp.icon"
               size="28"

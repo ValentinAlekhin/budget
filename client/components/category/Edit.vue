@@ -92,12 +92,6 @@ async function removeItem() {
   itemToDelete.value = null
 }
 
-const cardUi = {
-  body: {
-    padding: 'p-3 sm:p-6',
-  },
-}
-
 watch(categories, value =>
   cloneDeep(value)
     .sort((a, b) => a.order - b.order)
@@ -141,16 +135,17 @@ onMounted(() => {
       @end="drag = false"
     >
       <template #item="{ element }">
-        <UCard class="mb-2 cursor-pointer" :ui="cardUi" @click="startEditCategory(element.id)">
+        <UCard class="mb-2 cursor-pointer" @click="startEditCategory(element.id)">
           <div class="flex justify-between items-center gap-1">
             <div class="flex items-center">
               <div
                 v-if="element.color || element.icon"
                 class="mr-2 flex w-6 justify-center"
               >
-                <Icon
+                <UIcon
                   v-if="element.icon"
                   :color="element.color"
+                  :style="{ color: element.color }"
                   :name="element.icon"
                   size="24"
                 />
@@ -167,10 +162,9 @@ onMounted(() => {
 
             <div>
               <UButton
-                size="sm"
+                size="md"
                 color="white"
                 icon="i-heroicons-trash"
-                :ui="{ rounded: 'rounded-full' }"
                 variant="ghost"
                 @click.stop="itemToDelete = element.id"
               />
@@ -178,8 +172,7 @@ onMounted(() => {
               <UButton
                 class="handle"
                 color="white"
-                size="sm"
-                :ui="{ rounded: 'rounded-full' }"
+                size="md"
                 icon="i-heroicons-arrows-up-down"
                 variant="ghost"
                 @click.stop
@@ -191,7 +184,7 @@ onMounted(() => {
     </Draggable>
 
     <common-modal-remove
-      :is-open="!!itemToDelete"
+      :open="!!itemToDelete"
       title="Remove category?"
       @close="itemToDelete = null"
       @remove="removeItem"

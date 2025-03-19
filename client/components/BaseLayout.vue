@@ -36,7 +36,7 @@ onMounted(async () => {
     </div>
 
     <template v-if="smallerThanLg">
-      <BottomTabs />
+      <BottomNav />
       <UiActions />
     </template>
   </div>

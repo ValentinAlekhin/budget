@@ -24,7 +24,7 @@ const defaultState = {
   planPeriod: 'month',
 }
 
-const categoryType = ref(0)
+const categoryType = ref('0')
 const color = ref('')
 const icon = ref('')
 const isIconPickerOpen = ref(false)
@@ -49,7 +49,7 @@ onMounted(() => {
   }
 
   if (props.type) {
-    categoryType.value = [CategoriesTypeEnum.COST, CategoriesTypeEnum.INC].findIndex(item => item === props.type)
+    categoryType.value = String([CategoriesTypeEnum.COST, CategoriesTypeEnum.INC].findIndex(item => item === props.type))
   }
 })
 
@@ -68,12 +68,6 @@ const planPeriodList = computed(() =>
     value,
     name: capitalize(t(`common.${value}`)),
   })),
-)
-
-const selectedPlanPeriodName = computed(
-  () =>
-    planPeriodList.value.find(item => item.value === state.value.planPeriod)
-      ?.name,
 )
 
 function setIcon(iconName: string) {
@@ -112,13 +106,13 @@ async function saveCategory() {
       </h1>
 
       <div class="mb-6">
-        <UTabs v-model:model-value="categoryType" :items="tabs" :default-index="0" class="w-full" />
+        <UTabs v-model="categoryType" :items="tabs" :default-index="categoryType" class="w-full" />
       </div>
 
       <div class="mb-6 flex items-center justify-between">
-        <button class="relative inline-flex items-center justify-center flex-shrink-0 bg-gray-100 dark:bg-gray-800 rounded-full h-20 w-20" @click="isIconPickerOpen = true">
-          <Icon :name="iconToShow" class="size-12" :color="color" />
-        </button>
+        <UButton variant="link" label="icon" @click="isIconPickerOpen = true">
+          <UAvatar size="3xl" :icon="iconToShow" />
+        </UButton>
         <UFormField name="name" class="w-64">
           <UInput
             v-model="state.name"
@@ -133,11 +127,11 @@ async function saveCategory() {
       </div>
 
       <UFormField name="comment" class="mb-2">
-        <UInput v-model.number="state.comment" size="xl" :placeholder="t('common.comment')" />
+        <UInput v-model.number="state.comment" size="xl" :placeholder="t('common.comment')" class="w-full" />
       </UFormField>
 
       <UFormField name="plan" class="mb-2">
-        <UInput v-model.number="state.plan" size="xl" :placeholder="t('common.plan')" />
+        <UInput v-model.number="state.plan" size="xl" :placeholder="t('common.plan')" class="w-full" />
       </UFormField>
 
       <UFormField
@@ -145,17 +139,15 @@ async function saveCategory() {
         name="planPeriod"
       >
         <USelectMenu
-          :model-value="state.planPeriod"
-          :options="planPeriodList"
+          v-model="state.planPeriod"
+          :items="planPeriodList"
           option-attribute="name"
           size="xl"
           :placeholder="t('common.planPeriod')"
-          @change="state.planPeriod = $event.value"
-        >
-          <template #label>
-            {{ selectedPlanPeriodName }}
-          </template>
-        </USelectMenu>
+          class="w-full"
+          label-key="name"
+          value-key="value"
+        />
       </UFormField>
 
       <UButton block size="xl" class="mt-8" @click="saveCategory">
@@ -163,10 +155,12 @@ async function saveCategory() {
       </UButton>
     </UForm>
 
-    <UModal v-model="isIconPickerOpen" :ui="{ width: 'max-w-2xl' }">
-      <div class="p-4">
-        <UiIconPicker :value="icon" @update:value="setIcon" />
-      </div>
+    <UModal v-model:open="isIconPickerOpen">
+      <template #content>
+        <div class="p-4">
+          <UiIconPicker :value="icon" @update:value="setIcon" />
+        </div>
+      </template>
     </UModal>
   </div>
 </template>

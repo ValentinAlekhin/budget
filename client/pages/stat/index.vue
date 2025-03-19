@@ -248,7 +248,7 @@ watch(currentRange, (value: any) => {
                 v-if="item.color || item.icon"
                 class="mr-2 flex w-6 justify-center"
               >
-                <Icon
+                <UIcon
                   v-if="item.icon"
                   :color="item.color"
                   :name="item.icon"
@@ -281,7 +281,7 @@ watch(currentRange, (value: any) => {
       </template>
 
       <div v-else class="mt-10 flex items-center justify-center">
-        <Icon name="carbon:db2-database" size="24" class="mr-2" />
+        <UIcon name="carbon:db2-database" size="24" class="mr-2" />
 
         <span
           class="text-center text-lg font-semibold text-gray-900 dark:text-white"

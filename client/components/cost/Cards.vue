@@ -105,7 +105,7 @@ async function submitAdjustment() {
       <div class="grid grid-cols-2">
         <div class="flex flex-col">
           <span class="mb-0.5 text-xs">
-            <Icon
+            <UIcon
               name="ic:round-arrow-drop-down"
               class="scale-200 text-rose-500"
             />
@@ -116,7 +116,7 @@ async function submitAdjustment() {
 
         <div class="flex flex-col">
           <span class="mb-0.5 text-xs">
-            <Icon
+            <UIcon
               name="ic:round-arrow-drop-up"
               class="scale-200 text-green-500"
             />

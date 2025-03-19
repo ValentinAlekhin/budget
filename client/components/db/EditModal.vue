@@ -83,11 +83,11 @@ watch(
             @submit.prevent="submit"
           >
             <UFormField :label="$t('common.amount')" name="amount">
-              <UInput v-model="state.amount" class="w-full" />
+              <UInput v-model="state.amount" class="w-full" size="xl" />
             </UFormField>
 
             <UFormField :label="$t('common.comment')" name="comment" class="mt-2">
-              <UInput v-model="state.comment" class="w-full" />
+              <UInput v-model="state.comment" class="w-full" size="xl" />
             </UFormField>
 
             <UFormField
@@ -102,6 +102,7 @@ watch(
                 label-key="name"
                 value-key="id"
                 class="w-full"
+                size="xl"
               />
             </UFormField>
           </UForm>
