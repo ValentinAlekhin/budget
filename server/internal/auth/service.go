@@ -125,7 +125,22 @@ func (s Service) ParseToken(ctx context.Context, tokenString, secret string) (*C
 	return &CustomClaims{}, errors.New("invalid token")
 }
 
-func (s Service) Logout() error {
+func (s Service) Logout(ctx context.Context, refreshToken string) error {
+	claims, err := s.ParseToken(ctx, refreshToken, s.jwtConfig.RefreshTokenSecret)
+	if err != nil {
+		return http_error.NewBadRequestError("Invalid token", "")
+	}
+
+	tokenEntity, err := s.validateRefreshToken(ctx, claims, refreshToken)
+	if err != nil {
+		return http_error.NewBadRequestError("Invalid token", "")
+	}
+
+	err = s.tokenRepo.Delete(ctx, tokenEntity.ID)
+	if err != nil {
+		return http_error.NewInternalRequestError("Remove token error")
+	}
+
 	return nil
 }
 

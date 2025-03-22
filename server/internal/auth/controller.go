@@ -41,7 +41,21 @@ func (c Controller) Me(ctx *gin.Context) {
 }
 
 func (c Controller) Logout(ctx *gin.Context) {
+	var logoutDto LogoutRequestDto
 
+	if err := ctx.ShouldBindJSON(&logoutDto); err != nil {
+		err = http_error.NewBadRequestError(err.Error(), "")
+		ctx.Error(err)
+		return
+	}
+
+	err := c.authServie.Logout(ctx, logoutDto.RefreshToken)
+	if err != nil {
+		ctx.Error(err)
+		return
+	}
+
+	ctx.Status(http.StatusOK)
 }
 
 func (c Controller) RefreshTokens(ctx *gin.Context) {

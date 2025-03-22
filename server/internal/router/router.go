@@ -62,7 +62,7 @@ func Init(db *pgxpool.Pool, jwtConfig *config.JWT, serverConfig *config.Server) 
 	authGroup.POST("/login", authController.Login)
 	authGroup.GET("/me", authMiddlewares.AuthRequired, authController.Me)
 	authGroup.POST("/refresh-tokens", authController.RefreshTokens)
-	// authGroup.GET("/logout", auth.Middlewares.AuthRequired, auth.Controller.Logout)
+	authGroup.GET("/logout", authMiddlewares.AuthRequired, authController.Logout)
 
 	if err := router.Run(fmt.Sprintf(":%s", serverConfig.Port)); err != nil {
 		return err
