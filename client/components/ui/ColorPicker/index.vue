@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { isPlainObject, omit } from 'lodash-es'
+import { isPlainObject } from 'lodash-es'
 import rawColors from 'tailwindcss/colors'
 
 const props = defineProps<Props>()
@@ -13,7 +13,17 @@ const palettes = Object.entries(rawColors).reduce((acc, [key, value]) => {
   }
 
   if (isPlainObject(value)) {
-    acc.push(omit(value, '50'))
+    const omitted = Object.entries(value).reduce((acc2, [key, value]) => {
+      if (key === '50') {
+        return acc2
+      }
+
+      acc2[key] = oklchToHex(parseOklch(value as string))
+
+      return acc2
+    }, {})
+
+    acc.push(omitted)
   }
 
   return acc
