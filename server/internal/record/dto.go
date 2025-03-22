@@ -1,7 +1,7 @@
 package record
 
 import (
-	"budget/internal/db/sqlc/budget"
+	"budget/internal/db"
 	"github.com/jackc/pgx/v5/pgtype"
 	"time"
 )
@@ -30,13 +30,13 @@ type AdjustmentRequestDto struct {
 }
 
 type RecordResponseDto struct {
-	ID         int64                     `json:"id"`
-	CreatedAt  pgtype.Timestamp          `json:"createdAt"`
-	UpdatedAt  pgtype.Timestamp          `json:"updatedAt"`
-	Amount     pgtype.Numeric            `json:"amount"`
-	Comment    string                    `json:"comment"`
-	Timestamp  pgtype.Timestamp          `json:"timestamp"`
-	CategoryID int64                     `json:"categoryId"`
-	DeletedAt  pgtype.Timestamp          `json:"deletedAt"`
-	Type       budget.CategoriesTypeEnum `json:"type"`
+	ID         int64                 `json:"id"`
+	CreatedAt  pgtype.Timestamp      `json:"createdAt"`
+	UpdatedAt  pgtype.Timestamp      `json:"updatedAt"`
+	Amount     pgtype.Numeric        `json:"amount"`
+	Comment    string                `json:"comment"`
+	Timestamp  pgtype.Timestamp      `json:"timestamp"`
+	CategoryID int64                 `json:"categoryId"`
+	DeletedAt  pgtype.Timestamp      `json:"deletedAt"`
+	Type       db.CategoriesTypeEnum `json:"type"`
 }

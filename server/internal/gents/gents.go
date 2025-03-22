@@ -3,7 +3,7 @@ package gents
 import (
 	"budget/internal/auth"
 	"budget/internal/category"
-	"budget/internal/db/sqlc/budget"
+	"budget/internal/db"
 	"budget/internal/record"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/tkrajina/typescriptify-golang-structs/typescriptify"
@@ -11,23 +11,23 @@ import (
 )
 
 var AllCategoriesTypeEnum = []struct {
-	Value  budget.CategoriesTypeEnum
+	Value  db.CategoriesTypeEnum
 	TSName string
 }{
-	{budget.CategoriesTypeEnumAdjustment, "ADJUSTMENT"},
-	{budget.CategoriesTypeEnumCost, "COST"},
-	{budget.CategoriesTypeEnumInc, "INC"},
+	{db.CategoriesTypeEnumAdjustment, "ADJUSTMENT"},
+	{db.CategoriesTypeEnumCost, "COST"},
+	{db.CategoriesTypeEnumInc, "INC"},
 }
 
 var AllCategoriesPlanPeriodEnum = []struct {
-	Value  budget.CategoriesPlanPeriodEnum
+	Value  db.CategoriesPlanPeriodEnum
 	TSName string
 }{
-	{budget.CategoriesPlanPeriodEnumDay, "DAY"},
-	{budget.CategoriesPlanPeriodEnumWeek, "WEEK"},
-	{budget.CategoriesPlanPeriodEnumMonth, "MONTH"},
-	{budget.CategoriesPlanPeriodEnumQuarter, "QUARTER"},
-	{budget.CategoriesPlanPeriodEnumYear, "YEAR"},
+	{db.CategoriesPlanPeriodEnumDay, "DAY"},
+	{db.CategoriesPlanPeriodEnumWeek, "WEEK"},
+	{db.CategoriesPlanPeriodEnumMonth, "MONTH"},
+	{db.CategoriesPlanPeriodEnumQuarter, "QUARTER"},
+	{db.CategoriesPlanPeriodEnumYear, "YEAR"},
 }
 
 func Run(filename string) error {

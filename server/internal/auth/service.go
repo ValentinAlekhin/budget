@@ -2,7 +2,7 @@ package auth
 
 import (
 	"budget/internal/config"
-	"budget/internal/db/sqlc/budget"
+	"budget/internal/db"
 	http_error "budget/internal/http-error"
 	refresh_token "budget/internal/refresh-token"
 	"budget/internal/user"
@@ -93,7 +93,7 @@ func (s Service) saveRefreshToken(ctx context.Context, token string, userId int3
 		return err
 	}
 
-	tokenEntity := budget.CreateRefreshTokenParams{
+	tokenEntity := db.CreateRefreshTokenParams{
 		RefreshToken: tokenHash,
 		ExpiresAt: pgtype.Timestamp{
 			Time:  carbon.Now().AddDays(30).StdTime(),
@@ -110,7 +110,7 @@ func (s Service) saveRefreshToken(ctx context.Context, token string, userId int3
 	return nil
 }
 
-func (s Service) ParseToken(ctx context.Context, tokenString, secret string) (*CustomClaims, error) {
+func (s Service) ParseToken(tokenString, secret string) (*CustomClaims, error) {
 	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
 		return []byte(secret), nil
 	})
@@ -126,7 +126,7 @@ func (s Service) ParseToken(ctx context.Context, tokenString, secret string) (*C
 }
 
 func (s Service) Logout(ctx context.Context, refreshToken string) error {
-	claims, err := s.ParseToken(ctx, refreshToken, s.jwtConfig.RefreshTokenSecret)
+	claims, err := s.ParseToken(refreshToken, s.jwtConfig.RefreshTokenSecret)
 	if err != nil {
 		return http_error.NewBadRequestError("Invalid token", "")
 	}
@@ -145,7 +145,7 @@ func (s Service) Logout(ctx context.Context, refreshToken string) error {
 }
 
 func (s Service) RefreshTokens(ctx context.Context, dto RefreshTokenRequestDto) (RefreshTokenResponseDto, error) {
-	claims, err := s.ParseToken(ctx, dto.RefreshToken, s.jwtConfig.RefreshTokenSecret)
+	claims, err := s.ParseToken(dto.RefreshToken, s.jwtConfig.RefreshTokenSecret)
 	if err != nil {
 		return RefreshTokenResponseDto{}, http_error.NewBadRequestError("Invalid token", "")
 	}

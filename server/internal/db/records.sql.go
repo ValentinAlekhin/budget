@@ -3,7 +3,7 @@
 //   sqlc v1.28.0
 // source: records.sql
 
-package budget
+package db
 
 import (
 	"context"

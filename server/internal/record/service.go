@@ -3,7 +3,7 @@ package record
 import (
 	"budget/internal/cache"
 	"budget/internal/category"
-	"budget/internal/db/sqlc/budget"
+	"budget/internal/db"
 	http_error "budget/internal/http-error"
 	"budget/internal/ws"
 	"budget/pkg/utils/convert"
@@ -24,9 +24,9 @@ type Service struct {
 	cache        cache.Cache
 }
 
-func NewService(db *pgxpool.Pool, c cache.Cache) *Service {
-	recordRepo := NewRecordsRepo(db)
-	categoryRepo := category.NewCategoryRepo(db)
+func NewService(conn *pgxpool.Pool, c cache.Cache) *Service {
+	recordRepo := NewRecordsRepo(conn)
+	categoryRepo := category.NewCategoryRepo(conn)
 	cudService := ws.NewCudService[RecordResponseDto]("record")
 	return &Service{
 		recordRepo,
@@ -75,7 +75,7 @@ func (s Service) CreateOne(ctx context.Context, userId int32, dto CreateOneRecor
 		return RecordResponseDto{}, http_error.NewBadRequestError("Category not found", "")
 	}
 
-	newRecord, err := s.recordRepo.Create(ctx, budget.CreateRecordParams{
+	newRecord, err := s.recordRepo.Create(ctx, db.CreateRecordParams{
 		Amount:     convert.Float64ToNumeric(dto.Amount, 2),
 		Comment:    dto.Comment,
 		Timestamp:  pgtype.Timestamp{Time: dto.Timestamp, Valid: true},
@@ -111,9 +111,9 @@ func (s Service) CreateMany(ctx context.Context, userId int32, dto CreateManyRec
 		categoriesMap[categoryEntity.ID] = categoryEntity
 	}
 
-	newRecords := make([]budget.CreateRecordParams, len(dto.Data))
+	newRecords := make([]db.CreateRecordParams, len(dto.Data))
 	for i, item := range dto.Data {
-		record := budget.CreateRecordParams{
+		record := db.CreateRecordParams{
 			Amount:     convert.Float64ToNumeric(item.Amount, 2),
 			Comment:    item.Comment,
 			CategoryID: item.CategoryID,
@@ -148,7 +148,7 @@ func (s Service) UpdateOne(ctx context.Context, userId int32, dto UpdateOneRecor
 		return RecordResponseDto{}, http_error.NewBadRequestError("Category not found", "")
 	}
 
-	record := budget.UpdateRecordParams{
+	record := db.UpdateRecordParams{
 		ID:         dto.ID,
 		Amount:     convert.Float64ToNumeric(dto.Amount, 2),
 		Comment:    dto.Comment,
@@ -195,7 +195,7 @@ func (s Service) Adjustment(ctx context.Context, userId int32, dto AdjustmentReq
 		return RecordResponseDto{}, http_error.NewInternalRequestError("")
 	}
 
-	record := budget.CreateRecordParams{
+	record := db.CreateRecordParams{
 		Amount:     convert.Float64ToNumeric(dto.Diff, 2),
 		CategoryID: adjustmentCategory.ID,
 		Timestamp: pgtype.Timestamp{

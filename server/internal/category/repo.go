@@ -1,26 +1,26 @@
 package category
 
 import (
-	"budget/internal/db/sqlc/budget"
+	"budget/internal/db"
 	"context"
 	"fmt"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Repo struct {
-	db *pgxpool.Pool
-	q  *budget.Queries
+	conn *pgxpool.Pool
+	q    *db.Queries
 }
 
-func NewCategoryRepo(db *pgxpool.Pool) *Repo {
+func NewCategoryRepo(conn *pgxpool.Pool) *Repo {
 	return &Repo{
-		db: db,
-		q:  budget.New(db),
+		conn: conn,
+		q:    db.New(conn),
 	}
 }
 
 // Create создает новую категорию
-func (r *Repo) Create(ctx context.Context, params budget.CreateCategoryParams) (CategoryResponseDto, error) {
+func (r *Repo) Create(ctx context.Context, params db.CreateCategoryParams) (CategoryResponseDto, error) {
 	category, err := r.q.CreateCategory(ctx, params)
 	if err != nil {
 		return CategoryResponseDto{}, fmt.Errorf("failed to create category: %w", err)
@@ -39,7 +39,7 @@ func (r *Repo) GetByID(ctx context.Context, id int64) (CategoryResponseDto, erro
 
 // GetByIDAndUserID получает категорию по ID и UserID
 func (r *Repo) GetByIDAndUserID(ctx context.Context, id int64, userId int32) (CategoryResponseDto, error) {
-	category, err := r.q.GetCategoryByIDAndUserID(ctx, budget.GetCategoryByIDAndUserIDParams{
+	category, err := r.q.GetCategoryByIDAndUserID(ctx, db.GetCategoryByIDAndUserIDParams{
 		ID:     id,
 		UserID: userId,
 	})
@@ -60,7 +60,7 @@ func (r *Repo) GetAdjustmentUserID(ctx context.Context, userId int32) (CategoryR
 
 // GetByIDAndUserIDs получает категории по списку ID и UserID
 func (r *Repo) GetByIDAndUserIDs(ctx context.Context, ids []int64, userId int32) ([]CategoryResponseDto, error) {
-	categories, err := r.q.GetCategoriesByIDAndUserIDs(ctx, budget.GetCategoriesByIDAndUserIDsParams{
+	categories, err := r.q.GetCategoriesByIDAndUserIDs(ctx, db.GetCategoriesByIDAndUserIDsParams{
 		Column1: ids,
 		UserID:  userId,
 	})
@@ -82,7 +82,7 @@ func (r *Repo) ListByUser(ctx context.Context, userID int32) ([]CategoryResponse
 }
 
 // Update обновляет данные категории
-func (r *Repo) Update(ctx context.Context, params budget.UpdateCategoryParams) (CategoryResponseDto, error) {
+func (r *Repo) Update(ctx context.Context, params db.UpdateCategoryParams) (CategoryResponseDto, error) {
 	category, err := r.q.UpdateCategory(ctx, params)
 	if err != nil {
 		return CategoryResponseDto{}, fmt.Errorf("failed to update category: %w", err)
@@ -90,7 +90,7 @@ func (r *Repo) Update(ctx context.Context, params budget.UpdateCategoryParams) (
 	return convertToResponseDto(category), nil
 }
 
-func (r *Repo) UpdateOne(ctx context.Context, param budget.UpdateCategoryParams) (CategoryResponseDto, error) {
+func (r *Repo) UpdateOne(ctx context.Context, param db.UpdateCategoryParams) (CategoryResponseDto, error) {
 	category, err := r.q.UpdateCategory(ctx, param)
 	if err != nil {
 		return CategoryResponseDto{}, fmt.Errorf("failed to update category: %w", err)
@@ -99,9 +99,9 @@ func (r *Repo) UpdateOne(ctx context.Context, param budget.UpdateCategoryParams)
 	return convertToResponseDto(category), nil
 }
 
-func (r *Repo) UpdateManyOrder(ctx context.Context, params []budget.UpdateCategoryOrderParams) ([]CategoryResponseDto, error) {
-	result := make([]budget.Category, len(params))
-	tx, err := r.db.Begin(ctx)
+func (r *Repo) UpdateManyOrder(ctx context.Context, params []db.UpdateCategoryOrderParams) ([]CategoryResponseDto, error) {
+	result := make([]db.Category, len(params))
+	tx, err := r.conn.Begin(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("unable to begin transaction: %w", err)
 	}
@@ -125,9 +125,9 @@ func (r *Repo) UpdateManyOrder(ctx context.Context, params []budget.UpdateCatego
 }
 
 // UpdateMany обновляет данные нескольких категорий
-func (r *Repo) UpdateMany(ctx context.Context, params []budget.UpdateCategoryParams) ([]CategoryResponseDto, error) {
-	result := make([]budget.Category, len(params))
-	tx, err := r.db.Begin(ctx)
+func (r *Repo) UpdateMany(ctx context.Context, params []db.UpdateCategoryParams) ([]CategoryResponseDto, error) {
+	result := make([]db.Category, len(params))
+	tx, err := r.conn.Begin(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("unable to begin transaction: %w", err)
 	}
@@ -152,7 +152,7 @@ func (r *Repo) UpdateMany(ctx context.Context, params []budget.UpdateCategoryPar
 
 // SoftDelete выполняет мягкое удаление категории
 func (r *Repo) SoftDelete(ctx context.Context, id int64, userId int32) (CategoryResponseDto, error) {
-	category, err := r.q.SoftDeleteCategory(ctx, budget.SoftDeleteCategoryParams{
+	category, err := r.q.SoftDeleteCategory(ctx, db.SoftDeleteCategoryParams{
 		ID:     id,
 		UserID: userId,
 	})
@@ -172,11 +172,11 @@ func (r *Repo) Delete(ctx context.Context, id int64) (CategoryResponseDto, error
 	return convertToResponseDto(category), nil
 }
 
-func convertToResponseDto(c budget.Category) CategoryResponseDto {
+func convertToResponseDto(c db.Category) CategoryResponseDto {
 	return CategoryResponseDto(c)
 }
 
-func convertListToResponseDto(list []budget.Category) []CategoryResponseDto {
+func convertListToResponseDto(list []db.Category) []CategoryResponseDto {
 	result := make([]CategoryResponseDto, len(list))
 	for i, item := range list {
 		result[i] = CategoryResponseDto(item)

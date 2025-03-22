@@ -1,7 +1,7 @@
 package user
 
 import (
-	"budget/internal/db/sqlc/budget"
+	"budget/internal/db"
 	http_error "budget/internal/http-error"
 	"budget/pkg/utils/argon"
 	"context"
@@ -22,7 +22,7 @@ func NewService(db *pgxpool.Pool) *Service {
 func (s Service) CreateOne(ctx context.Context, dto *CreateUserDto) (ResponseDto, error) {
 	user := ResponseDto{}
 
-	count, err := s.userRepo.CountByEmailOrUsername(ctx, budget.CountUserByEmailOrUsernameParams{
+	count, err := s.userRepo.CountByEmailOrUsername(ctx, db.CountUserByEmailOrUsernameParams{
 		Email:    dto.Email,
 		Username: dto.Username,
 	})
@@ -40,7 +40,7 @@ func (s Service) CreateOne(ctx context.Context, dto *CreateUserDto) (ResponseDto
 		return user, internalErr
 	}
 
-	newUser, err := s.userRepo.Create(ctx, budget.CreateUserParams{
+	newUser, err := s.userRepo.Create(ctx, db.CreateUserParams{
 		Username: dto.Username,
 		Email:    dto.Email,
 		Password: hashedPass,

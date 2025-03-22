@@ -1,7 +1,7 @@
 package category
 
 import (
-	"budget/internal/db/sqlc/budget"
+	"budget/internal/db"
 	http_error "budget/internal/http-error"
 	"budget/internal/ws"
 	"budget/pkg/utils/convert"
@@ -40,7 +40,7 @@ func (s Service) FindOne(ctx context.Context, userId int32, id int64) (CategoryR
 }
 
 func (s Service) CreateOne(ctx context.Context, dto CreateCategoryRequestDto, userId int32) (CategoryResponseDto, error) {
-	newCategory := budget.CreateCategoryParams{
+	newCategory := db.CreateCategoryParams{
 		Name:       dto.Name,
 		Type:       dto.Type,
 		Order:      dto.Order,
@@ -68,7 +68,7 @@ func (s Service) UpdateOne(ctx context.Context, dto UpdateCategoryRequestDto, id
 		return CategoryResponseDto{}, http_error.NewNotFoundError("Category not found", "")
 	}
 
-	category := budget.UpdateCategoryParams{
+	category := db.UpdateCategoryParams{
 		ID:         id,
 		Name:       dto.Name,
 		Type:       dto.Type,
@@ -92,9 +92,9 @@ func (s Service) UpdateOne(ctx context.Context, dto UpdateCategoryRequestDto, id
 }
 
 func (s Service) UpdateManyOrder(ctx context.Context, dto UpdateManyCategoryOrderRequestDto, userId int32) ([]CategoryResponseDto, error) {
-	categories := make([]budget.UpdateCategoryOrderParams, len(dto.Data))
+	categories := make([]db.UpdateCategoryOrderParams, len(dto.Data))
 	for i, item := range dto.Data {
-		category := budget.UpdateCategoryOrderParams{
+		category := db.UpdateCategoryOrderParams{
 			ID:     item.ID,
 			Order:  item.Order,
 			UserID: userId,
@@ -114,9 +114,9 @@ func (s Service) UpdateManyOrder(ctx context.Context, dto UpdateManyCategoryOrde
 
 func (s Service) UpdateMany(ctx context.Context, dto UpdateManyCategoryRequestDto, userId int32) ([]CategoryResponseDto, error) {
 
-	categories := make([]budget.UpdateCategoryParams, len(dto.Data))
+	categories := make([]db.UpdateCategoryParams, len(dto.Data))
 	for i, item := range dto.Data {
-		category := budget.UpdateCategoryParams{
+		category := db.UpdateCategoryParams{
 			ID:         item.ID,
 			Name:       item.Name,
 			Type:       item.Type,

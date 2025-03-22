@@ -46,7 +46,7 @@ func (m Middlewares) AuthRequired(ctx *gin.Context) {
 		return
 	}
 
-	claims, err := m.authService.ParseToken(ctx, headerParts[1], m.jwtConfig.AccessTokenSecret)
+	claims, err := m.authService.ParseToken(headerParts[1], m.jwtConfig.AccessTokenSecret)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("Token expired"))
 		ctx.Abort()
@@ -84,7 +84,7 @@ func (m Middlewares) AuthRequiredCookie(ctx *gin.Context) {
 		return
 	}
 
-	claims, err := m.authService.ParseToken(ctx, cookie, m.jwtConfig.AccessTokenSecret)
+	claims, err := m.authService.ParseToken(cookie, m.jwtConfig.AccessTokenSecret)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("Token expired"))
 		ctx.Abort()
