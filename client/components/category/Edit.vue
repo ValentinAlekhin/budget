@@ -144,7 +144,6 @@ onMounted(() => {
               >
                 <UIcon
                   v-if="element.icon"
-                  :color="element.color"
                   :style="{ color: element.color }"
                   :name="element.icon"
                   size="24"

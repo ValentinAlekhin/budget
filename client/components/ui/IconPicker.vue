@@ -66,7 +66,7 @@ onMounted(() => {
       @input="debouncedSearch"
     >
       <template #trailing>
-        <Icon v-if="computedValue" :name="computedValue" class="w-6 h-6" />
+        <UIcon v-if="computedValue" :name="computedValue" class="w-6 h-6" />
       </template>
     </UInput>
 
@@ -80,7 +80,7 @@ onMounted(() => {
           :key="icon.name"
           @click="selectIcon(icon.name)"
         >
-          <Icon :name="icon.name" class="w-8 h-8" :class="{ 'text-primary': icon.name === computedValue }" />
+          <UIcon :name="icon.name" class="w-8 h-8" :class="{ 'text-primary': icon.name === computedValue }" />
         </button>
       </div>
 

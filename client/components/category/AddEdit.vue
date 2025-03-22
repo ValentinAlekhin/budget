@@ -89,7 +89,7 @@ async function saveCategory() {
   await props.submit({
     name: state.value.name,
     comment: state.value.comment,
-    plan: state.value.plan,
+    plan: Number(state.value.plan),
     planPeriod: state.value.planPeriod,
     icon: icon.value,
     color: color.value,
@@ -110,9 +110,9 @@ async function saveCategory() {
       </div>
 
       <div class="mb-6 flex items-center justify-between">
-        <UButton variant="link" label="icon" @click="isIconPickerOpen = true">
-          <UAvatar size="3xl" :icon="iconToShow" />
-        </UButton>
+        <button class="inline-flex items-center justify-center overflow-hidden rounded-full bg-(--ui-bg-elevated) size-16 text-3xl" @click="isIconPickerOpen = true">
+          <UIcon :name="iconToShow" :style="{ color }" />
+        </button>
         <UFormField name="name" class="w-64">
           <UInput
             v-model="state.name"

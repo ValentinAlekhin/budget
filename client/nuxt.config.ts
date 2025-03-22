@@ -105,7 +105,6 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxt/image',
     'nuxt-swiper',
-    '@nuxt/icon',
   ],
 
   pwa: {
