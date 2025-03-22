@@ -6,7 +6,7 @@ const {
 const router = useRouter()
 
 function back() {
-  router.push('/category')
+  router.push('/edit')
 }
 
 async function add(dto: UpdateCategoryRequestDto) {

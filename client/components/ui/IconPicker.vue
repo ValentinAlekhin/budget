@@ -3,7 +3,7 @@
 import { debounce } from 'lodash-es'
 
 interface Props {
-  value: string
+  value?: string
 }
 
 const props = defineProps<Props>()
@@ -12,6 +12,8 @@ const emit = defineEmits(['update:value'])
 const searchQuery = ref('')
 const icons = ref([])
 const loading = ref(false)
+
+const computedValue = computed(() => props.value || '')
 
 async function searchIcons() {
   if (!searchQuery.value.trim()) {
@@ -40,7 +42,7 @@ async function searchIcons() {
 const debouncedSearch = debounce(searchIcons, 300)
 
 function selectIcon(iconName) {
-  if (iconName === props.value) {
+  if (iconName === computedValue.value) {
     return emit('update:value', '')
   }
 
@@ -48,7 +50,7 @@ function selectIcon(iconName) {
 }
 
 onMounted(() => {
-  searchQuery.value = props.value
+  searchQuery.value = computedValue.value
   searchIcons()
 })
 </script>
@@ -64,7 +66,7 @@ onMounted(() => {
       @input="debouncedSearch"
     >
       <template #trailing>
-        <UIcon :name="value" class="w-6 h-6" />
+        <Icon v-if="computedValue" :name="computedValue" class="w-6 h-6" />
       </template>
     </UInput>
 
@@ -78,7 +80,7 @@ onMounted(() => {
           :key="icon.name"
           @click="selectIcon(icon.name)"
         >
-          <UIcon :name="icon.name" class="w-8 h-8" :class="{ 'text-primary': icon.name === value }" />
+          <Icon :name="icon.name" class="w-8 h-8" :class="{ 'text-primary': icon.name === computedValue }" />
         </button>
       </div>
 
@@ -91,11 +93,10 @@ onMounted(() => {
       </p>
     </div>
 
-    <div v-if="value" class="mt-4 text-center">
+    <div v-if="computedValue" class="mt-4 text-center">
       <p class="text-sm text-gray-700">
-        {{ value }}
+        {{ computedValue }}
       </p>
-      <UIcon :icon="value" class="w-8 h-8 mx-auto mt-2" />
     </div>
   </div>
 </template>

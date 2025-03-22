@@ -194,11 +194,12 @@ watch(currentRange, (value: any) => {
 
 <template>
   <div>
-    <UTabs v-model="currentTab" :items="tabs" class="w-full" />
+    <UTabs v-model="currentTab" :items="tabs" color="neutral" class="w-full" />
     <UTabs
       v-model="currentRangeIndex"
       :default-value="currentRangeIndex"
       :items="ranges"
+      color="neutral"
       class="w-full"
     />
 

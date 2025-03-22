@@ -18,7 +18,7 @@ if (!category) {
 }
 
 function back() {
-  router.push('/category')
+  router.push('/edit')
 }
 
 async function edit(dto: UpdateCategoryRequestDto) {

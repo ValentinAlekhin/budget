@@ -6,6 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновление nuxtui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/assets/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/cost/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/IconPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/IconPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/category/add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/category/add.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/category/edit/[id].vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/category/edit/[id].vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/category/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/stat/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stat/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -406,6 +418,7 @@
       <workItem from="1742314363092" duration="8513000" />
       <workItem from="1742374644392" duration="5325000" />
       <workItem from="1742657427951" duration="777000" />
+      <workItem from="1742673603514" duration="2327000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
