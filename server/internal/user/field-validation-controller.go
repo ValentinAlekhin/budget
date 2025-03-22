@@ -1,9 +1,10 @@
 package user
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"net/http"
 )
 
 type FieldValidationController struct {
@@ -23,7 +24,7 @@ func (c FieldValidationController) ValidateEmail(ctx *gin.Context) {
 		return
 	}
 
-	valid := c.userService.ValidateEmail(dto.Email)
+	valid := c.userService.ValidateEmail(ctx, dto.Email)
 	ctx.JSON(http.StatusOK, ValidationResponseDto{valid})
 }
 
@@ -34,6 +35,6 @@ func (c FieldValidationController) ValidateUsername(ctx *gin.Context) {
 		return
 	}
 
-	valid := c.userService.ValidateUsername(dto.Username)
+	valid := c.userService.ValidateUsername(ctx, dto.Username)
 	ctx.JSON(http.StatusOK, ValidationResponseDto{valid})
 }

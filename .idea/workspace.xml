@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновление nuxtui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/ i18n/en.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n/locales/en.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/ i18n/i18n.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n/i18n.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/ i18n/ru.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n/locales/ru.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/ type.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/ type.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/AddEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/AddEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/category/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/EditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/db/EditModal.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,7 +265,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-WS-243.24978.60" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
       </set>
     </attachedChunks>
   </component>
@@ -411,7 +404,8 @@
       <workItem from="1740733130940" duration="149000" />
       <workItem from="1742311724242" duration="2582000" />
       <workItem from="1742314363092" duration="8513000" />
-      <workItem from="1742374644392" duration="5270000" />
+      <workItem from="1742374644392" duration="5325000" />
+      <workItem from="1742657427951" duration="777000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -517,14 +511,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00134" summary="Фиксы + добавлен bruno">
-      <option name="closed" value="true" />
-      <created>1715336997336</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1715336997336</updated>
     </task>
     <task id="LOCAL-00135" summary="Фиксы отвала сокетов">
       <option name="closed" value="true" />
@@ -790,7 +776,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742383133908</updated>
     </task>
-    <option name="localTasksCounter" value="168" />
+    <task id="LOCAL-00168" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742385262749</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1742385262749</updated>
+    </task>
+    <option name="localTasksCounter" value="169" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

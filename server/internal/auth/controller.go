@@ -3,9 +3,10 @@ package auth
 import (
 	"budget/internal/config"
 	http_error "budget/internal/http-error"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"net/http"
 )
 
 type Controller struct {
@@ -25,7 +26,7 @@ func (c Controller) Login(ctx *gin.Context) {
 		return
 	}
 
-	res, err := c.authServie.Login(&loginDto)
+	res, err := c.authServie.Login(ctx, &loginDto)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -51,7 +52,7 @@ func (c Controller) RefreshTokens(ctx *gin.Context) {
 		return
 	}
 
-	response, err := c.authServie.RefreshTokens(refreshTokenDto)
+	response, err := c.authServie.RefreshTokens(ctx, refreshTokenDto)
 	if err != nil {
 		ctx.Error(err)
 		return

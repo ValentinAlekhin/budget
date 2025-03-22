@@ -2,9 +2,10 @@ package user
 
 import (
 	http_error "budget/internal/http-error"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"net/http"
 )
 
 type Controller struct {
@@ -25,7 +26,7 @@ func (c Controller) CreateOne(ctx *gin.Context) {
 		return
 	}
 
-	user, err := c.userService.CreateOne(&createUserDto)
+	user, err := c.userService.CreateOne(ctx, &createUserDto)
 	if err != nil {
 		ctx.Error(err)
 		return

@@ -9,10 +9,11 @@ import (
 	"budget/pkg/utils/argon"
 	"context"
 	"errors"
+	"time"
+
 	"github.com/golang-module/carbon/v2"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"time"
 
 	"github.com/golang-jwt/jwt/v4"
 )
@@ -34,15 +35,15 @@ type CustomClaims struct {
 	User PureUserDto
 }
 
-func (s Service) Login(dto *LoginRequestDto) (LoginResponseDto, error) {
-	targetUser, err := s.userService.GetUserByEmailAndPass(dto.Username, dto.Password)
+func (s Service) Login(ctx context.Context, dto *LoginRequestDto) (LoginResponseDto, error) {
+	targetUser, err := s.userService.GetUserByEmailAndPass(ctx, dto.Username, dto.Password)
 	if err != nil {
 		return LoginResponseDto{}, err
 	}
 
 	pureUser := PureUserDto{targetUser.ID, targetUser.Username, targetUser.Email}
 
-	accessToken, refreshToken, err := s.getTokens(pureUser)
+	accessToken, refreshToken, err := s.getTokens(ctx, pureUser)
 	if err != nil {
 		return LoginResponseDto{}, err
 	}
@@ -50,7 +51,7 @@ func (s Service) Login(dto *LoginRequestDto) (LoginResponseDto, error) {
 	return LoginResponseDto{pureUser, accessToken, refreshToken}, nil
 }
 
-func (s Service) getTokens(user PureUserDto) (string, string, error) {
+func (s Service) getTokens(ctx context.Context, user PureUserDto) (string, string, error) {
 	accessTokenExpiresAt := time.Now().Add(time.Minute * time.Duration(s.jwtConfig.AccessTokenExpiration))
 	accessToken := jwt.NewWithClaims(jwt.SigningMethodHS256, CustomClaims{
 		RegisteredClaims: jwt.RegisteredClaims{
@@ -79,14 +80,14 @@ func (s Service) getTokens(user PureUserDto) (string, string, error) {
 		return "", "", err
 	}
 
-	if err := s.saveRefreshToken(refreshTokenSrt, user.ID); err != nil {
+	if err := s.saveRefreshToken(ctx, refreshTokenSrt, user.ID); err != nil {
 		return "", "", err
 	}
 
 	return accessTokenSrt, refreshTokenSrt, nil
 }
 
-func (s Service) saveRefreshToken(token string, userId int32) error {
+func (s Service) saveRefreshToken(ctx context.Context, token string, userId int32) error {
 	tokenHash, err := argon.NewArgon2ID().Hash(token)
 	if err != nil {
 		return err
@@ -101,7 +102,6 @@ func (s Service) saveRefreshToken(token string, userId int32) error {
 		UserID: userId,
 	}
 
-	ctx := context.Background()
 	_, err = s.tokenRepo.Create(ctx, tokenEntity)
 	if err != nil {
 		return errors.New("save token http-error")
@@ -110,7 +110,7 @@ func (s Service) saveRefreshToken(token string, userId int32) error {
 	return nil
 }
 
-func (s Service) ParseToken(tokenString, secret string) (*CustomClaims, error) {
+func (s Service) ParseToken(ctx context.Context, tokenString, secret string) (*CustomClaims, error) {
 	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
 		return []byte(secret), nil
 	})
@@ -129,24 +129,23 @@ func (s Service) Logout() error {
 	return nil
 }
 
-func (s Service) RefreshTokens(dto RefreshTokenRequestDto) (RefreshTokenResponseDto, error) {
-	claims, err := s.ParseToken(dto.RefreshToken, s.jwtConfig.RefreshTokenSecret)
+func (s Service) RefreshTokens(ctx context.Context, dto RefreshTokenRequestDto) (RefreshTokenResponseDto, error) {
+	claims, err := s.ParseToken(ctx, dto.RefreshToken, s.jwtConfig.RefreshTokenSecret)
 	if err != nil {
 		return RefreshTokenResponseDto{}, http_error.NewBadRequestError("Invalid token", "")
 	}
 
-	tokenEntity, err := s.validateRefreshToken(claims, dto.RefreshToken)
+	tokenEntity, err := s.validateRefreshToken(ctx, claims, dto.RefreshToken)
 	if err != nil {
 		return RefreshTokenResponseDto{}, http_error.NewBadRequestError("Invalid token", "")
 	}
 
-	ctx := context.Background()
 	err = s.tokenRepo.Delete(ctx, tokenEntity.ID)
 	if err != nil {
 		return RefreshTokenResponseDto{}, http_error.NewInternalRequestError("Remove token error")
 	}
 
-	accessToken, refreshToken, err := s.getTokens(claims.User)
+	accessToken, refreshToken, err := s.getTokens(ctx, claims.User)
 	if err != nil {
 		return RefreshTokenResponseDto{}, http_error.NewInternalRequestError("Get tokens error")
 	}
@@ -157,8 +156,7 @@ func (s Service) RefreshTokens(dto RefreshTokenRequestDto) (RefreshTokenResponse
 	}, nil
 }
 
-func (s Service) validateRefreshToken(claims *CustomClaims, token string) (refresh_token.ResponseDto, error) {
-	ctx := context.Background()
+func (s Service) validateRefreshToken(ctx context.Context, claims *CustomClaims, token string) (refresh_token.ResponseDto, error) {
 	tokens, err := s.tokenRepo.ListByUser(ctx, claims.User.ID)
 	if err != nil {
 		return refresh_token.ResponseDto{}, errors.New("no tokens")

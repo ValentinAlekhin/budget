@@ -4,9 +4,10 @@ import (
 	"budget/internal/config"
 	http_error "budget/internal/http-error"
 	"budget/internal/user"
+	"strings"
+
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"strings"
 )
 
 type Middlewares struct {
@@ -45,14 +46,14 @@ func (m Middlewares) AuthRequired(ctx *gin.Context) {
 		return
 	}
 
-	claims, err := m.authService.ParseToken(headerParts[1], m.jwtConfig.AccessTokenSecret)
+	claims, err := m.authService.ParseToken(ctx, headerParts[1], m.jwtConfig.AccessTokenSecret)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("Token expired"))
 		ctx.Abort()
 		return
 	}
 
-	targetUser, err := m.userService.GetUserById(claims.User.ID)
+	targetUser, err := m.userService.GetUserById(ctx, claims.User.ID)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("User not found"))
 		ctx.Abort()
@@ -63,6 +64,8 @@ func (m Middlewares) AuthRequired(ctx *gin.Context) {
 
 	ctx.Set("user", pureUser)
 	ctx.Set("userId", pureUser.ID)
+
+	ctx.Next()
 }
 
 func (m Middlewares) AuthRequiredCookie(ctx *gin.Context) {
@@ -81,14 +84,14 @@ func (m Middlewares) AuthRequiredCookie(ctx *gin.Context) {
 		return
 	}
 
-	claims, err := m.authService.ParseToken(cookie, m.jwtConfig.AccessTokenSecret)
+	claims, err := m.authService.ParseToken(ctx, cookie, m.jwtConfig.AccessTokenSecret)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("Token expired"))
 		ctx.Abort()
 		return
 	}
 
-	targetUser, err := m.userService.GetUserById(claims.User.ID)
+	targetUser, err := m.userService.GetUserById(ctx, claims.User.ID)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("User not found"))
 		ctx.Abort()
@@ -99,4 +102,6 @@ func (m Middlewares) AuthRequiredCookie(ctx *gin.Context) {
 
 	ctx.Set("user", pureUser)
 	ctx.Set("userId", pureUser.ID)
+
+	ctx.Next()
 }

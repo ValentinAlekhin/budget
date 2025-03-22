@@ -10,10 +10,11 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"time"
+
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/samber/lo"
-	"time"
 )
 
 type Service struct {
@@ -35,13 +36,12 @@ func NewService(db *pgxpool.Pool, c cache.Cache) *Service {
 	}
 }
 
-func (s Service) GetAll(userId int32) (response []RecordResponseDto, cache string, err error) {
+func (s Service) GetAll(ctx context.Context, userId int32) (response []RecordResponseDto, cache string, err error) {
 	cacheKey := s.getCacheKey(userId)
 	if data, found := s.cache.Get(cacheKey); found {
 		return nil, data, nil
 	}
 
-	ctx := context.Background()
 	list, err := s.recordRepo.List(ctx, userId)
 	if err != nil {
 		return []RecordResponseDto{}, "", http_error.NewInternalRequestError("")
@@ -58,8 +58,7 @@ func (s Service) GetAll(userId int32) (response []RecordResponseDto, cache strin
 	return list, jsonString, nil
 }
 
-func (s Service) FindOne(userId int32, id int64) (RecordResponseDto, error) {
-	ctx := context.Background()
+func (s Service) FindOne(ctx context.Context, userId int32, id int64) (RecordResponseDto, error) {
 	record, err := s.recordRepo.GetByIDAndUserID(ctx, id, userId)
 	if err != nil {
 		return record, http_error.NewNotFoundError("Record not found", "")
@@ -68,10 +67,9 @@ func (s Service) FindOne(userId int32, id int64) (RecordResponseDto, error) {
 	return record, nil
 }
 
-func (s Service) CreateOne(userId int32, dto CreateOneRecordRequestDto) (RecordResponseDto, error) {
+func (s Service) CreateOne(ctx context.Context, userId int32, dto CreateOneRecordRequestDto) (RecordResponseDto, error) {
 	s.dropCache(userId)
 
-	ctx := context.Background()
 	_, err := s.categoryRepo.GetByIDAndUserID(ctx, dto.CategoryID, userId)
 	if err != nil {
 		return RecordResponseDto{}, http_error.NewBadRequestError("Category not found", "")
@@ -92,7 +90,7 @@ func (s Service) CreateOne(userId int32, dto CreateOneRecordRequestDto) (RecordR
 	return newRecord, nil
 }
 
-func (s Service) CreateMany(userId int32, dto CreateManyRecordsRequestDto) ([]RecordResponseDto, error) {
+func (s Service) CreateMany(ctx context.Context, userId int32, dto CreateManyRecordsRequestDto) ([]RecordResponseDto, error) {
 	s.dropCache(userId)
 
 	categoryIds := lo.Map[CreateOneRecordRequestDto, int64](dto.Data, func(item CreateOneRecordRequestDto, _ int) int64 {
@@ -100,7 +98,6 @@ func (s Service) CreateMany(userId int32, dto CreateManyRecordsRequestDto) ([]Re
 	})
 	categoryIds = lo.Uniq(categoryIds)
 
-	ctx := context.Background()
 	categories, err := s.categoryRepo.GetByIDAndUserIDs(ctx, categoryIds, userId)
 	if err != nil {
 		return nil, http_error.NewInternalRequestError("")
@@ -138,12 +135,10 @@ func (s Service) CreateMany(userId int32, dto CreateManyRecordsRequestDto) ([]Re
 	return many, nil
 }
 
-func (s Service) UpdateOne(userId int32, dto UpdateOneRecordRequestDto) (RecordResponseDto, error) {
+func (s Service) UpdateOne(ctx context.Context, userId int32, dto UpdateOneRecordRequestDto) (RecordResponseDto, error) {
 	s.dropCache(userId)
 
-	ctx := context.Background()
-
-	_, err := s.FindOne(userId, dto.ID)
+	_, err := s.FindOne(ctx, userId, dto.ID)
 	if err != nil {
 		return RecordResponseDto{}, err
 	}
@@ -174,15 +169,13 @@ func (s Service) UpdateOne(userId int32, dto UpdateOneRecordRequestDto) (RecordR
 	return updated, nil
 }
 
-func (s Service) DeleteOne(userId int32, id int64) (RecordResponseDto, error) {
+func (s Service) DeleteOne(ctx context.Context, userId int32, id int64) (RecordResponseDto, error) {
 	s.dropCache(userId)
 
-	_, err := s.FindOne(userId, id)
+	_, err := s.FindOne(ctx, userId, id)
 	if err != nil {
 		return RecordResponseDto{}, err
 	}
-
-	ctx := context.Background()
 
 	deleted, err := s.recordRepo.SoftDelete(ctx, id, userId)
 	if err != nil {
@@ -194,10 +187,9 @@ func (s Service) DeleteOne(userId int32, id int64) (RecordResponseDto, error) {
 	return deleted, nil
 }
 
-func (s Service) Adjustment(userId int32, dto AdjustmentRequestDto) (RecordResponseDto, error) {
+func (s Service) Adjustment(ctx context.Context, userId int32, dto AdjustmentRequestDto) (RecordResponseDto, error) {
 	s.dropCache(userId)
 
-	ctx := context.Background()
 	adjustmentCategory, err := s.categoryRepo.GetAdjustmentUserID(ctx, userId)
 	if err != nil {
 		return RecordResponseDto{}, http_error.NewInternalRequestError("")

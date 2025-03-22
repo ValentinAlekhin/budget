@@ -5,6 +5,7 @@ import (
 	http_error "budget/internal/http-error"
 	"budget/pkg/utils/argon"
 	"context"
+
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -18,9 +19,8 @@ func NewService(db *pgxpool.Pool) *Service {
 	return &Service{userRepo: userRepo}
 }
 
-func (s Service) CreateOne(dto *CreateUserDto) (ResponseDto, error) {
+func (s Service) CreateOne(ctx context.Context, dto *CreateUserDto) (ResponseDto, error) {
 	user := ResponseDto{}
-	ctx := context.Background()
 
 	count, err := s.userRepo.CountByEmailOrUsername(ctx, budget.CountUserByEmailOrUsernameParams{
 		Email:    dto.Email,
@@ -52,13 +52,12 @@ func (s Service) CreateOne(dto *CreateUserDto) (ResponseDto, error) {
 	return newUser, nil
 }
 
-func (s Service) UpdateOne() (ResponseDto, error) {
+func (s Service) UpdateOne(ctx context.Context) (ResponseDto, error) {
 	return ResponseDto{}, nil
 }
 
-func (s Service) GetUserById(id int32) (ResponseDto, error) {
+func (s Service) GetUserById(ctx context.Context, id int32) (ResponseDto, error) {
 	user := ResponseDto{}
-	ctx := context.Background()
 	user, err := s.userRepo.GetByID(ctx, id)
 	if err != nil {
 		return user, http_error.NewNotFoundError("User not found", string(id))
@@ -67,9 +66,7 @@ func (s Service) GetUserById(id int32) (ResponseDto, error) {
 	return user, nil
 }
 
-func (s Service) GetUserByEmailAndPass(username string, pass string) (ResponseDto, error) {
-	ctx := context.Background()
-
+func (s Service) GetUserByEmailAndPass(ctx context.Context, username string, pass string) (ResponseDto, error) {
 	user, err := s.userRepo.GetByUsername(ctx, username)
 	if err != nil {
 		return ResponseDto{}, http_error.NewNotFoundError("User not found", "")
@@ -86,8 +83,7 @@ func (s Service) GetUserByEmailAndPass(username string, pass string) (ResponseDt
 	return user, nil
 }
 
-func (s Service) ValidateEmail(email string) bool {
-	ctx := context.Background()
+func (s Service) ValidateEmail(ctx context.Context, email string) bool {
 	_, err := s.userRepo.GetByEmail(ctx, email)
 	if err != nil {
 		return true
@@ -96,8 +92,7 @@ func (s Service) ValidateEmail(email string) bool {
 	}
 }
 
-func (s Service) ValidateUsername(username string) bool {
-	ctx := context.Background()
+func (s Service) ValidateUsername(ctx context.Context, username string) bool {
 	_, err := s.userRepo.GetByUsername(ctx, username)
 	if err != nil {
 		return true
