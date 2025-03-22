@@ -75,13 +75,6 @@ export default defineNuxtConfig({
         },
       },
     },
-    build: {
-      rollupOptions: {
-        output: {
-          inlineDynamicImports: true,
-        },
-      },
-    },
     plugins: [optimizeLodashImports()],
   },
 
