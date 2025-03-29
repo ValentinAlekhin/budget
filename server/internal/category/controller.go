@@ -6,15 +6,13 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Controller struct {
 	categoryService *Service
 }
 
-func NewController(db *pgxpool.Pool) *Controller {
-	categoryService := NewService(db)
+func NewController(categoryService *Service) *Controller {
 	return &Controller{categoryService: categoryService}
 }
 

@@ -13,7 +13,6 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5/pgtype"
-	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/samber/lo"
 )
 
@@ -24,15 +23,14 @@ type Service struct {
 	cache        cache.Cache
 }
 
-func NewService(conn *pgxpool.Pool, c cache.Cache) *Service {
-	recordRepo := NewRecordsRepo(conn)
-	categoryRepo := category.NewCategoryRepo(conn)
+func NewService(recordRepo *Repo, categoryRepo *category.Repo) *Service {
 	cudService := ws.NewCudService[RecordResponseDto]("record")
+	cacheService, _ := cache.NewService()
 	return &Service{
 		recordRepo,
 		categoryRepo,
 		cudService,
-		c,
+		cacheService,
 	}
 }
 

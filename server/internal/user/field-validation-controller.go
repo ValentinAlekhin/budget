@@ -4,16 +4,15 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type FieldValidationController struct {
 	userService *Service
 }
 
-func NewFieldValidationController(db *pgxpool.Pool) *FieldValidationController {
+func NewFieldValidationController(userService *Service) *FieldValidationController {
 	return &FieldValidationController{
-		userService: NewService(db),
+		userService: userService,
 	}
 }
 

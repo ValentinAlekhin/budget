@@ -5,17 +5,13 @@ import (
 	http_error "budget/internal/http-error"
 	"budget/pkg/utils/argon"
 	"context"
-
-	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Service struct {
 	userRepo *Repo
 }
 
-func NewService(db *pgxpool.Pool) *Service {
-	userRepo := NewUserRepo(db)
-
+func NewService(userRepo *Repo) *Service {
 	return &Service{userRepo: userRepo}
 }
 

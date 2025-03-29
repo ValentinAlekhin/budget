@@ -1,25 +1,19 @@
 package record
 
 import (
-	"budget/internal/cache"
 	http_error "budget/internal/http-error"
 	"net/http"
 	"strconv"
-
-	"github.com/jackc/pgx/v5/pgxpool"
 
 	"github.com/gin-gonic/gin"
 )
 
 type Controller struct {
 	recordService *Service
-	cacheService  cache.Cache
 }
 
-func NewController(db *pgxpool.Pool) *Controller {
-	cacheService, _ := cache.NewService()
-	recordService := NewService(db, cacheService)
-	return &Controller{recordService: recordService, cacheService: cacheService}
+func NewController(recordService *Service) *Controller {
+	return &Controller{recordService: recordService}
 }
 
 func (c Controller) GetAll(ctx *gin.Context) {

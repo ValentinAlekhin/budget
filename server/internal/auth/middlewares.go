@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Middlewares struct {
@@ -16,9 +15,7 @@ type Middlewares struct {
 	jwtConfig   *config.JWT
 }
 
-func NewMiddlewares(db *pgxpool.Pool, jwtConfig *config.JWT) *Middlewares {
-	userService := user.NewService(db)
-	authService := NewService(db, jwtConfig)
+func NewMiddlewares(userService *user.Service, authService *Service, jwtConfig *config.JWT) *Middlewares {
 	return &Middlewares{userService, authService, jwtConfig}
 }
 

@@ -6,8 +6,6 @@ import (
 	"budget/internal/ws"
 	"budget/pkg/utils/convert"
 	"context"
-
-	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Service struct {
@@ -15,8 +13,7 @@ type Service struct {
 	cud          *ws.CudService[CategoryResponseDto]
 }
 
-func NewService(db *pgxpool.Pool) *Service {
-	categoryRepo := NewCategoryRepo(db)
+func NewService(categoryRepo *Repo) *Service {
 	cudService := ws.NewCudService[CategoryResponseDto]("category")
 	return &Service{categoryRepo: categoryRepo, cud: cudService}
 }

@@ -27,40 +27,40 @@ type Message struct {
 	Type      string `json:"type"`
 }
 
-func (manager *ClientManager) Start() {
+func (m *ClientManager) Start() {
 	for {
 		select {
-		case conn := <-manager.register:
-			manager.clients[conn] = true
+		case conn := <-m.register:
+			m.clients[conn] = true
 			jsonMessage, _ := json.Marshal(&Message{Content: "Connected"})
 			conn.send <- jsonMessage
-		case conn := <-manager.unregister:
-			if _, ok := manager.clients[conn]; ok {
+		case conn := <-m.unregister:
+			if _, ok := m.clients[conn]; ok {
 				close(conn.send)
-				delete(manager.clients, conn)
+				delete(m.clients, conn)
 			}
-		case message := <-manager.broadcast:
-			for conn := range manager.clients {
+		case message := <-m.broadcast:
+			for conn := range m.clients {
 				select {
 				case conn.send <- message:
 				default:
 					close(conn.send)
-					delete(manager.clients, conn)
+					delete(m.clients, conn)
 				}
 			}
 		}
 	}
 }
 
-func (manager *ClientManager) send(message []byte, ignore *Client) {
-	for conn := range manager.clients {
+func (m *ClientManager) send(message []byte, ignore *Client) {
+	for conn := range m.clients {
 		if conn != ignore {
 			conn.send <- message
 		}
 	}
 }
 
-func (m ClientManager) SendToUser(userId int32, message []byte) {
+func (m *ClientManager) SendToUser(userId int32, message []byte) {
 	for conn := range Manager.clients {
 		if conn.id != userId {
 			continue

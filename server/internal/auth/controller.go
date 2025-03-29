@@ -1,20 +1,17 @@
 package auth
 
 import (
-	"budget/internal/config"
 	http_error "budget/internal/http-error"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Controller struct {
 	authServie *Service
 }
 
-func NewController(db *pgxpool.Pool, jwtConfig *config.JWT) *Controller {
-	authService := NewService(db, jwtConfig)
+func NewController(authService *Service) *Controller {
 	return &Controller{authService}
 }
 

@@ -5,15 +5,13 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Controller struct {
 	userService *Service
 }
 
-func NewController(db *pgxpool.Pool) *Controller {
-	userService := NewService(db)
+func NewController(userService *Service) *Controller {
 	return &Controller{userService: userService}
 }
 

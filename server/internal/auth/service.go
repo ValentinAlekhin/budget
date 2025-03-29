@@ -13,7 +13,6 @@ import (
 
 	"github.com/golang-module/carbon/v2"
 	"github.com/jackc/pgx/v5/pgtype"
-	"github.com/jackc/pgx/v5/pgxpool"
 
 	"github.com/golang-jwt/jwt/v4"
 )
@@ -24,10 +23,8 @@ type Service struct {
 	jwtConfig   *config.JWT
 }
 
-func NewService(db *pgxpool.Pool, jwtConfig *config.JWT) *Service {
-	userService := user.NewService(db)
-	tokenRepo := refresh_token.NewRepo(db)
-	return &Service{userService: userService, tokenRepo: tokenRepo, jwtConfig: jwtConfig}
+func NewService(jwtConfig *config.JWT, service *user.Service, tokenRepo *refresh_token.Repo) *Service {
+	return &Service{userService: service, tokenRepo: tokenRepo, jwtConfig: jwtConfig}
 }
 
 type CustomClaims struct {
