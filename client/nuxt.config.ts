@@ -87,17 +87,11 @@ export default defineNuxtConfig({
     },
   },
 
-  colorMode: {
-    classSuffix: '',
-    fallback: 'dark',
-  },
-
   modules: [
     '@vueuse/nuxt',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
     'nuxt-typed-router',
-    '@nuxtjs/color-mode',
     'nuxt-highcharts',
     '@nuxt/ui',
     '@vite-pwa/nuxt',

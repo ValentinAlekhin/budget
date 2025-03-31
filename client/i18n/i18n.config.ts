@@ -3,14 +3,12 @@ import ru from './locales/ru'
 
 export default defineI18nConfig(() => ({
   legacy: false,
-  locale: 'en',
-  defaultLocale: 'en',
-  setLocaleCookie: true,
+  locale: 'ru',
   getLocaleCookie: 'i18n',
   detectBrowserLanguage: {
     useCookie: true,
-    cookieKey: 'i18n',
-    alwaysRedirect: true,
+    cookieKey: 'i18n_redirected',
+    redirectOn: 'root',
   },
   locales: [
     {
@@ -22,9 +20,6 @@ export default defineI18nConfig(() => ({
       name: 'Русский',
     },
   ],
-  vueI18n: {
-    fallbackLocale: 'en',
-  },
   messages: {
     ru,
     en,

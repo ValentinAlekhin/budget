@@ -23,15 +23,16 @@
     "@vite-pwa/assets-generator": "^0.2.6",
     "@vite-pwa/nuxt": "^0.10.6",
     "eslint": "^9.17.0",
-    "nuxt": "^3.16.0",
+    "nuxt": "^3.16.1",
     "prettier": "^3.5.1",
     "typescript": "^5.7.3"
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",
-    "@nuxt/ui": "^3.0.1",
+    "@nuxt/ui": "^3.0.2",
     "@optimize-lodash/rollup-plugin": "^5.0.2",
     "@pinia/nuxt": "^0.10.1",
+    "@vueuse/components": "^13.0.0",
     "@vueuse/core": "^13.0.0",
     "@vueuse/nuxt": "^13.0.0",
     "@vueuse/router": "^13.0.0",
