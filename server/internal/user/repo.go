@@ -113,6 +113,11 @@ func (r *Repo) Delete(ctx context.Context, id int32) error {
 	return r.q.DeleteUser(ctx, id)
 }
 
+// UpdatePassword обновляет пароль пользователя
+func (r *Repo) UpdatePassword(ctx context.Context, params db.UpdateUserPasswordParams) error {
+	return r.q.UpdateUserPassword(ctx, params)
+}
+
 func convertToResponseDto(c db.User) ResponseDto {
 	return ResponseDto(c)
 }

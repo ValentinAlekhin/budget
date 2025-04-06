@@ -31,3 +31,8 @@ type ResponseDto struct {
 	Password  string           `json:"password"`
 	DeletedAt pgtype.Timestamp `json:"deletedAt"`
 }
+
+type ChangePasswordRequestDto struct {
+	OldPassword string `json:"oldPassword" binding:"required"`
+	NewPassword string `json:"newPassword" binding:"required"`
+}

@@ -96,3 +96,32 @@ func (s Service) ValidateUsername(ctx context.Context, username string) bool {
 		return false
 	}
 }
+
+func (s Service) ChangePassword(ctx context.Context, dto ChangePasswordRequestDto, userId int32) error {
+	user, err := s.userRepo.GetByID(ctx, userId)
+	if err != nil {
+		return http_error.NewNotFoundError("User not found", string(userId))
+	}
+
+	internalErr := http_error.NewInternalRequestError("")
+
+	valid, err := argon.NewArgon2ID().Verify(dto.OldPassword, user.Password)
+	if err != nil {
+		return internalErr
+	}
+	if !valid {
+		return http_error.NewBadRequestError("Invalid credentials", "")
+	}
+
+	hashedPass, err := argon.NewArgon2ID().Hash(dto.NewPassword)
+	if err != nil {
+		return internalErr
+	}
+
+	err = s.userRepo.UpdatePassword(ctx, db.UpdateUserPasswordParams{ID: userId, Password: hashedPass})
+	if err != nil {
+		return internalErr
+	}
+
+	return nil
+}
