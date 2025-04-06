@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",
+    "@iconify-json/heroicons": "^1.2.2",
     "@nuxt/ui": "^3.0.2",
     "@optimize-lodash/rollup-plugin": "^5.0.2",
     "@pinia/nuxt": "^0.10.1",

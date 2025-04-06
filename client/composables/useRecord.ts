@@ -1,29 +1,22 @@
 import type { Dayjs } from 'dayjs'
 import type { UnwrapRef } from 'vue'
 import dayjs from 'dayjs'
-import { twMerge } from 'tailwind-merge'
 
 export function useRecord() {
-  const getTypeColor = (type: string) => {
+  const getTypeBackgroundClasses = (type: string) => {
     switch (type) {
       case 'cost':
-        return 'red'
+        return 'bg-red-400'
 
       case 'dist':
-        return 'cyan'
+        return 'bg-cyan-400'
 
       case 'inc':
-        return 'green'
+        return 'bg-green-400'
 
       case 'adjustment':
-        return 'yellow'
+        return 'bg-yellow-400'
     }
-  }
-
-  const getTypeBackgroundClasses = (type: string) => {
-    const color = getTypeColor(type)
-
-    return twMerge(`bg-${color}-400`)
   }
 
   const filterRecordsByRange = (
@@ -37,5 +30,5 @@ export function useRecord() {
       return time.isAfter(start) && time.isBefore(end)
     })
 
-  return { getTypeColor, getTypeBackgroundClasses, filterRecordsByRange }
+  return { getTypeBackgroundClasses, filterRecordsByRange }
 }

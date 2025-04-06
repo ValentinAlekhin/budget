@@ -16,7 +16,6 @@ const parser = new Parser()
 
 const { recordStore } = useRecordStore()
 const toast = useToast()
-const router = useRouter()
 const actionsStore = useActionsStore()
 
 function setState(path: string) {
@@ -34,7 +33,7 @@ function evaluate(str: string, scope: Record<string, number>) {
   try {
     return parser.evaluate(str, scope)
   }
-  catch (e) {
+  catch (_) {
     return 'Ошибка выражения'
   }
 }

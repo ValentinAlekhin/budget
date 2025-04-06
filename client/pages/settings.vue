@@ -3,7 +3,6 @@ const { locale } = useI18n()
 const cookieLocale = useCookie('i18n')
 
 const langList = [
-  { locale: 'en', label: 'English' },
   { locale: 'ru', label: 'Русский' },
 ]
 

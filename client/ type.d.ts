@@ -44,6 +44,9 @@ declare module 'vue-i18n' {
       selectColor: string
       color: string
       planPeriod: string
+      reports: string
+      home: string
+      records: string
     }
     range: {
       currentYear: string
@@ -58,10 +61,14 @@ declare module 'vue-i18n' {
     category: {
       add: string
       edit: string
+      remove: string
     }
     validation: {
       required: string
       taken: string
+    }
+    adjustment: {
+      adjustmentOfBalance: string
     }
   }
 }

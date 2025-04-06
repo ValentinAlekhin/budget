@@ -26,7 +26,7 @@ function close() {
           <UButton @click="close">
             {{ $t("common.close") }}
           </UButton>
-          <UButton color="red" @click="$emit('remove')">
+          <UButton color="error" @click="$emit('remove')">
             {{ $t("common.delete") }}
           </UButton>
         </div>

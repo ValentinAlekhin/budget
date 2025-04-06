@@ -12,12 +12,11 @@ defineProps<Props>()
   <UCard>
     <div class="mb-2 flex items-center">
       <span
-        class="mr-2 size-8 rounded-full"
+        class="mr-2 size-8 rounded-full flex items-center justify-center"
         :class="`bg-${color}-300/25`"
       >
         <UIcon
           :name="icon"
-          class="ml-[8px] mt-[5px]"
           :class="`text-${color}-500`"
         />
       </span>

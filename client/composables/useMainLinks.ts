@@ -1,11 +1,13 @@
 export function useMainLinks() {
+  const { t } = useI18n()
+
   const links = computed(() => [
-    { label: 'Costs', icon: 'i-heroicons-banknotes', to: '/' },
-    { label: 'Data', icon: 'i-heroicons-circle-stack', to: '/db' },
+    { label: t('common.home'), icon: 'i-heroicons-banknotes', to: '/' },
+    { label: t('common.records'), icon: 'i-heroicons-circle-stack', to: '/records' },
     {
-      label: 'Statistic',
+      label: t('common.reports'),
       icon: 'i-heroicons-presentation-chart-line',
-      to: '/stat',
+      to: '/reports',
     },
   ])
 

@@ -1,4 +1,3 @@
-import en from './locales/en'
 import ru from './locales/ru'
 
 export default defineI18nConfig(() => ({
@@ -12,16 +11,11 @@ export default defineI18nConfig(() => ({
   },
   locales: [
     {
-      code: 'en',
-      name: 'English',
-    },
-    {
       code: 'ru',
       name: 'Русский',
     },
   ],
   messages: {
     ru,
-    en,
   },
 }))

@@ -184,7 +184,7 @@ onMounted(() => {
 
     <common-modal-remove
       :open="!!itemToDelete"
-      title="Remove category?"
+      :title="$t('category.remove')"
       @close="itemToDelete = null"
       @remove="removeItem"
     />

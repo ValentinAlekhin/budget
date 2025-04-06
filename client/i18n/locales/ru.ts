@@ -45,6 +45,9 @@ export default {
     selectColor: 'Выберите цвет',
     color: 'Цвет',
     planPeriod: 'Период плана',
+    home: 'Главная',
+    reports: 'Отчеты',
+    records: 'Записи',
   },
   range: {
     currentYear: 'Текущий год',
@@ -59,9 +62,13 @@ export default {
   category: {
     add: 'Добавить категорию',
     edit: 'Редактировать категорию',
+    remove: 'Удалить категорию?',
   },
   validation: {
     required: 'Обязательно для заполнения',
     taken: 'Уже занято',
+  },
+  adjustment: {
+    adjustmentOfBalance: 'Корректировка баланса',
   },
 } satisfies DefineLocaleMessage

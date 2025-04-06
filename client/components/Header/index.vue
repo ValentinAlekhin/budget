@@ -28,10 +28,10 @@ watch(loading, (value) => {
 
 <template>
   <div
-    class="fixed top-0 z-50 w-full -mb-px bg-background/75 border-b border-gray-200 backdrop-blur dark:border-gray-800"
+    class="fixed top-0 z-50 w-full bg-background/75 border-b border-gray-200 backdrop-blur dark:border-gray-800"
   >
     <header
-      class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-2"
+      class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto px-5"
     >
       <div class="flex items-center">
         <div id="headerTeleport" />
@@ -58,12 +58,3 @@ watch(loading, (value) => {
     </header>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.inset-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-</style>

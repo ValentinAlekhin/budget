@@ -138,7 +138,7 @@ async function submitAdjustment() {
     <UModal v-model:open="adjustmentModal">
       <template #content>
         <UCard>
-          <span class="font-semibold">Adjustment of balance</span>
+          <span class="font-semibold">{{ $t('adjustment.adjustmentOfBalance') }}</span>
 
           <UForm
             class="mt-2"
@@ -146,11 +146,11 @@ async function submitAdjustment() {
             :state="state"
             @submit="submitAdjustment"
           >
-            <UFormField label="Balance" name="balance">
+            <UFormField :label="$t('common.balance')" name="balance">
               <UInput v-model="state.balance" class="w-full" />
             </UFormField>
             <UButton class="mt-4" block type="submit">
-              Submit
+              {{ $t('common.submit') }}
             </UButton>
           </UForm>
         </UCard>
