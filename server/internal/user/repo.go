@@ -103,11 +103,6 @@ func (r *Repo) Update(ctx context.Context, params db.UpdateUserParams) error {
 	return r.q.UpdateUser(ctx, params)
 }
 
-// UpdatePassword обновляет пароль пользователя
-func (r *Repo) UpdatePassword(ctx context.Context, params budget.UpdateUserPasswordParams) error {
-	return r.q.UpdateUserPassword(ctx, params)
-}
-
 // SoftDelete выполняет мягкое удаление пользователя
 func (r *Repo) SoftDelete(ctx context.Context, id int32) error {
 	return r.q.SoftDeleteUser(ctx, id)

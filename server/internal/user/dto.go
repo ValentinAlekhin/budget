@@ -10,11 +10,6 @@ type CreateUserDto struct {
 	Password string `json:"password" binding:"required"`
 }
 
-type ChangePasswordRequestDto struct {
-	NewPassword string `json:"newPassword" binding:"required"`
-	OldPassword string `json:"oldPassword" binding:"required"`
-}
-
 type EmailValidationRequestDto struct {
 	Email string `json:"email" binding:"required,email"`
 }
