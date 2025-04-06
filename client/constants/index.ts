@@ -16,3 +16,5 @@ export const MONTH_LIST_RU = [
 export const AVAILABLE_MONTH = Array.from({ length: 12 })
   .fill('')
   .map((_, i) => i)
+
+export const COLORS_TO_EXCLUDE = ['slate', 'gray', 'zinc', 'neutral', 'stone', 'lightBlue', 'warmGray', 'trueGray', 'coolGray', 'blueGray']

@@ -15,7 +15,7 @@ const move = () => router.push('/')
       </MobileOnly>
     </ClientOnly>
 
-    <UTabs v-model:model-value="currentTab" :items="tabs" class="w-full">
+    <UTabs v-model:model-value="currentTab" color="neutral" :items="tabs" class="w-full">
       <template #cost>
         <CategoryEdit
           type="cost"

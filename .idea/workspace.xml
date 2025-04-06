@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Фикс .env">
+    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Обновление nuxtui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/StatCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/StatCard.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -106,7 +104,7 @@
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/headb/Documents/projects/budget/server-go&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/headb/Documents/projects/wb-vue-dashboard&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -120,8 +118,8 @@
     &quot;npm.start.executor&quot;: &quot;Run&quot;,
     &quot;npm.start:dev.executor&quot;: &quot;Run&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/valentin/Documents/projects/budget/server/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Valentin\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\headb\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -139,11 +137,11 @@
       <recent name="C:\Users\Valentin\Documents\projects\budget\client\public\pwa" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Valentin\Documents\projects\budget\client\ i18n\locales" />
+      <recent name="C:\Users\Valentin\Documents\projects\budget\client\pages" />
       <recent name="C:\Users\headb\Documents\projects\budget\client\components" />
+      <recent name="C:\Users\Valentin\Documents\projects\budget\client\components\ui\ColorPicker" />
       <recent name="C:\Users\headb\Documents\projects\budget\client" />
-      <recent name="C:\Users\headb\Documents\projects\budget\client\composables" />
-      <recent name="C:\Users\headb\Documents\projects\budget\server-go\sqlc" />
-      <recent name="C:\Users\Valentin\Documents\projects\budget\client\app\public" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -250,8 +248,8 @@
       <item itemvalue="Docker.server/Dockerfile" />
       <item itemvalue="npm.dev" />
       <item itemvalue="npm.start:dev" />
-      <item itemvalue="npm.dev (1)" />
       <item itemvalue="npm.build" />
+      <item itemvalue="npm.dev (1)" />
       <item itemvalue="npm.start:prod" />
       <item itemvalue="Shell Script.air" />
     </list>
@@ -268,7 +266,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.120" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
       </set>
     </attachedChunks>
   </component>
@@ -399,6 +397,20 @@
       <workItem from="1739810903429" duration="9578000" />
       <workItem from="1739952943118" duration="20155000" />
       <workItem from="1740049701920" duration="3569000" />
+      <workItem from="1740121181948" duration="16152000" />
+      <workItem from="1740171147911" duration="5723000" />
+      <workItem from="1740314569195" duration="6570000" />
+      <workItem from="1740654257681" duration="1781000" />
+      <workItem from="1740656071647" duration="9293000" />
+      <workItem from="1740733130940" duration="149000" />
+      <workItem from="1742311724242" duration="2582000" />
+      <workItem from="1742314363092" duration="8513000" />
+      <workItem from="1742374644392" duration="5325000" />
+      <workItem from="1742657427951" duration="777000" />
+      <workItem from="1742673603514" duration="4951000" />
+      <workItem from="1742678640875" duration="1313000" />
+      <workItem from="1743434403673" duration="4304000" />
+      <workItem from="1743951769458" duration="3285000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -505,182 +517,6 @@
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
     </task>
-    <task id="LOCAL-00121" summary="Обновлена сборка всего">
-      <option name="closed" value="true" />
-      <created>1710669495374</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1710669495374</updated>
-    </task>
-    <task id="LOCAL-00122" summary="Обновлена сборка всего">
-      <option name="closed" value="true" />
-      <created>1710669557086</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1710669557086</updated>
-    </task>
-    <task id="LOCAL-00123" summary="Обновлена сборка всего">
-      <option name="closed" value="true" />
-      <created>1710670074590</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1710670074590</updated>
-    </task>
-    <task id="LOCAL-00124" summary="Фикс сокетов">
-      <option name="closed" value="true" />
-      <created>1710670973055</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1710670973055</updated>
-    </task>
-    <task id="LOCAL-00125" summary="Обновлены пакеты">
-      <option name="closed" value="true" />
-      <created>1710672193520</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1710672193520</updated>
-    </task>
-    <task id="LOCAL-00126" summary="Фикс сокетов">
-      <option name="closed" value="true" />
-      <created>1710673459359</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1710673459359</updated>
-    </task>
-    <task id="LOCAL-00127" summary="Фикс сокетов">
-      <option name="closed" value="true" />
-      <created>1710673848124</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1710673848124</updated>
-    </task>
-    <task id="LOCAL-00128" summary="Фикс сокетов">
-      <option name="closed" value="true" />
-      <created>1710674127006</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1710674127006</updated>
-    </task>
-    <task id="LOCAL-00129" summary="Фикс редактирования категорий">
-      <option name="closed" value="true" />
-      <created>1710677208325</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1710677208325</updated>
-    </task>
-    <task id="LOCAL-00130" summary="Фикс pwa">
-      <option name="closed" value="true" />
-      <created>1713018988470</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1713018988470</updated>
-    </task>
-    <task id="LOCAL-00131" summary="Фиксы">
-      <option name="closed" value="true" />
-      <created>1715191098494</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1715191098494</updated>
-    </task>
-    <task id="LOCAL-00132" summary="Фиксы">
-      <option name="closed" value="true" />
-      <created>1715191796049</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1715191796049</updated>
-    </task>
-    <task id="LOCAL-00133" summary="Фиксы + добавлен bruno">
-      <option name="closed" value="true" />
-      <created>1715336578888</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1715336578889</updated>
-    </task>
-    <task id="LOCAL-00134" summary="Фиксы + добавлен bruno">
-      <option name="closed" value="true" />
-      <created>1715336997336</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1715336997336</updated>
-    </task>
-    <task id="LOCAL-00135" summary="Фиксы отвала сокетов">
-      <option name="closed" value="true" />
-      <created>1715433026208</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1715433026208</updated>
-    </task>
-    <task id="LOCAL-00136" summary="Фиксы отвала сокетов">
-      <option name="closed" value="true" />
-      <created>1715441047620</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1715441047620</updated>
-    </task>
-    <task id="LOCAL-00137" summary="Начало внедрения FSD архитектуры на фронт">
-      <option name="closed" value="true" />
-      <created>1715621974452</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1715621974453</updated>
-    </task>
-    <task id="LOCAL-00138" summary="Обновлен nuxt &amp; nuxt ui">
-      <option name="closed" value="true" />
-      <created>1724943655046</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1724943655046</updated>
-    </task>
-    <task id="LOCAL-00139" summary="Обновлен nuxt &amp; nuxt ui">
-      <option name="closed" value="true" />
-      <created>1739954637360</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1739954637360</updated>
-    </task>
-    <task id="LOCAL-00140" summary="Возврат к дефолтной структуре Nuxt">
-      <option name="closed" value="true" />
-      <created>1739955562895</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1739955562895</updated>
-    </task>
-    <task id="LOCAL-00141" summary="Обновлены зависимости">
-      <option name="closed" value="true" />
-      <created>1739956168717</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1739956168717</updated>
-    </task>
-    <task id="LOCAL-00142" summary="Переход на pnpm">
-      <option name="closed" value="true" />
-      <created>1739957884820</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1739957884820</updated>
-    </task>
     <task id="LOCAL-00143" summary="Переход на pnpm">
       <option name="closed" value="true" />
       <created>1739958272336</created>
@@ -777,7 +613,183 @@
       <option name="project" value="LOCAL" />
       <updated>1740056389487</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="Добавлены ColorPicker и IconPicker">
+      <option name="closed" value="true" />
+      <created>1740127653212</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1740127653212</updated>
+    </task>
+    <task id="LOCAL-00156" summary="Добавлен BadgeSelect">
+      <option name="closed" value="true" />
+      <created>1740137112046</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1740137112046</updated>
+    </task>
+    <task id="LOCAL-00157" summary="Обновлено редактирование и добавление категорий">
+      <option name="closed" value="true" />
+      <created>1740656386419</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1740656386430</updated>
+    </task>
+    <task id="LOCAL-00158" summary="Обновлено изменение порядка категорий">
+      <option name="closed" value="true" />
+      <created>1740664027032</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1740664027032</updated>
+    </task>
+    <task id="LOCAL-00159" summary="Обновлено изменение порядка категорий">
+      <option name="closed" value="true" />
+      <created>1740666487178</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1740666487178</updated>
+    </task>
+    <task id="LOCAL-00160" summary="Обновлено изменение порядка категорий">
+      <option name="closed" value="true" />
+      <created>1740667042079</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1740667042079</updated>
+    </task>
+    <task id="LOCAL-00161" summary="Обновлено изменение порядка категорий">
+      <option name="closed" value="true" />
+      <created>1740667581571</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1740667581571</updated>
+    </task>
+    <task id="LOCAL-00162" summary="Обнолен цвет иконок в категориях">
+      <option name="closed" value="true" />
+      <created>1740670037966</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1740670037966</updated>
+    </task>
+    <task id="LOCAL-00163" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742312035472</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1742312035473</updated>
+    </task>
+    <task id="LOCAL-00164" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742318786483</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1742318786484</updated>
+    </task>
+    <task id="LOCAL-00165" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742324394015</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1742324394015</updated>
+    </task>
+    <task id="LOCAL-00166" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742382272481</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1742382272481</updated>
+    </task>
+    <task id="LOCAL-00167" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742383133908</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1742383133908</updated>
+    </task>
+    <task id="LOCAL-00168" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742385262749</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1742385262749</updated>
+    </task>
+    <task id="LOCAL-00169" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742676030737</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1742676030737</updated>
+    </task>
+    <task id="LOCAL-00170" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742676301423</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1742676301423</updated>
+    </task>
+    <task id="LOCAL-00171" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1742678995242</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1742678995242</updated>
+    </task>
+    <task id="LOCAL-00172" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1743437951819</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1743437951819</updated>
+    </task>
+    <task id="LOCAL-00173" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1743438157719</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1743438157719</updated>
+    </task>
+    <task id="LOCAL-00174" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1743952818596</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1743952818596</updated>
+    </task>
+    <task id="LOCAL-00175" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1743953292173</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1743953292173</updated>
+    </task>
+    <task id="LOCAL-00176" summary="Обновление nuxtui">
+      <option name="closed" value="true" />
+      <created>1743954812591</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1743954812591</updated>
+    </task>
+    <option name="localTasksCounter" value="177" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -806,12 +818,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Претерто api" />
-    <MESSAGE value="Добален телеграм бот" />
-    <MESSAGE value="Обновлена сборка всего" />
-    <MESSAGE value="Обновлены пакеты" />
-    <MESSAGE value="Фикс сокетов" />
-    <MESSAGE value="Фикс редактирования категорий" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Фикс pwa" />
     <MESSAGE value="Фиксы" />
     <MESSAGE value="Фиксы + добавлен bruno" />
@@ -831,7 +839,14 @@
     <MESSAGE value="Небольшой рефактор" />
     <MESSAGE value="Фикс .env" />
     <MESSAGE value="Фикс авторизации" />
-    <option name="LAST_COMMIT_MESSAGE" value="Фикс авторизации" />
+    <MESSAGE value="Добавлены ColorPicker и IconPicker" />
+    <MESSAGE value="Добавлен BadgeSelect" />
+    <MESSAGE value="Обновлено редактирование и добавление категорий" />
+    <MESSAGE value="Обновлено изменение порядка категорий" />
+    <MESSAGE value="Обнолен цвет иконок в категориях" />
+    <MESSAGE value="Обновление nuxtui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновление nuxtui" />
+    <option name="NON_MODAL_COMMIT_POSTPONE_SLOW_CHECKS" value="false" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

@@ -4,9 +4,9 @@ import (
 	"budget/internal/config"
 	http_error "budget/internal/http-error"
 	"budget/internal/user"
-	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5/pgxpool"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Middlewares struct {
@@ -15,9 +15,7 @@ type Middlewares struct {
 	jwtConfig   *config.JWT
 }
 
-func NewMiddlewares(db *pgxpool.Pool, jwtConfig *config.JWT) *Middlewares {
-	userService := user.NewService(db)
-	authService := NewService(db, jwtConfig)
+func NewMiddlewares(userService *user.Service, authService *Service, jwtConfig *config.JWT) *Middlewares {
 	return &Middlewares{userService, authService, jwtConfig}
 }
 
@@ -52,7 +50,7 @@ func (m Middlewares) AuthRequired(ctx *gin.Context) {
 		return
 	}
 
-	targetUser, err := m.userService.GetUserById(claims.User.ID)
+	targetUser, err := m.userService.GetUserById(ctx, claims.User.ID)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("User not found"))
 		ctx.Abort()
@@ -63,6 +61,8 @@ func (m Middlewares) AuthRequired(ctx *gin.Context) {
 
 	ctx.Set("user", pureUser)
 	ctx.Set("userId", pureUser.ID)
+
+	ctx.Next()
 }
 
 func (m Middlewares) AuthRequiredCookie(ctx *gin.Context) {
@@ -88,7 +88,7 @@ func (m Middlewares) AuthRequiredCookie(ctx *gin.Context) {
 		return
 	}
 
-	targetUser, err := m.userService.GetUserById(claims.User.ID)
+	targetUser, err := m.userService.GetUserById(ctx, claims.User.ID)
 	if err != nil {
 		ctx.Error(http_error.NewUnauthorizedError("User not found"))
 		ctx.Abort()
@@ -99,4 +99,6 @@ func (m Middlewares) AuthRequiredCookie(ctx *gin.Context) {
 
 	ctx.Set("user", pureUser)
 	ctx.Set("userId", pureUser.ID)
+
+	ctx.Next()
 }

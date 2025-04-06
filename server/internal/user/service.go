@@ -1,28 +1,24 @@
 package user
 
 import (
-	"budget/internal/db/sqlc/budget"
+	"budget/internal/db"
 	http_error "budget/internal/http-error"
 	"budget/pkg/utils/argon"
 	"context"
-	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Service struct {
 	userRepo *Repo
 }
 
-func NewService(db *pgxpool.Pool) *Service {
-	userRepo := NewUserRepo(db)
-
+func NewService(userRepo *Repo) *Service {
 	return &Service{userRepo: userRepo}
 }
 
-func (s Service) CreateOne(dto *CreateUserDto) (ResponseDto, error) {
+func (s Service) CreateOne(ctx context.Context, dto *CreateUserDto) (ResponseDto, error) {
 	user := ResponseDto{}
-	ctx := context.Background()
 
-	count, err := s.userRepo.CountByEmailOrUsername(ctx, budget.CountUserByEmailOrUsernameParams{
+	count, err := s.userRepo.CountByEmailOrUsername(ctx, db.CountUserByEmailOrUsernameParams{
 		Email:    dto.Email,
 		Username: dto.Username,
 	})
@@ -40,7 +36,7 @@ func (s Service) CreateOne(dto *CreateUserDto) (ResponseDto, error) {
 		return user, internalErr
 	}
 
-	newUser, err := s.userRepo.Create(ctx, budget.CreateUserParams{
+	newUser, err := s.userRepo.Create(ctx, db.CreateUserParams{
 		Username: dto.Username,
 		Email:    dto.Email,
 		Password: hashedPass,
@@ -52,13 +48,12 @@ func (s Service) CreateOne(dto *CreateUserDto) (ResponseDto, error) {
 	return newUser, nil
 }
 
-func (s Service) UpdateOne() (ResponseDto, error) {
+func (s Service) UpdateOne(ctx context.Context) (ResponseDto, error) {
 	return ResponseDto{}, nil
 }
 
-func (s Service) GetUserById(id int32) (ResponseDto, error) {
+func (s Service) GetUserById(ctx context.Context, id int32) (ResponseDto, error) {
 	user := ResponseDto{}
-	ctx := context.Background()
 	user, err := s.userRepo.GetByID(ctx, id)
 	if err != nil {
 		return user, http_error.NewNotFoundError("User not found", string(id))
@@ -67,9 +62,7 @@ func (s Service) GetUserById(id int32) (ResponseDto, error) {
 	return user, nil
 }
 
-func (s Service) GetUserByEmailAndPass(username string, pass string) (ResponseDto, error) {
-	ctx := context.Background()
-
+func (s Service) GetUserByEmailAndPass(ctx context.Context, username string, pass string) (ResponseDto, error) {
 	user, err := s.userRepo.GetByUsername(ctx, username)
 	if err != nil {
 		return ResponseDto{}, http_error.NewNotFoundError("User not found", "")
@@ -86,38 +79,7 @@ func (s Service) GetUserByEmailAndPass(username string, pass string) (ResponseDt
 	return user, nil
 }
 
-func (s Service) ChangePassword(dto ChangePasswordRequestDto, userId int32) error {
-	ctx := context.Background()
-	user, err := s.userRepo.GetByID(ctx, userId)
-	if err != nil {
-		return http_error.NewNotFoundError("User not found", string(userId))
-	}
-
-	internalErr := http_error.NewInternalRequestError("")
-
-	valid, err := argon.NewArgon2ID().Verify(dto.OldPassword, user.Password)
-	if err != nil {
-		return internalErr
-	}
-	if !valid {
-		return http_error.NewBadRequestError("Invalid credentials", "")
-	}
-
-	hashedPass, err := argon.NewArgon2ID().Hash(dto.NewPassword)
-	if err != nil {
-		return internalErr
-	}
-
-	err = s.userRepo.UpdatePassword(ctx, budget.UpdateUserPasswordParams{ID: userId, Password: hashedPass})
-	if err != nil {
-		return internalErr
-	}
-
-	return nil
-}
-
-func (s Service) ValidateEmail(email string) bool {
-	ctx := context.Background()
+func (s Service) ValidateEmail(ctx context.Context, email string) bool {
 	_, err := s.userRepo.GetByEmail(ctx, email)
 	if err != nil {
 		return true
@@ -126,8 +88,7 @@ func (s Service) ValidateEmail(email string) bool {
 	}
 }
 
-func (s Service) ValidateUsername(username string) bool {
-	ctx := context.Background()
+func (s Service) ValidateUsername(ctx context.Context, username string) bool {
 	_, err := s.userRepo.GetByUsername(ctx, username)
 	if err != nil {
 		return true

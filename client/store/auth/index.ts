@@ -47,12 +47,18 @@ export const useAuthStore = defineStore('auth', {
         notify.error('Невалидные данные')
       }
     },
-    logout() {
+    async logout() {
       const { resetTokens } = useApi()
       const { socketStore } = useSocketStore()
 
       this.$reset()
       resetTokens()
+
+      const { api, tokensStore } = useApi()
+      await api.post<LoginResponseDto>(
+        '/auth/logout',
+        { refreshToken: tokensStore.value.refreshToken },
+      )
 
       const router = useRouter()
       router.push({ path: '/auth' })

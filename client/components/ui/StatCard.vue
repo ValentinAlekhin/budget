@@ -1,24 +1,40 @@
 <script setup lang="ts">
+import { get } from 'lodash-es'
+
 interface Props {
   color: string
   icon: string
   name: string
   value: number
 }
-defineProps<Props>()
+const props = defineProps<Props>()
+
+const iconClasses = {
+  red: 'text-red-500',
+  green: 'text-green-500',
+  yellow: 'text-yellow-500',
+}
+
+const splitterClasses = {
+  red: 'bg-red-500',
+  green: 'bg-green-500',
+  yellow: 'bg-yellow-500',
+}
+
+const iconClass = computed(() => get(iconClasses, props.color || 'red'))
+const splitterClass = computed(() => get(splitterClasses, props.color || 'red'))
 </script>
 
 <template>
   <UCard>
     <div class="mb-2 flex items-center">
       <span
-        class="mr-2 size-8 rounded-full"
+        class="mr-2 size-8 rounded-full flex items-center justify-center"
         :class="`bg-${color}-300/25`"
       >
-        <Icon
+        <UIcon
           :name="icon"
-          class="ml-[8px] mt-[5px]"
-          :class="`text-${color}-500`"
+          :class="iconClass"
         />
       </span>
       <div class="flex flex-col">
@@ -31,6 +47,6 @@ defineProps<Props>()
       </div>
     </div>
 
-    <div class="h-0.5 w-full rounded" :class="`bg-${color}-500`" />
+    <div class="h-0.5 w-full rounded" :class="splitterClass" />
   </UCard>
 </template>

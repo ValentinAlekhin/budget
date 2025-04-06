@@ -1,7 +1,7 @@
 package record
 
 import (
-	"budget/internal/db/sqlc/budget"
+	"budget/internal/db"
 	"context"
 	"fmt"
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -9,19 +9,19 @@ import (
 )
 
 type Repo struct {
-	db *pgxpool.Pool
-	q  *budget.Queries
+	conn *pgxpool.Pool
+	q    *db.Queries
 }
 
-func NewRecordsRepo(db *pgxpool.Pool) *Repo {
+func NewRecordsRepo(conn *pgxpool.Pool) *Repo {
 	return &Repo{
-		db: db,
-		q:  budget.New(db),
+		conn: conn,
+		q:    db.New(conn),
 	}
 }
 
 // Create создает новую запись
-func (r *Repo) Create(ctx context.Context, params budget.CreateRecordParams) (RecordResponseDto, error) {
+func (r *Repo) Create(ctx context.Context, params db.CreateRecordParams) (RecordResponseDto, error) {
 	record, err := r.q.CreateRecord(ctx, params)
 	if err != nil {
 		return RecordResponseDto{}, fmt.Errorf("failed to create record: %w", err)
@@ -30,9 +30,9 @@ func (r *Repo) Create(ctx context.Context, params budget.CreateRecordParams) (Re
 }
 
 // CreateMany создает несколько новых записей
-func (r *Repo) CreateMany(ctx context.Context, list []budget.CreateRecordParams) ([]RecordResponseDto, error) {
+func (r *Repo) CreateMany(ctx context.Context, list []db.CreateRecordParams) ([]RecordResponseDto, error) {
 	result := make([]RecordResponseDto, len(list))
-	tx, err := r.db.Begin(ctx)
+	tx, err := r.conn.Begin(ctx)
 	if err != nil {
 		return result, fmt.Errorf("unable to begin transaction: %w", err)
 	}
@@ -65,7 +65,7 @@ func (r *Repo) GetByID(ctx context.Context, id int64) (RecordResponseDto, error)
 
 // GetByIDAndUserID получает запись по ID и UserID
 func (r *Repo) GetByIDAndUserID(ctx context.Context, id int64, userId int32) (RecordResponseDto, error) {
-	record, err := r.q.GetRecordByIDAndUserID(ctx, budget.GetRecordByIDAndUserIDParams{
+	record, err := r.q.GetRecordByIDAndUserID(ctx, db.GetRecordByIDAndUserIDParams{
 		ID:     id,
 		UserID: userId,
 	})
@@ -104,7 +104,7 @@ func (r *Repo) ListByCategory(ctx context.Context, categoryID int64) ([]RecordRe
 }
 
 // Update обновляет запись
-func (r *Repo) Update(ctx context.Context, params budget.UpdateRecordParams) (RecordResponseDto, error) {
+func (r *Repo) Update(ctx context.Context, params db.UpdateRecordParams) (RecordResponseDto, error) {
 	record, err := r.q.UpdateRecord(ctx, params)
 	if err != nil {
 		return RecordResponseDto{}, err
@@ -114,7 +114,7 @@ func (r *Repo) Update(ctx context.Context, params budget.UpdateRecordParams) (Re
 
 // SoftDelete выполняет мягкое удаление записи
 func (r *Repo) SoftDelete(ctx context.Context, id int64, userId int32) (RecordResponseDto, error) {
-	record, err := r.q.SoftDeleteRecord(ctx, budget.SoftDeleteRecordParams{
+	record, err := r.q.SoftDeleteRecord(ctx, db.SoftDeleteRecordParams{
 		ID:     id,
 		UserID: userId,
 	})

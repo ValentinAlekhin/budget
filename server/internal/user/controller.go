@@ -2,17 +2,16 @@ package user
 
 import (
 	http_error "budget/internal/http-error"
-	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5/pgxpool"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Controller struct {
 	userService *Service
 }
 
-func NewController(db *pgxpool.Pool) *Controller {
-	userService := NewService(db)
+func NewController(userService *Service) *Controller {
 	return &Controller{userService: userService}
 }
 
@@ -25,7 +24,7 @@ func (c Controller) CreateOne(ctx *gin.Context) {
 		return
 	}
 
-	user, err := c.userService.CreateOne(&createUserDto)
+	user, err := c.userService.CreateOne(ctx, &createUserDto)
 	if err != nil {
 		ctx.Error(err)
 		return

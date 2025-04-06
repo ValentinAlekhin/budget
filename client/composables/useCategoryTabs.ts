@@ -2,7 +2,7 @@ import { useLocalStorage } from '@vueuse/core'
 
 export function useCategoryTabs() {
   const { t } = useI18n()
-  const currentTab = useLocalStorage('category-tab', 0)
+  const currentTab = useLocalStorage('category-tab', '0')
 
   const tabs = computed(() => [
     {
@@ -15,7 +15,7 @@ export function useCategoryTabs() {
     },
   ])
 
-  const currentTabName = computed(() => tabs.value[currentTab.value].slot)
+  const currentTabName = computed(() => tabs.value[Number.parseInt(currentTab.value)].slot)
 
   return { tabs, currentTab, currentTabName }
 }

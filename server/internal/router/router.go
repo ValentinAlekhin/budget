@@ -6,6 +6,7 @@ import (
 	"budget/internal/config"
 	httperror "budget/internal/http-error"
 	"budget/internal/record"
+	refresh_token "budget/internal/refresh-token"
 	"budget/internal/user"
 	"budget/internal/ws"
 	"fmt"
@@ -16,12 +17,22 @@ import (
 )
 
 func Init(db *pgxpool.Pool, jwtConfig *config.JWT, serverConfig *config.Server) error {
-	userController := user.NewController(db)
-	userFieldValidationController := user.NewFieldValidationController(db)
-	authController := auth.NewController(db, jwtConfig)
-	authMiddlewares := auth.NewMiddlewares(db, jwtConfig)
-	categoryController := category.NewController(db)
-	recordController := record.NewController(db)
+	userRepo := user.NewUserRepo(db)
+	tokenRepo := refresh_token.NewRepo(db)
+	categoryRepo := category.NewCategoryRepo(db)
+	recordRepo := record.NewRecordsRepo(db)
+
+	userService := user.NewService(userRepo)
+	authService := auth.NewService(jwtConfig, userService, tokenRepo)
+	categoryService := category.NewService(categoryRepo)
+	recordService := record.NewService(recordRepo, categoryRepo)
+
+	userController := user.NewController(userService)
+	userFieldValidationController := user.NewFieldValidationController(userService)
+	authController := auth.NewController(authService)
+	authMiddlewares := auth.NewMiddlewares(userService, authService, jwtConfig)
+	categoryController := category.NewController(categoryService)
+	recordController := record.NewController(recordService)
 
 	router := gin.Default()
 	router.Use(cors.Default())
@@ -45,7 +56,8 @@ func Init(db *pgxpool.Pool, jwtConfig *config.JWT, serverConfig *config.Server) 
 	categoryGroup.GET("", categoryController.GetAll)
 	categoryGroup.POST("", categoryController.CreateOne)
 	categoryGroup.PUT("/many", categoryController.UpdateMany)
-	// categoryGroup.PUT("/:id", category.Controller.UpdateOne)
+	categoryGroup.PUT("/many/order", categoryController.UpdateManyOrder)
+	categoryGroup.PUT("/:id", categoryController.UpdateOne)
 	categoryGroup.DELETE("/:id", categoryController.DeleteOne)
 
 	recordGroup := router.Group("/records")
@@ -62,7 +74,7 @@ func Init(db *pgxpool.Pool, jwtConfig *config.JWT, serverConfig *config.Server) 
 	authGroup.POST("/login", authController.Login)
 	authGroup.GET("/me", authMiddlewares.AuthRequired, authController.Me)
 	authGroup.POST("/refresh-tokens", authController.RefreshTokens)
-	// authGroup.GET("/logout", auth.Middlewares.AuthRequired, auth.Controller.Logout)
+	authGroup.GET("/logout", authMiddlewares.AuthRequired, authController.Logout)
 
 	if err := router.Run(fmt.Sprintf(":%s", serverConfig.Port)); err != nil {
 		return err

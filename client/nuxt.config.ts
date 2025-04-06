@@ -42,6 +42,8 @@ export default defineNuxtConfig({
     dirs: ['store/*', 'dto', 'constants/*'],
   },
 
+  css: ['~/assets/css/main.css'],
+
   typescript: {
     strict: true,
     shim: false,
@@ -73,13 +75,6 @@ export default defineNuxtConfig({
         },
       },
     },
-    build: {
-      rollupOptions: {
-        output: {
-          inlineDynamicImports: true,
-        },
-      },
-    },
     plugins: [optimizeLodashImports()],
   },
 
@@ -92,24 +87,18 @@ export default defineNuxtConfig({
     },
   },
 
-  colorMode: {
-    classSuffix: '',
-    fallback: 'dark',
-  },
-
   modules: [
     '@vueuse/nuxt',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
     'nuxt-typed-router',
-    '@nuxtjs/color-mode',
     'nuxt-highcharts',
     '@nuxt/ui',
-    'nuxt-icon',
     '@vite-pwa/nuxt',
     '@formkit/auto-animate/nuxt',
     '@nuxtjs/i18n',
     '@nuxt/image',
+    'nuxt-swiper',
   ],
 
   pwa: {
@@ -183,7 +172,6 @@ export default defineNuxtConfig({
   },
 
   ui: {
-    // @ts-ignore
     icons: ['heroicons'],
   },
 
@@ -195,31 +183,6 @@ export default defineNuxtConfig({
     key: 'pinia_%id',
   },
 
-  i18n: {
-    vueI18n: './i18n.config.ts',
-    defaultLocale: 'en',
-    // @ts-expect-error
-    setLocaleCookie: true,
-    getLocaleCookie: 'i18n',
-    strategy: 'no_prefix',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n',
-      alwaysRedirect: true,
-    },
-    locales: [
-      {
-        code: 'en',
-        name: 'English',
-      },
-      {
-        code: 'ru',
-        name: 'Русский',
-      },
-    ],
-  },
-
-  // @ts-expect-error
   devtools: true,
 
   compatibilityDate: '2024-08-29',

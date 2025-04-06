@@ -1,19 +1,17 @@
 package auth
 
 import (
-	"budget/internal/config"
 	http_error "budget/internal/http-error"
-	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5/pgxpool"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Controller struct {
 	authServie *Service
 }
 
-func NewController(db *pgxpool.Pool, jwtConfig *config.JWT) *Controller {
-	authService := NewService(db, jwtConfig)
+func NewController(authService *Service) *Controller {
 	return &Controller{authService}
 }
 
@@ -25,7 +23,7 @@ func (c Controller) Login(ctx *gin.Context) {
 		return
 	}
 
-	res, err := c.authServie.Login(&loginDto)
+	res, err := c.authServie.Login(ctx, &loginDto)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -40,7 +38,21 @@ func (c Controller) Me(ctx *gin.Context) {
 }
 
 func (c Controller) Logout(ctx *gin.Context) {
+	var logoutDto LogoutRequestDto
 
+	if err := ctx.ShouldBindJSON(&logoutDto); err != nil {
+		err = http_error.NewBadRequestError(err.Error(), "")
+		ctx.Error(err)
+		return
+	}
+
+	err := c.authServie.Logout(ctx, logoutDto.RefreshToken)
+	if err != nil {
+		ctx.Error(err)
+		return
+	}
+
+	ctx.Status(http.StatusOK)
 }
 
 func (c Controller) RefreshTokens(ctx *gin.Context) {
@@ -51,7 +63,7 @@ func (c Controller) RefreshTokens(ctx *gin.Context) {
 		return
 	}
 
-	response, err := c.authServie.RefreshTokens(refreshTokenDto)
+	response, err := c.authServie.RefreshTokens(ctx, refreshTokenDto)
 	if err != nil {
 		ctx.Error(err)
 		return

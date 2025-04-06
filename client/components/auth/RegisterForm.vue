@@ -26,17 +26,17 @@ async function submit() {
 
 <template>
   <UForm ref="form" :schema="schema" :state="state" @submit="submit">
-    <UFormGroup :label="$t('common.username')" name="username">
-      <UInput v-model="state.username" />
-    </UFormGroup>
+    <UFormField :label="$t('common.username')" name="username">
+      <UInput v-model="state.username" class="w-full" />
+    </UFormField>
 
-    <UFormGroup :label="$t('common.email')" name="email" class="mt-4">
-      <UInput v-model="state.email" />
-    </UFormGroup>
+    <UFormField :label="$t('common.email')" name="email" class="mt-4">
+      <UInput v-model="state.email" class="w-full" />
+    </UFormField>
 
-    <UFormGroup :label="$t('common.password')" name="password" class="mt-4">
-      <UInput v-model="state.password" type="password" />
-    </UFormGroup>
+    <UFormField :label="$t('common.password')" name="password" class="mt-4">
+      <UInput v-model="state.password" type="password" class="w-full" />
+    </UFormField>
 
     <UButton class="mt-6" type="submit" block>
       {{ $t("common.register") }}

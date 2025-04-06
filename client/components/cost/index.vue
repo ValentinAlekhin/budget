@@ -17,7 +17,7 @@ const incFormState = ref<Record<string, { value: string, comment: string }>>(
   <div>
     <CostCards />
 
-    <UTabs v-model:model-value="currentTab" :items="tabs" class="w-full">
+    <UTabs v-model="currentTab" :default-value="currentTab" :items="tabs" color="neutral" class="w-full">
       <template #cost>
         <CategoryList
           v-model:value="costFormState"

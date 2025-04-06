@@ -21,6 +21,10 @@ type RefreshTokenRequestDto struct {
 	RefreshToken string `json:"refreshToken" binding:"required"`
 }
 
+type LogoutRequestDto struct {
+	RefreshToken string `json:"refreshToken" binding:"required"`
+}
+
 type RefreshTokenResponseDto struct {
 	RefreshToken string `json:"refreshToken"`
 	AccessToken  string `json:"accessToken"`

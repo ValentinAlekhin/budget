@@ -10,8 +10,10 @@ export function useApi() {
   } = useRuntimeConfig()
 
   const baseUrl = `${httpProtocol}://${domain}`
+  // eslint-disable-next-line node/prefer-global/process
   api.defaults.baseURL = !process.client ? baseUrl : '/api'
 
+  const requestCount = ref(0)
   const tokensStore = useLocalStorage(
     'tokens',
     { accessToken: '', refreshToken: '' },
@@ -24,9 +26,27 @@ export function useApi() {
   const resetTokens = () =>
     (tokensStore.value = { accessToken: '', refreshToken: '' })
 
+  api.interceptors.request.use((config) => {
+    requestCount.value++
+    return config
+  }, (error) => {
+    requestCount.value++
+    return Promise.reject(error)
+  })
+
+  api.interceptors.response.use((response) => {
+    requestCount.value--
+    return response
+  }, (error) => {
+    requestCount.value--
+    return Promise.reject(error)
+  })
+
   api.interceptors.response.use(
     (res: AxiosResponse) => res,
     async (err) => {
+      requestCount.value--
+
       const originalConfig = err.config
       const isAuthErr = err.response.status === 401
 
@@ -65,5 +85,5 @@ export function useApi() {
     },
   )
 
-  return { api, baseUrl, tokensStore, resetTokens }
+  return { api, baseUrl, tokensStore, resetTokens, requestCount }
 }

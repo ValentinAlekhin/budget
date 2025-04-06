@@ -1,23 +1,23 @@
 package refresh_token
 
 import (
-	"budget/internal/db/sqlc/budget"
+	"budget/internal/db"
 	"context"
 	"fmt"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Repo struct {
-	db *pgxpool.Pool
-	q  *budget.Queries
+	conn *pgxpool.Pool
+	q    *db.Queries
 }
 
-func NewRepo(db *pgxpool.Pool) *Repo {
-	return &Repo{db: db, q: budget.New(db)}
+func NewRepo(conn *pgxpool.Pool) *Repo {
+	return &Repo{conn: conn, q: db.New(conn)}
 }
 
 // Create создает новый токен обновления
-func (r *Repo) Create(ctx context.Context, token budget.CreateRefreshTokenParams) (ResponseDto, error) {
+func (r *Repo) Create(ctx context.Context, token db.CreateRefreshTokenParams) (ResponseDto, error) {
 	refreshToken, err := r.q.CreateRefreshToken(ctx, token)
 	if err != nil {
 		return ResponseDto{}, fmt.Errorf("failed to create refresh token: %w", err)
@@ -44,7 +44,7 @@ func (r *Repo) ListByUser(ctx context.Context, userID int32) ([]ResponseDto, err
 }
 
 // Update обновляет токен обновления
-func (r *Repo) Update(ctx context.Context, token budget.UpdateRefreshTokenParams) error {
+func (r *Repo) Update(ctx context.Context, token db.UpdateRefreshTokenParams) error {
 	err := r.q.UpdateRefreshToken(ctx, token)
 	if err != nil {
 		return fmt.Errorf("failed to update refresh token with params %+v: %w", token, err)
@@ -70,11 +70,11 @@ func (r *Repo) Delete(ctx context.Context, id int64) error {
 	return nil
 }
 
-func convertToResponseDto(c budget.RefreshToken) ResponseDto {
+func convertToResponseDto(c db.RefreshToken) ResponseDto {
 	return ResponseDto(c)
 }
 
-func convertListToResponseDto(list []budget.RefreshToken) []ResponseDto {
+func convertListToResponseDto(list []db.RefreshToken) []ResponseDto {
 	result := make([]ResponseDto, len(list))
 	for i, item := range list {
 		result[i] = ResponseDto(item)

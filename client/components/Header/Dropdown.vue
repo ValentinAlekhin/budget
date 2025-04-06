@@ -4,7 +4,6 @@ import { storeToRefs } from 'pinia'
 const authStore = useAuthStore()
 const { user } = storeToRefs(authStore)
 const { t } = useI18n()
-const isDropDownOpen = ref(false)
 const isExitModalOpen = ref(false)
 
 const usernameFirstLetter = computed(() =>
@@ -30,56 +29,40 @@ const items = computed(() => [
     {
       label: t('common.logout'),
       icon: 'i-heroicons-arrow-left-on-rectangle',
-      click: () => (isExitModalOpen.value = true),
+      onSelect: () => (isExitModalOpen.value = true),
     },
   ],
 ])
 </script>
 
 <template>
-  <UDropdown
-    v-model:open="isDropDownOpen"
+  <UDropdownMenu
     :items="items"
     :popper="{ placement: 'bottom-start' }"
   >
-    <button @touchstart.stop.prevent="isDropDownOpen = !isDropDownOpen">
+    <UButton variant="link">
       <UAvatar :alt="usernameFirstLetter" />
-    </button>
+    </UButton>
+  </UDropdownMenu>
 
-    <template #account="{ item }">
-      <div>
-        <span class="truncate font-medium text-gray-900 dark:text-white">
-          {{ item.label }}
-        </span>
-      </div>
+  <UModal v-model:open="isExitModalOpen" class="w-80">
+    <template #content>
+      <UCard>
+        <template #header>
+          <span class="text-lg font-medium dark:text-white">
+            {{ $t("common.confirmLogout") }}
+          </span>
+        </template>
+
+        <div class="flex justify-between">
+          <UButton color="red" @click="authStore.logout">
+            {{ $t("common.logout") }}
+          </UButton>
+          <UButton @click="isExitModalOpen = false">
+            {{ $t("common.cancel") }}
+          </UButton>
+        </div>
+      </UCard>
     </template>
-
-    <template #item="{ item }">
-      <span class="truncate">{{ item.label }}</span>
-
-      <UIcon
-        :name="item.icon"
-        class="ms-auto size-4 shrink-0 text-gray-400 dark:text-gray-500"
-      />
-    </template>
-  </UDropdown>
-
-  <UModal v-model="isExitModalOpen" class="w-80">
-    <UCard>
-      <template #header>
-        <span class="text-lg font-medium dark:text-white">
-          {{ $t("common.confirmLogout") }}
-        </span>
-      </template>
-
-      <div class="flex justify-between">
-        <UButton color="red" @click="authStore.logout">
-          {{ $t("common.logout") }}
-        </UButton>
-        <UButton @click="isExitModalOpen = false">
-          {{ $t("common.cancel") }}
-        </UButton>
-      </div>
-    </UCard>
   </UModal>
 </template>

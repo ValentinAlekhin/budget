@@ -6,7 +6,6 @@ import type {
   DoughnutControllerDatasetOptions,
 } from 'chart.js'
 import type { Dayjs, ManipulateType } from 'dayjs'
-import { useLocalStorage } from '@vueuse/core'
 import { capitalize, sumBy } from 'lodash-es'
 import { Doughnut } from 'vue-chartjs'
 
@@ -49,7 +48,7 @@ const categoryTypes = computed(() => [
 ])
 const selected = computed(() => categoryTypes.value[currentTab.value])
 
-const currentRangeIndex = useLocalStorage('stat-range', 0)
+const currentRangeIndex = useLocalStorage<string>('stat-range', '0')
 const ranges = computed(() => [
   {
     label: capitalize(t('common.day')),
@@ -195,10 +194,12 @@ watch(currentRange, (value: any) => {
 
 <template>
   <div>
-    <UTabs v-model:model-value="currentTab" :items="tabs" class="w-full" />
+    <UTabs v-model="currentTab" :items="tabs" color="neutral" class="w-full" />
     <UTabs
-      v-model:model-value="currentRangeIndex"
+      v-model="currentRangeIndex"
+      :default-value="currentRangeIndex"
       :items="ranges"
+      color="neutral"
       class="w-full"
     />
 
@@ -248,7 +249,7 @@ watch(currentRange, (value: any) => {
                 v-if="item.color || item.icon"
                 class="mr-2 flex w-6 justify-center"
               >
-                <Icon
+                <UIcon
                   v-if="item.icon"
                   :color="item.color"
                   :name="item.icon"
@@ -281,7 +282,7 @@ watch(currentRange, (value: any) => {
       </template>
 
       <div v-else class="mt-10 flex items-center justify-center">
-        <Icon name="carbon:db2-database" size="24" class="mr-2" />
+        <UIcon name="carbon:db2-database" size="24" class="mr-2" />
 
         <span
           class="text-center text-lg font-semibold text-gray-900 dark:text-white"

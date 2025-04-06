@@ -1,9 +1,7 @@
 package record
 
 import (
-	"budget/internal/cache"
 	http_error "budget/internal/http-error"
-	"github.com/jackc/pgx/v5/pgxpool"
 	"net/http"
 	"strconv"
 
@@ -12,19 +10,16 @@ import (
 
 type Controller struct {
 	recordService *Service
-	cacheService  cache.Cache
 }
 
-func NewController(db *pgxpool.Pool) *Controller {
-	cacheService, _ := cache.NewService()
-	recordService := NewService(db, cacheService)
-	return &Controller{recordService: recordService, cacheService: cacheService}
+func NewController(recordService *Service) *Controller {
+	return &Controller{recordService: recordService}
 }
 
 func (c Controller) GetAll(ctx *gin.Context) {
 	userId := ctx.MustGet("userId").(int32)
 
-	_, response, err := c.recordService.GetAll(userId)
+	_, response, err := c.recordService.GetAll(ctx, userId)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -41,7 +36,7 @@ func (c Controller) GetOne(ctx *gin.Context) {
 	}
 	userId := ctx.MustGet("userId").(int32)
 
-	record, err := c.recordService.FindOne(userId, id)
+	record, err := c.recordService.FindOne(ctx, userId, id)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -60,7 +55,7 @@ func (c Controller) CreateOne(ctx *gin.Context) {
 	}
 
 	userId := ctx.MustGet("userId").(int32)
-	record, err := c.recordService.CreateOne(userId, dto)
+	record, err := c.recordService.CreateOne(ctx, userId, dto)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -79,7 +74,7 @@ func (c Controller) CreateMany(ctx *gin.Context) {
 	}
 
 	userId := ctx.MustGet("userId").(int32)
-	records, err := c.recordService.CreateMany(userId, dto)
+	records, err := c.recordService.CreateMany(ctx, userId, dto)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -98,7 +93,7 @@ func (c Controller) UpdateOne(ctx *gin.Context) {
 	}
 
 	userId := ctx.MustGet("userId").(int32)
-	record, err := c.recordService.UpdateOne(userId, dto)
+	record, err := c.recordService.UpdateOne(ctx, userId, dto)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -115,7 +110,7 @@ func (c Controller) DeleteOne(ctx *gin.Context) {
 	}
 	userId := ctx.MustGet("userId").(int32)
 
-	record, err := c.recordService.DeleteOne(userId, id)
+	record, err := c.recordService.DeleteOne(ctx, userId, id)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -134,7 +129,7 @@ func (c Controller) Adjustment(ctx *gin.Context) {
 	}
 
 	userId := ctx.MustGet("userId").(int32)
-	record, err := c.recordService.Adjustment(userId, dto)
+	record, err := c.recordService.Adjustment(ctx, userId, dto)
 	if err != nil {
 		ctx.Error(err)
 		return

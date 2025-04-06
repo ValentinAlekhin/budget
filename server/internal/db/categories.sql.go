@@ -3,7 +3,7 @@
 //   sqlc v1.28.0
 // source: categories.sql
 
-package budget
+package db
 
 import (
 	"context"
@@ -121,6 +121,7 @@ SELECT id, created_at, updated_at, name, type, "order", comment, user_id, delete
 FROM categories
 WHERE id = ANY ($1::bigint[])
   and user_id = $2
+order by type, "order"
 `
 
 type GetCategoriesByIDAndUserIDsParams struct {
@@ -195,6 +196,7 @@ FROM categories
 WHERE id = $1
   and user_id = $2
   and deleted_at is null
+order by type, "order"
 `
 
 type GetCategoryByIDAndUserIDParams struct {
@@ -228,6 +230,7 @@ SELECT id, created_at, updated_at, name, type, "order", comment, user_id, delete
 FROM categories
 WHERE user_id = $1
   and deleted_at is null
+order by type, "order"
 `
 
 func (q *Queries) ListCategoriesByUser(ctx context.Context, userID int32) ([]Category, error) {
@@ -341,6 +344,42 @@ func (q *Queries) UpdateCategory(ctx context.Context, arg UpdateCategoryParams) 
 		arg.PlanPeriod,
 		arg.UserID,
 	)
+	var i Category
+	err := row.Scan(
+		&i.ID,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+		&i.Name,
+		&i.Type,
+		&i.Order,
+		&i.Comment,
+		&i.UserID,
+		&i.DeletedAt,
+		&i.Icon,
+		&i.Plan,
+		&i.Color,
+		&i.PlanPeriod,
+	)
+	return i, err
+}
+
+const updateCategoryOrder = `-- name: UpdateCategoryOrder :one
+UPDATE categories
+SET "order"    = $1,
+    updated_at = now()
+WHERE id = $2
+  and user_id = $3
+returning id, created_at, updated_at, name, type, "order", comment, user_id, deleted_at, icon, plan, color, plan_period
+`
+
+type UpdateCategoryOrderParams struct {
+	Order  int32 `json:"order"`
+	ID     int64 `json:"id"`
+	UserID int32 `json:"userId"`
+}
+
+func (q *Queries) UpdateCategoryOrder(ctx context.Context, arg UpdateCategoryOrderParams) (Category, error) {
+	row := q.db.QueryRow(ctx, updateCategoryOrder, arg.Order, arg.ID, arg.UserID)
 	var i Category
 	err := row.Scan(
 		&i.ID,

@@ -1,27 +1,27 @@
 package user
 
 import (
-	"budget/internal/db/sqlc/budget"
+	"budget/internal/db"
 	"context"
 	"fmt"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Repo struct {
-	db *pgxpool.Pool
-	q  *budget.Queries
+	conn *pgxpool.Pool
+	q    *db.Queries
 }
 
-func NewUserRepo(db *pgxpool.Pool) *Repo {
+func NewUserRepo(conn *pgxpool.Pool) *Repo {
 	return &Repo{
-		db: db,
-		q:  budget.New(db),
+		conn: conn,
+		q:    db.New(conn),
 	}
 }
 
 // Create создает нового пользователя
-func (r *Repo) Create(ctx context.Context, params budget.CreateUserParams) (ResponseDto, error) {
-	tx, err := r.db.Begin(ctx)
+func (r *Repo) Create(ctx context.Context, params db.CreateUserParams) (ResponseDto, error) {
+	tx, err := r.conn.Begin(ctx)
 	if err != nil {
 		return ResponseDto{}, fmt.Errorf("unable to begin transaction: %w", err)
 	}
@@ -31,11 +31,11 @@ func (r *Repo) Create(ctx context.Context, params budget.CreateUserParams) (Resp
 		return ResponseDto{}, fmt.Errorf("failed to create user: %w", err)
 	}
 
-	newAdj := budget.CreateCategoryParams{
+	newAdj := db.CreateCategoryParams{
 		Name:       "Adjustment",
-		Type:       budget.CategoriesTypeEnumAdjustment,
+		Type:       db.CategoriesTypeEnumAdjustment,
 		Comment:    "Service category",
-		PlanPeriod: budget.CategoriesPlanPeriodEnumYear,
+		PlanPeriod: db.CategoriesPlanPeriodEnumYear,
 		UserID:     user.ID,
 	}
 	_, err = qtx.CreateCategory(ctx, newAdj)
@@ -62,7 +62,7 @@ func (r *Repo) GetByEmail(ctx context.Context, email string) (ResponseDto, error
 }
 
 // CountByEmailOrUsername получает пользователя по email или имени пользователя
-func (r *Repo) CountByEmailOrUsername(ctx context.Context, arg budget.CountUserByEmailOrUsernameParams) (int64, error) {
+func (r *Repo) CountByEmailOrUsername(ctx context.Context, arg db.CountUserByEmailOrUsernameParams) (int64, error) {
 	count, err := r.q.CountUserByEmailOrUsername(ctx, arg)
 	if err != nil {
 		return 0, fmt.Errorf("failed to get users count by email or username: %w", err)
@@ -99,7 +99,7 @@ func (r *Repo) List(ctx context.Context) ([]ResponseDto, error) {
 }
 
 // Update обновляет данные пользователя
-func (r *Repo) Update(ctx context.Context, params budget.UpdateUserParams) error {
+func (r *Repo) Update(ctx context.Context, params db.UpdateUserParams) error {
 	return r.q.UpdateUser(ctx, params)
 }
 
@@ -118,11 +118,11 @@ func (r *Repo) Delete(ctx context.Context, id int32) error {
 	return r.q.DeleteUser(ctx, id)
 }
 
-func convertToResponseDto(c budget.User) ResponseDto {
+func convertToResponseDto(c db.User) ResponseDto {
 	return ResponseDto(c)
 }
 
-func convertListToResponseDto(list []budget.User) []ResponseDto {
+func convertListToResponseDto(list []db.User) []ResponseDto {
 	result := make([]ResponseDto, len(list))
 	for i, item := range list {
 		result[i] = ResponseDto(item)
