@@ -45,7 +45,7 @@ func (c Controller) ChangePassword(ctx *gin.Context) {
 		return
 	}
 
-	err := c.userService.ChangePassword(dto, userId)
+	err := c.userService.ChangePassword(ctx, dto, userId)
 	if err != nil {
 		ctx.Error(err)
 		return
