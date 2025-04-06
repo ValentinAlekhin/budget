@@ -45,6 +45,7 @@ func Init(db *pgxpool.Pool, jwtConfig *config.JWT, serverConfig *config.Server) 
 
 	userGroup := router.Group("/user")
 	userGroup.POST("", userController.CreateOne)
+	userGroup.PUT("change-password", userController.ChangePassword)
 
 	userValidationGroup := router.Group("/user-field-validation")
 	userValidationGroup.POST("/email", userFieldValidationController.ValidateEmail)

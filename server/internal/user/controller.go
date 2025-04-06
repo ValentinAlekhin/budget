@@ -35,6 +35,25 @@ func (c Controller) CreateOne(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, user)
 }
 
+func (c Controller) ChangePassword(ctx *gin.Context) {
+	var dto ChangePasswordRequestDto
+	userId := ctx.MustGet("userId").(int32)
+
+	if err := ctx.ShouldBindJSON(&dto); err != nil {
+		err = http_error.NewBadRequestError(err.Error(), "")
+		ctx.Error(err)
+		return
+	}
+
+	err := c.userService.ChangePassword(ctx, dto, userId)
+	if err != nil {
+		ctx.Error(err)
+		return
+	}
+
+	ctx.Status(http.StatusOK)
+}
+
 func (c Controller) UpdateOne(ctx *gin.Context) {
 
 }
