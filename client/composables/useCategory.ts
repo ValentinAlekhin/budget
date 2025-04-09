@@ -1,7 +1,8 @@
 export function useCategory() {
   const { categoryStore } = useCategoryStore()
+  const getCategory = (id: number) => categoryStore.getById(id)
   const getCategoryName = (id: number) =>
-    categoryStore.getById(id)?.name || 'Не найдена'
+    getCategory(id)?.name || 'Не найдена'
 
-  return { getCategoryName }
+  return { getCategoryName, getCategory }
 }

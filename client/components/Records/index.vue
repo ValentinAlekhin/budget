@@ -7,14 +7,7 @@ const {
 const editRecord = ref<any>(null)
 const deleteId = ref('')
 
-const page = ref(1)
-const pageCount = 20
-
 const { smallerThanLg } = useScreenSize()
-
-const rows = computed(() =>
-  list.value.slice((page.value - 1) * pageCount, page.value * pageCount),
-)
 
 function removeRecord(id: string) {
   deleteId.value = ''
@@ -24,29 +17,14 @@ function removeRecord(id: string) {
 
 <template>
   <div>
-    <DbList
+    <RecordsList
       v-if="smallerThanLg"
       :rows="list"
       @edit="editRecord = $event"
       @delete="deleteId = $event.id"
     />
 
-    <template v-else>
-      <DbTable
-        :rows="rows"
-        @edit="editRecord = $event"
-        @delete="deleteId = $event.id"
-      />
-      <div class="mt-10 flex justify-center">
-        <UPagination
-          v-model="page"
-          :page-count="pageCount"
-          :total="list.length"
-        />
-      </div>
-    </template>
-
-    <db-edit-modal
+    <RecordsEditModal
       :open="!!editRecord"
       :record="editRecord"
       @close="editRecord = null"
