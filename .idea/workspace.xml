@@ -5,29 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Рефактор фронта">
-      <change afterPath="$PROJECT_DIR$/client/components/Records/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/auth/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Auth/LoginForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/auth/RegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Auth/RegisterForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/AddEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Category/AddEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Category/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/category/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Category/List.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/common/modal/Remove.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Common/Modal/Remove.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Cost/Cards.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Cost/edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Cost/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/ActionsDropdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Records/List/Dropdown.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/EditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Records/EditModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Records/List/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/Table.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/db/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/page-dist/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/page-dist/list.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/stat/charts/costs.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/stat/charts/delta.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/stat/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/stat/tables/costs.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/records.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/records.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Records/List/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Records/List/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCategory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useRecord.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useRecord.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -431,7 +412,7 @@
       <workItem from="1739810903429" duration="9578000" />
       <workItem from="1739952943118" duration="20155000" />
       <workItem from="1740049701920" duration="3569000" />
-      <workItem from="1744199393834" duration="902000" />
+      <workItem from="1744199393834" duration="2342000" />
     </task>
     <task id="LOCAL-00001" summary="Add nuxt3 client">
       <created>1673178280698</created>
@@ -537,14 +518,6 @@
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
       <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00123" summary="Обновлена сборка всего">
-      <option name="closed" value="true" />
-      <created>1710670074590</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1710670074590</updated>
     </task>
     <task id="LOCAL-00124" summary="Фикс сокетов">
       <option name="closed" value="true" />
@@ -810,7 +783,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743956654490</updated>
     </task>
-    <option name="localTasksCounter" value="157" />
+    <task id="LOCAL-00157" summary="Рефактор фронта">
+      <option name="closed" value="true" />
+      <created>1744200503935</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1744200503935</updated>
+    </task>
+    <option name="localTasksCounter" value="158" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

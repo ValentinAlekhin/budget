@@ -6,8 +6,8 @@ import 'v3-infinite-loading/lib/style.css'
 const props = defineProps<{ rows: any[] }>()
 const emit = defineEmits(['edit', 'delete'])
 
-const { getCategoryName } = useCategory()
-const { getTypeBackgroundClasses } = useRecord()
+const { getCategoryName, getCategory } = useCategory()
+const { getTypeTextClasses } = useRecord()
 
 const pageSize = 20
 const page = ref(1)
@@ -36,17 +36,15 @@ async function load($state) {
       :key="row.id"
       class="sm:b-2 mb-2 flex flex-col justify-between p-1 px-3 sm:mb-3 sm:px-4"
     >
-      <div class="mt-1 grid grid-cols-12 items-center">
-        <span
-          class="col-span-1 mr-2 flex size-3 rounded-full"
-          :class="getTypeBackgroundClasses(row.type)"
-        />
-
-        <span
-          class="col-span-4 truncate text-sm font-medium text-gray-900 dark:text-white"
-        >
-          {{ getCategoryName(row.categoryId) }}
-        </span>
+      <div class="mt-1 grid grid-cols-11 items-center">
+        <div class="col-span-4 flex items-center">
+          <UIcon v-if="getCategory(row.categoryId)?.icon" :name="getCategory(row.categoryId)?.icon" class="text-xl mr-2" />
+          <span
+            class=" truncate text-sm font-medium text-gray-900 dark:text-white"
+          >
+            {{ getCategoryName(row.categoryId) }}
+          </span>
+        </div>
 
         <span
           class="col-span-3 text-left text-sm text-gray-500 dark:text-gray-400"
@@ -55,15 +53,13 @@ async function load($state) {
         </span>
 
         <span
-          class="col-span-4 pr-1 text-right text-base font-semibold text-gray-900 dark:text-white"
+          class="col-span-4 pr-1 text-right text-base font-semibold" :class="getTypeTextClasses(row.type)"
         >
           {{ numberWithSpaces(row.amount) }}
         </span>
       </div>
 
-      <div class="grid grid-cols-12">
-        <span class="col-span-1" />
-
+      <div class="grid grid-cols-11">
         <p
           v-if="row.comment"
           class="col-span-10 mt-2 text-sm text-gray-500 dark:text-gray-400"
