@@ -73,7 +73,7 @@ async function load($state) {
 
         <span v-else class="col-span-10" />
 
-        <DbActionsDropdown
+        <RecordsListDropdown
           class="col-span-1 justify-self-end"
           :record="row"
           @edit="emit('edit', $event)"
