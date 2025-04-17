@@ -3,7 +3,7 @@ const { requestCount } = useApi()
 const ready = ref(true)
 const loading = ref(false)
 
-let tm: null | number = null
+let tm: null | NodeJS.Timeout = null
 watch(requestCount, () => {
   loading.value = true
 
@@ -28,10 +28,10 @@ watch(loading, (value) => {
 
 <template>
   <div
-    class="fixed top-0 z-50 w-full bg-background/75 border-b border-gray-200 backdrop-blur dark:border-gray-800"
+    class="fixed top-0 z-50 w-full bg-background/75 border-b border-gray-200 backdrop-blur dark:border-gray-800 "
   >
     <header
-      class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto px-5"
+      class="flex flex-wrap items-center justify-between max-w-screen-sm mx-auto px-5"
     >
       <div class="flex items-center">
         <div id="headerTeleport" />
@@ -49,11 +49,9 @@ watch(loading, (value) => {
       </div>
 
       <div class="flex items-center justify-between w-28">
-        <header-connection />
-
+        <HeaderConnection />
         <UiThemeSwitch />
-
-        <header-dropdown />
+        <HeaderDropdown />
       </div>
     </header>
   </div>

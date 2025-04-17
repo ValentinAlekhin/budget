@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const authStore = useAuthStore()
 const { fetchAll, loading, error, initSocket, dataExists } = useGlobalLoading()
-const { smallerThanLg } = useScreenSize()
+const { user } = storeToRefs(authStore)
 
 onMounted(async () => {
   await authStore.getMe()
@@ -12,7 +12,7 @@ onMounted(async () => {
 
 <template>
   <div class="h-full overflow-y-auto pb-40 pt-18 lg:pb-0">
-    <Header />
+    <Header v-if="user" />
 
     <UiLoadersSisyphus v-if="!dataExists && loading" />
 
@@ -31,11 +31,11 @@ onMounted(async () => {
       </div>
     </UCard>
 
-    <div v-else class="px-2">
+    <div v-else class="px-2 max-w-screen-sm mx-auto">
       <slot />
     </div>
 
-    <template v-if="smallerThanLg">
+    <template v-if="user">
       <BottomNav />
       <UiActions />
     </template>
