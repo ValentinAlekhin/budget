@@ -171,10 +171,6 @@ export default defineNuxtConfig({
     },
   },
 
-  ui: {
-    icons: ['heroicons'],
-  },
-
   vueuse: {
     ssrHandlers: true,
   },

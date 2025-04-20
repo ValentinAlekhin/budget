@@ -10,6 +10,11 @@ const usernameFirstLetter = computed(() =>
   user.value?.username[0].toUpperCase(),
 )
 
+async function logout() {
+  await authStore.logout()
+  isExitModalOpen.value = false
+}
+
 const items = computed(() => [
   [
     {
@@ -55,7 +60,7 @@ const items = computed(() => [
         </template>
 
         <div class="flex justify-between">
-          <UButton color="red" @click="authStore.logout">
+          <UButton color="error" @click="logout">
             {{ $t("common.logout") }}
           </UButton>
           <UButton @click="isExitModalOpen = false">

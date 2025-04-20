@@ -7,8 +7,6 @@ const {
 const editRecord = ref<any>(null)
 const deleteId = ref('')
 
-const { smallerThanLg } = useScreenSize()
-
 function removeRecord(id: string) {
   deleteId.value = ''
   recordStore.delete(id)
@@ -18,7 +16,6 @@ function removeRecord(id: string) {
 <template>
   <div>
     <RecordsList
-      v-if="smallerThanLg"
       :rows="list"
       @edit="editRecord = $event"
       @delete="deleteId = $event.id"

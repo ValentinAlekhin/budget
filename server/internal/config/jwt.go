@@ -14,9 +14,9 @@ type JWT struct {
 
 func NewJWT() (*JWT, error) {
 	viper.SetDefault("ACCESS_TOKEN_SECRET", "secret")
-	viper.SetDefault("ACCESS_TOKEN_EXPIRATION", "5m")
+	viper.SetDefault("ACCESS_TOKEN_EXPIRATION", "5")
 	viper.SetDefault("REFRESH_TOKEN_SECRET", "secret")
-	viper.SetDefault("REFRESH_TOKEN_EXPIRATION", "30d")
+	viper.SetDefault("REFRESH_TOKEN_EXPIRATION", "3")
 
 	viper.SetConfigFile(".env")
 	viper.AutomaticEnv()

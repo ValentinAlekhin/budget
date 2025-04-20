@@ -4,849 +4,249 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="Рефактор фронта" />
+    <list default="true" id="7322bd7a-a609-4658-857a-fc29b83f8ffe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/buid.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/buid.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/budget.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/budget.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/auth/Login.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/auth/Login.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/auth/Me.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/auth/Me.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/auth/Refresh Tokens.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/auth/Refresh Tokens.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/bruno.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/bruno.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/category/Create.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/Create.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/category/DeleteOne.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/DeleteOne.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/category/Get All.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/Get All.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/category/UpdateMany.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/UpdateMany.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/category/UpdateManyOrder.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/UpdateManyOrder.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/category/UpdateOne.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/UpdateOne.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/collection.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/collection.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/environments/dev.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/environments/dev.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/environments/local.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/environments/local.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/environments/prod.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/environments/prod.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/record/Adjustment.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/record/Adjustment.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/record/CreateMany.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/record/CreateMany.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/record/CreateOne.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/record/CreateOne.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/record/Delete One.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/record/Delete One.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/record/Get All.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/record/Get All.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/record/GetOne.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/record/GetOne.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/record/UpdateOne.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/record/UpdateOne.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/Create User.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/Create User.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/Validate Email.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/Validate Email.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user/Validate Username.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/Validate Username.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/ws/Root.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/ws/Root.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/ type.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/ type.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/client/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/client/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/assets/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Auth/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Auth/LoginForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Auth/RegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Auth/RegisterForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/BaseLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BaseLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/BottomNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BottomNav.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Category/AddEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Category/AddEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Category/Edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Category/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Category/List.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Common/Modal/Remove.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Common/Modal/Remove.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Cost/Cards.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Cost/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Cost/edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Cost/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Header/Connection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/Connection.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Header/Dropdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/Dropdown.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Header/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/MobileOnly.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/MobileOnly.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Records/EditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Records/EditModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Records/List/Dropdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Records/List/Dropdown.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Records/List/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Records/List/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/Records/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Records/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/Actions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/Actions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/BackButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/BackButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/BadgeSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/BadgeSelect.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/ColorPicker/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/ColorPicker/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/IconPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/IconPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/StatCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/StatCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/TailwindColorPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/TailwindColorPicker.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/ThemeSwitch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/ThemeSwitch.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/loaders/Puls.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/loaders/Puls.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/ui/loaders/Sisyphus.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/loaders/Sisyphus.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useBackendValidators.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useBackendValidators.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCategory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCategoryTabs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoryTabs.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useCud.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCud.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useMainLinks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useMainLinks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/usePlan.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/usePlan.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useRecord.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useRecord.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useStat.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useStat.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useTheme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useTheme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useTimestamp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useTimestamp.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/composables/useYap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useYap.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/constants/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/docker/dev.env" beforeDir="false" afterPath="$PROJECT_DIR$/client/docker/dev.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/docker/local.env" beforeDir="false" afterPath="$PROJECT_DIR$/client/docker/local.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/docker/main.env" beforeDir="false" afterPath="$PROJECT_DIR$/client/docker/main.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/docker/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/client/docker/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/dto/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/dto/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/eslint.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/i18n/i18n.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n/i18n.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/i18n/locales/en.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n/locales/en.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/i18n/locales/ru.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n/locales/ru.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/layouts/desktop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/layouts/desktop.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/layouts/mobile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/layouts/mobile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/auth.global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/middleware/reset-actions.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/reset-actions.global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/auth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/auth.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/category/add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/category/add.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/category/edit/[id].vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/category/edit/[id].vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/records.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/records.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/reports/category/[id].vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/reports/category/[id].vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/reports/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/reports/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/settings.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/settings.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/ui/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/ui/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/plugins/chartjs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/plugins/chartjs.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/plugins/draggable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/plugins/draggable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/plugins/infinite-loading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/plugins/infinite-loading.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/spa-loading-template.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/spa-loading-template.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/actions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/actions/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/dev/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/dev/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.air.toml" beforeDir="false" afterPath="$PROJECT_DIR$/server/.air.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/cmd/gents/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/cmd/gents/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/auth/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/auth/controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/auth/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/auth/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/auth/middlewares.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/auth/middlewares.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/auth/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/auth/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/cache/cache.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/cache/cache.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/category/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/category/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/category/repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/repo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/category/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/config/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/config/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/config/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/config/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/config/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/config/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/config/telegram.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/config/telegram.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/db/connect.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/connect.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/db/migrate.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/migrate.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/db/migrations/000001_init.down.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/migrations/000001_init.down.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/db/migrations/000001_init.up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/migrations/000001_init.up.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/db/queries/categories.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/queries/categories.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/db/queries/records.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/queries/records.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/db/queries/refresh_tokens.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/queries/refresh_tokens.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/db/queries/users.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/queries/users.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/db/sqlc.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/sqlc.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/gents/gents.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/gents/gents.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/http-error/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/http-error/error.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/http-error/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/http-error/middleware.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/record/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/record/controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/record/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/record/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/record/repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/record/repo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/record/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/record/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/refresh-token/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/refresh-token/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/refresh-token/repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/refresh-token/repo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/telegram/telegram.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/telegram/telegram.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/user/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/user/controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/user/field-validation-controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/user/field-validation-controller.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/user/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/user/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/ws/cud.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/ws/cud.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/ws/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/ws/dto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/internal/ws/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/ws/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pkg/logger/logger.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/pkg/logger/logger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pkg/logger/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/pkg/logger/types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pkg/utils/argon/argon.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/pkg/utils/argon/argon.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pkg/utils/convert/convert.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/pkg/utils/convert/convert.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pkg/utils/fs/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/pkg/utils/fs/main.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Go File" />
-      </list>
-    </option>
-  </component>
-  <component name="GOROOT" url="file://$USER_HOME$/sdk/go1.23.3" />
   <component name="Git.Settings">
-    <favorite-branches>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="dev" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </favorite-branches>
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitToolBoxStore">
-    <option name="projectConfigVersion" value="5" />
-    <option name="recentBranches">
-      <RecentBranches>
-        <option name="branchesForRepo">
-          <list>
-            <RecentBranchesForRepo>
-              <option name="branches">
-                <list>
-                  <RecentBranch>
-                    <option name="branchName" value="dev" />
-                    <option name="lastUsedInstant" value="1740056639" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1740053667" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="nuxt-client" />
-                    <option name="lastUsedInstant" value="1681738453" />
-                  </RecentBranch>
-                </list>
-              </option>
-              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
-            </RecentBranchesForRepo>
-          </list>
-        </option>
-      </RecentBranches>
-    </option>
-  </component>
-  <component name="GoLibraries">
-    <option name="indexEntireGoPath" value="true" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/client/node_modules/highcharts-vue/types/highcharts-vue.d.ts" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/client/node_modules/highcharts/highcharts.d.ts" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/client/node_modules/highcharts/package.json" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="KubernetesApiPersistence">{}</component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 6
+  &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2K2g279g4R2M8dOfsjzN3WQQpsZ" />
+  <component name="ProjectId" id="2vjYshyax5id0DiLwEQYEJ8YLRq" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Docker.client/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.server: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.server/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;Shell Script.air.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/headb/Documents/projects/budget/client/components/records/List&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/valentin/projects/budget&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build (1).executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.lintfix.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start:dev.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/valentin/Documents/projects/budget/server/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\headb\\Documents\\projects\\budget\\client\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
-    ]
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\headb\Documents\projects\budget\client\components\records\List" />
-      <recent name="C:\Users\headb\Documents\projects\budget\client\components\records" />
-      <recent name="C:\Users\Valentin\Documents\projects\budget\client" />
-      <recent name="C:\Users\Valentin\Documents\projects\budget\client\components" />
-      <recent name="C:\Users\Valentin\Documents\projects\budget\client\docker" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\headb\Documents\projects\budget\client\components\records\List" />
-      <recent name="C:\Users\headb\Documents\projects\budget\client\components" />
-      <recent name="C:\Users\headb\Documents\projects\budget\client" />
-      <recent name="C:\Users\headb\Documents\projects\budget\client\composables" />
-      <recent name="C:\Users\headb\Documents\projects\budget\server-go\sqlc" />
-    </key>
-  </component>
-  <component name="RunManager" selected="npm.dev">
-    <configuration name="air" type="ShConfigurationType">
-      <option name="SCRIPT_TEXT" value="air" />
-      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-      <option name="SCRIPT_PATH" value="" />
-      <option name="SCRIPT_OPTIONS" value="" />
-      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="false" />
-      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/server-go" />
-      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
-      <option name="INTERPRETER_PATH" value="powershell.exe" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="EXECUTE_IN_TERMINAL" value="true" />
-      <option name="EXECUTE_SCRIPT_FILE" value="false" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml">
-        <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile">
-        <settings />
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="server" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="server/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
-        <settings>
-          <option name="sourceFilePath" value="server/Dockerfile" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/server/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="dev (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/server/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="start:dev" type="js.build_tools.npm" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/server/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start:dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="start:prod" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/server/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start:prod" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Docker.docker-compose.yml.server: Compose Deployment" />
-      <item itemvalue="Docker.server/Dockerfile" />
-      <item itemvalue="npm.dev" />
-      <item itemvalue="npm.start:dev" />
-      <item itemvalue="npm.build" />
-      <item itemvalue="npm.dev (1)" />
-      <item itemvalue="npm.start:prod" />
-      <item itemvalue="Shell Script.air" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.start:prod" />
-        <item itemvalue="npm.build" />
-        <item itemvalue="npm.dev (1)" />
-        <item itemvalue="Docker.server/Dockerfile" />
-        <item itemvalue="Docker.docker-compose.yml.server: Compose Deployment" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.157" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="82020c11-4752-4a30-9991-327ff4daa6d2" name="Changes" comment="" />
-      <created>1673177882259</created>
+      <changelist id="7322bd7a-a609-4658-857a-fc29b83f8ffe" name="Changes" comment="" />
+      <created>1744815777953</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1673177882259</updated>
-      <workItem from="1673177883652" duration="6938000" />
-      <workItem from="1681233082819" duration="8459000" />
-      <workItem from="1681280205779" duration="6000" />
-      <workItem from="1681303434356" duration="43885000" />
-      <workItem from="1681482197331" duration="53211000" />
-      <workItem from="1681713629682" duration="55000" />
-      <workItem from="1681738440756" duration="671000" />
-      <workItem from="1681801057448" duration="9000" />
-      <workItem from="1682099223010" duration="11740000" />
-      <workItem from="1682149222847" duration="16966000" />
-      <workItem from="1682316047401" duration="8000" />
-      <workItem from="1682360322527" duration="3537000" />
-      <workItem from="1682511951614" duration="12945000" />
-      <workItem from="1682539832063" duration="945000" />
-      <workItem from="1682579462472" duration="4385000" />
-      <workItem from="1682755731658" duration="2851000" />
-      <workItem from="1683007127033" duration="455000" />
-      <workItem from="1683121538658" duration="6341000" />
-      <workItem from="1683181099422" duration="1134000" />
-      <workItem from="1683213142851" duration="16052000" />
-      <workItem from="1683270465775" duration="42000" />
-      <workItem from="1683648701413" duration="282000" />
-      <workItem from="1683649773546" duration="4218000" />
-      <workItem from="1692358623868" duration="12734000" />
-      <workItem from="1692534065934" duration="33000" />
-      <workItem from="1692601346839" duration="6000" />
-      <workItem from="1692626122053" duration="12368000" />
-      <workItem from="1693571793611" duration="2144000" />
-      <workItem from="1693573991532" duration="5517000" />
-      <workItem from="1693811207728" duration="5000" />
-      <workItem from="1693839079262" duration="4991000" />
-      <workItem from="1693845866927" duration="6062000" />
-      <workItem from="1693897306656" duration="10000" />
-      <workItem from="1693923560591" duration="6799000" />
-      <workItem from="1693984383600" duration="8000" />
-      <workItem from="1694070141076" duration="3593000" />
-      <workItem from="1694077527078" duration="5882000" />
-      <workItem from="1694084198167" duration="11811000" />
-      <workItem from="1694103440693" duration="6736000" />
-      <workItem from="1694175743101" duration="8120000" />
-      <workItem from="1694291751670" duration="7371000" />
-      <workItem from="1694343510762" duration="11480000" />
-      <workItem from="1694377752861" duration="1917000" />
-      <workItem from="1694415695011" duration="7000" />
-      <workItem from="1694424911552" duration="1808000" />
-      <workItem from="1694426797428" duration="4397000" />
-      <workItem from="1694523682259" duration="12706000" />
-      <workItem from="1694617829175" duration="5002000" />
-      <workItem from="1694703140404" duration="5248000" />
-      <workItem from="1694764146523" duration="3436000" />
-      <workItem from="1694791806645" duration="4378000" />
-      <workItem from="1694860743515" duration="2104000" />
-      <workItem from="1695059944567" duration="2033000" />
-      <workItem from="1695107165817" duration="6000" />
-      <workItem from="1695137077449" duration="891000" />
-      <workItem from="1695220949140" duration="2278000" />
-      <workItem from="1695837144507" duration="10270000" />
-      <workItem from="1695884936219" duration="6000" />
-      <workItem from="1696000350946" duration="1841000" />
-      <workItem from="1696062718426" duration="5398000" />
-      <workItem from="1696230817838" duration="7000" />
-      <workItem from="1696237694739" duration="7000" />
-      <workItem from="1696521229362" duration="1645000" />
-      <workItem from="1696524470955" duration="498000" />
-      <workItem from="1696524988265" duration="5949000" />
-      <workItem from="1696604198743" duration="6768000" />
-      <workItem from="1696693691148" duration="3547000" />
-      <workItem from="1696768699509" duration="3933000" />
-      <workItem from="1696790449777" duration="1210000" />
-      <workItem from="1696835017614" duration="6000" />
-      <workItem from="1696953473219" duration="154000" />
-      <workItem from="1696953639064" duration="297000" />
-      <workItem from="1696955935773" duration="621000" />
-      <workItem from="1697034307852" duration="3439000" />
-      <workItem from="1697041528636" duration="67000" />
-      <workItem from="1697094387331" duration="17000" />
-      <workItem from="1697122831544" duration="50000" />
-      <workItem from="1697122891829" duration="5270000" />
-      <workItem from="1697180801193" duration="12000" />
-      <workItem from="1697281301727" duration="4322000" />
-      <workItem from="1697443806387" duration="10000" />
-      <workItem from="1697641250634" duration="11198000" />
-      <workItem from="1697699216617" duration="10000" />
-      <workItem from="1697969433919" duration="1408000" />
-      <workItem from="1698850211405" duration="6079000" />
-      <workItem from="1699633608824" duration="17511000" />
-      <workItem from="1699859218135" duration="47000" />
-      <workItem from="1699972580563" duration="2216000" />
-      <workItem from="1701185509102" duration="4166000" />
-      <workItem from="1701268601043" duration="799000" />
-      <workItem from="1703862250645" duration="1267000" />
-      <workItem from="1704276112569" duration="15000" />
-      <workItem from="1704277348260" duration="612000" />
-      <workItem from="1704870849237" duration="17000" />
-      <workItem from="1705752525679" duration="349000" />
-      <workItem from="1705752888119" duration="837000" />
-      <workItem from="1705754165320" duration="1756000" />
-      <workItem from="1705908792758" duration="7000" />
-      <workItem from="1706710440754" duration="2431000" />
-      <workItem from="1706778201081" duration="653000" />
-      <workItem from="1707742600083" duration="5138000" />
-      <workItem from="1707812753938" duration="2825000" />
-      <workItem from="1707923775376" duration="597000" />
-      <workItem from="1710579749668" duration="27255000" />
-      <workItem from="1715335456562" duration="1393000" />
-      <workItem from="1715336988890" duration="3099000" />
-      <workItem from="1715431819105" duration="8474000" />
-      <workItem from="1715605953707" duration="9000" />
-      <workItem from="1715610523156" duration="5642000" />
-      <workItem from="1724923806524" duration="176000" />
-      <workItem from="1724924107350" duration="4694000" />
-      <workItem from="1725262181087" duration="10000" />
-      <workItem from="1725269536106" duration="423000" />
-      <workItem from="1725435039979" duration="11000" />
-      <workItem from="1730550020872" duration="273000" />
-      <workItem from="1737904195329" duration="872000" />
-      <workItem from="1739810903429" duration="9578000" />
-      <workItem from="1739952943118" duration="20155000" />
-      <workItem from="1740049701920" duration="3569000" />
-      <workItem from="1744199393834" duration="2342000" />
+      <updated>1744815777953</updated>
+      <workItem from="1744815779210" duration="131000" />
+      <workItem from="1744815953932" duration="13000" />
     </task>
-    <task id="LOCAL-00001" summary="Add nuxt3 client">
-      <created>1673178280698</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1673178280698</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Фиксы для запуска сервера">
-      <created>1681147146548</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1681147146548</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Добавлена раскатка из файла csv">
-      <created>1681199984775</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1681199984775</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Рефактор сервера и переход на ULID">
-      <created>1681246008525</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1681246008525</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Рефактор сервера и добавление нормальной сессии">
-      <created>1681375644045</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1681375644045</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Добавлено обновление и удаление записи отрефакторен фронт">
-      <created>1681397102576</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1681397102576</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Добавлен socket.io добавлена стрница с БД">
-      <created>1681416155965</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1681416155965</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Добавлена страница cost">
-      <created>1681656192943</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1681656192943</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Фиксы и добавлены докерфайлы">
-      <created>1681713679395</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1681713679395</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Добавлена страница dist и stat">
-      <created>1682158811711</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1682158811711</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Фиксы и обновления">
-      <created>1682363853493</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1682363853493</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Фиксы и обновления">
-      <created>1682532536363</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1682532536363</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Фиксы и обновления">
-      <created>1683182307494</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1683182307494</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Фиксы и обновления">
-      <created>1683227794650</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1683227794650</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Фиксы и обновления">
-      <created>1683230578760</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1683230578760</updated>
-    </task>
-    <task id="LOCAL-00124" summary="Фикс сокетов">
-      <option name="closed" value="true" />
-      <created>1710670973055</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1710670973055</updated>
-    </task>
-    <task id="LOCAL-00125" summary="Обновлены пакеты">
-      <option name="closed" value="true" />
-      <created>1710672193520</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1710672193520</updated>
-    </task>
-    <task id="LOCAL-00126" summary="Фикс сокетов">
-      <option name="closed" value="true" />
-      <created>1710673459359</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1710673459359</updated>
-    </task>
-    <task id="LOCAL-00127" summary="Фикс сокетов">
-      <option name="closed" value="true" />
-      <created>1710673848124</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1710673848124</updated>
-    </task>
-    <task id="LOCAL-00128" summary="Фикс сокетов">
-      <option name="closed" value="true" />
-      <created>1710674127006</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1710674127006</updated>
-    </task>
-    <task id="LOCAL-00129" summary="Фикс редактирования категорий">
-      <option name="closed" value="true" />
-      <created>1710677208325</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1710677208325</updated>
-    </task>
-    <task id="LOCAL-00130" summary="Фикс pwa">
-      <option name="closed" value="true" />
-      <created>1713018988470</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1713018988470</updated>
-    </task>
-    <task id="LOCAL-00131" summary="Фиксы">
-      <option name="closed" value="true" />
-      <created>1715191098494</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1715191098494</updated>
-    </task>
-    <task id="LOCAL-00132" summary="Фиксы">
-      <option name="closed" value="true" />
-      <created>1715191796049</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1715191796049</updated>
-    </task>
-    <task id="LOCAL-00133" summary="Фиксы + добавлен bruno">
-      <option name="closed" value="true" />
-      <created>1715336578888</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1715336578889</updated>
-    </task>
-    <task id="LOCAL-00134" summary="Фиксы + добавлен bruno">
-      <option name="closed" value="true" />
-      <created>1715336997336</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1715336997336</updated>
-    </task>
-    <task id="LOCAL-00135" summary="Фиксы отвала сокетов">
-      <option name="closed" value="true" />
-      <created>1715433026208</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1715433026208</updated>
-    </task>
-    <task id="LOCAL-00136" summary="Фиксы отвала сокетов">
-      <option name="closed" value="true" />
-      <created>1715441047620</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1715441047620</updated>
-    </task>
-    <task id="LOCAL-00137" summary="Начало внедрения FSD архитектуры на фронт">
-      <option name="closed" value="true" />
-      <created>1715621974452</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1715621974453</updated>
-    </task>
-    <task id="LOCAL-00138" summary="Обновлен nuxt &amp; nuxt ui">
-      <option name="closed" value="true" />
-      <created>1724943655046</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1724943655046</updated>
-    </task>
-    <task id="LOCAL-00139" summary="Обновлен nuxt &amp; nuxt ui">
-      <option name="closed" value="true" />
-      <created>1739954637360</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1739954637360</updated>
-    </task>
-    <task id="LOCAL-00140" summary="Возврат к дефолтной структуре Nuxt">
-      <option name="closed" value="true" />
-      <created>1739955562895</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1739955562895</updated>
-    </task>
-    <task id="LOCAL-00141" summary="Обновлены зависимости">
-      <option name="closed" value="true" />
-      <created>1739956168717</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1739956168717</updated>
-    </task>
-    <task id="LOCAL-00142" summary="Переход на pnpm">
-      <option name="closed" value="true" />
-      <created>1739957884820</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1739957884820</updated>
-    </task>
-    <task id="LOCAL-00143" summary="Переход на pnpm">
-      <option name="closed" value="true" />
-      <created>1739958272336</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
-      <option name="project" value="LOCAL" />
-      <updated>1739958272336</updated>
-    </task>
-    <task id="LOCAL-00144" summary="Удален сервер nodejs">
-      <option name="closed" value="true" />
-      <created>1739959998777</created>
-      <option name="number" value="00144" />
-      <option name="presentableId" value="LOCAL-00144" />
-      <option name="project" value="LOCAL" />
-      <updated>1739959998777</updated>
-    </task>
-    <task id="LOCAL-00145" summary="Добавлен pwa">
-      <option name="closed" value="true" />
-      <created>1739960450167</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
-      <option name="project" value="LOCAL" />
-      <updated>1739960450167</updated>
-    </task>
-    <task id="LOCAL-00146" summary="Добавлен pwa">
-      <option name="closed" value="true" />
-      <created>1739961177761</created>
-      <option name="number" value="00146" />
-      <option name="presentableId" value="LOCAL-00146" />
-      <option name="project" value="LOCAL" />
-      <updated>1739961177761</updated>
-    </task>
-    <task id="LOCAL-00147" summary="Фикс piniaPluginPersistedstate">
-      <option name="closed" value="true" />
-      <created>1739961722492</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1739961722492</updated>
-    </task>
-    <task id="LOCAL-00148" summary="Добавлены dto ts">
-      <option name="closed" value="true" />
-      <created>1739966427232</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1739966427232</updated>
-    </task>
-    <task id="LOCAL-00149" summary="Обновлен eslint">
-      <option name="closed" value="true" />
-      <created>1739969370228</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1739969370228</updated>
-    </task>
-    <task id="LOCAL-00150" summary="Обновлен eslint">
-      <option name="closed" value="true" />
-      <created>1739969381262</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1739969381262</updated>
-    </task>
-    <task id="LOCAL-00151" summary="Переименование server-go &gt; server">
-      <option name="closed" value="true" />
-      <created>1739972372426</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1739972372427</updated>
-    </task>
-    <task id="LOCAL-00152" summary="Фикс actions">
-      <option name="closed" value="true" />
-      <created>1739974259449</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1739974259449</updated>
-    </task>
-    <task id="LOCAL-00153" summary="Фикс .env">
-      <option name="closed" value="true" />
-      <created>1739978338716</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1739978338716</updated>
-    </task>
-    <task id="LOCAL-00154" summary="Фикс авторизации">
-      <option name="closed" value="true" />
-      <created>1740056389487</created>
-      <option name="number" value="00154" />
-      <option name="presentableId" value="LOCAL-00154" />
-      <option name="project" value="LOCAL" />
-      <updated>1740056389487</updated>
-    </task>
-    <task id="LOCAL-00155" summary="Добавлен метод обновления пароля">
-      <option name="closed" value="true" />
-      <created>1743956548487</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1743956548487</updated>
-    </task>
-    <task id="LOCAL-00156" summary="Фикс слияния">
-      <option name="closed" value="true" />
-      <created>1743956654490</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1743956654490</updated>
-    </task>
-    <task id="LOCAL-00157" summary="Рефактор фронта">
-      <option name="closed" value="true" />
-      <created>1744200503935</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1744200503935</updated>
-    </task>
-    <option name="localTasksCounter" value="158" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ID_ORDER">
-      <list>
-        <option value="Default.Root" />
-        <option value="Default.Author" />
-        <option value="Default.Date" />
-        <option value="Default.Subject" />
-        <option value="GitHub.CommitStatus" />
-      </list>
-    </option>
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Обновлены пакеты" />
-    <MESSAGE value="Фикс сокетов" />
-    <MESSAGE value="Фикс редактирования категорий" />
-    <MESSAGE value="Фикс pwa" />
-    <MESSAGE value="Фиксы" />
-    <MESSAGE value="Фиксы + добавлен bruno" />
-    <MESSAGE value="Фиксы отвала сокетов" />
-    <MESSAGE value="Начало внедрения FSD архитектуры на фронт" />
-    <MESSAGE value="Обновлен nuxt &amp; nuxt ui" />
-    <MESSAGE value="Возврат к дефолтной структуре Nuxt" />
-    <MESSAGE value="Обновлены зависимости" />
-    <MESSAGE value="Переход на pnpm" />
-    <MESSAGE value="Удален сервер nodejs" />
-    <MESSAGE value="Добавлен pwa" />
-    <MESSAGE value="Фикс piniaPluginPersistedstate" />
-    <MESSAGE value="Добавлены dto ts" />
-    <MESSAGE value="Обновлен eslint" />
-    <MESSAGE value="Переименование server-go &gt; server" />
-    <MESSAGE value="Фикс actions" />
-    <MESSAGE value="Небольшой рефактор" />
-    <MESSAGE value="Фикс .env" />
-    <MESSAGE value="Фикс авторизации" />
-    <MESSAGE value="Добавлен метод обновления пароля" />
-    <MESSAGE value="Фикс слияния" />
-    <MESSAGE value="Рефактор фронта" />
-    <option name="LAST_COMMIT_MESSAGE" value="Рефактор фронта" />
-  </component>
   <component name="VgoProject">
-    <integration-enabled>false</integration-enabled>
     <settings-migrated>true</settings-migrated>
-  </component>
-  <component name="VueSettings">
-    <option name="innerServiceType" value="DISABLED" />
   </component>
 </project>

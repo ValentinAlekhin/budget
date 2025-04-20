@@ -2,18 +2,8 @@
 import { useColorMode } from '@vueuse/core'
 
 const colorMode = useColorMode()
-const route = useRoute()
 
 const color = computed(() => (colorMode.value === 'dark' ? '#030712' : '#fff'))
-
-const { smallerThanLg } = useScreenSize()
-
-const layout = computed(() => {
-  if (route.path.includes('auth'))
-    return 'auth'
-
-  return smallerThanLg.value ? 'mobile' : 'desktop'
-})
 </script>
 
 <template>
@@ -24,7 +14,7 @@ const layout = computed(() => {
       <Meta name="theme-color" :content="color" />
     </Head>
 
-    <NuxtLayout :name="layout">
+    <NuxtLayout name="mobile">
       <NuxtPage />
     </NuxtLayout>
 
