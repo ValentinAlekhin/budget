@@ -70,7 +70,7 @@ function getDropDownItems(record: RecordResponseDto) {
     class="text-gray-900 dark:text-white"
   >
     <template v-for="(row) in list" :key="row.id">
-      <li v-if="row.isDate" class="mb-1 text-gray-500 dark:text-gray-400 text-xs px-3 divide-y-2 divide-gray-200 dark:divide-gray-700">
+      <li v-if="row.isDate" class="mb-1 text-gray-500 dark:text-gray-400 text-sm px-3 divide-y-2 divide-gray-200 dark:divide-gray-700">
         {{ row.date }}
       </li>
 
