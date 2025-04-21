@@ -41,11 +41,12 @@ const list = computed(() => {
       return acc
     }
 
-    if (itemDate.date() !== tmpDate.date()) {
+    if (itemDate.format('DD/MM/YYYY') !== tmpDate.format('DD/MM/YYYY')) {
       tmpDate = itemDate
       const formaterDate = itemDate.format('dddd, D MMMM')
       acc.push({ id: formaterDate, date: formaterDate, isDate: true })
     }
+
     const category = getCategory(item.categoryId)
     acc.push({ ...item, category })
     return acc
@@ -76,7 +77,6 @@ function getDropDownItems(record: RecordResponseDto) {
   <div class="mb-4 flex items-center justify-between">
     <UButton
       icon="i-heroicons-chevron-left"
-      :padded="false"
       color="neutral"
       variant="link"
       size="xl"
@@ -87,7 +87,6 @@ function getDropDownItems(record: RecordResponseDto) {
     </span>
     <UButton
       icon="i-heroicons-chevron-right"
-      :padded="false"
       color="neutral"
       variant="link"
       size="xl"
