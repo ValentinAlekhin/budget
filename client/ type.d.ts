@@ -47,6 +47,8 @@ declare module 'vue-i18n' {
       reports: string
       home: string
       records: string
+      reset: string
+      all: string
     }
     range: {
       currentYear: string

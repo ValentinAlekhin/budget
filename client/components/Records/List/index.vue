@@ -7,12 +7,27 @@ const emit = defineEmits(['edit', 'delete'])
 
 dayjs.locale('ru')
 
+const { categoryStoreRefs: { costs, incoming } } = useCategoryStore()
 const { getCategory } = useCategory()
 const { getTypeTextClasses } = useRecord()
 const { t } = useI18n()
 
 const hoverId = ref<number | null>(null)
 const date = ref(dayjs())
+const isFiltersOpen = ref(false)
+const isFilterActive = ref(false)
+const categoryToFilter = ref<number[]>([])
+
+function submitFilters() {
+  isFilterActive.value = true
+  isFiltersOpen.value = false
+}
+
+function resetFilters() {
+  isFilterActive.value = false
+  categoryToFilter.value = []
+  isFiltersOpen.value = false
+}
 
 function nextMonth() {
   date.value = date.value.add(1, 'month')
@@ -36,6 +51,12 @@ const list = computed(() => {
   let tmpDate = dayjs().year(0).date(0)
 
   return props.rows.reduce((acc, item) => {
+    if (isFilterActive.value) {
+      if (!categoryToFilter.value.includes(item.categoryId)) {
+        return acc
+      }
+    }
+
     const itemDate = dayjs(item.timestamp)
     if (itemDate.year() !== date.value.year() || itemDate.month() !== date.value.month()) {
       return acc
@@ -74,7 +95,49 @@ function getDropDownItems(record: RecordResponseDto) {
 </script>
 
 <template>
-  <div class="mb-4 flex items-center justify-between">
+  <UDrawer v-model:open="isFiltersOpen" title="Фильтры">
+    <div class="flex justify-end mb-2 pr-1">
+      <UButton :color="isFilterActive ? 'primary' : 'neutral'" variant="link" trailing-icon="i-heroicons-funnel" />
+    </div>
+
+    <template #body>
+      <div>
+        <USelectMenu
+          v-model="categoryToFilter"
+          :placeholder="t('common.all')"
+          multiple
+          value-key="id"
+          label-key="name"
+          :items="[costs, incoming]"
+          block
+          class="w-full"
+          size="xl"
+        />
+      </div>
+    </template>
+
+    <template #footer>
+      <div class="grid grid-cols-2 gap-2">
+        <UButton
+          :label="t('common.reset')"
+          color="neutral"
+          variant="outline"
+          size="xl"
+          block
+          @click="resetFilters"
+        />
+        <UButton
+          :label="t('common.submit')"
+          color="neutral"
+          size="xl"
+          block
+          @click="submitFilters"
+        />
+      </div>
+    </template>
+  </UDrawer>
+
+  <div class="mb-1 flex items-center justify-between">
     <UButton
       icon="i-heroicons-chevron-left"
       color="neutral"

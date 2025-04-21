@@ -48,6 +48,8 @@ export default {
     home: 'Главная',
     reports: 'Отчеты',
     records: 'Записи',
+    reset: 'Сбросить',
+    all: 'Все',
   },
   range: {
     currentYear: 'Текущий год',
