@@ -11,16 +11,17 @@ dayjs.locale('ru')
 
 const { getCategoryName, getCategory } = useCategory()
 const { getTypeTextClasses } = useRecord()
+const { t } = useI18n()
 
 const pageSize = 20
 const page = ref(1)
-const dataToShow = computed(() =>
-  props.rows.filter((_, i) => i <= pageSize * page.value),
-)
+const hoverId = ref<number | null>(null)
+
 const list = computed(() => {
+  const toShow = props.rows.filter((_, i) => i <= pageSize * page.value)
   let date = dayjs().year(0).date(0)
 
-  return dataToShow.value.reduce((acc, item) => {
+  return toShow.reduce((acc, item) => {
     const itemDate = dayjs(item.timestamp)
     if (itemDate.date() !== date.date()) {
       date = itemDate
@@ -41,8 +42,6 @@ async function load(state) {
   }
   page.value++
 }
-
-const { t } = useI18n()
 
 function getDropDownItems(record: RecordResponseDto) {
   return [
@@ -76,7 +75,10 @@ function getDropDownItems(record: RecordResponseDto) {
 
       <UContextMenu v-else :items="getDropDownItems(row)">
         <li
-          class="mb-2 flex flex-col justify-between py-1 px-3 hover:bg-slate-200 hover:dark:bg-slate-800 rounded-sm cursor-pointer"
+          class="mb-2 flex flex-col justify-between py-1 px-3 rounded-sm cursor-pointer duration-300 ease-in-out"
+          :class="hoverId === row.id ? 'bg-slate-200 dark:bg-slate-800' : ''"
+          @mouseenter="hoverId = row.id"
+          @mouseleave="hoverId = null"
         >
           <div class="flex justify-between items-center">
             <div class="flex items-center">
