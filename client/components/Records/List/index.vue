@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs'
-import InfiniteLoading from 'v3-infinite-loading'
-import 'v3-infinite-loading/lib/style.css'
 
 const props = defineProps<{ rows: any[] }>()
 
@@ -13,18 +11,38 @@ const { getCategory } = useCategory()
 const { getTypeTextClasses } = useRecord()
 const { t } = useI18n()
 
-const pageSize = 20
-const page = ref(1)
 const hoverId = ref<number | null>(null)
+const date = ref(dayjs())
+
+function nextMonth() {
+  date.value = date.value.add(1, 'month')
+}
+
+function prevMonth() {
+  date.value = date.value.subtract(1, 'month')
+}
+
+const dateText = computed(() => {
+  let format = 'MMMM'
+  const currentYear = dayjs().year()
+  if (currentYear !== date.value.year()) {
+    format += ', YYYY'
+  }
+
+  return date.value.format(format)
+})
 
 const list = computed(() => {
-  const toShow = props.rows.filter((_, i) => i <= pageSize * page.value)
-  let date = dayjs().year(0).date(0)
+  let tmpDate = dayjs().year(0).date(0)
 
-  return toShow.reduce((acc, item) => {
+  return props.rows.reduce((acc, item) => {
     const itemDate = dayjs(item.timestamp)
-    if (itemDate.date() !== date.date()) {
-      date = itemDate
+    if (itemDate.year() !== date.value.year() || itemDate.month() !== date.value.month()) {
+      return acc
+    }
+
+    if (itemDate.date() !== tmpDate.date()) {
+      tmpDate = itemDate
       const formaterDate = itemDate.format('dddd, D MMMM')
       acc.push({ id: formaterDate, date: formaterDate, isDate: true })
     }
@@ -33,16 +51,6 @@ const list = computed(() => {
     return acc
   }, [])
 })
-
-async function load(state) {
-  if (pageSize * page.value >= props.rows.length) {
-    state.complete()
-  }
-  else {
-    state.loaded()
-  }
-  page.value++
-}
 
 function getDropDownItems(record: RecordResponseDto) {
   return [
@@ -65,6 +73,28 @@ function getDropDownItems(record: RecordResponseDto) {
 </script>
 
 <template>
+  <div class="mb-4 flex items-center justify-between">
+    <UButton
+      icon="i-heroicons-chevron-left"
+      :padded="false"
+      color="neutral"
+      variant="link"
+      size="xl"
+      @click="prevMonth"
+    />
+    <span class="font-semibold capitalize">
+      {{ dateText }}
+    </span>
+    <UButton
+      icon="i-heroicons-chevron-right"
+      :padded="false"
+      color="neutral"
+      variant="link"
+      size="xl"
+      @click="nextMonth"
+    />
+  </div>
+
   <ul
     v-auto-animate
     class="text-gray-900 dark:text-white"
@@ -117,6 +147,4 @@ function getDropDownItems(record: RecordResponseDto) {
       </UContextMenu>
     </template>
   </ul>
-
-  <InfiniteLoading @infinite="load" />
 </template>
