@@ -9,7 +9,7 @@ const emit = defineEmits(['edit', 'delete'])
 
 dayjs.locale('ru')
 
-const { getCategoryName, getCategory } = useCategory()
+const { getCategory } = useCategory()
 const { getTypeTextClasses } = useRecord()
 const { t } = useI18n()
 
@@ -28,7 +28,8 @@ const list = computed(() => {
       const formaterDate = itemDate.format('dddd, D MMMM')
       acc.push({ id: formaterDate, date: formaterDate, isDate: true })
     }
-    acc.push(item)
+    const category = getCategory(item.categoryId)
+    acc.push({ ...item, category })
     return acc
   }, [])
 })
@@ -82,11 +83,16 @@ function getDropDownItems(record: RecordResponseDto) {
         >
           <div class="flex justify-between items-center">
             <div class="flex items-center">
-              <UIcon v-if="getCategory(row.categoryId)?.icon" :name="getCategory(row.categoryId)?.icon" class="text-xl mr-2" />
+              <UIcon
+                v-if="row.category?.icon"
+                :name="row.category?.icon"
+                class="text-xl mr-2"
+                :style="{ color: row.category.color }"
+              />
               <span
                 class="truncate text-gray-900 dark:text-white"
               >
-                {{ getCategoryName(row.categoryId) }}
+                {{ row.category?.name }}
               </span>
             </div>
 
