@@ -70,46 +70,48 @@ function getDropDownItems(record: RecordResponseDto) {
     class="text-gray-900 dark:text-white"
   >
     <template v-for="(row) in list" :key="row.id">
-      <li v-if="row.isDate" class="mb-1 text-gray-500 dark:text-gray-400 text-sm px-3 divide-y-2 divide-gray-200 dark:divide-gray-700">
+      <li v-if="row.isDate" class="mb-2 text-gray-500 dark:text-gray-400 text-sm px-3 py-2 border-b-2 border-gray-300 dark:border-gray-700">
         {{ row.date }}
       </li>
 
       <UContextMenu v-else :items="getDropDownItems(row)">
-        <li
-          class="mb-2 flex flex-col justify-between py-1 px-3 rounded-sm cursor-pointer duration-300 ease-in-out"
-          :class="hoverId === row.id ? 'bg-slate-200 dark:bg-slate-800' : ''"
-          @mouseenter="hoverId = row.id"
-          @mouseleave="hoverId = null"
-        >
-          <div class="flex justify-between items-center">
-            <div class="flex items-center">
-              <UIcon
-                v-if="row.category?.icon"
-                :name="row.category?.icon"
-                class="text-xl mr-2"
-                :style="{ color: row.category.color }"
-              />
+        <li class="border-b-1 border-gray-200 dark:border-gray-800 mb-2">
+          <div
+            class="mb-2 flex flex-col justify-between py-1 px-3 rounded-sm cursor-pointer duration-300 ease-in-out"
+            :class="hoverId === row.id ? 'bg-slate-200 dark:bg-slate-800' : ''"
+            @mouseenter="hoverId = row.id"
+            @mouseleave="hoverId = null"
+          >
+            <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                <UIcon
+                  v-if="row.category?.icon"
+                  :name="row.category?.icon"
+                  class="text-xl mr-2"
+                  :style="{ color: row.category.color }"
+                />
+                <span
+                  class="truncate text-gray-900 dark:text-white"
+                >
+                  {{ row.category?.name }}
+                </span>
+              </div>
+
               <span
-                class="truncate text-gray-900 dark:text-white"
+                class="pr-1 text-right text-base font-semibold" :class="getTypeTextClasses(row.type)"
               >
-                {{ row.category?.name }}
+                {{ numberWithSpaces(row.amount) }}
               </span>
             </div>
 
-            <span
-              class="pr-1 text-right text-base font-semibold" :class="getTypeTextClasses(row.type)"
-            >
-              {{ numberWithSpaces(row.amount) }}
-            </span>
-          </div>
-
-          <div>
-            <UBadge
-              v-if="row.comment"
-              :label="row.comment"
-              color="neutral" variant="outline"
-              class="mt-1"
-            />
+            <div>
+              <UBadge
+                v-if="row.comment"
+                :label="row.comment"
+                color="neutral" variant="outline"
+                class="mt-1"
+              />
+            </div>
           </div>
         </li>
       </UContextMenu>
