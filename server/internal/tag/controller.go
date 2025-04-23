@@ -1,29 +1,37 @@
-package category
+package tag
 
 import (
 	http_error "budget/internal/http-error"
+	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
-
-	"github.com/gin-gonic/gin"
 )
 
 type Controller struct {
-	categoryService *Service
+	tagService *Service
 }
 
-func NewController(categoryService *Service) *Controller {
-	return &Controller{categoryService: categoryService}
+func NewController(tagService *Service) *Controller {
+	return &Controller{tagService: tagService}
 }
 
 func (c Controller) GetAll(ctx *gin.Context) {
 	userId := ctx.MustGet("userId").(int32)
-	categories := c.categoryService.GetAll(ctx, userId)
-	ctx.JSON(http.StatusOK, categories)
+	tags, err := c.tagService.GetAll(ctx, userId)
+	if err != nil {
+		ctx.Error(err)
+		return
+	}
+	if len(tags) == 0 {
+		ctx.Data(200, "application/json; charset=utf-8", []byte("[]"))
+		return
+	}
+
+	ctx.JSON(http.StatusOK, tags)
 }
 
 func (c Controller) CreateOne(ctx *gin.Context) {
-	var dto CreateCategoryRequestDto
+	var dto CreateTagRequestDto
 
 	if err := ctx.ShouldBindJSON(&dto); err != nil {
 		err = http_error.NewBadRequestError(err.Error(), "")
@@ -32,7 +40,7 @@ func (c Controller) CreateOne(ctx *gin.Context) {
 	}
 
 	userId := ctx.MustGet("userId").(int32)
-	category, err := c.categoryService.CreateOne(ctx, dto, userId)
+	category, err := c.tagService.Create(ctx, dto, userId)
 	if err != nil {
 		ctx.Error(err)
 		return
@@ -48,7 +56,7 @@ func (c Controller) UpdateOne(ctx *gin.Context) {
 		return
 	}
 
-	var dto UpdateCategoryRequestDto
+	var dto UpdateTagRequestDto
 
 	if err := ctx.ShouldBindJSON(&dto); err != nil {
 		err = http_error.NewBadRequestError(err.Error(), "")
@@ -57,32 +65,13 @@ func (c Controller) UpdateOne(ctx *gin.Context) {
 	}
 
 	userId := ctx.MustGet("userId").(int32)
-	category, err := c.categoryService.UpdateOne(ctx, dto, id, userId)
+	category, err := c.tagService.Update(ctx, id, dto, userId)
 	if err != nil {
 		ctx.Error(err)
 		return
 	}
 
 	ctx.JSON(http.StatusOK, category)
-}
-
-func (c Controller) UpdateManyOrder(ctx *gin.Context) {
-	var dto UpdateManyCategoryOrderRequestDto
-
-	if err := ctx.ShouldBindJSON(&dto); err != nil {
-		err = http_error.NewBadRequestError(err.Error(), "")
-		ctx.Error(err)
-		return
-	}
-
-	userId := ctx.MustGet("userId").(int32)
-	categories, err := c.categoryService.UpdateManyOrder(ctx, dto, userId)
-	if err != nil {
-		ctx.Error(err)
-		return
-	}
-
-	ctx.JSON(http.StatusOK, categories)
 }
 
 func (c Controller) DeleteOne(ctx *gin.Context) {
@@ -93,7 +82,7 @@ func (c Controller) DeleteOne(ctx *gin.Context) {
 	}
 
 	userId := ctx.MustGet("userId").(int32)
-	category, err := c.categoryService.DeleteOne(ctx, id, userId)
+	category, err := c.tagService.Delete(ctx, id, userId)
 	if err != nil {
 		ctx.Error(err)
 		return

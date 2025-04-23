@@ -1,0 +1,27 @@
+meta {
+  name: UpdateOne
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{goBaseUrl}}/tag/:id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 2
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "name": "updated tag",
+    "icon": "icon 2",
+    "color": "#fffffc"
+  }
+}

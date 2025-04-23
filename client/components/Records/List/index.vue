@@ -5,12 +5,12 @@ const props = defineProps<{ rows: any[] }>()
 
 const emit = defineEmits(['edit', 'delete'])
 
-dayjs.locale('ru')
-
+const { locale } = useI18n()
 const { categoryStoreRefs: { costs, incoming } } = useCategoryStore()
 const { getCategory } = useCategory()
 const { getTypeTextClasses } = useRecord()
 const { t } = useI18n()
+dayjs.locale(locale.value)
 
 const hoverId = ref<number | null>(null)
 const date = ref(dayjs())

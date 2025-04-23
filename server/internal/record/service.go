@@ -104,7 +104,7 @@ func (s Service) CreateMany(ctx context.Context, userId int32, dto CreateManyRec
 		return nil, http_error.NewBadRequestError("Invalid category ids", "")
 	}
 
-	categoriesMap := make(map[int64]category.CategoryResponseDto)
+	categoriesMap := make(map[int64]db.Category)
 	for _, categoryEntity := range categories {
 		categoriesMap[categoryEntity.ID] = categoryEntity
 	}
