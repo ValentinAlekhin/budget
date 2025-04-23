@@ -5,6 +5,7 @@ import (
 	"budget/internal/category"
 	"budget/internal/db"
 	"budget/internal/record"
+	"budget/internal/tag"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/tkrajina/typescriptify-golang-structs/typescriptify"
 	"time"
@@ -48,6 +49,9 @@ func Run(filename string) error {
 		Add(auth.LoginResponseDto{}).
 		Add(auth.RefreshTokenRequestDto{}).
 		Add(auth.RefreshTokenResponseDto{}).
+		Add(tag.TagResponseDto{}).
+		Add(tag.CreateTagRequestDto{}).
+		Add(tag.UpdateTagRequestDto{}).
 		AddEnum(AllCategoriesTypeEnum).
 		AddEnum(AllCategoriesPlanPeriodEnum).
 		ManageType(time.Time{}, typescriptify.TypeOptions{TSType: "string"}).

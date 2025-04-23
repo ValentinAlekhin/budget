@@ -7,10 +7,10 @@ const route = useRoute()
 
 const isRemoveModalOpen = ref(false)
 
-const id = route.params.id
-const category = categoryStore.getById(+id)
+const id = +route.params.id
+const category = computed(() => categoryStore.getById(id))
 
-if (!category) {
+if (!category.value) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Page Not Found',
@@ -21,13 +21,9 @@ function back() {
   router.push('/edit')
 }
 
-async function edit(dto: UpdateCategoryRequestDto) {
-  await categoryStore.updateOne({ ...dto, order: category?.order, id: category?.id })
+async function edit(dto: CreateCategoryRequestDto) {
+  await categoryStore.updateOne({ ...dto, order: category.value?.order, id })
   back()
-}
-
-function openModal() {
-  isRemoveModalOpen.value = true
 }
 
 function closeModal() {
@@ -38,29 +34,31 @@ async function remove() {
   await categoryStore.delete(id)
   back()
 }
+
+onMounted(() => {
+  console.log(category.value)
+})
 </script>
 
 <template>
   <div>
     <ClientOnly>
-      <MobileOnly>
-        <Teleport to="#headerTeleport">
-          <UiBackButton class="mr-2" @click="back" />
-        </Teleport>
-      </MobileOnly>
+      <Teleport to="#headerTeleport">
+        <UiBackButton class="mr-2" @click="back" />
+      </Teleport>
     </ClientOnly>
 
     <CategoryAddEdit
       action-type="edit"
-      :name="category?.name"
-      :icon="category?.icon"
-      :color="category?.color"
-      :comment="category?.comment"
-      :plan-period="category?.planPeriod"
-      :plan="category?.plan"
-      :type="category?.type"
+      :name="category.name"
+      :tag-ids="category.tagIds"
+      :icon="category.icon"
+      :color="category.color"
+      :comment="category.comment"
+      :plan-period="category.planPeriod"
+      :plan="category.plan"
+      :type="category.type"
       :submit="edit"
-      :remove="openModal"
     />
 
     <common-modal-remove

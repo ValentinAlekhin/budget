@@ -14,7 +14,7 @@ export default {
   <UButton
     icon="i-heroicons-arrow-small-left"
     class="rounded-md"
-    size="xs"
+    size="sm"
     :to="to"
     @click="$emit('click')"
   />

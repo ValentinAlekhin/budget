@@ -1,7 +1,7 @@
 -- name: CreateRecord :one
 WITH inserted AS (
-    INSERT INTO records (amount, comment, timestamp, category_id)
-        VALUES ($1, $2, $3, $4)
+    INSERT INTO records (amount, comment, timestamp, category_id, tag_id)
+        VALUES ($1, $2, $3, $4, $5)
         RETURNING *)
 SELECT inserted.*, c.type as type
 FROM inserted
@@ -46,8 +46,9 @@ WITH updated AS (
             comment = $2,
             timestamp = $3,
             category_id = $4,
+            tag_id = $5,
             updated_at = now()
-        WHERE records.id = $5
+        WHERE records.id = $6
         RETURNING *)
 SELECT u.*, c.type as type
 FROM updated u

@@ -112,7 +112,7 @@ func (s Service) Delete(ctx context.Context, id int64, userId int32) (TagRespons
 	tag, err = s.tagRepo.Delete(ctx, id)
 
 	responseDto := s.toDto(tag)
-	s.cud.SendOne(userId, "update", responseDto)
+	s.cud.SendOne(userId, "delete", responseDto)
 
 	return responseDto, nil
 }

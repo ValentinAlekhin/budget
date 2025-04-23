@@ -60,6 +60,14 @@ declare module 'vue-i18n' {
     record: {
       edit: string
     }
+    tag: {
+      remove: string
+      search: string
+      list: string
+      add: string
+      edit: string
+      tags: string
+    }
     category: {
       add: string
       edit: string

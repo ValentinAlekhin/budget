@@ -22,11 +22,20 @@ function close() {
           </span>
         </template>
 
-        <div class="flex justify-between">
-          <UButton @click="close">
-            {{ $t("common.close") }}
+        <div class="grid grid-cols-2 gap-2">
+          <UButton
+            color="neutral"
+            size="xl"
+            block
+            @click="close"
+          >
+            {{ $t("common.cancel") }}
           </UButton>
-          <UButton color="error" @click="$emit('remove')">
+          <UButton
+            size="xl"
+            block color="error"
+            @click="$emit('remove')"
+          >
             {{ $t("common.delete") }}
           </UButton>
         </div>

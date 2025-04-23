@@ -182,7 +182,7 @@ onMounted(() => {
       </template>
     </Draggable>
 
-    <common-modal-remove
+    <CommonModalRemove
       :open="!!itemToDelete"
       :title="$t('category.remove')"
       @close="itemToDelete = null"

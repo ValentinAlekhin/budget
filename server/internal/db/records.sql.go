@@ -13,8 +13,8 @@ import (
 
 const createRecord = `-- name: CreateRecord :one
 WITH inserted AS (
-    INSERT INTO records (amount, comment, timestamp, category_id)
-        VALUES ($1, $2, $3, $4)
+    INSERT INTO records (amount, comment, timestamp, category_id, tag_id)
+        VALUES ($1, $2, $3, $4, $5)
         RETURNING id, created_at, updated_at, amount, comment, timestamp, category_id, deleted_at, tag_id)
 SELECT inserted.id, inserted.created_at, inserted.updated_at, inserted.amount, inserted.comment, inserted.timestamp, inserted.category_id, inserted.deleted_at, inserted.tag_id, c.type as type
 FROM inserted
@@ -26,6 +26,7 @@ type CreateRecordParams struct {
 	Comment    string           `json:"comment"`
 	Timestamp  pgtype.Timestamp `json:"timestamp"`
 	CategoryID int64            `json:"categoryId"`
+	TagID      pgtype.Int8      `json:"tagId"`
 }
 
 type CreateRecordRow struct {
@@ -47,6 +48,7 @@ func (q *Queries) CreateRecord(ctx context.Context, arg CreateRecordParams) (Cre
 		arg.Comment,
 		arg.Timestamp,
 		arg.CategoryID,
+		arg.TagID,
 	)
 	var i CreateRecordRow
 	err := row.Scan(
@@ -350,8 +352,9 @@ WITH updated AS (
             comment = $2,
             timestamp = $3,
             category_id = $4,
+            tag_id = $5,
             updated_at = now()
-        WHERE records.id = $5
+        WHERE records.id = $6
         RETURNING id, created_at, updated_at, amount, comment, timestamp, category_id, deleted_at, tag_id)
 SELECT u.id, u.created_at, u.updated_at, u.amount, u.comment, u.timestamp, u.category_id, u.deleted_at, u.tag_id, c.type as type
 FROM updated u
@@ -363,6 +366,7 @@ type UpdateRecordParams struct {
 	Comment    string           `json:"comment"`
 	Timestamp  pgtype.Timestamp `json:"timestamp"`
 	CategoryID int64            `json:"categoryId"`
+	TagID      pgtype.Int8      `json:"tagId"`
 	ID         int64            `json:"id"`
 }
 
@@ -385,6 +389,7 @@ func (q *Queries) UpdateRecord(ctx context.Context, arg UpdateRecordParams) (Upd
 		arg.Comment,
 		arg.Timestamp,
 		arg.CategoryID,
+		arg.TagID,
 		arg.ID,
 	)
 	var i UpdateRecordRow

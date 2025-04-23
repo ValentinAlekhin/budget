@@ -12,6 +12,10 @@ export enum CategoriesPlanPeriodEnum {
   QUARTER = 'quarter',
   YEAR = 'year',
 }
+export interface Int8 {
+  Int64: number
+  Valid: boolean
+}
 export interface RecordResponseDto {
   id: number
   createdAt: string
@@ -22,12 +26,14 @@ export interface RecordResponseDto {
   categoryId: number
   deletedAt: string
   type: CategoriesTypeEnum
+  tagId?: Int8
 }
 export interface CreateOneRecordRequestDto {
   amount: number
   comment: string
   categoryId: number
   timestamp: string
+  tagId: number
 }
 export interface UpdateOneRecordRequestDto {
   id: number
@@ -35,6 +41,7 @@ export interface UpdateOneRecordRequestDto {
   comment: string
   categoryId: number
   timestamp: string
+  tagId: number
 }
 export interface CreateManyRecordsRequestDto {
   data: CreateOneRecordRequestDto[]
@@ -51,6 +58,7 @@ export interface CreateCategoryRequestDto {
   planPeriod: CategoriesPlanPeriodEnum
   color: string
   icon: string
+  tagIds: number[]
 }
 export interface UpdateCategoryRequestDto {
   id: number
@@ -62,6 +70,7 @@ export interface UpdateCategoryRequestDto {
   planPeriod: CategoriesPlanPeriodEnum
   color: string
   icon: string
+  tagIds: number[]
 }
 export interface UpdateManyCategoryRequestDto {
   data: UpdateCategoryRequestDto[]
@@ -87,6 +96,7 @@ export interface CategoryResponseDto {
   plan: number
   color: string
   planPeriod: CategoriesPlanPeriodEnum
+  tagIds: number[]
 }
 export interface LoginRequestDto {
   username: string
@@ -108,4 +118,25 @@ export interface RefreshTokenRequestDto {
 export interface RefreshTokenResponseDto {
   refreshToken: string
   accessToken: string
+}
+export interface TagResponseDto {
+  id: number
+  createdAt: string
+  updatedAt: string
+  name: string
+  color: string
+  icon: string
+  deletedAt: string
+}
+
+export interface CreateTagRequestDto {
+  name: string
+  color: string
+  icon: string
+}
+export interface UpdateTagRequestDto {
+  id: number
+  name: string
+  color: string
+  icon: string
 }

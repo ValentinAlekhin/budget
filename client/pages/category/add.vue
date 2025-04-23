@@ -18,11 +18,9 @@ async function add(dto: UpdateCategoryRequestDto) {
 <template>
   <div>
     <ClientOnly>
-      <MobileOnly>
-        <Teleport to="#headerTeleport">
-          <UiBackButton class="mr-2" @click="back" />
-        </Teleport>
-      </MobileOnly>
+      <Teleport to="#headerTeleport">
+        <UiBackButton class="mr-2" @click="back" />
+      </Teleport>
     </ClientOnly>
 
     <CategoryAddEdit :submit="add" action-type="add" />

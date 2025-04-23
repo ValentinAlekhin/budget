@@ -19,6 +19,7 @@ type CreateTagRequestDto struct {
 }
 
 type UpdateTagRequestDto struct {
+	ID    int64  `json:"id" binding:"required"`
 	Name  string `json:"name" binding:"required"`
 	Color string `json:"color" binding:"omitempty,hexcolor"`
 	Icon  string `json:"icon" binding:"omitempty"`

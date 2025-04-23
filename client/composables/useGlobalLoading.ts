@@ -3,13 +3,14 @@ export function useGlobalLoading() {
   const { socketStore } = useSocketStore()
   const { categoryStore } = useCategoryStore()
   const { recordStore } = useRecordStore()
+  const { tagStore } = useTagStore()
 
   const initSocket = () => socketStore.init()
 
   const fetchAll = async () => {
     if (!authStore.user)
       return
-    await Promise.all([categoryStore.init(), recordStore.init()])
+    await Promise.all([categoryStore.init(), recordStore.init(), tagStore.init()])
   }
 
   const loading = computed(() => categoryStore.loading || recordStore.loading)

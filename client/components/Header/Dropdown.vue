@@ -25,6 +25,11 @@ const items = computed(() => [
   ],
   [
     {
+      label: t('tag.tags'),
+      icon: 'i-heroicons-tag',
+      to: '/tag',
+    },
+    {
       label: t('common.settings'),
       icon: 'i-heroicons-cog-8-tooth',
       to: '/settings',
