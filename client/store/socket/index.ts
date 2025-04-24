@@ -16,17 +16,18 @@ export const useSocketStore = createSharedComposable(() => {
     state: (): State => ({ socket: null, connected: true }),
     actions: {
       connect() {
-        return new Promise<WebSocket>((resolve, reject) => {
-          const socket = new WebSocket(`${websocketProtocol}://${domain}/ws`)
-          this.socket = socket
+        return new Promise<void>((resolve, reject) => {
+          if (this.connected) {
+            return resolve()
+          }
+
+          this.socket = new WebSocket(`${websocketProtocol}://${domain}/ws`)
 
           this.socket.addEventListener('error', err => reject(err))
 
           this.socket?.addEventListener('open', () => {
-            if (!this.connected)
-              notify.success('Восстановлено соединение с сервером')
             this.connected = true
-            resolve(socket)
+            resolve()
           })
         })
       },
@@ -84,6 +85,10 @@ export const useSocketStore = createSharedComposable(() => {
         }, 5000)
       },
       close() {
+        if (!this.connected) {
+          return
+        }
+
         this.connected = false
         this.socket?.close()
         this.socket = null
