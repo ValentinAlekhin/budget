@@ -1,3 +1,5 @@
+/* eslint: console none */
+
 import { defineStore, storeToRefs } from 'pinia'
 
 interface State {
@@ -10,92 +12,99 @@ export const useSocketStore = createSharedComposable(() => {
     public: { domain, websocketProtocol },
   } = useRuntimeConfig()
   const notify = useNotify()
-  let interval: NodeJS.Timeout
+  let reconnectInterval: NodeJS.Timeout | null = null
 
   const socketStore = defineStore('socket', {
-    state: (): State => ({ socket: null, connected: true }),
+    state: (): State => ({
+      socket: null,
+      connected: false,
+    }),
     actions: {
       connect() {
         return new Promise<void>((resolve, reject) => {
-          if (this.connected) {
+          if (this.connected && this.socket?.readyState === WebSocket.OPEN) {
             return resolve()
           }
 
           this.socket = new WebSocket(`${websocketProtocol}://${domain}/ws`)
 
-          this.socket.addEventListener('error', err => reject(err))
-
-          this.socket?.addEventListener('open', () => {
+          this.socket.onopen = () => {
             this.connected = true
+            console.info('WebSocket connected')
             resolve()
-          })
+          }
+
+          this.socket.onerror = (err) => {
+            console.error('WebSocket error:', err)
+            reject(err)
+          }
+
+          this.socket.onclose = () => {
+            if (this.connected) {
+              this.close()
+              this.tryReconnect()
+            }
+          }
+
+          this.socket.onmessage = (msg) => {
+            try {
+              const data = JSON.parse(msg.data)
+              console.info('WebSocket message:', data)
+            }
+            catch (e) {
+              console.error('Invalid message:', msg.data)
+            }
+          }
         })
       },
-      subscribe() {
-        this.socket?.addEventListener('open', () => {
-          if (!this.connected)
-            notify.success('Восстановлено соединение с сервером')
-          this.connected = true
-        })
-
-        this.socket?.addEventListener('close', () => {
-          if (!this.connected)
-            return
-
-          notify.error('Потеряно соединение с сервером')
-          this.close()
-          this.tryReconnect()
-        })
-
-        this.socket?.addEventListener('message', (msg) => {
-          const data = JSON.parse(msg.data)
-          console.info(data)
-        })
-      },
-      setInterval() {
-        interval = setInterval(() => this.socket?.send('ping'), 10000)
+      ping() {
+        if (this.connected && this.socket?.readyState === WebSocket.OPEN) {
+          this.socket.send('ping')
+        }
       },
       async init() {
         try {
           await this.connect()
-          this.subscribe()
-          this.setInterval()
         }
         catch (e) {
           console.error(e)
-          notify.error('Произошла ошибка при подключени WS')
+          notify.error('Произошла ошибка при подключении к WebSocket')
         }
       },
       tryReconnect() {
-        let reconnectTries = 0
-        const reconnectInterval = setInterval(async () => {
-          if (reconnectTries >= 10) {
-            clearInterval(reconnectTries)
+        if (reconnectInterval)
+          return
+
+        let attempts = 0
+        reconnectInterval = setInterval(async () => {
+          if (attempts >= 10) {
+            clearInterval(reconnectInterval!)
+            reconnectInterval = null
             return
           }
 
           try {
             await this.init()
-            clearInterval(reconnectInterval)
+            clearInterval(reconnectInterval!)
+            reconnectInterval = null
           }
-          catch (e) {
-            console.error(e)
-            reconnectTries++
+          catch {
+            attempts++
           }
         }, 5000)
       },
       close() {
-        if (!this.connected) {
+        if (!this.connected)
           return
-        }
 
         this.connected = false
         this.socket?.close()
         this.socket = null
-        clearInterval(interval)
       },
     },
   })()
+
+  useIntervalFn(socketStore.ping, 10000)
 
   const socketStoreRef = storeToRefs(socketStore)
 
