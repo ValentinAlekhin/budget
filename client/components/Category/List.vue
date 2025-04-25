@@ -4,7 +4,7 @@ import { Parser } from 'expr-eval'
 import { cloneDeep, get, set } from 'lodash-es'
 
 interface Props {
-  value: Record<string, { value: string, comment: string }>
+  value: Record<string, { value: string, comment: string, tagId: number }>
   type: 'cost' | 'inc'
   list: any[]
 }
@@ -17,6 +17,7 @@ const parser = new Parser()
 const { recordStore } = useRecordStore()
 const toast = useToast()
 const actionsStore = useActionsStore()
+const { tagStore: { getById: getTagById } } = useTagStore()
 
 function setState(path: string) {
   return (e) => {
@@ -42,17 +43,27 @@ const focusedId = ref<string | null>(null)
 
 const computedInputs = computed(() =>
   props.list.map(
-    ({ id, name, balance, formattedBalance, colorClass, icon, color }) => {
+    ({ id, name, balance, formattedBalance, colorClass, icon, color, tagIds }) => {
       const scope = {
         $1: 100,
       }
       const valuePath = `${id}.value`
       const commentPath = `${id}.comment`
+      const tagPath = `${id}.tagId`
       const value = get(props.value, valuePath, '')
       const comment = get(props.value, commentPath, '')
+      const tagId = get(props.value, tagPath, null)
       const evaluatedValue = evaluate(value, scope)
       const focused = focusedId.value === id
       const valid = evaluatedValue !== 'Ошибка выражения'
+      const tags = tagIds?.map(id => getTagById(id))
+      const setTag = (id: number) => {
+        let newTagId = id
+        if (tagId === id) {
+          newTagId = null
+        }
+        setState(tagPath)({ target: { value: newTagId } })
+      }
 
       return {
         id,
@@ -68,11 +79,14 @@ const computedInputs = computed(() =>
         focused,
         valid,
         color,
+        tags,
+        tagId,
         leadingClass: icon ? 'w-24' : 'w-36',
         padding: icon ? 'ps-32' : 'ps-40',
         inputValue: focused ? value : evaluatedValue,
         setValue: setState(valuePath),
         setComment: setState(commentPath),
+        setTag,
       }
     },
   ),
@@ -101,11 +115,12 @@ async function save() {
 
   const payload = computedInputs.value
     .filter(inp => inp.value)
-    .map(({ evaluatedValue, id, comment }) => ({
+    .map(({ evaluatedValue, id, comment, tagId }) => ({
       amount: evaluatedValue,
       categoryId: id,
       timestamp: dayjs().toISOString(),
       comment,
+      tagId,
     }))
 
   await recordStore.addRecords(payload)
@@ -144,7 +159,7 @@ onMounted(() => setActions(formHasAnyValue.value))
         :placeholder="inp.icon ? inp.name : ''"
         size="xl"
         :ui="{ leading: 'pl-4', base: 'pl-36' }"
-        class="block mb-2"
+        class="block mt-2"
         @input="inp.setValue"
         @focus="focusedId = inp.id"
       >
@@ -180,14 +195,29 @@ onMounted(() => setActions(formHasAnyValue.value))
         </template>
       </UInput>
 
-      <UInput
-        v-if="inp.showCommentInp"
-        :model-value="inp.comment"
-        placeholder="Комментарий"
-        class="mb-2 w-full"
-        size="xl"
-        @input="inp.setComment"
-      />
+      <template v-if="inp.showCommentInp">
+        <UInput
+          :model-value="inp.comment"
+          placeholder="Комментарий"
+          class="mt-1 w-full"
+          size="xl"
+          @input="inp.setComment"
+        />
+
+        <ul class="list-none flex items-center flex-wrap">
+          <li v-for="tag in inp.tags" :key="tag.id">
+            <TagItem
+              :name="tag.name"
+              :color="tag.color"
+              :icon="tag.icon"
+              size="xl"
+              class="cursor-pointer mr-1 mt-1"
+              :active="tag.id === inp.tagId"
+              @click="() => inp.setTag(tag.id)"
+            />
+          </li>
+        </ul>
+      </template>
     </template>
   </ul>
 </template>

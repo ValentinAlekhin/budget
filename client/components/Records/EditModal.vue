@@ -9,12 +9,15 @@ const props = defineProps({
 const emit = defineEmits(['close'])
 const { recordStore } = useRecordStore()
 const { categoryStoreRefs: { data: categories } } = useCategoryStore()
+const { tagStore: { getById: getTagById } } = useTagStore()
+const { t } = useI18n()
 
 const schema = object({
   amount: number().required(),
   categoryId: number().required(),
   timestamp: date().required(),
   comment: string(),
+  tagId: number().optional().nullable(),
 })
 
 const state = ref({
@@ -22,15 +25,17 @@ const state = ref({
   categoryId: 0,
   timestamp: dayjs(),
   comment: '',
+  tagId: null,
 })
+
+const form = ref()
+const loading = ref(false)
 
 const currentCategory = computed(
   () =>
     categories.value.find(c => c.id === state.value.categoryId),
 )
-
-const form = ref()
-const loading = ref(false)
+const categoryTags = computed(() => currentCategory.value?.tagIds?.map(id => getTagById(id)))
 
 const formattedDate = computed(() =>
   dayjs(props.record?.timestamp).format('DD.MM.YYYY'),
@@ -51,6 +56,15 @@ async function submit() {
   close()
 }
 
+function setTag(tagId: number) {
+  if (tagId === state.value.tagId) {
+    state.value.tagId = null
+  }
+  else {
+    state.value.tagId = tagId
+  }
+}
+
 watch(
   () => props.record,
   (record) => {
@@ -61,6 +75,7 @@ watch(
     state.value.categoryId = record?.categoryId
     state.value.timestamp = record?.timestamp
     state.value.comment = record?.comment
+    state.value.tagId = record?.tagId
   },
 )
 </script>
@@ -72,7 +87,7 @@ watch(
         <UCard>
           <template #header>
             <span class="text-xl font-medium dark:text-white">
-              {{ $t("record.edit", { date: formattedDate }) }}
+              {{ t("record.edit", { date: formattedDate }) }}
             </span>
           </template>
 
@@ -82,16 +97,16 @@ watch(
             :state="state"
             @submit.prevent="submit"
           >
-            <UFormField :label="$t('common.amount')" name="amount">
+            <UFormField :label="t('common.amount')" name="amount">
               <UInput v-model="state.amount" class="w-full" size="xl" />
             </UFormField>
 
-            <UFormField :label="$t('common.comment')" name="comment" class="mt-2">
+            <UFormField :label="t('common.comment')" name="comment" class="mt-2">
               <UInput v-model="state.comment" class="w-full" size="xl" />
             </UFormField>
 
             <UFormField
-              :label="$t('common.category')"
+              :label="t('common.category')"
               name="category"
               class="mt-2"
             >
@@ -105,11 +120,29 @@ watch(
                 size="xl"
               />
             </UFormField>
+
+            <UFormField
+              v-if="categoryTags?.length"
+              :label="t('common.tag')"
+              name="tagId"
+              class="mt-2"
+            >
+              <USelectMenu
+                :model-value="state.tagId"
+                :items="categoryTags"
+                label-key="name"
+                value-key="id"
+                class="w-full"
+                size="xl"
+                :placeholder="t('tag.notSelected')"
+                @update:model-value="setTag"
+              />
+            </UFormField>
           </UForm>
 
           <template #footer>
             <UButton type="submit" block @click="submit">
-              {{ $t("common.submit") }}
+              {{ t("common.submit") }}
             </UButton>
           </template>
         </UCard>

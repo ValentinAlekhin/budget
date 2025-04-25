@@ -36,6 +36,40 @@ WHERE user_id = $1
   and deleted_at is null
 order by type, "order";
 
+-- name: AddTagToCategory :exec
+INSERT INTO category_tags (category_id, tag_id)
+VALUES ($1, $2)
+ON CONFLICT DO NOTHING;
+
+-- name: RemoveTagFromCategory :exec
+DELETE
+FROM category_tags
+WHERE category_id = $1
+  AND tag_id = $2;
+
+-- name: RemoveTagsFromCategory :exec
+DELETE
+FROM category_tags
+WHERE category_id = $1
+  AND tag_id = ANY ($2::bigint[]);
+
+-- name: GetTagIdsByCategoryID :many
+SELECT ct.*
+FROM tags t
+         JOIN category_tags ct ON ct.tag_id = t.id
+WHERE ct.category_id = $1
+  AND t.deleted_at IS NULL
+ORDER BY t.name;
+
+-- name: GetTagIdsByCategoryIds :many
+SELECT ct.*
+FROM tags t
+         JOIN category_tags ct ON ct.tag_id = t.id
+WHERE ct.category_id = ANY ($1::bigint[])
+  AND t.deleted_at IS NULL
+ORDER BY t.name;
+
+
 -- name: UpdateCategory :one
 UPDATE categories
 SET name        = $2,

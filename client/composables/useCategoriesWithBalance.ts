@@ -1,5 +1,11 @@
 import { sumBy } from 'lodash-es'
 
+// export interface CategoryWithBalance extends CategoryResponseDto {
+//   formattedBalance: string
+//   balance: number
+//   colorClass: string
+// }
+
 export const useCategoriesWithBalance = createSharedComposable(() => {
   const {
     categoryStoreRefs: { costs: categoryCosts },
@@ -10,10 +16,10 @@ export const useCategoriesWithBalance = createSharedComposable(() => {
   const { now } = useTimestamp()
   const { filterRecordsByRange } = useRecord()
 
-  const categoriesWithBalance = computed(() =>
+  const categoriesWithBalance = computed<CategoryWithBalance[]>(() =>
     categoryCosts.value.map((c) => {
       if (!c.plan)
-        return c
+        return { ...c, formattedBalance: '', balance: 0, colorClass: '' }
 
       const start = now.value.startOf(c.planPeriod)
       const end = now.value.endOf(c.planPeriod)

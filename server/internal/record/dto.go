@@ -11,6 +11,7 @@ type CreateOneRecordRequestDto struct {
 	Comment    string    `json:"comment" binding:"omitempty,max=100"`
 	CategoryID int64     `json:"categoryId" binding:"required"`
 	Timestamp  time.Time `json:"timestamp" binding:"required"`
+	TagID      int64     `json:"tagId" binding:"omitempty,min=1"`
 }
 
 type UpdateOneRecordRequestDto struct {
@@ -19,6 +20,7 @@ type UpdateOneRecordRequestDto struct {
 	Comment    string    `json:"comment" binding:"omitempty,max=100"`
 	CategoryID int64     `json:"categoryId" binding:"required"`
 	Timestamp  time.Time `json:"timestamp" binding:"required"`
+	TagID      int64     `json:"tagId" binding:"omitempty,min=1"`
 }
 
 type CreateManyRecordsRequestDto struct {
@@ -39,4 +41,5 @@ type RecordResponseDto struct {
 	CategoryID int64                 `json:"categoryId"`
 	DeletedAt  pgtype.Timestamp      `json:"deletedAt"`
 	Type       db.CategoriesTypeEnum `json:"type"`
+	TagID      pgtype.Int8           `json:"tagId,omitempty"`
 }

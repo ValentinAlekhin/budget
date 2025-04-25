@@ -85,25 +85,6 @@ func (c Controller) UpdateManyOrder(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, categories)
 }
 
-func (c Controller) UpdateMany(ctx *gin.Context) {
-	var dto UpdateManyCategoryRequestDto
-
-	if err := ctx.ShouldBindJSON(&dto); err != nil {
-		err = http_error.NewBadRequestError(err.Error(), "")
-		ctx.Error(err)
-		return
-	}
-
-	userId := ctx.MustGet("userId").(int32)
-	categories, err := c.categoryService.UpdateMany(ctx, dto, userId)
-	if err != nil {
-		ctx.Error(err)
-		return
-	}
-
-	ctx.JSON(http.StatusOK, categories)
-}
-
 func (c Controller) DeleteOne(ctx *gin.Context) {
 	id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 	if err != nil {

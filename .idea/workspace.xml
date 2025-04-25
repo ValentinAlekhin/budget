@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7322bd7a-a609-4658-857a-fc29b83f8ffe" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/buid.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/buid.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/budget.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/budget.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/auth/Login.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/auth/Login.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/auth/Me.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/auth/Me.bru" afterDir="false" />
@@ -24,12 +21,8 @@
       <change beforePath="$PROJECT_DIR$/api/category/DeleteOne.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/DeleteOne.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/category/Get All.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/Get All.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/category/UpdateMany.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/UpdateMany.bru" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/category/UpdateManyOrder.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/UpdateManyOrder.bru" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/category/UpdateOne.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/category/UpdateOne.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/collection.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/collection.bru" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/environments/dev.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/environments/dev.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/environments/local.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/environments/local.bru" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/environments/prod.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/environments/prod.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/record/Adjustment.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/record/Adjustment.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/record/CreateMany.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/record/CreateMany.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/record/CreateOne.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/record/CreateOne.bru" afterDir="false" />
@@ -40,8 +33,6 @@
       <change beforePath="$PROJECT_DIR$/api/user/Create User.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/Create User.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/user/Validate Email.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/Validate Email.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/user/Validate Username.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/user/Validate Username.bru" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/ws/Root.bru" beforeDir="false" afterPath="$PROJECT_DIR$/api/ws/Root.bru" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/ type.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/ type.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.dockerignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
@@ -49,147 +40,38 @@
       <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/client/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/app.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/assets/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Auth/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Auth/LoginForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Auth/RegisterForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Auth/RegisterForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/BaseLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BaseLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/BottomNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/BottomNav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Category/AddEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Category/AddEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Category/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Category/Edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Category/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Category/List.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Common/Modal/Remove.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Common/Modal/Remove.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Cost/Cards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Cost/Cards.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Cost/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Cost/edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Cost/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Cost/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/Header/Connection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/Connection.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/Header/Dropdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/Dropdown.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/Header/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Header/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/MobileOnly.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/MobileOnly.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Records/EditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Records/EditModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Records/List/Dropdown.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Records/List/Dropdown.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Records/List/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Records/List/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/Records/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/Records/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/Actions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/Actions.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/BackButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/BackButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/BadgeSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/BadgeSelect.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/ColorPicker/Color.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/ColorPicker/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/ColorPicker/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/IconPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/IconPicker.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/StatCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/StatCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/TailwindColorPicker.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/TailwindColorPicker.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/ThemeSwitch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/ThemeSwitch.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/loaders/Puls.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/loaders/Puls.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/ui/loaders/Sisyphus.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/ui/loaders/Sisyphus.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/composables/useBackendValidators.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useBackendValidators.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoriesWithBalance.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/composables/useCategory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategory.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/composables/useCategoryTabs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCategoryTabs.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCommonRanges.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useCud.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useCud.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useGlobalLoading.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useMainLinks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useMainLinks.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/composables/usePlan.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/usePlan.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/composables/useRecord.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useRecord.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/composables/useStat.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useStat.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useTheme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useTheme.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useTimestamp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useTimestamp.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/composables/useYap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/composables/useYap.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/constants/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/docker/dev.env" beforeDir="false" afterPath="$PROJECT_DIR$/client/docker/dev.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/docker/local.env" beforeDir="false" afterPath="$PROJECT_DIR$/client/docker/local.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/docker/main.env" beforeDir="false" afterPath="$PROJECT_DIR$/client/docker/main.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/docker/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/client/docker/nginx.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/dto/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/dto/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/eslint.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/i18n/i18n.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n/i18n.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/i18n/locales/en.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n/locales/en.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/i18n/locales/ru.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/i18n/locales/ru.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/layouts/desktop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/layouts/desktop.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/layouts/mobile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/layouts/mobile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/middleware/auth.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/auth.global.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/middleware/reset-actions.global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/middleware/reset-actions.global.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/nuxt.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/auth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/auth.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/category/add.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/category/add.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/category/edit/[id].vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/category/edit/[id].vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/edit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/records.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/records.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/reports/category/[id].vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/reports/category/[id].vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/reports/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/reports/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/settings.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/settings.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/ui/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/ui/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/plugins/chartjs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/plugins/chartjs.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/plugins/draggable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/plugins/draggable.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/plugins/infinite-loading.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/plugins/infinite-loading.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pnpm-lock.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/spa-loading-template.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/spa-loading-template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/store/actions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/actions/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/store/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/auth/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/store/category/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/category/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/store/record/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/record/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/store/socket/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/store/socket/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/utils/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/dev/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/dev/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.air.toml" beforeDir="false" afterPath="$PROJECT_DIR$/server/.air.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.dockerignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/server/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/cmd/gents/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/cmd/gents/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/server/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/auth/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/auth/controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/auth/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/auth/dto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/auth/middlewares.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/auth/middlewares.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/auth/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/auth/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/cache/cache.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/cache/cache.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/category/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/category/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/dto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/category/repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/category/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/category/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/config/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/config/db.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/config/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/config/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/config/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/config/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/config/telegram.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/config/telegram.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/db/connect.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/connect.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/db/migrate.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/migrate.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/db/migrations/000001_init.down.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/migrations/000001_init.down.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/db/migrations/000001_init.up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/migrations/000001_init.up.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/db/queries/categories.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/queries/categories.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/db/queries/records.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/queries/records.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/db/queries/refresh_tokens.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/queries/refresh_tokens.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/db/queries/users.sql" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/queries/users.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/db/sqlc.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/db/sqlc.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/gents/gents.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/gents/gents.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/http-error/error.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/http-error/error.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/http-error/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/http-error/middleware.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/record/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/record/controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/record/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/record/dto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/record/repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/record/repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/record/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/record/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/refresh-token/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/refresh-token/dto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/refresh-token/repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/refresh-token/repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/telegram/telegram.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/telegram/telegram.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/user/controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/user/controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/user/field-validation-controller.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/user/field-validation-controller.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/user/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/user/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/ws/cud.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/ws/cud.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/ws/dto.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/ws/dto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/internal/ws/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/internal/ws/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pkg/logger/logger.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/pkg/logger/logger.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pkg/logger/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/pkg/logger/types.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pkg/utils/argon/argon.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/pkg/utils/argon/argon.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pkg/utils/convert/convert.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/pkg/utils/convert/convert.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pkg/utils/fs/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/pkg/utils/fs/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +108,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-WS-243.23654.157" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
       </set>
     </attachedChunks>
   </component>
@@ -240,6 +122,7 @@
       <updated>1744815777953</updated>
       <workItem from="1744815779210" duration="131000" />
       <workItem from="1744815953932" duration="13000" />
+      <workItem from="1745266073500" duration="145000" />
     </task>
     <servers />
   </component>

@@ -49,6 +49,7 @@ declare module 'vue-i18n' {
       records: string
       reset: string
       all: string
+      tag: string
     }
     range: {
       currentYear: string
@@ -59,6 +60,15 @@ declare module 'vue-i18n' {
     }
     record: {
       edit: string
+    }
+    tag: {
+      remove: string
+      search: string
+      list: string
+      add: string
+      edit: string
+      tags: string
+      notSelected: string
     }
     category: {
       add: string

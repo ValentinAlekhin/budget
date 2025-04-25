@@ -1,4 +1,4 @@
-type Item = RecordResponseDto | CategoryResponseDto
+type Item = RecordResponseDto | CategoryResponseDto | TagResponseDto
 
 interface CudAction<T extends Item> {
   type: 'cud'
@@ -13,7 +13,7 @@ interface CudAction<T extends Item> {
 interface Parameters<T extends Item> {
   items: Ref<T[]>
   setter: (items: T[]) => void
-  entity: 'record' | 'category'
+  entity: 'record' | 'category' | 'tag'
 }
 
 export function useCud<T extends Item>({

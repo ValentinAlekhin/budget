@@ -7,6 +7,7 @@ import (
 	httperror "budget/internal/http-error"
 	"budget/internal/record"
 	refresh_token "budget/internal/refresh-token"
+	"budget/internal/tag"
 	"budget/internal/user"
 	"budget/internal/ws"
 	"fmt"
@@ -21,11 +22,13 @@ func Init(db *pgxpool.Pool, jwtConfig *config.JWT, serverConfig *config.Server) 
 	tokenRepo := refresh_token.NewRepo(db)
 	categoryRepo := category.NewCategoryRepo(db)
 	recordRepo := record.NewRecordsRepo(db)
+	tagRepo := tag.NewRepo(db)
 
 	userService := user.NewService(userRepo)
 	authService := auth.NewService(jwtConfig, userService, tokenRepo)
-	categoryService := category.NewService(categoryRepo)
+	categoryService := category.NewService(categoryRepo, tagRepo)
 	recordService := record.NewService(recordRepo, categoryRepo)
+	tagService := tag.NewService(tagRepo)
 
 	userController := user.NewController(userService)
 	userFieldValidationController := user.NewFieldValidationController(userService)
@@ -33,6 +36,7 @@ func Init(db *pgxpool.Pool, jwtConfig *config.JWT, serverConfig *config.Server) 
 	authMiddlewares := auth.NewMiddlewares(userService, authService, jwtConfig)
 	categoryController := category.NewController(categoryService)
 	recordController := record.NewController(recordService)
+	tagController := tag.NewController(tagService)
 
 	router := gin.Default()
 	router.Use(cors.Default())
@@ -55,7 +59,6 @@ func Init(db *pgxpool.Pool, jwtConfig *config.JWT, serverConfig *config.Server) 
 	categoryGroup.Use(authMiddlewares.AuthRequired)
 	categoryGroup.GET("", categoryController.GetAll)
 	categoryGroup.POST("", categoryController.CreateOne)
-	categoryGroup.PUT("/many", categoryController.UpdateMany)
 	categoryGroup.PUT("/many/order", categoryController.UpdateManyOrder)
 	categoryGroup.PUT("/:id", categoryController.UpdateOne)
 	categoryGroup.DELETE("/:id", categoryController.DeleteOne)
@@ -69,6 +72,13 @@ func Init(db *pgxpool.Pool, jwtConfig *config.JWT, serverConfig *config.Server) 
 	recordGroup.POST("/many", recordController.CreateMany)
 	recordGroup.PUT("/:id", recordController.UpdateOne)
 	recordGroup.DELETE("/:id", recordController.DeleteOne)
+
+	tagGroup := router.Group("/tag")
+	tagGroup.Use(authMiddlewares.AuthRequired)
+	tagGroup.GET("", tagController.GetAll)
+	tagGroup.POST("", tagController.CreateOne)
+	tagGroup.PUT("/:id", tagController.UpdateOne)
+	tagGroup.DELETE("/:id", tagController.DeleteOne)
 
 	authGroup := router.Group("/auth")
 	authGroup.POST("/login", authController.Login)

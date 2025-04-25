@@ -29,6 +29,7 @@ export const useCategoryStore = createSharedComposable(() => {
           this.data = data || []
         }
         catch (e) {
+          console.error(e)
           notify.error('Ошибка при загрузке категорий')
           this.error = e
         }
@@ -47,6 +48,7 @@ export const useCategoryStore = createSharedComposable(() => {
           await api.post('/category', category)
         }
         catch (e) {
+          console.error(e)
           notify.error('Ошибка при сохранении')
         }
       },
@@ -55,6 +57,7 @@ export const useCategoryStore = createSharedComposable(() => {
           await api.put(`/category/${dto.id}`, dto)
         }
         catch (e) {
+          console.error(e)
           notify.error('Ошибка при обновлении категории')
         }
       },
@@ -63,6 +66,7 @@ export const useCategoryStore = createSharedComposable(() => {
           await api.put('/category/many/order', { data })
         }
         catch (e) {
+          console.error(e)
           notify.error('Ошибка при обновлении порядка категорий')
         }
       },
@@ -71,6 +75,7 @@ export const useCategoryStore = createSharedComposable(() => {
           await api.put('/category/many', { data })
         }
         catch (e) {
+          console.error(e)
           notify.error('Ошибка при обновлении категорий')
         }
       },
@@ -79,6 +84,7 @@ export const useCategoryStore = createSharedComposable(() => {
           await api.delete(`/category/${id}`)
         }
         catch (e) {
+          console.error(e)
           notify.error('Ошибка при удалении')
         }
       },
@@ -92,7 +98,7 @@ export const useCategoryStore = createSharedComposable(() => {
         state.data
           .filter(c => c.type === 'inc')
           .sort((a, b) => a.order - b.order),
-      getById: state => (id: number): CategoryResponseDto | undefined => state.data.find(c => c.id === id),
+      getById: state => (id: number): CategoryResponseDto => state.data.find(c => c.id === id),
     },
     persist: {
       storage: piniaPluginPersistedstate.localStorage(),

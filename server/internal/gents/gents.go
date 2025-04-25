@@ -5,6 +5,7 @@ import (
 	"budget/internal/category"
 	"budget/internal/db"
 	"budget/internal/record"
+	"budget/internal/tag"
 	"budget/internal/user"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/tkrajina/typescriptify-golang-structs/typescriptify"
@@ -50,11 +51,15 @@ func Run(filename string) error {
 		Add(auth.RefreshTokenRequestDto{}).
 		Add(auth.RefreshTokenResponseDto{}).
 		Add(user.ChangePasswordRequestDto{}).
+		Add(tag.TagResponseDto{}).
+		Add(tag.CreateTagRequestDto{}).
+		Add(tag.UpdateTagRequestDto{}).
 		AddEnum(AllCategoriesTypeEnum).
 		AddEnum(AllCategoriesPlanPeriodEnum).
 		ManageType(time.Time{}, typescriptify.TypeOptions{TSType: "string"}).
 		ManageType(pgtype.Timestamp{}, typescriptify.TypeOptions{TSType: "string"}).
-		ManageType(pgtype.Numeric{}, typescriptify.TypeOptions{TSType: "number"})
+		ManageType(pgtype.Numeric{}, typescriptify.TypeOptions{TSType: "number"}).
+		ManageType(pgtype.Int8{}, typescriptify.TypeOptions{TSType: "number"})
 
 	converter.CreateInterface = true
 	err := converter.ConvertToFile(filename)

@@ -9,7 +9,9 @@ import (
 	"budget/pkg/utils/convert"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"github.com/jackc/pgx/v5"
 	"time"
 
 	"github.com/jackc/pgx/v5/pgtype"
@@ -73,12 +75,26 @@ func (s Service) CreateOne(ctx context.Context, userId int32, dto CreateOneRecor
 		return RecordResponseDto{}, http_error.NewBadRequestError("Category not found", "")
 	}
 
-	newRecord, err := s.recordRepo.Create(ctx, db.CreateRecordParams{
+	err = s.validateCategoryTag(ctx, dto.CategoryID, dto.TagID)
+	if err != nil {
+		return RecordResponseDto{}, err
+	}
+
+	newRecordParams := db.CreateRecordParams{
 		Amount:     convert.Float64ToNumeric(dto.Amount, 2),
 		Comment:    dto.Comment,
 		Timestamp:  pgtype.Timestamp{Time: dto.Timestamp, Valid: true},
 		CategoryID: dto.CategoryID,
-	})
+	}
+	if dto.TagID > 0 {
+		newRecordParams.TagID = pgtype.Int8{
+			Int64: dto.TagID,
+			Valid: true,
+		}
+	}
+	newRecord, err := s.recordRepo.Create(ctx, newRecordParams)
+	fmt.Println("tagid", dto.TagID)
+
 	if err != nil {
 		return newRecord, http_error.NewInternalRequestError("")
 	}
@@ -104,13 +120,18 @@ func (s Service) CreateMany(ctx context.Context, userId int32, dto CreateManyRec
 		return nil, http_error.NewBadRequestError("Invalid category ids", "")
 	}
 
-	categoriesMap := make(map[int64]category.CategoryResponseDto)
+	categoriesMap := make(map[int64]db.Category)
 	for _, categoryEntity := range categories {
 		categoriesMap[categoryEntity.ID] = categoryEntity
 	}
 
 	newRecords := make([]db.CreateRecordParams, len(dto.Data))
 	for i, item := range dto.Data {
+		err := s.validateCategoryTag(ctx, item.CategoryID, item.TagID)
+		if err != nil {
+			return nil, err
+		}
+
 		record := db.CreateRecordParams{
 			Amount:     convert.Float64ToNumeric(item.Amount, 2),
 			Comment:    item.Comment,
@@ -119,6 +140,12 @@ func (s Service) CreateMany(ctx context.Context, userId int32, dto CreateManyRec
 				Time:  item.Timestamp,
 				Valid: true,
 			},
+		}
+		if item.TagID > 0 {
+			record.TagID = pgtype.Int8{
+				Int64: item.TagID,
+				Valid: true,
+			}
 		}
 		newRecords[i] = record
 	}
@@ -146,6 +173,11 @@ func (s Service) UpdateOne(ctx context.Context, userId int32, dto UpdateOneRecor
 		return RecordResponseDto{}, http_error.NewBadRequestError("Category not found", "")
 	}
 
+	err = s.validateCategoryTag(ctx, dto.CategoryID, dto.TagID)
+	if err != nil {
+		return RecordResponseDto{}, err
+	}
+
 	record := db.UpdateRecordParams{
 		ID:         dto.ID,
 		Amount:     convert.Float64ToNumeric(dto.Amount, 2),
@@ -155,6 +187,12 @@ func (s Service) UpdateOne(ctx context.Context, userId int32, dto UpdateOneRecor
 			Time:  dto.Timestamp,
 			Valid: true,
 		},
+	}
+	if dto.TagID > 0 {
+		record.TagID = pgtype.Int8{
+			Int64: dto.TagID,
+			Valid: true,
+		}
 	}
 
 	updated, err := s.recordRepo.Update(ctx, record)
@@ -219,4 +257,27 @@ func (s Service) getCacheKey(id int32) string {
 func (s Service) dropCache(userId int32) {
 	key := s.getCacheKey(userId)
 	s.cache.Del(key)
+}
+
+func (s Service) validateCategoryTag(ctx context.Context, categoryId int64, tagId int64) error {
+	if tagId == 0 {
+		return nil
+	}
+
+	userTags, err := s.categoryRepo.GetTagsIdsByCategoryId(ctx, categoryId)
+	if err != nil {
+		if !errors.Is(err, pgx.ErrNoRows) {
+			return http_error.NewInternalRequestError("")
+		}
+
+		return http_error.NewBadRequestError("category has no tags", "")
+	}
+
+	for _, userTag := range userTags {
+		if userTag.TagID == tagId {
+			return nil
+		}
+	}
+
+	return http_error.NewBadRequestError("invalid tag id", "")
 }

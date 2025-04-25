@@ -1,26 +1,40 @@
 <script setup lang="ts">
 import { capitalize, cloneDeep } from 'lodash-es'
-import Omit from 'lodash-es/omit'
 
 interface Props {
   actionType: string
-  submit: (dto: CreateCategoryRequestDto) => void
-  remove: () => void
-  color: string | undefined
-  type: CategoriesTypeEnum | undefined
-  name: string | undefined
-  comment: string | undefined
-  icon: string | undefined
-  plan: number | null | undefined
-  planPeriod: CategoriesPlanPeriodEnum | undefined
+  submit: (dto: CreateCategoryRequestDto) => Promise<void>
+  remove?: () => Promise<void>
+  color?: string
+  type?: CategoriesTypeEnum
+  name?: string
+  tagIds?: []
+  comment?: string
+  icon?: string
+  plan?: number
+  planPeriod?: CategoriesPlanPeriodEnum | undefined
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  name: '',
+  tagIds: () => [],
+  comment: '',
+  icon: '',
+  color: '',
+  plan: 0,
+  planPeriod: CategoriesPlanPeriodEnum.MONTH,
+})
+const { tabs } = useCategoryTabs()
+const { tagStoreRefs: { data: tags } } = useTagStore()
+const { object, string } = useYap()
+const { t } = useI18n()
+const toast = useToast()
 
 const defaultState = {
   name: '',
+  tagIds: [],
   comment: '',
-  plan: null,
+  plan: 0,
   planPeriod: 'month',
 }
 
@@ -28,24 +42,20 @@ const categoryType = ref('0')
 const color = ref('')
 const icon = ref('')
 const isIconPickerOpen = ref(false)
-const state = ref<CategoryStateWithoutOrder>(cloneDeep(defaultState))
-
-const { tabs } = useCategoryTabs()
-const { object, string } = useYap()
-const { t } = useI18n()
-const toast = useToast()
+const state = ref(cloneDeep(defaultState))
 
 const currentTabName = computed(() => tabs.value[categoryType.value].slot)
 
 onMounted(() => {
-  color.value = props.color || ''
-  icon.value = props.icon || ''
+  color.value = props.color
+  icon.value = props.icon
 
   state.value = {
-    name: props.name || '',
-    comment: props.comment || '',
+    name: props.name,
+    tagIds: props.tagIds,
+    comment: props.comment,
     plan: props.plan,
-    planPeriod: props.planPeriod || 'month',
+    planPeriod: props.planPeriod,
   }
 
   if (props.type) {
@@ -53,7 +63,6 @@ onMounted(() => {
   }
 })
 
-class CategoryStateWithoutOrder extends Omit<CategoryState, 'order'> {}
 const schema = object({
   name: string().required().min(2).max(20),
   comment: string().nullable(),
@@ -94,6 +103,7 @@ async function saveCategory() {
     icon: icon.value,
     color: color.value,
     type: currentTabName.value,
+    tagIds: state.value.tagIds,
   })
 }
 </script>
@@ -125,6 +135,10 @@ async function saveCategory() {
       <div class="mb-6">
         <UiColorPicker v-model:value="color" />
       </div>
+
+      <UFormField name="tagIds" class="mb-2">
+        <USelectMenu v-model="state.tagIds" multiple :items="tags" value-key="id" label-key="name" size="xl" class="w-full" />
+      </UFormField>
 
       <UFormField name="comment" class="mb-2">
         <UInput v-model.number="state.comment" size="xl" :placeholder="t('common.comment')" class="w-full" />

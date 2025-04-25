@@ -5,10 +5,16 @@ const {
 } = useCategoryStore()
 const { currentTab, tabs } = useCategoryTabs()
 
-const costFormState = ref<Record<string, { value: string, comment: string }>>(
+interface FormState {
+  value: string
+  comment: string
+  tagId: number
+}
+
+const costFormState = ref<Record<string, FormState>>(
   {},
 )
-const incFormState = ref<Record<string, { value: string, comment: string }>>(
+const incFormState = ref<Record<string, FormState>>(
   {},
 )
 </script>
