@@ -66,8 +66,8 @@ const list = computed(() => {
 
 <template>
   <RecordsListFilter
-    v-model:model-value="isFiltersOpen"
-    v-model:is-filter-active="isFilterActive"
+    v-model:open="isFiltersOpen"
+    v-model:active="isFilterActive"
     v-model:category-to-filter="categoryToFilter"
   />
 

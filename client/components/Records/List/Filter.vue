@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 defineProps<{
-  modelValue: boolean
-  isFilterActive: boolean
+  open: boolean
+  active: boolean
   categoryToFilter: number[]
 }>()
 
 const emit = defineEmits([
-  'update:modelValue',
-  'update:isFilterActive',
+  'update:open',
+  'update:active',
   'update:categoryToFilter',
 ])
 
@@ -17,26 +17,26 @@ const {
 } = useCategoryStore()
 
 function submitFilters() {
-  emit('update:isFilterActive', true)
-  emit('update:modelValue', false)
+  emit('update:active', true)
+  emit('update:open', false)
 }
 
 function resetFilters() {
-  emit('update:isFilterActive', false)
+  emit('update:active', false)
   emit('update:categoryToFilter', [])
-  emit('update:modelValue', false)
+  emit('update:open', false)
 }
 </script>
 
 <template>
   <UDrawer
-    :open="modelValue"
+    :open="open"
     title="Фильтры"
-    @update:open="emit('update:modelValue', $event)"
+    @update:open="emit('update:open', $event)"
   >
     <div class="flex justify-end mb-2 pr-1">
       <UButton
-        :color="isFilterActive ? 'primary' : 'neutral'"
+        :color="active ? 'primary' : 'neutral'"
         variant="link"
         trailing-icon="i-heroicons-funnel"
       />
