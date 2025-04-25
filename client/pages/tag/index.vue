@@ -8,7 +8,7 @@ const searchInp = shallowRef('')
 const debouncedSearch = refDebounced(searchInp, 300)
 const tagIdToDelete = ref<null | number>(null)
 
-const list = computed(() => data.value.filter(t => t.name.includes(debouncedSearch.value)))
+const list = computed(() => data.value.filter(t => t.name.toLowerCase().includes(debouncedSearch.value.toLowerCase())))
 
 function onDelete(id: number) {
   tagIdToDelete.value = id
