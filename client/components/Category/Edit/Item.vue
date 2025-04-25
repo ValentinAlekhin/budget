@@ -35,7 +35,7 @@ const tags = computed(() => tagIds?.map(id => getById(id)))
           <span> {{ name }}</span>
         </div>
 
-        <TagList v-if="tags?.length" :tags="tags" />
+        <TagList v-if="tags?.length" :tags="tags" class="mt-1" />
       </div>
 
       <div>
