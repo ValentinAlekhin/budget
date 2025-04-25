@@ -14,6 +14,7 @@ const date = ref(dayjs())
 const isFiltersOpen = ref(false)
 const isFilterActive = ref(false)
 const categoryToFilter = ref<number[]>([])
+const tagsToFilter = ref<number[]>([])
 
 function nextMonth() {
   date.value = date.value.add(1, 'month')
@@ -38,7 +39,11 @@ const list = computed(() => {
 
   return props.rows.reduce((acc, item) => {
     if (isFilterActive.value) {
-      if (!categoryToFilter.value.includes(item.categoryId)) {
+      if (categoryToFilter.value.length && !categoryToFilter.value.includes(item.categoryId)) {
+        return acc
+      }
+
+      if (tagsToFilter.value.length && !tagsToFilter.value.includes(item.tagId)) {
         return acc
       }
     }
@@ -69,6 +74,7 @@ const list = computed(() => {
     v-model:open="isFiltersOpen"
     v-model:active="isFilterActive"
     v-model:category-to-filter="categoryToFilter"
+    v-model:tags-to-filter="tagsToFilter"
   />
 
   <div class="mb-1 flex items-center justify-between">
