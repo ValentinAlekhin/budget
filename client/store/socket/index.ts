@@ -68,7 +68,7 @@ export const useSocketStore = createSharedComposable(() => {
         }
         catch (e) {
           console.error(e)
-          notify.error(`Произошла ошибка при подключении к WebSocket: ${e}`)
+          notify.error(`Произошла ошибка при подключении к WebSocket`)
         }
       },
       tryReconnect() {

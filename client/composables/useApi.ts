@@ -26,6 +26,26 @@ export function useApi() {
   const resetTokens = () =>
     (tokensStore.value = { accessToken: '', refreshToken: '' })
 
+  const refreshToken = async (): Promise<string> => {
+    const payload: RefreshTokenRequestDto = {
+      refreshToken: tokensStore.value.refreshToken,
+    }
+    const { data } = await api.post<RefreshTokenResponseDto>(
+      '/auth/refresh-tokens',
+      payload,
+    )
+
+    tokensStore.value = {
+      refreshToken: data.refreshToken,
+      accessToken: data.accessToken,
+    }
+
+    const authHeader = `Bearer ${data.accessToken}`
+    api.defaults.headers.common.Authorization = authHeader
+
+    return authHeader
+  }
+
   api.interceptors.request.use((config) => {
     requestCount.value++
     return config
@@ -58,23 +78,7 @@ export function useApi() {
       const router = useRouter()
 
       try {
-        const payload: RefreshTokenRequestDto = {
-          refreshToken: tokensStore.value.refreshToken,
-        }
-        const { data } = await api.post<RefreshTokenResponseDto>(
-          '/auth/refresh-tokens',
-          payload,
-        )
-
-        tokensStore.value = {
-          refreshToken: data.refreshToken,
-          accessToken: data.accessToken,
-        }
-
-        const authHeader = `Bearer ${data.accessToken}`
-        api.defaults.headers.common.Authorization = authHeader
-        originalConfig.headers.Authorization = authHeader
-
+        originalConfig.headers.Authorization = await refreshToken()
         return api(originalConfig)
       }
       catch (e) {
@@ -85,5 +89,5 @@ export function useApi() {
     },
   )
 
-  return { api, baseUrl, tokensStore, resetTokens, requestCount }
+  return { api, baseUrl, tokensStore, resetTokens, requestCount, refreshToken }
 }

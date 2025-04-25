@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 
 export function useGlobalLoading() {
+  const { refreshToken } = useApi()
   const authStore = useAuthStore()
   const { socketStore } = useSocketStore()
   const { categoryStore } = useCategoryStore()
@@ -26,7 +27,11 @@ export function useGlobalLoading() {
   const error = computed(() => categoryStore.error || recordStore.error || tagStore.error)
 
   watch(visibility, async (v) => {
+    if (!authStore.user)
+      return
+
     if (v === 'visible') {
+      await refreshToken()
       await socketStore.init()
       if (dayjs().diff(lastFetch.value, 'minutes') > 1) {
         await fetchAll()
