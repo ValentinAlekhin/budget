@@ -50,6 +50,7 @@ export default {
     records: 'Записи',
     reset: 'Сбросить',
     all: 'Все',
+    tag: 'Тег',
   },
   range: {
     currentYear: 'Текущий год',
@@ -68,6 +69,7 @@ export default {
     add: 'Добавление тега',
     edit: 'Редактирование тега',
     tags: 'Теги',
+    notSelected: 'Тег не выбран',
   },
   category: {
     add: 'Добавить категорию',

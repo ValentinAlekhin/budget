@@ -38,7 +38,7 @@ const orderState = reactive<Record<string, number>>(
 )
 
 const drag = ref<boolean>(false)
-const itemToDelete = ref<null, number>(null)
+const itemToDelete = ref<number | null>(null)
 
 const dragOptions = {
   animation: 150,
@@ -48,15 +48,15 @@ const dragOptions = {
 }
 
 const debouncedReorderEmit = useDebounceFn(async () => {
-  const orderPayload: UpdateCategoryOrderRequestDto[] = Object.entries(orderState)
-    .map(([id, order]) => ({ id: +id, order }))
-    .filter((item) => {
-      const category = categories.value.find(c => c.id === item.id)
-      if (!category)
-        return false
+  const orderPayload: UpdateCategoryOrderRequestDto[] = Object.entries(
+    orderState,
+  ).map(([id, order]) => ({ id: +id, order })).filter((item) => {
+    const category = categories.value.find(c => c.id === item.id)
+    if (!category)
+      return false
 
-      return category.order !== item.order
-    })
+    return category.order !== item.order
+  })
   await categoryStore.updateManyOrder(orderPayload)
 }, 500)
 
@@ -95,10 +95,7 @@ async function removeItem() {
 watch(categories, value =>
   cloneDeep(value)
     .sort((a, b) => a.order - b.order)
-    .forEach(
-      (c, i) =>
-        (orderState[c.id] = i + 1),
-    ))
+    .forEach((c, i) => (orderState[c.id] = i + 1)))
 
 function setActions() {
   if (props.type !== tab.value)
@@ -135,50 +132,15 @@ onMounted(() => {
       @end="drag = false"
     >
       <template #item="{ element }">
-        <UCard class="mb-2 cursor-pointer" @click="startEditCategory(element.id)">
-          <div class="flex justify-between items-center gap-1">
-            <div class="flex items-center">
-              <div
-                v-if="element.color || element.icon"
-                class="mr-2 flex w-6 justify-center"
-              >
-                <UIcon
-                  v-if="element.icon"
-                  :style="{ color: element.color }"
-                  :name="element.icon"
-                  size="24"
-                />
-
-                <span
-                  v-else-if="element.color"
-                  :style="{ background: element.color }"
-                  class="inline-block size-2 rounded-full"
-                />
-              </div>
-
-              <span> {{ element.name }}</span>
-            </div>
-
-            <div>
-              <UButton
-                size="md"
-                color="white"
-                icon="i-heroicons-trash"
-                variant="ghost"
-                @click.stop="itemToDelete = element.id"
-              />
-
-              <UButton
-                class="handle"
-                color="white"
-                size="md"
-                icon="i-heroicons-arrows-up-down"
-                variant="ghost"
-                @click.stop
-              />
-            </div>
-          </div>
-        </UCard>
+        <CategoryEditItem
+          :id="element.id"
+          :name="element.name"
+          :color="element.color"
+          :icon="element.icon"
+          :tag-ids="element.tagIds"
+          @edit="startEditCategory"
+          @delete="itemToDelete = $event"
+        />
       </template>
     </Draggable>
 

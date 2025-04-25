@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-defineProps<{
+const { row } = defineProps<{
   row: RecordResponseDto & { category?: any }
 }>()
 
@@ -7,8 +7,11 @@ const emit = defineEmits(['edit', 'delete'])
 
 const { getTypeTextClasses } = useRecord()
 const { t } = useI18n()
+const { tagStore: { getById: getTagById } } = useTagStore()
 
 const isHovered = ref(false)
+
+const tag = computed(() => row.tagId ? getTagById(row.tagId) : null)
 
 function getDropDownItems(record: RecordResponseDto) {
   return [
@@ -61,13 +64,19 @@ function getDropDownItems(record: RecordResponseDto) {
           </span>
         </div>
 
-        <div>
+        <div v-if="tag || row.comment" class="mt-1 flex items-center">
+          <TagItem
+            v-if="tag"
+            :name="tag.name"
+            :color="tag.color"
+            :icon="tag.icon"
+            class="mr-2"
+          />
           <UBadge
             v-if="row.comment"
             :label="row.comment"
             color="neutral"
-            variant="outline"
-            class="mt-1"
+            variant="soft"
           />
         </div>
       </div>

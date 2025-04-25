@@ -14,7 +14,7 @@ type CreateCategoryRequestDto struct {
 	PlanPeriod db.CategoriesPlanPeriodEnum `json:"planPeriod" binding:"required,oneof=day week month quarter year"`
 	Color      string                      `json:"color" binding:"omitempty,hexcolor"`
 	Icon       string                      `json:"icon" binding:"omitempty"`
-	TagIds     []int64                     `json:"tagIds" binding:"omitempty,gt=0"`
+	TagIds     []int64                     `json:"tagIds" binding:"omitempty"`
 }
 
 type UpdateCategoryRequestDto struct {
@@ -27,7 +27,7 @@ type UpdateCategoryRequestDto struct {
 	PlanPeriod db.CategoriesPlanPeriodEnum `json:"planPeriod" binding:"required,oneof=day week month quarter year"`
 	Color      string                      `json:"color" binding:"omitempty,hexcolor"`
 	Icon       string                      `json:"icon" binding:"omitempty"`
-	TagIds     []int64                     `json:"tagIds" binding:"omitempty,gt=0"`
+	TagIds     []int64                     `json:"tagIds" binding:"omitempty"`
 }
 
 type UpdateManyCategoryRequestDto struct {

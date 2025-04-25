@@ -56,7 +56,8 @@ func Run(filename string) error {
 		AddEnum(AllCategoriesPlanPeriodEnum).
 		ManageType(time.Time{}, typescriptify.TypeOptions{TSType: "string"}).
 		ManageType(pgtype.Timestamp{}, typescriptify.TypeOptions{TSType: "string"}).
-		ManageType(pgtype.Numeric{}, typescriptify.TypeOptions{TSType: "number"})
+		ManageType(pgtype.Numeric{}, typescriptify.TypeOptions{TSType: "number"}).
+		ManageType(pgtype.Int8{}, typescriptify.TypeOptions{TSType: "number"})
 
 	converter.CreateInterface = true
 	err := converter.ConvertToFile(filename)

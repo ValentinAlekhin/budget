@@ -12,10 +12,6 @@ export enum CategoriesPlanPeriodEnum {
   QUARTER = 'quarter',
   YEAR = 'year',
 }
-export interface Int8 {
-  Int64: number
-  Valid: boolean
-}
 export interface RecordResponseDto {
   id: number
   createdAt: string
@@ -26,8 +22,9 @@ export interface RecordResponseDto {
   categoryId: number
   deletedAt: string
   type: CategoriesTypeEnum
-  tagId?: Int8
+  tagId?: number
 }
+
 export interface CreateOneRecordRequestDto {
   amount: number
   comment: string
@@ -128,7 +125,6 @@ export interface TagResponseDto {
   icon: string
   deletedAt: string
 }
-
 export interface CreateTagRequestDto {
   name: string
   color: string
