@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { Dayjs } from 'dayjs'
 import dayjs from 'dayjs'
 import { date, number, object, string } from 'yup'
 
@@ -6,9 +7,11 @@ const props = defineProps({
   open: { type: Boolean },
   record: { type: Object, default: () => ({}) },
 })
+
 const emit = defineEmits(['close'])
+
 const { recordStore } = useRecordStore()
-const { categoryStoreRefs: { data: categories } } = useCategoryStore()
+const { categoryStoreRefs: { costs, incoming, data: categories } } = useCategoryStore()
 const { tagStore: { getById: getTagById } } = useTagStore()
 const { t } = useI18n()
 
@@ -20,7 +23,13 @@ const schema = object({
   tagId: number().optional().nullable(),
 })
 
-const state = ref({
+const state = ref<{
+  amount: number
+  categoryId: number
+  timestamp: Dayjs
+  comment: string
+  tagId: number | null
+}>({
   amount: 0,
   categoryId: 0,
   timestamp: dayjs(),
@@ -40,6 +49,14 @@ const categoryTags = computed(() => currentCategory.value?.tagIds?.map(id => get
 const formattedDate = computed(() =>
   dayjs(props.record?.timestamp).format('DD.MM.YYYY'),
 )
+
+const categoryItems = computed(() => [{
+  type: 'label',
+  name: t('common.costs'),
+}, ...costs.value, {
+  type: 'label',
+  name: t('common.incoming'),
+}, ...incoming.value])
 
 const close = () => emit('close')
 
@@ -78,6 +95,10 @@ watch(
     state.value.tagId = record?.tagId
   },
 )
+
+watch(() => state.value.categoryId, () => {
+  state.value.tagId = null
+})
 </script>
 
 <template>
@@ -112,7 +133,7 @@ watch(
             >
               <USelectMenu
                 v-model="state.categoryId"
-                :items="categories"
+                :items="categoryItems"
                 :icon="currentCategory?.icon"
                 label-key="name"
                 value-key="id"
