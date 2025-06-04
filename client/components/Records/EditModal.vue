@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { Dayjs } from 'dayjs'
 import dayjs from 'dayjs'
 import { date, number, object, string } from 'yup'
 
@@ -20,7 +21,13 @@ const schema = object({
   tagId: number().optional().nullable(),
 })
 
-const state = ref({
+const state = ref<{
+  amount: number
+  categoryId: number
+  timestamp: Dayjs
+  comment: string
+  tagId: number | null
+}>({
   amount: 0,
   categoryId: 0,
   timestamp: dayjs(),
@@ -78,6 +85,10 @@ watch(
     state.value.tagId = record?.tagId
   },
 )
+
+watch(() => state.value.categoryId, () => {
+  state.value.tagId = null
+})
 </script>
 
 <template>
