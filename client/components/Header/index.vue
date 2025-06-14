@@ -31,7 +31,7 @@ watch(loading, (value) => {
     class="fixed top-0 z-50 w-full bg-background/75 border-b border-gray-200 backdrop-blur dark:border-gray-800 "
   >
     <header
-      class="flex flex-wrap items-center justify-between max-w-screen-sm mx-auto px-5"
+      class="flex flex-wrap items-center justify-between max-w-screen-sm mx-auto px-1"
     >
       <div class="flex items-center">
         <div id="headerTeleport" />
@@ -48,8 +48,8 @@ watch(loading, (value) => {
         </div>
       </div>
 
-      <div class="flex items-center justify-between w-28">
-        <HeaderConnection />
+      <div class="flex items-center justify-between">
+        <FinanceToggler />
         <UiThemeSwitch />
         <HeaderDropdown />
       </div>

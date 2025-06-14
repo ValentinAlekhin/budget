@@ -235,11 +235,10 @@ watch(currentRange, (value: any) => {
               :options="chartOptions"
             />
           </ClientOnly>
-          <span
+          <FinanceValue
+            :value="totalSum"
             class="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%] text-3xl font-bold text-gray-900 dark:text-white"
-          >
-            {{ numberWithSpaces(totalSum) }}
-          </span>
+          />
         </div>
 
         <UCard v-for="item of list" :key="item.id" class="mb-2" :ui="cardUi">
@@ -272,11 +271,10 @@ watch(currentRange, (value: any) => {
               {{ item.percentage }}%
             </span>
 
-            <span
+            <FinanceValue
+              :value="item.sum"
               class="col-span-2 text-end font-bold text-gray-900 dark:text-white"
-            >
-              {{ numberWithSpaces(item.sum) }}
-            </span>
+            />
           </div>
         </UCard>
       </template>
