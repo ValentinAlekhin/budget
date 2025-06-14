@@ -19,9 +19,8 @@ watch(state, (v) => {
   <ClientOnly>
     <UButton
       :icon="icon"
-      color="gray"
-      variant="ghost"
-      aria-label="Theme"
+      color="neutral"
+      variant="link"
       @click="next()"
     />
 

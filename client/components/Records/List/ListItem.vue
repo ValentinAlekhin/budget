@@ -56,12 +56,11 @@ function getDropDownItems(record: RecordResponseDto) {
             </span>
           </div>
 
-          <span
+          <FinanceValue
+            :value="row.amount"
             class="pr-1 text-right text-base font-semibold"
             :class="getTypeTextClasses(row.type)"
-          >
-            {{ numberWithSpaces(row.amount) }}
-          </span>
+          />
         </div>
 
         <div v-if="tag || row.comment" class="mt-1 flex items-center">

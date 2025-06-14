@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { get } from 'lodash-es'
+import Value from '../Finance/Value.vue'
 
 interface Props {
   color: string
@@ -41,9 +42,7 @@ const splitterClass = computed(() => get(splitterClasses, props.color || 'red'))
         <span class="text-xs text-gray-500 dark:text-gray-400">
           {{ name }}
         </span>
-        <span class="font-bold text-gray-900 dark:text-white">
-          {{ numberWithSpaces(value) }}
-        </span>
+        <Value class="font-bold" :value="value" />
       </div>
     </div>
 

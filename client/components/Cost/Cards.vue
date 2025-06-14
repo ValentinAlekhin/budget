@@ -84,9 +84,7 @@ async function submitAdjustment() {
         {{ $t("common.currentBalance") }}
       </span>
       <div class="flex items-center">
-        <span class="text-2xl font-bold">
-          {{ numberWithSpaces(currentBalance) }}
-        </span>
+        <FinanceValue :value="currentBalance" class="text-2xl font-bold" />
         <UButton
           icon="i-heroicons-pencil"
           class="ml-2"
@@ -111,7 +109,7 @@ async function submitAdjustment() {
             />
             {{ $t("common.costs") }}
           </span>
-          <span class="font-bold">-{{ numberWithSpaces(totalCost) }}</span>
+          <FinanceValue :value="totalCost" class="font-bold" />
         </div>
 
         <div class="flex flex-col">
@@ -122,7 +120,7 @@ async function submitAdjustment() {
             />
             {{ $t("common.incoming") }}
           </span>
-          <span class="font-bold">+{{ numberWithSpaces(totalIncoming) }}</span>
+          <FinanceValue :value="totalIncoming" class="font-bold" />
         </div>
       </div>
     </div>
